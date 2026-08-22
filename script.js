@@ -107,10 +107,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 </ul>
             </div>
         </div>
+        <div id="modal-juanpablo" class="staff-modal">
+            <div class="staff-modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 class="text-2xl font-bold mb-4 text-[#ffb599]">Juan Pablo Sena</h3>
+                <p>Licenciado en Educación Física</p>
+                <p>Entrenador Personal y Preparador Físico.</p>
+                <p>En formación en entrenamiento Híbrido en Academia Hyrox!</p>
+                <ul class="list-disc pl-5 mt-2 text-sm text-gray-300">
+                    <li>Entrenamiento Funcional</li>
+                    <li>Pilates De Hoy. Pilates Funcional</li>
+                    <li>Entrenamiento de alta intensidad</li>
+                    <li>Metodología cross training</li>
+                </ul>
+            </div>
+        </div>
     `;
     document.body.appendChild(modalsContainer);
 
     // After DOM parsing, you can bind these. Note: In the actual HTML you would need to add id="card-noelia" and id="card-santiago" to the respective elements.
     setupModal('card-noelia', 'modal-noelia');
     setupModal('card-santiago', 'modal-santiago');
+    setupModal('card-juanpablo', 'modal-juanpablo');
 });
