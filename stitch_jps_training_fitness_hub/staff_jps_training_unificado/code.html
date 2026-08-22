@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JPS TRAINING - Staff</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,900&amp;family=JetBrains+Mono:wght@600&amp;family=Hanken+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d1e4ff",
+                        "on-secondary-container": "#580031",
+                        "surface-variant": "#353534",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffb599",
+                        "on-tertiary-fixed-variant": "#00497d",
+                        "on-primary-fixed-variant": "#7f2b00",
+                        "primary-fixed-dim": "#ffb599",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brushed-metal": "#2A2A2A",
+                        "on-secondary-fixed": "#3e0021",
+                        "outline": "#aa897d",
+                        "steel-silver": "#C0C0C0",
+                        "on-primary": "#5a1c00",
+                        "tertiary-fixed-dim": "#9ecaff",
+                        "tertiary-container": "#0098fc",
+                        "primary-container": "#ff5f05",
+                        "on-background": "#e5e2e1",
+                        "surface-elevated": "#1E1E1E",
+                        "on-surface-variant": "#e4bfb1",
+                        "on-tertiary-fixed": "#001d36",
+                        "surface-bright": "#393939",
+                        "secondary-fixed": "#ffd9e4",
+                        "inverse-primary": "#a73b00",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#640038",
+                        "primary-fixed": "#ffdbce",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error": "#690005",
+                        "on-primary-container": "#531900",
+                        "surface-container": "#201f1f",
+                        "on-tertiary": "#003258",
+                        "secondary": "#ffb0cc",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb599",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#002e52",
+                        "surface-container-highest": "#353534",
+                        "on-primary-fixed": "#370e00",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#ff45a1",
+                        "tertiary": "#9ecaff",
+                        "background": "#131313",
+                        "outline-variant": "#5b4137",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "vibrant-pink": "#E01E5A",
+                        "error-container": "#93000a",
+                        "electric-orange": "#FF8A00",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "stat-value": ["Montserrat"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "headline-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "stat-value": ["32px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .clip-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        .btn-gradient {
+            background: linear-gradient(90deg, theme('colors.electric-orange'), theme('colors.vibrant-pink'));
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(255, 138, 0, 0.4);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, theme('colors.electric-orange'), theme('colors.vibrant-pink'));
+        }
+        .metallic-edge {
+            border-top: 1px solid theme('colors.steel-silver');
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-primary/10 transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop h-20 w-full max-w-7xl mx-auto md:px-margin-desktop px-margin-mobile">
+<!-- Brand -->
+<a class="font-display-xl text-headline-md italic font-black bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent tracking-tighter hover:scale-105 transition-transform duration-300" href="#">
+                JPS TRAINING
+            </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">Actividades</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 opacity-80 scale-95 uppercase" href="#">Staff</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">Planes</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">Contacto</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button class="hidden md:inline-flex items-center justify-center font-label-caps text-label-caps btn-gradient text-white px-6 py-2 rounded-full font-bold glow-hover hover:scale-105 transition-all duration-300 uppercase">
+                    ÚNETE AHORA
+                </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors" id="menuToggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile) -->
+<nav class="md:hidden flex flex-col p-base gap-4 h-full w-64 fixed left-0 top-0 pt-24 bg-surface-elevated border-r border-brushed-metal z-40 transition-transform duration-300 -translate-x-full" id="mobileNav">
+<div class="flex flex-col gap-2 flex-grow font-label-caps text-label-caps">
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-200 uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span> Actividades
+            </a>
+<a class="flex items-center gap-4 p-3 bg-primary-container text-on-primary-container rounded-xl transition-all duration-200 uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span> Staff
+            </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-200 uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span> Planes
+            </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-200 uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span> Contacto
+            </a>
+</div>
+<div class="p-4 mt-auto">
+<button class="w-full btn-gradient py-3 rounded-full font-label-caps text-label-caps text-white glow-hover uppercase">
+                ÚNETE AHORA
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-24 md:pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop">
+<!-- Header Section -->
+<section class="mb-16 relative">
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background opacity-50 blur-3xl"></div>
+<h1 class="font-display-xl text-display-xl text-transparent bg-clip-text bg-gradient-to-r from-white to-steel-silver mb-4 uppercase tracking-tighter">
+                NUESTRO <br/><span class="text-gradient">STAFF</span> DE ÉLITE
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-primary pl-4">
+                Nuestros entrenadores son veteranos de la industria cuidadosamente seleccionados, dedicados a forjar el potencial en bruto en un rendimiento innegable. Sin excusas, solo resultados.
+            </p>
+</section>
+<!-- Bento Grid / Staff Roster -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[minmax(300px,_auto)]">
+<!-- Featured Coach (Spans 8 cols on desktop) -->
+<div class="md:col-span-8 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500" data-alt="A gritty, high-contrast black and white portrait of an intense fitness trainer in a dark gym environment. Dramatic cinematic lighting (chiaroscuro) highlights muscular definition and metallic gym equipment in the background. A subtle orange/pink gel light illuminates one side of the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7vLh33vppJtXjDtUKWLlwrSp9L0bcQ1X4EfD7-fDUOlGaiJo65_xlvShyos-LeHlopyDUZZjT0w5206hOkZgddJ9lyx6_teFoG7RASjSnxDhi2bbJ27kzSZML6HQVAqjGesgiQG11uhcOT2zptNilyOnPRvG1OCz3-DbqyimGqi1M0qecB-hEa-W9MFdKDPN0tASMzJY98EJd7taxGHHWuuuWd-wq5wW_Pf6vMUR5hWniwPLZtpBnQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-end">
+<div class="inline-block bg-vibrant-pink text-black font-label-caps text-[10px] uppercase px-3 py-1 rounded mb-4 self-start tracking-widest font-bold">
+                        Entrenador Jefe
+                    </div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-1 uppercase italic">JUAN PABLO SENA</h2>
+<p class="font-label-caps text-primary uppercase tracking-widest mb-4">Entrenador Personal Senior</p>
+<p class="font-body-md text-on-surface-variant max-w-lg mb-6 line-clamp-2">
+                        Ex especialista en atletas tácticos enfocado en acondicionamiento extremo y fuerza funcional. Marcus rompe los límites.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-surface/50 border border-steel-silver/30 hover:border-primary text-white p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Coach 1 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A dynamic, high-contrast photo of a female boxing coach wrapping hands in a dark, gritty training facility. Strong overhead lighting casts dramatic shadows. Accents of neon pink and orange are visible in the background equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8A1-Z4mmRnLSGkmm6qpOXWF5Z0DGwVI46ASfFEKvYhLFVbLAWRc4pewLkIfWZLK5N-98HDeuEvGvFVQ4jj7jzw9hImllQ1g32wZwY8rLivsIcZejV7pVS-4ajvNLZIriGfd2I6fejVF7VQCLivVuFUlepI_bJbt9lgqF74-jSREaZmYt5ZuT9YRJv1XToYlaty9SdbunslkDyAQHnKB1oyrQbDSW4BIvsGz8JxF5p9ghutt58GP-C1Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Elena Rojas</h3>
+<p class="font-label-caps text-vibrant-pink uppercase tracking-widest mb-4 text-[10px]">Especialista en Boxeo</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">9 AÑOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">sports_mma</span>
+</div>
+</div>
+</div>
+<!-- Standard Coach 2 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A dark, intense portrait of a male powerlifting coach chalking up hands. High contrast, cool metallic tones mixed with warm amber rim lighting. The aesthetic is raw power and mechanical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Santiago Hernández</h3>
+<p class="font-label-caps text-electric-orange uppercase tracking-widest mb-4 text-[10px]">LicenciadO en Educación Física</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">3 AÑOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">fitness_center</span>
+</div>
+</div>
+</div>
+<!-- Standard Coach 3 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-end photo of a female mobility and recovery specialist in a dimly lit studio. Sleek lines, minimal aesthetic with a subtle glowing aura effect around her silhouette. Focus on flexibility and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Noelia Lima Latorre</h3>
+<p class="font-label-caps text-primary uppercase tracking-widest mb-4 text-[10px]">Licenciada en Educación Física</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">5 AÑOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">accessibility_new</span>
+</div>
+</div>
+</div>
+<!-- Join the Team Callout (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 relative rounded-lg overflow-hidden bg-surface-container-high border border-brushed-metal flex flex-col justify-center items-center text-center p-8">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMCAwTDggOFpNOCAwTDAgOFoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4KPC9zdmc+')]"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">add_circle</span>
+<h3 class="font-headline-md text-headline-md text-white uppercase italic mb-2">¿TIENES LO QUE SE NECESITA?</h3>
+<p class="font-body-md text-on-surface-variant mb-6 text-sm">Siempre estamos buscando talento de élite para unirse a nuestras filas.</p>
+<button class="border border-primary text-primary px-6 py-2 rounded font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary/10 transition-colors">
+                     POSTÚLATE AHORA
+                 </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full relative mt-auto bg-surface-dim border-t border-brushed-metal py-12 px-margin-desktop md:px-margin-desktop px-margin-mobile flex flex-col items-center">
+<div class="text-headline-md font-display-xl italic font-black mb-6 bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">
+            JPS TRAINING
+        </div>
+<div class="flex flex-wrap justify-center gap-6 mb-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Política de Privacidad</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Términos de Servicio</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">FAQ</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Ubicaciones</a>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant opacity-60">
+            © 2024 JPS TRAINING. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+<script>
+        // Simple mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body></html>

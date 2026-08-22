@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JPS TRAINING - Hero</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d1e4ff",
+                        "on-secondary-container": "#580031",
+                        "surface-variant": "#353534",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffb599",
+                        "on-tertiary-fixed-variant": "#00497d",
+                        "on-primary-fixed-variant": "#7f2b00",
+                        "primary-fixed-dim": "#ffb599",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brushed-metal": "#2A2A2A",
+                        "on-secondary-fixed": "#3e0021",
+                        "outline": "#aa897d",
+                        "steel-silver": "#C0C0C0",
+                        "on-primary": "#5a1c00",
+                        "tertiary-fixed-dim": "#9ecaff",
+                        "tertiary-container": "#0098fc",
+                        "primary-container": "#ff5f05",
+                        "on-background": "#e5e2e1",
+                        "surface-elevated": "#1E1E1E",
+                        "on-surface-variant": "#e4bfb1",
+                        "on-tertiary-fixed": "#001d36",
+                        "surface-bright": "#393939",
+                        "secondary-fixed": "#ffd9e4",
+                        "inverse-primary": "#a73b00",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#640038",
+                        "primary-fixed": "#ffdbce",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error": "#690005",
+                        "on-primary-container": "#531900",
+                        "surface-container": "#201f1f",
+                        "on-tertiary": "#003258",
+                        "secondary": "#ffb0cc",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb599",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#002e52",
+                        "surface-container-highest": "#353534",
+                        "on-primary-fixed": "#370e00",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#ff45a1",
+                        "tertiary": "#9ecaff",
+                        "background": "#131313",
+                        "outline-variant": "#5b4137",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "vibrant-pink": "#E01E5A",
+                        "error-container": "#93000a",
+                        "electric-orange": "#FF8A00",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "stat-value": ["Montserrat"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "headline-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "stat-value": ["32px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Shared Styles & Effects */
+        .btn-gradient {
+            background: linear-gradient(to right, #FF8A00, #E01E5A);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(255, 138, 0, 0.4);
+        }
+        
+        /* Chiaroscuro overlay */
+        .chiaroscuro-overlay {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0.1) 0%, rgba(19, 19, 19, 0.9) 100%),
+                        linear-gradient(90deg, rgba(19, 19, 19, 0.8) 0%, rgba(19, 19, 19, 0.2) 50%, rgba(19, 19, 19, 0.8) 100%);
+        }
+        
+        /* Map placeholder styling */
+        .map-placeholder {
+            background: 
+                linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313), 
+                linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313),
+                linear-gradient(to right, rgba(255, 138, 0, 0.05), rgba(224, 30, 90, 0.05));
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px, 0 0;
+            background-color: #1E1E1E;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-primary/10 transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop h-20 w-full max-w-7xl mx-auto md:px-margin-desktop px-margin-mobile">
+<!-- Brand -->
+<a class="font-display-xl text-headline-md italic font-black bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent tracking-tighter hover:scale-105 transition-transform duration-300" href="#">
+                JPS TRAINING
+            </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Actividades</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Staff</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Planes</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contacto</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button class="hidden md:inline-flex items-center justify-center font-label-caps text-label-caps btn-gradient text-white px-6 py-2 rounded-full font-bold glow-hover hover:scale-105 transition-all duration-300">
+                    ÚNETE AHORA
+                </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile) -->
+<aside class="h-full w-64 fixed left-0 top-0 hidden lg:hidden bg-surface-elevated border-r border-brushed-metal z-40 transform -translate-x-full transition-transform duration-300 flex flex-col p-base gap-4 pt-24" id="mobile-nav">
+<!-- Add simple JS to toggle this in a real app -->
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span> Actividades
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span> Staff
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span> Planes
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">mail</span> Contacto
+        </a>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow pt-20"> <!-- Offset for fixed header -->
+<!-- Hero Section -->
+<section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+<!-- Background Image with Chiaroscuro Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity" data-alt="A high-contrast, professional, gritty black and white photo of a dark, elite gym session. A muscular athlete is mid-lift with dramatic, low-key lighting highlighting sweat and muscle definition. The aesthetic is industrial, modern, dark mode, high octane, and intense." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3jPjcIqWDsoRMFbxUxMRHAgPwDKJKuWCEZaYtuQxxJNY7vvQK0GJQumpIM8n5DfpGQPa97ZFLjSe2BlWauWShsoM1XQ2TFE93awTbbKXl0oK-kGjsV4U76DgHfDhktIrDA0802Jv9QGdEaf5ZNcl8Y2gaMax0s9UD6Rgx4bHFufDGtZwI8XdWFv7iv92XL0EUdfWHNE0eI0uqL3-Z-q4sQlNxn5p466sn8MrcTtYtTuRdz7WK-IsVeA')"></div>
+<div class="absolute inset-0 chiaroscuro-overlay"></div>
+</div>
+<!-- Content Container -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center px-gutter w-full max-w-5xl mx-auto gap-8">
+<!-- Logo -->
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_40px_rgba(255,138,0,0.2)] border-2 border-brushed-metal bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 ease-out">
+<img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+</div>
+<!-- Headline -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight max-w-3xl leading-tight">
+                        Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
+</h1>
+</div>
+<!-- CTA Button -->
+<button class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
+                    ÚNETE AL EQUIPO
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Diagonal Accent Line -->
+<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
+</section>
+<!-- Location Section -->
+<section class="w-full py-section-gap px-gutter relative overflow-hidden bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/2 flex flex-col gap-6">
+<h2 class="font-display-xl text-headline-md md:text-headline-lg uppercase text-on-surface tracking-tight">
+<span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">Ubicación</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                Visítanos en nuestras instalaciones de primer nivel.
+            </p>
+<div class="flex items-start gap-4 mt-4 bg-surface-elevated p-6 rounded-xl border border-brushed-metal hover:border-outline-variant transition-colors group">
+<span class="material-symbols-outlined text-electric-orange text-3xl group-hover:scale-110 transition-transform">location_on</span>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">Dirección</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        Elías abdo 162 bis<br/>
+                        Entre rivera y Dr ivo<br/>
+                        Tacuarembó, Uruguay
+                    </p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[400px] rounded-2xl overflow-hidden border-2 border-brushed-metal relative group shadow-2xl shadow-primary/5">
+<!-- Stylized Map Placeholder -->
+<div class="absolute inset-0 map-placeholder flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
+<div class="bg-background/80 backdrop-blur-md px-6 py-3 rounded-full border border-electric-orange/30 flex items-center gap-3 shadow-lg shadow-electric-orange/10">
+<span class="material-symbols-outlined text-electric-orange animate-bounce">pin_drop</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-widest">JPS TRAINING</span>
+</div>
+</div>
+<!-- Interactive overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="w-full py-section-gap px-gutter bg-surface-container relative">
+<!-- Background Accents -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-surface-elevated to-transparent opacity-50 pointer-events-none"></div>
+<div class="absolute -top-40 -left-40 w-96 h-96 bg-primary rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
+<div class="max-w-3xl mx-auto flex flex-col gap-10 relative z-10">
+<div class="text-center flex flex-col gap-4">
+<h2 class="font-display-xl text-headline-md md:text-headline-lg uppercase text-on-surface tracking-tight">
+                Ponte en <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">Contacto</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+                ¿Listo para transformar tu vida? Déjanos tus datos y nos pondremos en contacto contigo a la brevedad.
+            </p>
+</div>
+<form class="bg-surface-elevated p-8 md:p-12 rounded-2xl border border-brushed-metal shadow-2xl shadow-black/50 flex flex-col gap-6 relative overflow-hidden">
+<!-- Form inner accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-electric-orange to-vibrant-pink"></div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-primary transition-colors" for="name">Nombre Completo</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full bg-background border border-brushed-metal rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all placeholder:text-on-surface-variant/30 font-body-md" id="name" name="name" placeholder="Ingresa tu nombre" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Correo Electrónico</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-background border border-brushed-metal rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all placeholder:text-on-surface-variant/30 font-body-md" id="email" name="email" placeholder="tucorreo@ejemplo.com" required="" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-primary transition-colors" for="message">Mensaje (Opcional)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-6 text-on-surface-variant/50 group-focus-within:text-primary transition-colors">chat</span>
+<textarea class="w-full bg-background border border-brushed-metal rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all placeholder:text-on-surface-variant/30 font-body-md resize-none" id="message" name="message" placeholder="¿Cuáles son tus objetivos?" rows="4"></textarea>
+</div>
+</div>
+<button class="mt-4 w-full group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-xl btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1" type="submit">
+                ENVIAR MENSAJE
+                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full relative bg-surface-dim border-t border-brushed-metal py-12 px-margin-desktop md:px-margin-desktop px-margin-mobile flex flex-col items-center border-t border-white/5">
+<div class="text-headline-md font-display-xl italic font-black mb-6 bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">
+            JPS TRAINING
+        </div>
+<div class="flex flex-wrap justify-center gap-6 mb-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Política de Privacidad</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Términos de Servicio</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Preguntas Frecuentes</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Ubicación</a>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant opacity-60">
+            © 2024 JPS TRAINING. TODOS LOS DERECHOS RESERVADOS.
+        </div>
+</footer>
+</body></html>
