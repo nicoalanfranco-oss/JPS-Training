@@ -167,16 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         btn.className = 'plan-btn w-full py-4 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white font-bold text-xs uppercase tracking-widest rounded transition-all duration-300 relative z-10';
                     }
                 } else {
-                    card.style.transform = idx === 1 ? 'translateY(-16px) scale(1)' : 'translateY(0px) scale(1)';
+                    card.style.transform = 'translateY(0px) scale(1)';
                     card.style.borderColor = '';
                     card.style.boxShadow = '';
-                    card.style.zIndex = idx === 1 ? '10' : '1';
-                    if (badge && idx !== 1) badge.classList.add('hidden'); // Keep Most Popular badge visible always but others hidden
+                    card.style.zIndex = '1';
+                    if (badge) badge.classList.add('hidden');
                     if (btn) {
-                        const isMid = idx === 1;
-                        btn.className = isMid
-                            ? 'plan-btn w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-hover transition-all relative z-10'
-                            : 'plan-btn w-full py-3 border border-white/30 text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors';
+                        btn.className = 'plan-btn w-full py-3 border border-white/30 text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors';
                     }
                 }
             });

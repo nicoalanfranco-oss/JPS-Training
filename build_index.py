@@ -484,25 +484,22 @@ html = '''<!DOCTYPE html>
         </article>
 
         <!-- Popular -->
-        <article class="plan-card bg-surface-elevated rounded-xl p-8 flex flex-col relative top-highlight glow-effect z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #131313 100%);" data-plan-index="1">
-            <div class="absolute inset-0 rounded-xl p-[1px] -z-10" style="background: linear-gradient(135deg, #FF8A00 0%, #E01E5A 100%);">
-                <div class="absolute inset-0 bg-surface-elevated rounded-xl z-0"></div>
-            </div>
-            <div class="plan-badge absolute -top-4 left-1/2 -translate-x-1/2 bg-vibrant-pink text-white px-5 py-1.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider z-20 whitespace-nowrap">MÁS POPULAR</div>
-            <div class="mb-8 relative z-10">
+        <article class="plan-card bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative" data-plan-index="1">
+            <div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">MÁS POPULAR</div>
+            <div class="mb-8">
                 <h2 class="plan-title font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">3 veces por semana</h2>
                 <div class="flex items-baseline gap-2">
-                    <span class="plan-price font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span>
+                    <span class="plan-price font-stat-value text-stat-value text-on-surface">$1.900</span>
                     <span class="font-body-md text-on-surface-variant">/ mes</span>
                 </div>
             </div>
-            <ul class="flex-grow space-y-4 mb-8 relative z-10">
+            <ul class="flex-grow space-y-4 mb-8">
                 <li class="flex items-start gap-3">
                     <span class="material-symbols-outlined text-electric-orange text-[20px] mt-0.5" style="font-variation-settings: \'FILL\' 1;">check_circle</span>
-                    <span class="font-body-md text-on-surface">Válido para todas las modalidades</span>
+                    <span class="font-body-md text-on-surface-variant">Válido para todas las modalidades</span>
                 </li>
             </ul>
-            <button class="plan-btn w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-hover transition-all relative z-10">ELEGIR PREMIUM</button>
+            <button class="plan-btn w-full py-3 border border-electric-orange text-electric-orange font-label-caps text-label-caps uppercase rounded hover:bg-electric-orange/10 transition-colors">ELEGIR PREMIUM</button>
         </article>
 
         <!-- Elite -->
