@@ -368,7 +368,7 @@ html = '''<!DOCTYPE html>
 <!-- ═══════════ HERO ═══════════ -->
 <section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity"
+        <div class="hero-bg-anim w-full h-full bg-cover bg-center"
             style="background-image: url('assets/images/hero_bg.jpg')">
         </div>
         <div class="absolute inset-0 chiaroscuro-overlay"></div>
