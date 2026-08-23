@@ -13,11 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (horariosRes.ok) {
                 const horarios = await horariosRes.json();
                 renderDynamicSchedules(horarios || []);
-                console.log("Horarios cargados:", horarios);
             }
             if (preciosRes.ok) {
                 const precios = await preciosRes.json();
-                console.log("Precios cargados:", precios);
+                renderDynamicPrices(precios || []);
             }
         } catch (error) {
             console.error('Error cargando datos de la web:', error);
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const horariosDia = horarios.filter(h => h.nombre_dia.substring(0,3) === dia || (dia === 'Mié' && h.nombre_dia.includes('Mi')));
             if (horariosDia.length === 0) return;
 
-            html += `<tr class="bg-surface-elevated/50"><td colspan="5" class="p-4 font-bold text-primary border-t border-white/5 bg-white/5">${dia}</td></tr>`;
+            html += `<tr class="bg-surface-elevated/50"><td colspan="5" class="p-4 font-bold text-[#ffb599] border-t border-white/5 bg-white/5">${dia}</td></tr>`;
             
             horariosDia.sort((a, b) => a.hora.localeCompare(b.hora)).forEach(h => {
                 html += `
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </td>
                     <td class="p-4 py-5 hidden sm:table-cell">
                         <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-[18px] text-primary">person</span>
+                            <span class="material-symbols-outlined text-[18px] text-[#ffb599]">person</span>
                             <span class="text-sm text-on-surface-variant">${h.profesor || 'Sin asignar'}</span>
                         </div>
                     </td>
@@ -67,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </span>
                     </td>
                     <td class="p-4 py-5 text-right">
-                        <a href="#contacto" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-elevated border border-white/10 text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
+                        <a href="#contacto" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-elevated border border-white/10 text-on-surface hover:bg-[#ffb599] hover:text-[#5a1c00] hover:border-[#ffb599] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
                             <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                         </a>
                     </td>
@@ -76,6 +75,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         container.innerHTML = html;
+    }
+
+    function renderDynamicPrices(precios) {
+        // En lugar de reemplazar todo el contenedor (que puede estar roto), vamos a buscar los contenedores de las tarjetas existentes en el DOM.
+        // Asumimos que JPS tiene 3 tarjetas de planes.
+        const planCards = document.querySelectorAll('.plan-card');
+        if (planCards.length === 0 || precios.length === 0) return;
+
+        // Ordenamos los precios como vengan de la bd, asumimos 3 planes principales
+        const planesParaMostrar = precios.slice(0, 3);
+        const etiquetas = ['EMPEZAR BÁSICO', 'ELEGIR PREMIUM', 'EMPEZAR ELITE'];
+        const tagsSuperiores = ['BÁSICO', 'MÁS POPULAR', 'PREMIUM'];
+        
+        planesParaMostrar.forEach((plan, index) => {
+            if (index >= planCards.length) return;
+            const card = planCards[index];
+            
+            card.innerHTML = `
+                ${index === 1 ? '<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest z-10">' + tagsSuperiores[index] + '</div>' : ''}
+                <div class="mb-8">
+                    <p class="text-[#FF8A00] font-label-caps tracking-widest mb-2">${plan.modalidad.toUpperCase()}</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-display-xl font-black text-on-surface">$${Math.round(plan.ultimo_precio).toLocaleString('es-UY')}</span>
+                        <span class="text-on-surface-variant font-body-md">/ mes</span>
+                    </div>
+                </div>
+                <div class="flex-grow">
+                    <ul class="space-y-4 font-body-md text-on-surface-variant">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#FF8A00] text-[20px]">check_circle</span>
+                            Válido para todas las modalidades
+                        </li>
+                    </ul>
+                </div>
+                <button onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})" class="w-full mt-8 py-3 rounded-xl font-label-caps border border-white/10 text-on-surface hover:bg-gradient-to-r hover:from-[#FF8A00] hover:to-[#E01E5A] transition-all duration-300">
+                    ${etiquetas[index]}
+                </button>
+            `;
+            
+            // Añadir estilos iniciales para la animación
+            card.style.transition = 'all 0.5s ease';
+            if(index === 1) card.classList.add('plan-highlighted');
+        });
+
+        // Effect of rotation (highlighting cards automatically)
+        let currentIndex = 0;
+        setInterval(() => {
+            planCards.forEach(card => {
+                card.classList.remove('scale-105', 'border-[#FF8A00]', 'shadow-2xl');
+                const btn = card.querySelector('button');
+                if (btn) btn.classList.remove('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]');
+            });
+            
+            const currentCard = planCards[currentIndex];
+            currentCard.classList.add('scale-105', 'border-[#FF8A00]', 'shadow-2xl');
+            const currentBtn = currentCard.querySelector('button');
+            if (currentBtn) currentBtn.classList.add('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]');
+
+            currentIndex = (currentIndex + 1) % planCards.length;
+        }, 3000);
     }
 
     loadWebData();
@@ -127,61 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // Create Modal HTML
-    const modalsContainer = document.createElement('div');
-    modalsContainer.innerHTML = `
-        <div id="modal-noelia" class="staff-modal">
-            <div class="staff-modal-content">
-                <span class="close-btn">&times;</span>
-                <h3 class="text-2xl font-bold mb-4 text-[#ffb599]">Noelia Lima Latorre</h3>
-                <p>Licenciada en Educación Física</p>
-                <p>5 Años de experiencia</p>
-                <p>Especialidad: Entrenamiento GAP</p>
-                <ul class="list-disc pl-5 mt-2 text-sm text-gray-300">
-                    <li>Iniciación en el arbitraje en natación</li>
-                    <li>Instructora de entrenamiento funcional</li>
-                    <li>Instructora de musculación</li>
-                    <li>Instructora de pilates reformer y mat</li>
-                    <li>Resucitación cardiaca básica (DEA)</li>
-                </ul>
-            </div>
-        </div>
-        <div id="modal-santiago" class="staff-modal">
-            <div class="staff-modal-content">
-                <span class="close-btn">&times;</span>
-                <h3 class="text-2xl font-bold mb-4 text-[#ffb599]">Santiago Hernández</h3>
-                <p>Lic. en Educación Física</p>
-                <p>Entrenador Personal y Preparador Físico Deportivo</p>
-                <p>3 años de experiencia</p>
-                <ul class="list-disc pl-5 mt-2 text-sm text-gray-300">
-                    <li>Fuerza y acondicionamiento</li>
-                    <li>Fuerza funcional</li>
-                    <li>Preparación física</li>
-                    <li>Rendimiento deportivo</li>
-                    <li>Entrenamiento funcional</li>
-                    <li>Entrenamiento para la salud</li>
-                </ul>
-            </div>
-        </div>
-        <div id="modal-juanpablo" class="staff-modal">
-            <div class="staff-modal-content">
-                <span class="close-btn">&times;</span>
-                <h3 class="text-2xl font-bold mb-4 text-[#ffb599]">Juan Pablo Sena</h3>
-                <p>Licenciado en Educación Física</p>
-                <p>Entrenador Personal y Preparador Físico.</p>
-                <p>En formación en entrenamiento Híbrido en Academia Hyrox!</p>
-                <ul class="list-disc pl-5 mt-2 text-sm text-gray-300">
-                    <li>Entrenamiento Funcional</li>
-                    <li>Pilates De Hoy. Pilates Funcional</li>
-                    <li>Entrenamiento de alta intensidad</li>
-                    <li>Metodología cross training</li>
-                </ul>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modalsContainer);
-
-    // After DOM parsing, you can bind these. Note: In the actual HTML you would need to add id="card-noelia" and id="card-santiago" to the respective elements.
+    // After DOM parsing, bind the modals (assuming JPS HTML uses card-noelia, card-santiago, card-juanpablo)
     setupModal('card-noelia', 'modal-noelia');
     setupModal('card-santiago', 'modal-santiago');
     setupModal('card-juanpablo', 'modal-juanpablo');
