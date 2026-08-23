@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+"""
+Generates the correct script.js for JPS Training that renders the schedule as a grid.
+"""
+
+js_code = '''document.addEventListener('DOMContentLoaded', () => {
     const API_BASE = 'https://studio-main-1--studio-4748759464-52942.us-east4.hosted.app';
     const GIMNASIO_ID = 'b9cc34ff-0e3b-4564-aa2d-ac3390cf5239';
 
@@ -213,3 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupModal('card-santiago', 'modal-santiago');
     setupModal('card-juanpablo', 'modal-juanpablo');
 });
+'''
+
+with open('script.js', 'w', encoding='utf-8') as f:
+    f.write(js_code)

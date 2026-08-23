@@ -1,165 +1,676 @@
-import re
-
-with open('index_old.html', 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# 1. Add section-title-box style and 3D animations
-style_to_add = """
-        .section-title-box {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 3rem;
-            text-align: left;
-        }
-        .section-title-box::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #FF8A00 0%, #E01E5A 100%);
-            border-radius: 4px;
-        }
-        @keyframes float3dLeft {
-            0% { transform: translateY(0px) rotate(-10deg) scale(1); }
-            50% { transform: translateY(-20px) rotate(-2deg) scale(1.08); }
-            100% { transform: translateY(0px) rotate(-10deg) scale(1); }
-        }
-        @keyframes float3dRight {
-            0% { transform: translateY(0px) rotate(10deg) scale(1); }
-            50% { transform: translateY(-22px) rotate(2deg) scale(1.08); }
-            100% { transform: translateY(0px) rotate(10deg) scale(1); }
-        }
-        .hero-3d-left {
-            animation: float3dLeft 6s ease-in-out infinite;
-        }
-        .hero-3d-right {
-            animation: float3dRight 7s ease-in-out infinite;
-        }
 """
-content = content.replace('</style>', style_to_add + '\n    </style>')
+Generates a clean index.html for JPS Training based on c335a21 structure,
+fixing all encoding issues, title format (white+orange split), and using grid for schedules.
+"""
 
-# 2. Hero updates (Circular logo and 3D assets)
-hero_search = """<!-- Logo -->
-<div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_40px_rgba(255,138,0,0.2)] border-2 border-brushed-metal bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 ease-out">"""
-hero_replace = """<!-- 3D Floating Asset Left (Kettlebell) -->
-<div class="hidden lg:block absolute left-12 top-1/2 -translate-y-1/2 z-20 hero-3d-left w-64 h-64 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.3)] border border-white/10">
-    <img src="hero_3d_kettlebell_1787491269421.jpg" alt="3D Kettlebell JPS" class="w-full h-full object-cover"/>
+html = '''<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JPS TRAINING - Gimnasio y Entrenamiento de Élite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "tertiary-fixed": "#d1e4ff",
+                    "surface-container-high": "#2a2a2a",
+                    "primary": "#ffb599",
+                    "brushed-metal": "#2A2A2A",
+                    "steel-silver": "#C0C0C0",
+                    "tertiary-fixed-dim": "#9ecaff",
+                    "surface-elevated": "#1E1E1E",
+                    "on-surface-variant": "#e4bfb1",
+                    "surface-bright": "#393939",
+                    "vibrant-pink": "#E01E5A",
+                    "electric-orange": "#FF8A00",
+                    "vibrant-yellow": "#F5C518",
+                    "on-surface": "#e5e2e1",
+                    "surface": "#131313",
+                    "background": "#131313",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-dim": "#131313",
+                },
+                "fontFamily": {
+                    "display-xl": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "stat-value": ["Montserrat"],
+                    "label-caps": ["JetBrains Mono"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Montserrat"]
+                },
+                "fontSize": {
+                    "display-xl": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                    "headline-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                    "stat-value": ["32px", { "lineHeight": "32px", "fontWeight": "700" }],
+                    "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "headline-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #FF8A00, #E01E5A);
+        position: relative; overflow: hidden;
+    }
+    .btn-gradient::after {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
+    }
+    .glow-hover:hover { box-shadow: 0 0 25px rgba(255, 138, 0, 0.4); }
+    .chiaroscuro-overlay {
+        background: linear-gradient(180deg, rgba(19,19,19,0.1) 0%, rgba(19,19,19,0.9) 100%),
+                    linear-gradient(90deg, rgba(19,19,19,0.8) 0%, rgba(19,19,19,0.2) 50%, rgba(19,19,19,0.8) 100%);
+    }
+    .top-highlight { border-top: 2px solid rgba(255,138,0,0.4); }
+    .card-acrylic { background: rgba(30,30,30,0.8); border: 1px solid rgba(255,255,255,0.08); }
+    .metallic-edge { border-top: 1px solid rgba(255,255,255,0.12); }
+    .glow-effect { box-shadow: 0 0 30px rgba(255,138,0,0.2); }
+    /* 3D Hero Assets */
+    @keyframes float3dLeft {
+        0%   { transform: translateY(0px)   rotate(-8deg) scale(1); }
+        50%  { transform: translateY(-18px) rotate(-2deg) scale(1.06); }
+        100% { transform: translateY(0px)   rotate(-8deg) scale(1); }
+    }
+    @keyframes float3dRight {
+        0%   { transform: translateY(0px)   rotate(8deg)  scale(1); }
+        50%  { transform: translateY(-20px) rotate(2deg)  scale(1.06); }
+        100% { transform: translateY(0px)   rotate(8deg)  scale(1); }
+    }
+    .hero-3d-left  { animation: float3dLeft  6s ease-in-out infinite; }
+    .hero-3d-right { animation: float3dRight 7s ease-in-out infinite; }
+    /* Section Title */
+    .section-title { border-left: 8px solid #FF8A00; padding-left: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    /* Plan card transition */
+    .plan-card { transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; }
+    /* Filter active */
+    .filter-btn.active {
+        background: linear-gradient(to right, #FF8A00, #E01E5A) !important;
+        border-color: #FF8A00 !important;
+        color: white !important;
+    }
+    /* Staff Modal */
+    .staff-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:9999; }
+    .staff-modal-content { background:#1E1E1E; color:#fff; padding:2.5rem; border-radius:16px; max-width:500px; margin:10% auto; position:relative; border:1px solid rgba(255,138,0,0.3); box-shadow:0 0 50px rgba(255,138,0,0.2); }
+    .close-btn { position:absolute; top:15px; right:20px; font-size:28px; cursor:pointer; color:#FF8A00; }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<div class="flex justify-between items-center px-16 h-20 w-full max-w-7xl mx-auto">
+    <a class="font-display-xl text-headline-md italic font-black bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent tracking-tighter hover:scale-105 transition-transform duration-300" href="#">
+        JPS TRAINING
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#entrenamiento">Actividades</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#staff">Staff</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#planes">Planes</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#contacto">Contacto</a>
+    </div>
+    <div class="flex items-center gap-6">
+        <button onclick="document.getElementById(\'contacto\').scrollIntoView({behavior:\'smooth\'})"
+            class="hidden md:inline-flex items-center justify-center font-label-caps text-label-caps btn-gradient text-white px-6 py-2 rounded-full font-bold glow-hover hover:scale-105 transition-all duration-300">
+            ÚNETE AHORA
+        </button>
+        <button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+</div>
+</nav>
+
+<main class="flex-grow pt-20">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity"
+            style="background-image: url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuB3jPjcIqWDsoRMFbxUxMRHAgPwDKJKuWCEZaYtuQxxJNY7vvQK0GJQumpIM8n5DfpGQPa97ZFLjSe2BlWauWShsoM1XQ2TFE93awTbbKXl0oK-kGjsV4U76DgHfDhktIrDA0802Jv9QGdEaf5ZNcl8Y2gaMax0s9UD6Rgx4bHFufDGtZwI8XdWFv7iv92XL0EUdfWHNE0eI0uqL3-Z-q4sQlNxn5p466sn8MrcTtYtTuRdz7WK-IsVeA\')">
+        </div>
+        <div class="absolute inset-0 chiaroscuro-overlay"></div>
+    </div>
+    <!-- Kettlebell 3D -->
+    <div class="hidden lg:block absolute left-10 top-1/2 -translate-y-1/2 z-10 hero-3d-left w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.35)] border border-white/10">
+        <img src="assets/images/kettlebell.jpg" alt="Kettlebell JPS" class="w-full h-full object-cover"/>
+    </div>
+    <!-- Dumbbell 3D -->
+    <div class="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-10 hero-3d-right w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.35)] border border-white/10">
+        <img src="assets/images/dumbbell.jpg" alt="Mancuerna JPS" class="w-full h-full object-cover"/>
+    </div>
+    <!-- Content -->
+    <div class="relative z-20 flex flex-col items-center justify-center text-center px-6 w-full max-w-3xl mx-auto gap-8">
+        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_50px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+            <img alt="JPS Training Logo" class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+        </div>
+        <h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
+            Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
+        </h1>
+        <button onclick="document.getElementById(\'contacto\').scrollIntoView({behavior:\'smooth\'})"
+            class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
+            ÚNETE AL EQUIPO
+            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </button>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
+</section>
+
+<!-- ═══════════ UBICACIÓN ═══════════ -->
+<section class="w-full py-24 px-6 relative overflow-hidden bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+    <div class="w-full md:w-1/2 flex flex-col gap-6">
+        <div class="section-title mb-6">
+            <h2 class="font-display-xl text-headline-md md:text-headline-lg font-black uppercase tracking-tight">
+                <span class="text-white">NUESTRA </span><span class="text-electric-orange">UBICACIÓN</span>
+            </h2>
+        </div>
+        <p class="font-body-lg text-on-surface-variant max-w-lg">Visítanos en nuestras instalaciones de primer nivel.</p>
+        <div class="flex items-start gap-4 mt-4 bg-surface-elevated p-6 rounded-xl border border-brushed-metal hover:border-electric-orange transition-colors group">
+            <span class="material-symbols-outlined text-electric-orange text-3xl group-hover:scale-110 transition-transform">location_on</span>
+            <div>
+                <h3 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">Dirección</h3>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                    Elías Abdo 162 bis<br/>
+                    Entre Rivera y Dr. Ivo<br/>
+                    Tacuarembó, Uruguay
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="w-full md:w-1/2 h-[400px] rounded-2xl overflow-hidden border-2 border-brushed-metal relative group shadow-2xl">
+        <iframe title="Mapa JPS Training" class="w-full h-full grayscale opacity-80 hover:grayscale-0 transition-all duration-500"
+            src="https://maps.google.com/maps?q=El%C3%ADas+Abdo+162,+Tacuaremb%C3%B3&t=&z=15&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════ ACTIVIDADES ═══════════ -->
+<section id="entrenamiento" class="w-full py-20 px-6">
+<div class="max-w-7xl mx-auto">
+    <div class="section-title mb-12">
+        <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+            <span class="text-white">MODALIDADES DE </span><span class="text-electric-orange">ENTRENAMIENTO</span>
+        </h2>
+        <p class="font-body-lg text-on-surface-variant max-w-2xl mt-4">
+            Elige tu camino. Entrenamiento de alta intensidad y precisión diseñado para superar tus límites y forjar un rendimiento de élite.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1: Hybrid Training -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAL2qqgFK2xDhqlwcRuId5tqhXPjmdAQv7eBBIaSIhY4qpmddkPNmD_k_4pPNJQ9BkJcfMjbD6LYZMOzC1kJ2GxLWfnpYRMz27JifcrOTfl1WBRTLLqW-jWqry1h_RYGM9vf6kl8FAw3jf8LEH5CCVRp2IfQek-n74E42hstjnCBKBp8tHdCEMzGo_pSsBmLEFc3S001OuoH-BAovJCQO3tX2N5IeeoPXo_--C51vCnk8yEqzfIU8_LWQ");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-vibrant-pink text-white font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px]">Híbrido</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-vibrant-pink group-hover:text-electric-orange transition-colors">Hybrid Training</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">La combinación definitiva de potencia, resistencia y agilidad.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">local_fire_department</span> Oxidación de grasa</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">favorite</span> Capacidad cardiovascular</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">bolt</span> Potencia explosiva</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">60 MIN</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Functional Strength -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOp4yOQ9BAZr9PM_MBgoAPoYQ1AEFKi2W2kvc61PSJ_t3JXtwADZSexK42NoH8a2ZX-COBnA-jo89ZYREyp0uDUgSc_yG9o8K8ZM4G0zShfL6afeW3PPluxqrvrYaspu9zzER_WuU3mjke5gOy5taX9B9mttRzmStIbByQTRkH40pHk2b6c-Rgvl6hPsVGNEgWlgzrHgbmDbGi_2tyW0vikVZzCIIxIgarrYN6r9d_36miELo0d0yB1Q");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-electric-orange text-white font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px]">Fuerza</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-electric-orange group-hover:text-vibrant-pink transition-colors">Functional Strength</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">Construye un cuerpo más fuerte, inteligente y preparado.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">fitness_center</span> Aumento de fuerza</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility_new</span> Movilidad articular</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">health_and_safety</span> Prevención de lesiones</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">45 MIN</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: GAP -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW7Z_zc82KmCs4fAkYXe_bG3JvGEdKgnPvMmoXXHPavdU58DjROEP10gudvmQ7GsKJqont5m12zjJzMLn2Ol7QFRHiZwSFTmdHy_J9jIUZarADTEHqM0UazR757Yy3UXdT1M8i9F2nl3qgJFNbXmSDI32WPSziT2k0T8FeDbsb0_VRy3EBTf2RuLxwN6fI5WWiDP9ct3_ouXhMqkkB5UzU3mLxuZGEeER6l9zDCIXHjsrNcRc9Mz7WTg");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-surface-bright text-on-surface font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px] border border-brushed-metal">Tonificación</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-primary group-hover:text-electric-orange transition-colors">GAP</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">Esculpe, tonifica y fortalece el centro de tu poder.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">sports_gymnastics</span> Glúteos y piernas</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility</span> Fortalecimiento del core</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">model_training</span> Tonificación muscular</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">45 MIN</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Pilates Funcional -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGqfTIWKpOGcMZeJSZSmhRZQ8vEn3XkIefDflC59APnVv5SQVgH1mnISJtjqaKTPJl8__CiP5Pl-gDZsbdlfLLOCLoUXQCqfFtRFEuGpYlhnwKgtNfKaPuMen0bEJu94yJruFpT9DHM3syBivn9MBFdI4HTHnGR6y_DYp1y_lOzz-a0ujZO4CIJhha-5QHorsVcQvrP0QpWUnoaoeKZb2OtE-KnPUZ0sIygiHMoOOQaZnyWWSuWRNgJA");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-vibrant-pink text-white font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px]">Mente &amp; Cuerpo</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-vibrant-pink group-hover:text-electric-orange transition-colors">Pilates Funcional</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">Control, precisión y movimiento consciente.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">self_improvement</span> Conexión mente-cuerpo</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">balance</span> Equilibrio y postura</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">airline_seat_recline_normal</span> Flexibilidad profunda</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">50 MIN</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: +60 -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChBeNr57xe-LyAWT59PPujv1nJoQ4GYy42IdpZ9BgLSA1e6GLWOwqvZfY9rGjepIREjYS_E1PCT0ntlKu3O69V2QUwEvZuWX85Pxh9lYIJ0erb8R1VEuYQkR70spqHf3nt8XisbKaJlG7DPVj71lVVd5s9ZRq1jtzqXy2ZAbUugWzVBrKdvp_3sy1fdH7z2Qxz-tUYWB8l-A20cK-hPXCvCg-xMPI5JLtya1PoYWvWyH0xc8MmTaTmdg");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-electric-orange text-white font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px]">Longevidad</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-electric-orange group-hover:text-vibrant-pink transition-colors">+60 (Active Aging)</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">Vitalidad sin límites. Entrenamiento inteligente para la salud.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">favorite_border</span> Mejora cardiovascular</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">bone</span> Salud ósea</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility_new</span> Fuerza funcional</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">45 MIN</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Open Box -->
+        <div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                    style=\'background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZ6JGqivvKAVsASjqNWxZ2HVLqDPbE8loHjG4QSLQBMEtC-k5jM1uasdMROTM1h5v9RZoyNtyfj5gRAjMdoKn05U4XQR3hHq25Jj61M0PVUQpHhNms4rnGpArzQlj9y0RiDFkYgm8HujpUDOAXyDTTeCKdku-rb7VwlL2qI8IKRnfmHYCfLHwXOUOtmOk8Am0LLHzAgZ5cV6mr5cwmasR06VNOl_GlzT1HzSAxmKaxVpERv-cgbnbvrQ");\'>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div class="absolute top-4 left-4 z-20">
+                    <span class="bg-surface-bright text-on-surface font-label-caps text-label-caps px-3 py-1 rounded uppercase tracking-wider text-[10px] border border-brushed-metal">Entrenamiento Libre</span>
+                </div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md font-bold mb-2 text-on-surface group-hover:text-electric-orange transition-colors">Open Box</h3>
+                <p class="font-body-md text-on-surface-variant mb-4 flex-grow">Tu espacio, tu ritmo, tus reglas.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">schedule</span> Flexibilidad horaria</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">sports_martial_arts</span> Entrenamiento libre</li>
+                    <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-electric-orange text-[16px]">verified</span> Equipamiento premium</li>
+                </ul>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">timer</span><span class="font-label-caps text-[11px]">TODO EL DÍA</span></div>
+                    <span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════ STAFF ═══════════ -->
+<section id="staff" class="w-full py-20 px-6 bg-surface">
+<div class="max-w-7xl mx-auto">
+    <div class="section-title mb-12">
+        <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+            <span class="text-white">NUESTRO STAFF </span><span class="text-electric-orange">DE ÉLITE</span>
+        </h2>
+        <p class="font-body-lg text-on-surface-variant max-w-2xl mt-4">
+            Nuestros entrenadores son veteranos de la industria cuidadosamente seleccionados, dedicados a forjar el potencial en bruto en un rendimiento innegable. Sin excusas, solo resultados.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(300px,_auto)]">
+        <!-- Juan Pablo Sena (8 cols) -->
+        <div id="card-juanpablo" class="md:col-span-8 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 cursor-pointer">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7vLh33vppJtXjDtUKWLlwrSp9L0bcQ1X4EfD7-fDUOlGaiJo65_xlvShyos-LeHlopyDUZZjT0w5206hOkZgddJ9lyx6_teFoG7RASjSnxDhi2bbJ27kzSZML6HQVAqjGesgiQG11uhcOT2zptNilyOnPRvG1OCz3-DbqyimGqi1M0qecB-hEa-W9MFdKDPN0tASMzJY98EJd7taxGHHWuuuWd-wq5wW_Pf6vMUR5hWniwPLZtpBnQ"
+                    alt="Juan Pablo Sena"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            </div>
+            <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                <div class="inline-block bg-vibrant-pink text-black font-label-caps text-[10px] uppercase px-3 py-1 rounded mb-4 self-start tracking-widest font-bold">Entrenador Jefe</div>
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-1 uppercase italic">JUAN PABLO SENA</h2>
+                <p class="font-label-caps text-primary uppercase tracking-widest mb-4">Lic. Educación Física &amp; Preparador Físico</p>
+                <p class="font-body-md text-on-surface-variant max-w-lg mb-6 line-clamp-2">
+                    Especializado en Funcional, Pilates Funcional, Alta Intensidad y metodología Cross Training. En formación Hyrox.
+                </p>
+                <div class="flex gap-4">
+                    <button class="bg-surface/50 border border-steel-silver/30 hover:border-primary text-white p-2 rounded-full transition-colors">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Santiago Hernández (4 cols) -->
+        <div id="card-santiago" class="md:col-span-4 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
+            <div class="h-48 relative overflow-hidden">
+                <img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg"
+                    alt="Santiago Hernández"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md text-white uppercase italic">Santiago Hernández</h3>
+                <p class="font-label-caps text-electric-orange uppercase tracking-widest mb-4 text-[10px]">Licenciado en Educación Física</p>
+                <p class="text-sm text-on-surface-variant mb-4">Especialista en fuerza funcional, desarrollo de potencia y acondicionamiento físico de alto nivel.</p>
+                <div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+                    <span class="font-label-caps text-on-surface-variant text-[10px]">ENTRENADOR SENIOR</span>
+                    <span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">fitness_center</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Noelia Lima Latorre (4 cols) -->
+        <div id="card-noelia" class="md:col-span-4 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
+            <div class="h-48 relative overflow-hidden">
+                <img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"
+                    alt="Noelia Lima Latorre"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="font-headline-md text-headline-md text-white uppercase italic">Noelia Lima Latorre</h3>
+                <p class="font-label-caps text-primary uppercase tracking-widest mb-4 text-[10px]">Licenciada en Educación Física</p>
+                <p class="text-sm text-on-surface-variant mb-4">Especialista en entrenamiento GAP y acondicionamiento específico para salud y estética corporal.</p>
+                <div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+                    <span class="font-label-caps text-on-surface-variant text-[10px]">ENTRENADORA SENIOR</span>
+                    <span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">accessibility_new</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════ PLANES ═══════════ -->
+<section id="planes" class="w-full py-20 px-6">
+<div class="max-w-7xl mx-auto">
+    <div class="section-title mb-12">
+        <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+            <span class="text-white">ELIGE TU </span><span class="text-electric-orange">PODER</span>
+        </h2>
+        <p class="font-body-lg text-on-surface-variant max-w-2xl mt-4">
+            Selecciona el plan que se adapte a tu ambición. Sin compromisos, solo resultados.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-end pt-8">
+        <!-- Basic -->
+        <article class="plan-card bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative" data-plan-index="0">
+            <div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">BÁSICO</div>
+            <div class="mb-8">
+                <h2 class="plan-title font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">2 veces por semana</h2>
+                <div class="flex items-baseline gap-2">
+                    <span class="plan-price font-stat-value text-stat-value text-on-surface">$1.650</span>
+                    <span class="font-body-md text-on-surface-variant">/ mes</span>
+                </div>
+            </div>
+            <ul class="flex-grow space-y-4 mb-8">
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-steel-silver text-[20px] mt-0.5">check_circle</span>
+                    <span class="font-body-md text-on-surface-variant">Válido para todas las modalidades</span>
+                </li>
+            </ul>
+            <button class="plan-btn w-full py-3 border border-steel-silver text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors">EMPEZAR BÁSICO</button>
+        </article>
+
+        <!-- Popular -->
+        <article class="plan-card bg-surface-elevated rounded-xl p-8 flex flex-col relative top-highlight glow-effect z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #131313 100%);" data-plan-index="1">
+            <div class="absolute inset-0 rounded-xl p-[1px] -z-10" style="background: linear-gradient(135deg, #FF8A00 0%, #E01E5A 100%);">
+                <div class="absolute inset-0 bg-surface-elevated rounded-xl z-0"></div>
+            </div>
+            <div class="plan-badge absolute -top-4 left-1/2 -translate-x-1/2 bg-vibrant-pink text-white px-5 py-1.5 rounded-full font-label-caps text-[10px] uppercase tracking-wider z-20 whitespace-nowrap">MÁS POPULAR</div>
+            <div class="mb-8 relative z-10">
+                <h2 class="plan-title font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">3 veces por semana</h2>
+                <div class="flex items-baseline gap-2">
+                    <span class="plan-price font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span>
+                    <span class="font-body-md text-on-surface-variant">/ mes</span>
+                </div>
+            </div>
+            <ul class="flex-grow space-y-4 mb-8 relative z-10">
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-electric-orange text-[20px] mt-0.5" style="font-variation-settings: \'FILL\' 1;">check_circle</span>
+                    <span class="font-body-md text-on-surface">Válido para todas las modalidades</span>
+                </li>
+            </ul>
+            <button class="plan-btn w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-hover transition-all relative z-10">ELEGIR PREMIUM</button>
+        </article>
+
+        <!-- Elite -->
+        <article class="plan-card bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative" data-plan-index="2">
+            <div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">PREMIUM ELITE</div>
+            <div class="mb-8">
+                <h2 class="plan-title font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">Ilimitado</h2>
+                <div class="flex items-baseline gap-2">
+                    <span class="plan-price font-stat-value text-stat-value text-on-surface">$2.100</span>
+                    <span class="font-body-md text-on-surface-variant">/ mes</span>
+                </div>
+            </div>
+            <ul class="flex-grow space-y-4 mb-8">
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px] mt-0.5">check_circle</span>
+                    <span class="font-body-md text-on-surface-variant">Válido para todas las modalidades</span>
+                </li>
+            </ul>
+            <button class="plan-btn w-full py-3 border border-tertiary-fixed-dim text-tertiary-fixed-dim font-label-caps text-label-caps uppercase rounded hover:bg-tertiary-fixed-dim/10 transition-colors">EMPEZAR ELITE</button>
+        </article>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════ HORARIOS ═══════════ -->
+<section id="horarios" class="w-full py-20 px-6 bg-surface">
+<div class="max-w-7xl mx-auto">
+    <div class="section-title mb-10">
+        <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+            <span class="text-white">HORARIOS DE </span><span class="text-electric-orange">ENTRENAMIENTO</span>
+        </h2>
+        <p class="font-body-lg text-on-surface-variant max-w-2xl mt-4">
+            Organiza tu semana y alcanza tu máximo potencial con nuestras clases diseñadas para el rendimiento élite.
+        </p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="flex flex-wrap items-center gap-3 mb-8" id="schedule-filters">
+        <button data-filter="all" class="filter-btn active flex items-center gap-2 px-4 py-2 rounded-full border border-[#FF8A00] bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px]">apps</span> TODOS
+        </button>
+        <button data-filter="Hybrid Training" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">bolt</span> HYBRID
+        </button>
+        <button data-filter="Functional Strength" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">fitness_center</span> FUNCTIONAL STRENGTH
+        </button>
+        <button data-filter="GAP" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">accessibility_new</span> GAP
+        </button>
+        <button data-filter="Pilates Funcional" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">self_improvement</span> PILATES FUNCIONAL
+        </button>
+        <button data-filter="+60" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+            <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">elderly</span> +60
+        </button>
+    </div>
+
+    <!-- Grid de Horarios (renderizado por JS) -->
+    <div class="overflow-x-auto mb-10">
+        <div class="min-w-[800px] w-full grid grid-cols-[auto_repeat(5,1fr)] gap-3 text-center pb-4" id="horarios-grid-container">
+            <!-- JS populates this -->
+        </div>
+    </div>
+
+    <!-- Open Box Banner -->
+    <div class="mt-4 bg-surface-elevated rounded-xl border border-brushed-metal p-6 flex flex-col md:flex-row items-center gap-6 top-highlight">
+        <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-white/10 shadow-2xl">
+            <img alt="Open Box JPS" class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVv0XO8nuU_T2mfwIyBw0v40S8LpqiAGURVS6-w5yScTQ8_xdB95vJmmL0uFTNNsdIfmQ0qZ9EKOsKF33opl--hmmkU_q-ZwAK1d0t_TZgmFu2EAOByk7sZ00LQ3M1JKbp2EOheCBMc0vAZm0WsIDJMaDDv6PAoUaIzvvFPMRiDZ3K5D9Kvn3tn9MuUei06iuTfdwxalR8zVE3dStqpzwHJsCDj9F3X2uWjqtka0v-ZYzK19fkWYzFOg"/>
+        </div>
+        <div class="text-center md:text-left">
+            <h3 class="font-headline-md text-white uppercase italic"><span class="bg-red-600 text-white px-2 py-1 rounded font-bold">OPEN BOX</span></h3>
+            <p class="font-body-md text-on-surface-variant mt-1">Entrenamiento libre disponible durante todo el horario de apertura del gimnasio (06:00 a 21:00), coincidiendo con el horario de clases.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════ CONTACTO ═══════════ -->
+<section id="contacto" class="w-full py-24 px-6 bg-surface-container-lowest">
+<div class="max-w-4xl mx-auto">
+    <div class="section-title mb-10">
+        <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+            <span class="text-white">PONTE EN </span><span class="text-electric-orange">CONTACTO</span>
+        </h2>
+        <p class="font-body-lg text-on-surface-variant max-w-xl mt-4">
+            ¿Listo para transformar tu vida? Déjanos tus datos y nos pondremos en contacto contigo a la brevedad.
+        </p>
+    </div>
+    <form class="flex flex-col gap-6 text-left" onsubmit="event.preventDefault(); alert(\'¡Gracias por comunicarte! Te contactaremos a la brevedad.\');">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col gap-2">
+                <label class="font-label-caps text-xs text-on-surface-variant">Nombre Completo</label>
+                <input type="text" required placeholder="Tu nombre" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"/>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="font-label-caps text-xs text-on-surface-variant">Teléfono / WhatsApp</label>
+                <input type="tel" required placeholder="Tu número" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"/>
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-on-surface-variant">Mensaje o Consulta</label>
+            <textarea rows="4" placeholder="¿En qué podemos ayudarte?" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full py-4 rounded-xl font-label-caps font-bold text-white bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] hover:opacity-90 transition-opacity uppercase tracking-widest mt-2">
+            Enviar Mensaje
+        </button>
+    </form>
+</div>
+</section>
+
+</main>
+
+<footer class="w-full bg-surface-dim border-t border-brushed-metal py-12 px-16 flex flex-col items-center">
+    <div class="text-headline-md font-display-xl italic font-black mb-6 bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">
+        JPS TRAINING
+    </div>
+    <div class="flex flex-wrap justify-center gap-6 mb-8">
+        <a class="font-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors" href="#">Política de Privacidad</a>
+        <a class="font-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors" href="#">Términos de Servicio</a>
+        <a class="font-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors" href="#">Preguntas Frecuentes</a>
+        <a class="font-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors" href="#">Ubicación</a>
+    </div>
+    <div class="font-label-caps text-on-surface-variant opacity-60">© 2024 JPS TRAINING. TODOS LOS DERECHOS RESERVADOS.</div>
+</footer>
+
+<!-- Staff Modals -->
+<div id="modal-juanpablo" class="staff-modal">
+    <div class="staff-modal-content">
+        <span class="close-btn">&times;</span>
+        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Juan Pablo Sena</h3>
+        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Entrenador Personal y Preparador Físico</p>
+        <p class="text-sm text-on-surface-variant mb-4 leading-relaxed">
+            Licenciado en Educación Física. Especializado en Entrenamiento Funcional, Pilates Funcional, Entrenamiento de alta intensidad y Metodología Cross Training.
+        </p>
+        <div class="bg-surface p-3 rounded-lg border border-white/10 text-xs text-[#FF8A00]">
+            ⚡ En formación en entrenamiento Híbrido en Academia Hyrox!
+        </div>
+    </div>
+</div>
+<div id="modal-santiago" class="staff-modal">
+    <div class="staff-modal-content">
+        <span class="close-btn">&times;</span>
+        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Santiago Hernández</h3>
+        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Licenciado en Educación Física</p>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+            Especialista en fuerza funcional, desarrollo de potencia y acondicionamiento físico de alto nivel.
+        </p>
+    </div>
+</div>
+<div id="modal-noelia" class="staff-modal">
+    <div class="staff-modal-content">
+        <span class="close-btn">&times;</span>
+        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Noelia Lima Latorre</h3>
+        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Licenciada en Educación Física</p>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+            Especialista en entrenamiento GAP (Glúteos, Abdomen y Piernas) y tonificación muscular.
+        </p>
+    </div>
 </div>
 
-<!-- Logo -->
-<div class="w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden shadow-[0_0_50px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500">"""
-content = content.replace(hero_search, hero_replace)
-
-hero_cta_search = """</button>
-</div>
-<!-- Diagonal Accent Line -->"""
-hero_cta_replace = """</button>
-</div>
-<!-- 3D Floating Asset Right (Dumbbell) -->
-<div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 z-20 hero-3d-right w-64 h-64 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.3)] border border-white/10">
-    <img src="hero_3d_dumbbell_1787491246437.jpg" alt="3D Dumbbell JPS" class="w-full h-full object-cover"/>
-</div>
-<!-- Diagonal Accent Line -->"""
-content = content.replace(hero_cta_search, hero_cta_replace)
-
-# 3. Staff Title Format (NUESTRO STAFF DE ÉLITE)
-staff_title_search = """<h1 class="font-display-xl text-display-xl text-transparent bg-clip-text bg-gradient-to-r from-white to-steel-silver mb-4 uppercase tracking-tighter">
-                NUESTRO <span class="text-gradient">STAFF DE ├ëLITE</span></h2>"""
-staff_title_replace = """<div class="section-title-box">
-<h1 class="font-display-xl text-display-xl uppercase tracking-tighter mb-4">
-                <span class="text-white">NUESTRO </span><span class="text-electric-orange">STAFF DE ÉLITE</span>
-</h1>
-</div>"""
-content = content.replace(staff_title_search, staff_title_replace)
-# Note: if there is another "STAFF DE ├ëLITE"
-content = content.replace('STAFF DE ├ëLITE', 'STAFF DE ÉLITE')
-content = content.replace('STAFF DE ÉLITE</h2>', 'STAFF DE ÉLITE</h1>') # fix any broken tag
-
-# 4. Pricing Titles and layout
-pricing_title_search = """<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-surface mb-4 uppercase">
-                ELIGE TU <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">PODER</span>
-</h1>"""
-pricing_title_replace = """<div class="section-title-box">
-<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl uppercase mb-4">
-                <span class="text-white">ELIGE TU </span><span class="text-electric-orange">PODER</span>
-</h1>
-</div>"""
-content = content.replace(pricing_title_search, pricing_title_replace)
-
-# Setup pricing cards for JS manipulation
-pricing_card_1 = """<article class="bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative">"""
-pricing_card_1_rep = """<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="0">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    EMPEZAR BÁSICO
-</div>"""
-content = content.replace(pricing_card_1, pricing_card_1_rep)
-
-pricing_card_2 = """<article class="bg-surface-elevated rounded-xl p-8 flex flex-col relative top-highlight transform md:-translate-y-4 glow-effect z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #2A1510 100%);">"""
-pricing_card_2_rep = """<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col relative top-highlight transition-all duration-500 z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #2A1510 100%);" data-plan-index="1">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    MÁS POPULAR
-</div>"""
-content = content.replace(pricing_card_2, pricing_card_2_rep)
-
-pricing_card_3 = """<article class="bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative">"""
-pricing_card_3_rep = """<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="2">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    PREMIUM ELITE
-</div>"""
-# It might replace both 1 and 3 if they are identical, but we already replaced card 1 above. Let's make sure.
-content = content.replace(pricing_card_3, pricing_card_3_rep)
-
-# Convert all buttons inside pricing to have .plan-btn
-content = content.replace('<button class="w-full py-3 border border-steel-silver text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors">', '<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300">')
-content = content.replace('<button class="w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-effect transition-all relative z-10">', '<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 relative z-10">')
-content = content.replace('<button class="w-full py-3 border border-tertiary-fixed-dim text-tertiary-fixed-dim font-label-caps text-label-caps uppercase rounded hover:bg-tertiary-fixed-dim/10 transition-colors">', '<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300">')
-
-# Add class plan-title and plan-price to the right spans
-content = content.replace('<h2 class="font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">', '<h2 class="plan-title font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">')
-content = content.replace('<h2 class="font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">', '<h2 class="plan-title font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">')
-content = content.replace('<h2 class="font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">', '<h2 class="plan-title font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">')
-
-content = content.replace('<span class="font-stat-value text-stat-value text-on-surface">$1.650</span>', '<span class="plan-price font-stat-value text-stat-value text-on-surface">$1.650</span>')
-content = content.replace('<span class="font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span>', '<span class="plan-price font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span>')
-content = content.replace('<span class="font-stat-value text-stat-value text-on-surface">$2.100</span>', '<span class="plan-price font-stat-value text-stat-value text-on-surface">$2.100</span>')
-
-
-# 5. Fix Schedule HTML
-# Add container for JS rendering to replace the static table content
-content = content.replace(
-    """<!-- Schedule Grid / Bento Layout -->
-<div class="overflow-x-auto">
-<div class="min-w-[800px] w-full grid grid-cols-[auto_repeat(5,1fr)] gap-4 text-center pb-8">""",
-    """<!-- Schedule Grid / Bento Layout -->
-<div class="overflow-x-auto">
-<div class="min-w-[800px] w-full grid grid-cols-[auto_repeat(5,1fr)] gap-4 text-center pb-8" id="horarios-grid-container">"""
-)
-
-# Wipe static table contents inside min-w-[800px]
-static_table_pattern = re.compile(r'<!-- Header Row -->.*?</div>\s*</div>\s*<!-- Open Box Banner -->', re.DOTALL)
-content = static_table_pattern.sub('</div>\n</div>\n<!-- Open Box Banner -->', content)
-
-# 6. Add id="schedule-filters" to the buttons container and filter-btn classes
-filter_search = """<div class="flex gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar">
-<button class="px-6 py-3 rounded-full border border-slate-800 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light bg-gradient-to-r from-electric-orange to-vibrant-pink">"""
-filter_replace = """<div class="flex gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar" id="schedule-filters">
-<button data-filter="all" class="filter-btn px-6 py-3 rounded-full border border-slate-800 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light bg-gradient-to-r from-electric-orange to-vibrant-pink">"""
-content = content.replace(filter_search, filter_replace)
-
-content = content.replace('<button class="px-6 py-3 rounded-full bg-surface-elevated border text-white font-label-caps', '<button data-filter="Functional Strength" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps')
-content = content.replace('<button class="px-6 py-3 rounded-full bg-surface-elevated border border-vibrant-yellow', '<button data-filter="GAP" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20')
-content = content.replace('<button class="px-6 py-3 rounded-full bg-surface-elevated border border-electric-orange text-electric-orange font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm">self_improvement</span>\n                    PILATES FUNCIONAL', '<button data-filter="Pilates Funcional" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm text-electric-orange">self_improvement</span>\n                    PILATES FUNCIONAL')
-content = content.replace('<button class="px-6 py-3 rounded-full bg-surface-elevated border border-vibrant-yellow text-vibrant-yellow font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm">elderly</span>\n                    +60', '<button data-filter="+60" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm text-vibrant-yellow">elderly</span>\n                    +60')
-# Fix GAP button text and icon separately
-content = content.replace('text-vibrant-yellow font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm">accessibility_new</span>\n                    GAP', 'text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">\n<span class="material-symbols-outlined text-sm text-vibrant-yellow">accessibility_new</span>\n                    GAP')
-
-
-# Finally, insert `<script src="script.js"></script>` at the end of body if not present
-if '<script src="script.js"></script>' not in content:
-    content = content.replace('</body>', '<script src="script.js"></script>\n</body>')
+<script src="script.js"></script>
+</body>
+</html>
+'''
 
 with open('index.html', 'w', encoding='utf-8') as f:
-    f.write(content)
-print("Updated index.html successfully")
+    f.write(html)
+
+print(f"Done! {len(html)} bytes written")
