@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (horariosRes.ok) {
                 const horarios = await horariosRes.json();
+                renderDynamicSchedules(horarios || []);
                 console.log("Horarios cargados:", horarios);
             }
             if (preciosRes.ok) {
@@ -22,6 +23,61 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error cargando datos de la web:', error);
         }
     }
+
+    function renderDynamicSchedules(horarios) {
+        const container = document.getElementById('horarios-dynamic-container');
+        if (!container) return;
+
+        if (horarios.length === 0) {
+            container.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles.</td></tr>';
+            return;
+        }
+
+        const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+        let html = '';
+
+        diasSemana.forEach(dia => {
+            const horariosDia = horarios.filter(h => h.nombre_dia.substring(0,3) === dia || (dia === 'Mié' && h.nombre_dia.includes('Mi')));
+            if (horariosDia.length === 0) return;
+
+            html += `<tr class="bg-surface-elevated/50"><td colspan="5" class="p-4 font-bold text-primary border-t border-white/5 bg-white/5">${dia}</td></tr>`;
+            
+            horariosDia.sort((a, b) => a.hora.localeCompare(b.hora)).forEach(h => {
+                html += `
+                <tr class="group hover:bg-white/5 transition-colors duration-200">
+                    <td class="p-4 py-5 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                            <span class="font-display-xl font-bold text-xl text-on-surface">${h.hora.substring(0, 5)}</span>
+                            <span class="text-xs text-on-surface-variant bg-surface px-2 py-1 rounded">${h.duracion_min}m</span>
+                        </div>
+                    </td>
+                    <td class="p-4 py-5">
+                        <div class="font-bold text-on-surface mb-1">${h.nombre_actividad}</div>
+                    </td>
+                    <td class="p-4 py-5 hidden sm:table-cell">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px] text-primary">person</span>
+                            <span class="text-sm text-on-surface-variant">${h.profesor || 'Sin asignar'}</span>
+                        </div>
+                    </td>
+                    <td class="p-4 py-5 hidden md:table-cell">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            Activo
+                        </span>
+                    </td>
+                    <td class="p-4 py-5 text-right">
+                        <a href="#contacto" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-elevated border border-white/10 text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </a>
+                    </td>
+                </tr>`;
+            });
+        });
+
+        container.innerHTML = html;
+    }
+
     loadWebData();
     
     // --- Setup Modals for Staff ---
