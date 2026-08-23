@@ -387,29 +387,33 @@ html = '''<!DOCTYPE html>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(300px,_auto)]">
-        <!-- Juan Pablo Sena (8 cols) -->
-        <div id="card-juanpablo" class="md:col-span-8 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 cursor-pointer">
+        <!-- Juan Pablo Sena (12 cols - Full width) -->
+        <div id="card-juanpablo" class="md:col-span-12 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 cursor-pointer h-[500px] md:h-[600px]">
             <div class="absolute inset-0 z-0">
-                <img class="w-full h-full object-cover object-top opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                <img class="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                     src="assets/images/jp_sena.jpg"
                     alt="Juan Pablo Sena"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
             </div>
+            <!-- Top Badge -->
+            <div class="absolute top-8 left-8 z-20">
+                <div class="inline-block bg-vibrant-pink text-white font-label-caps text-[12px] uppercase px-4 py-1.5 rounded tracking-widest font-bold shadow-lg">Entrenador Jefe</div>
+            </div>
+            <!-- Bottom Content -->
             <div class="relative z-10 p-8 h-full flex flex-col justify-end pointer-events-none">
-                <div class="inline-block bg-vibrant-pink text-black font-label-caps text-[10px] uppercase px-3 py-1 rounded mb-4 self-start tracking-widest font-bold">Entrenador Jefe</div>
-                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-1 uppercase italic">JUAN PABLO SENA</h2>
-                <p class="font-label-caps text-primary uppercase tracking-widest mb-4">Lic. Educación Física &amp; Preparador Físico</p>
-                <p class="font-body-md text-on-surface-variant max-w-lg mb-2 line-clamp-2">
+                <h2 class="font-headline-md text-3xl md:text-4xl text-white mb-1 uppercase italic font-black shadow-black drop-shadow-md">JUAN PABLO SENA</h2>
+                <p class="font-label-caps text-primary uppercase tracking-widest mb-4 drop-shadow">Lic. Educación Física &amp; Preparador Físico</p>
+                <p class="font-body-md text-on-surface-variant max-w-2xl mb-2 drop-shadow">
                     Especializado en Funcional, Pilates Funcional, Alta Intensidad y metodología Cross Training. En formación Hyrox.
                 </p>
-                <p class="font-label-caps text-electric-orange text-xs uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Hacer click para ver más →</p>
+                <p class="font-label-caps text-electric-orange text-xs uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow">Hacer click para ver más →</p>
             </div>
         </div>
 
-        <!-- Santiago Hernández (4 cols) -->
-        <div id="card-santiago" class="md:col-span-4 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
-            <div class="h-48 relative overflow-hidden">
-                <img class="w-full h-full object-cover object-top opacity-70 group-hover:scale-105 transition-transform duration-700"
+        <!-- Santiago Hernández (6 cols) -->
+        <div id="card-santiago" class="md:col-span-6 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
+            <div class="h-64 relative overflow-hidden">
+                <img class="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg"
                     alt="Santiago Hernández"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
@@ -425,10 +429,10 @@ html = '''<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- Noelia Lima Latorre (4 cols) -->
-        <div id="card-noelia" class="md:col-span-4 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
-            <div class="h-48 relative overflow-hidden">
-                <img class="w-full h-full object-cover object-top opacity-70 group-hover:scale-105 transition-transform duration-700"
+        <!-- Noelia Lima Latorre (6 cols) -->
+        <div id="card-noelia" class="md:col-span-6 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
+            <div class="h-64 relative overflow-hidden">
+                <img class="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"
                     alt="Noelia Lima Latorre"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
