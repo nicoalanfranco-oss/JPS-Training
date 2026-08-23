@@ -28,28 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderDynamicSchedules() {
         const container = document.getElementById('horarios-dynamic-container');
         if (!container) return;
-
         const horarios = window.allHorarios || [];
         const filter = window.currentFilter || 'all';
-
-        const filteredHorarios = filter === 'all' 
-            ? horarios 
+        const filteredHorarios = filter === 'all'
+            ? horarios
             : horarios.filter(h => h.nombre_actividad && h.nombre_actividad.toLowerCase().includes(filter.toLowerCase()));
-
         if (filteredHorarios.length === 0) {
-            container.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles para esta modalidad.</td></tr>';
+            container.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles para esta modalidad.</td></tr>';
             return;
         }
-
-        const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+        const diasSemana = [
+            { num: 1, long: 'Lunes' },
+            { num: 2, long: 'Martes' },
+            { num: 3, long: 'Miércoles' },
+            { num: 4, long: 'Jueves' },
+            { num: 5, long: 'Viernes' },
+            { num: 6, long: 'Sábado' },
+            { num: 7, long: 'Domingo' },
+        ];
         let html = '';
-
         diasSemana.forEach(dia => {
-            const horariosDia = filteredHorarios.filter(h => h.nombre_dia.substring(0,3) === dia || (dia === 'Mié' && h.nombre_dia.includes('Mi')));
+            const horariosDia = filteredHorarios.filter(h => Number(h.dia_semana) === dia.num);
             if (horariosDia.length === 0) return;
-
-            html += `<tr class="bg-surface-elevated/50"><td colspan="5" class="p-4 font-bold text-[#ffb599] border-t border-white/5 bg-white/5">${dia}</td></tr>`;
-            
+            html += `<tr class="bg-surface-elevated/50"><td colspan="4" class="p-4 font-bold text-[#ffb599] border-t border-white/5 bg-white/5">${dia.long}</td></tr>`;
             horariosDia.sort((a, b) => a.hora.localeCompare(b.hora)).forEach(h => {
                 html += `
                 <tr class="group hover:bg-white/5 transition-colors duration-200">
@@ -61,12 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </td>
                     <td class="p-4 py-5">
                         <div class="font-bold text-on-surface mb-1">${h.nombre_actividad}</div>
-                    </td>
-                    <td class="p-4 py-5 hidden sm:table-cell">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-[18px] text-[#ffb599]">person</span>
-                            <span class="text-sm text-on-surface-variant">${h.profesor || 'Sin asignar'}</span>
-                        </div>
                     </td>
                     <td class="p-4 py-5 hidden md:table-cell">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -82,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>`;
             });
         });
-
         container.innerHTML = html;
     }
 
