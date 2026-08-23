@@ -195,7 +195,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="HYBRID TRAINING"></h3>
             <p class="typewriter-text font-label-caps text-vibrant-pink font-bold uppercase tracking-widest mb-4" data-text="DESAFÍA TUS LÍMITES" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="La combinación definitiva de potencia, resistencia y agilidad en una sola sesión de alta intensidad." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-6 border-t border-white/10 pt-4">
                 <h4 class="text-white font-bold mb-2">El Entrenamiento:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Un programa integral de acondicionamiento metabólico que fusiona levantamientos de fuerza con un intenso trabajo cardiovascular. A través de transiciones dinámicas utilizando ergómetros (remo, bike), trineos, y movimientos gimnásticos o de peso corporal (burpees, carreras), esta disciplina somete al cuerpo a estímulos variados para forjar un atleta completo.</p>
                 <h4 class="text-white font-bold mb-2">Beneficios Principales:</h4>
@@ -218,7 +218,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="FUNCTIONAL STRENGTH"></h3>
             <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-4" data-text="CONSTRUYE UN CUERPO MÁS FUERTE Y PREPARADO" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Entrenamiento inteligente para dominar cualquier desafío físico de la vida diaria y el deporte." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-6 border-t border-white/10 pt-4">
                 <h4 class="text-white font-bold mb-2">El Entrenamiento:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Trabajo de fuerza fundamentado en la biomecánica humana. Utilizando barras, mancuernas, pesas rusas y equipamiento especializado, nos enfocamos en patrones de movimiento multiplanares (empujes, tracciones, sentadillas y bisagras). El objetivo es priorizar la técnica impecable y la sobrecarga progresiva para transferir esa fuerza a la vida diaria y al deporte.</p>
                 <h4 class="text-white font-bold mb-2">Beneficios Principales:</h4>
@@ -241,7 +241,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="GAP"></h3>
             <p class="typewriter-text font-label-caps text-vibrant-pink font-bold uppercase tracking-widest mb-4" data-text="GLÚTEOS, ABDOMEN Y PIERNAS" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Esculpe, tonifica y fortalece el centro de tu poder. Tensión mecánica enfocada para resultados visibles." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-6 border-t border-white/10 pt-4">
                 <h4 class="text-white font-bold mb-2">El Entrenamiento:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Sesión de trabajo localizado de alta precisión enfocada en los grupos musculares más grandes y fuertes del cuerpo. Mediante una combinación estratégica de ejercicios de aislamiento y movimientos compuestos, buscamos generar hipertrofia, resistencia y tono muscular en el tren inferior, integrando desafíos de estabilidad pélvica.</p>
                 <h4 class="text-white font-bold mb-2">Beneficios Principales:</h4>
@@ -264,7 +264,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="PILATES FUNCIONAL"></h3>
             <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-4" data-text="CONTROL, PRECISIÓN Y MOVIMIENTO CONSCIENTE" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Reprograma tu postura y fortalece tu cuerpo desde el interior hacia afuera." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-4">
                 <h4 class="text-white font-bold mb-2">El Entrenamiento:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Una evolución dinámica del método tradicional que integra la biomecánica clínica con el acondicionamiento físico. Enfocado en la alineación articular, el control motor fino y la respiración diafragmática, este sistema utiliza el peso corporal y elementos de resistencia ligera para estabilizar la columna y activar la musculatura estabilizadora profunda.</p>
                 <h4 class="text-white font-bold mb-2">Beneficios Principales:</h4>
@@ -287,7 +287,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="+60 (ACTIVE AGING)"></h3>
             <p class="typewriter-text font-label-caps text-[#4ADE80] font-bold uppercase tracking-widest mb-4" data-text="VITALIDAD SIN LÍMITES" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Entrenamiento inteligente diseñado para que sigas disfrutando de una vida activa, fuerte y plena." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-6 border-t border-white/10 pt-4">
                 <h4 class="text-white font-bold mb-2">El Entrenamiento:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Un programa de acondicionamiento físico seguro y completamente adaptado, centrado en preservar y mejorar la calidad de vida. Las sesiones se estructuran de manera amena en torno a ejercicios de fuerza moderada, equilibrio neuromuscular y coordinación, respetando siempre la movilidad individual para garantizar un progreso constante.</p>
                 <h4 class="text-white font-bold mb-2">Beneficios Principales:</h4>
@@ -310,7 +310,7 @@ html = '''<!DOCTYPE html>
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="OPEN BOX"></h3>
             <p class="typewriter-text font-label-caps text-surface-bright font-bold uppercase tracking-widest mb-4" data-text="TU ESPACIO, TU RITMO, TUS REGLAS" data-delay="600"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Autonomía total en el entorno JPS para llevar tu programación al siguiente nivel." data-delay="1200"></p>
-            <div class="typewriter-text mt-4" data-delay="2000">
+            <div class="fade-in-block mt-6 border-t border-white/10 pt-4">
                 <h4 class="text-white font-bold mb-2">El Espacio:</h4>
                 <p class="text-sm text-on-surface-variant mb-4">Un bloque de entrenamiento libre sin instrucción grupal, donde las instalaciones y el equipamiento de primer nivel están a tu entera disposición. Es la oportunidad de disfrutar del ambiente JPS a tu manera para ejecutar rutinas propias, siempre bajo una cultura de respeto por el espacio y cuidado de los materiales.</p>
                 <h4 class="text-white font-bold mb-2">Ideal Para:</h4>

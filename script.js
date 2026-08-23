@@ -226,14 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
             inset: 0;
             background-size: cover;
             background-position: center top;
-            filter: blur(2px) brightness(0.7) contrast(1.1);
-            transform: scale(1.05);
-            transition: transform 10s ease-out, filter 2s ease;
+            filter: brightness(0.75);
+            transform: scale(1.02);
+            transition: transform 8s ease-out, filter 1.5s ease;
             z-index: 0;
         }
         .staff-modal.show .modal-bg {
             transform: scale(1);
-            filter: blur(1px) brightness(0.5) contrast(1.1);
+            filter: brightness(0.6);
         }
         .close-btn {
             position: absolute; top: 25px; right: 30px;
@@ -261,6 +261,15 @@ document.addEventListener('DOMContentLoaded', () => {
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
+        }
+        .fade-in-block {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-block.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     `;
     document.head.appendChild(style);
@@ -293,25 +302,40 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
             modal.style.display = 'block';
-            // Force reflow
             void modal.offsetWidth;
             modal.classList.add('show');
-            
-            // Start typewriter effects
-            const texts = modal.querySelectorAll('.typewriter-text');
-            texts.forEach(el => {
-                el.innerHTML = ''; 
+
+            // Reset typewriter elements
+            const typewriterEls = modal.querySelectorAll('.typewriter-text');
+            typewriterEls.forEach(el => {
+                el.innerHTML = '';
                 el.classList.remove('typing', 'done');
                 el.style.visibility = 'hidden';
             });
 
-            texts.forEach(el => {
+            // Reset fade-in blocks
+            const fadeBlocks = modal.querySelectorAll('.fade-in-block');
+            fadeBlocks.forEach(el => el.classList.remove('visible'));
+
+            // Run typewriter effects sequentially
+            let chainDelay = 0;
+            typewriterEls.forEach(el => {
                 const text = el.getAttribute('data-text');
-                const delay = parseInt(el.getAttribute('data-delay') || '0');
+                const baseDelay = parseInt(el.getAttribute('data-delay') || '0');
+                const startDelay = Math.max(chainDelay, baseDelay);
                 setTimeout(() => {
                     el.style.visibility = 'visible';
-                    typeWriter(el, text, 25 + Math.random() * 20); // slight random speed
-                }, delay);
+                    typeWriter(el, text, 30).then(() => {});
+                }, startDelay);
+                const typingTime = (text ? text.length * 35 : 0);
+                chainDelay = startDelay + typingTime + 200;
+            });
+
+            // Fade-in blocks appear after all typewriting
+            fadeBlocks.forEach((el, i) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, chainDelay + i * 200);
             });
         });
 
