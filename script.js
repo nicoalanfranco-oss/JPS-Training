@@ -324,3 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    setupModal('card-noelia', 'modal-noelia');
+    setupModal('card-santiago', 'modal-santiago');
+    setupModal('card-juanpablo', 'modal-juanpablo');
+});

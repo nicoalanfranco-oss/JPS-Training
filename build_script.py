@@ -328,6 +328,11 @@ js_code = '''document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    setupModal('card-noelia', 'modal-noelia');
+    setupModal('card-santiago', 'modal-santiago');
+    setupModal('card-juanpablo', 'modal-juanpablo');
+});
 '''
 
 with open('script.js', 'w', encoding='utf-8') as f:
