@@ -108,6 +108,41 @@ html = '''<!DOCTYPE html>
     .life-left { animation: lifeInsideLeft 10s ease-in-out infinite; }
     .life-right { animation: lifeInsideRight 12s ease-in-out infinite; }
     
+    /* Epic Animations */
+    @keyframes heroBgEntry {
+        0% { filter: grayscale(0%) brightness(1.2); opacity: 1; transform: scale(1.1); mix-blend-mode: normal; }
+        100% { filter: grayscale(100%) brightness(1); opacity: 0.4; transform: scale(1); mix-blend-mode: luminosity; }
+    }
+    .hero-bg-anim { animation: heroBgEntry 4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    
+    @keyframes logoEntryLeft {
+        0% { transform: translateX(-150px) rotate(-180deg) scale(0.5); opacity: 0; }
+        100% { transform: translateX(0) rotate(0) scale(1); opacity: 1; }
+    }
+    @keyframes logoEntryRight {
+        0% { transform: translateX(150px) rotate(180deg) scale(0.5); opacity: 0; }
+        100% { transform: translateX(0) rotate(0) scale(1); opacity: 1; }
+    }
+    .logo-entry-left { animation: logoEntryLeft 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards; opacity: 0; }
+    .logo-entry-right { animation: logoEntryRight 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards; opacity: 0; }
+
+    @keyframes textEpicEntry {
+        0% { transform: translateY(40px) scale(0.9); opacity: 0; filter: blur(10px); }
+        100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+    }
+    .text-epic-entry { animation: textEpicEntry 2s cubic-bezier(0.2, 0.8, 0.2, 1) 1.5s forwards; opacity: 0; }
+    
+    @keyframes assetEntryLeft {
+        0% { transform: translateX(-100px) scale(0); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    @keyframes assetEntryRight {
+        0% { transform: translateX(100px) scale(0); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    .asset-entry-left { animation: assetEntryLeft 2s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards; opacity: 0; }
+    .asset-entry-right { animation: assetEntryRight 2s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards; opacity: 0; }
+    
     /* Section Title */
     .section-title { border-left: 8px solid #FF8A00; padding-left: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
     /* Plan card transition */
@@ -300,27 +335,40 @@ html = '''<!DOCTYPE html>
         <div class="absolute inset-0 chiaroscuro-overlay"></div>
     </div>
     <!-- Kettlebell 3D -->
-    <div class="hidden lg:block absolute left-10 top-1/2 -translate-y-1/2 z-10 hero-3d-left w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.35)] border border-white/10">
+    <div class="asset-entry-left hidden lg:block absolute left-10 top-1/2 -translate-y-1/2 z-10 w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.35)] border border-white/10">
         <img src="assets/images/kettlebell.jpg" alt="Kettlebell JPS" class="life-left w-full h-full object-cover"/>
     </div>
     <!-- Dumbbell 3D -->
-    <div class="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-10 hero-3d-right w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.35)] border border-white/10">
+    <div class="asset-entry-right hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-10 w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.35)] border border-white/10">
         <img src="assets/images/dumbbell.jpg" alt="Mancuerna JPS" class="life-right w-full h-full object-cover"/>
     </div>
     <!-- Content -->
-    <div class="relative z-20 flex flex-col items-center justify-center text-center px-6 w-full max-w-3xl mx-auto gap-8">
-        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_50px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
-            <img alt="JPS Training Logo" class="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+    <div class="relative z-20 flex flex-col items-center justify-center text-center px-6 w-full max-w-5xl mx-auto gap-8">
+        
+        <div class="flex items-center justify-center gap-6 md:gap-12 w-full">
+            <!-- Left Logo -->
+            <div class="logo-entry-left w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden shadow-[0_0_30px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 flex-shrink-0">
+                <img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+            </div>
+            
+            <!-- Central Text -->
+            <div class="flex flex-col items-center">
+                <h1 class="text-epic-entry font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
+                    Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
+                </h1>
+                <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
+                    class="text-epic-entry mt-8 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1" style="animation-delay: 2.2s;">
+                    ÚNETE AL EQUIPO
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Right Logo -->
+            <div class="logo-entry-right w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden shadow-[0_0_30px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 flex-shrink-0">
+                <img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+            </div>
         </div>
-        <h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
-            Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
-        </h1>
-        <button onclick="document.getElementById(\'contacto\').scrollIntoView({behavior:\'smooth\'})"
-            class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
-            ÚNETE AL EQUIPO
-            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-        </button>
+
     </div>
     <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
 </section>
