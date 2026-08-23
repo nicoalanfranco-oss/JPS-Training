@@ -53,13 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Header Row
         html += `<div class="py-4 px-2"></div>`;
         days.forEach(d => {
-            html += `<div class="bg-[#1E1E1E] rounded-xl border border-white/10 py-4 px-2 font-black text-[#FF8A00] tracking-wider text-xs uppercase shadow-md">${d.name}</div>`;
+            html += `<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light shadow-md">${d.name}</div>`;
         });
 
         // 2. Slots Rows
         times.forEach(timeStr => {
             // Time Column
-            html += `<div class="flex items-center justify-end pr-4 font-black text-[#FF8A00] text-sm">${timeStr}</div>`;
+            html += `<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">${timeStr}</div>`;
 
             // Day Columns 1 to 5
             days.forEach(day => {
@@ -67,25 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (match) {
                     const actName = match.nombre_actividad;
-                    let styleClass = 'bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white';
+                    let styleClass = 'bg-gradient-to-r from-electric-orange to-vibrant-pink text-white font-label-caps';
                     let actDisplay = actName.toUpperCase();
 
                     if (actName.toLowerCase().includes('functional strength')) {
-                        styleClass = 'bg-[#1E293B] text-white border border-slate-700';
+                        styleClass = 'bg-slate-800 text-white font-label-caps';
                         actDisplay = '<span>FUNCTIONAL</span><span>STRENGTH</span>';
                     } else if (actName.toLowerCase().includes('pilates')) {
-                        styleClass = 'bg-[#FF8A00] text-black';
+                        styleClass = 'bg-electric-orange text-surface-container-lowest font-label-caps';
                         actDisplay = '<span>PILATES</span><span>FUNCIONAL</span>';
                     } else if (actName.toLowerCase().includes('gap')) {
-                        styleClass = 'bg-yellow-500 text-black';
+                        styleClass = 'bg-vibrant-yellow text-surface-container-lowest font-label-caps';
                         actDisplay = 'GAP';
                     } else if (actName.toLowerCase().includes('60')) {
-                        styleClass = 'bg-yellow-500 text-black';
+                        styleClass = 'bg-vibrant-yellow text-surface-container-lowest font-label-caps';
                         actDisplay = '+ 60';
                     }
 
                     html += `
-                    <div data-activity="${actName}" class="slot-pill ${styleClass} rounded-xl py-3 px-2 text-xs font-bold uppercase tracking-wider flex flex-col items-center justify-center leading-tight shadow-lg transition-all duration-300">
+                    <div data-activity="${actName}" class="slot-pill ${styleClass} rounded-xl py-3 px-2 flex flex-col items-center justify-center leading-tight shadow-lg transition-all duration-300">
                         ${actDisplay}
                     </div>`;
                 } else {
