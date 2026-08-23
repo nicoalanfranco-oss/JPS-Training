@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (horariosRes.ok) {
                 const horarios = await horariosRes.json();
-                renderDynamicSchedules(horarios || []);
+                window.allHorarios = horarios || [];
+                window.currentFilter = 'all';
+                renderDynamicSchedules();
             }
             if (preciosRes.ok) {
                 const precios = await preciosRes.json();
@@ -23,12 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderDynamicSchedules(horarios) {
+    function renderDynamicSchedules() {
         const container = document.getElementById('horarios-dynamic-container');
         if (!container) return;
 
-        if (horarios.length === 0) {
-            container.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles.</td></tr>';
+        const horarios = window.allHorarios || [];
+        const filter = window.currentFilter || 'all';
+
+        const filteredHorarios = filter === 'all' 
+            ? horarios 
+            : horarios.filter(h => h.nombre_actividad && h.nombre_actividad.toLowerCase().includes(filter.toLowerCase()));
+
+        if (filteredHorarios.length === 0) {
+            container.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles para esta modalidad.</td></tr>';
             return;
         }
 
@@ -36,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '';
 
         diasSemana.forEach(dia => {
-            const horariosDia = horarios.filter(h => h.nombre_dia.substring(0,3) === dia || (dia === 'Mié' && h.nombre_dia.includes('Mi')));
+            const horariosDia = filteredHorarios.filter(h => h.nombre_dia.substring(0,3) === dia || (dia === 'Mié' && h.nombre_dia.includes('Mi')));
             if (horariosDia.length === 0) return;
 
             html += `<tr class="bg-surface-elevated/50"><td colspan="5" class="p-4 font-bold text-[#ffb599] border-t border-white/5 bg-white/5">${dia}</td></tr>`;
@@ -139,6 +148,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadWebData();
     
+    // --- Setup Filters ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            filterBtns.forEach(b => {
+                b.classList.remove('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'text-white', 'border-[#FF8A00]');
+                b.classList.add('border-white/10', 'text-on-surface');
+            });
+            e.currentTarget.classList.remove('border-white/10', 'text-on-surface');
+            e.currentTarget.classList.add('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'text-white', 'border-[#FF8A00]');
+            
+            window.currentFilter = e.currentTarget.getAttribute('data-filter');
+            renderDynamicSchedules();
+        });
+    });
+
     // --- Setup Modals for Staff ---
     function setupModal(triggerId, modalId) {
         const trigger = document.getElementById(triggerId);
