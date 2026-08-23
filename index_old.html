@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JPS TRAINING - Hero</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d1e4ff",
+                        "on-secondary-container": "#580031",
+                        "surface-variant": "#353534",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffb599",
+                        "on-tertiary-fixed-variant": "#00497d",
+                        "on-primary-fixed-variant": "#7f2b00",
+                        "primary-fixed-dim": "#ffb599",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brushed-metal": "#2A2A2A",
+                        "on-secondary-fixed": "#3e0021",
+                        "outline": "#aa897d",
+                        "steel-silver": "#C0C0C0",
+                        "on-primary": "#5a1c00",
+                        "tertiary-fixed-dim": "#9ecaff",
+                        "tertiary-container": "#0098fc",
+                        "primary-container": "#ff5f05",
+                        "on-background": "#e5e2e1",
+                        "surface-elevated": "#1E1E1E",
+                        "on-surface-variant": "#e4bfb1",
+                        "on-tertiary-fixed": "#001d36",
+                        "surface-bright": "#393939",
+                        "secondary-fixed": "#ffd9e4",
+                        "inverse-primary": "#a73b00",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#640038",
+                        "primary-fixed": "#ffdbce",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error": "#690005",
+                        "on-primary-container": "#531900",
+                        "surface-container": "#201f1f",
+                        "on-tertiary": "#003258",
+                        "secondary": "#ffb0cc",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb599",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#002e52",
+                        "surface-container-highest": "#353534",
+                        "on-primary-fixed": "#370e00",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#ff45a1",
+                        "tertiary": "#9ecaff",
+                        "background": "#131313",
+                        "outline-variant": "#5b4137",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "vibrant-pink": "#E01E5A",
+                        "error-container": "#93000a",
+                        "electric-orange": "#FF8A00",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "stat-value": ["Montserrat"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "headline-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "stat-value": ["32px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Shared Styles & Effects */
+        .btn-gradient {
+            background: linear-gradient(to right, #FF8A00, #E01E5A);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(255, 138, 0, 0.4);
+        }
+        
+        /* Chiaroscuro overlay */
+        .chiaroscuro-overlay {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0.1) 0%, rgba(19, 19, 19, 0.9) 100%),
+                        linear-gradient(90deg, rgba(19, 19, 19, 0.8) 0%, rgba(19, 19, 19, 0.2) 50%, rgba(19, 19, 19, 0.8) 100%);
+        }
+        
+        /* Map placeholder styling */
+        .map-placeholder {
+            background: 
+                linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313), 
+                linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313),
+                linear-gradient(to right, rgba(255, 138, 0, 0.05), rgba(224, 30, 90, 0.05));
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px, 0 0;
+            background-color: #1E1E1E;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-primary/10 transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop h-20 w-full max-w-7xl mx-auto md:px-margin-desktop px-margin-mobile">
+<!-- Brand -->
+<a class="font-display-xl text-headline-md italic font-black bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent tracking-tighter hover:scale-105 transition-transform duration-300" href="#">
+                JPS TRAINING
+            </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Actividades</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Staff</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Planes</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contacto</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button class="hidden md:inline-flex items-center justify-center font-label-caps text-label-caps btn-gradient text-white px-6 py-2 rounded-full font-bold glow-hover hover:scale-105 transition-all duration-300">
+                    ├ÜNETE AL EQUIPO
+                </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile) -->
+<aside class="h-full w-64 fixed left-0 top-0 hidden lg:hidden bg-surface-elevated border-r border-brushed-metal z-40 transform -translate-x-full transition-transform duration-300 flex flex-col p-base gap-4 pt-24" id="mobile-nav">
+<!-- Add simple JS to toggle this in a real app -->
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span> Actividades
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span> Staff
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span> Planes
+        </a>
+<a class="flex items-center gap-4 p-3 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high rounded-xl Transition-all duration-200" href="#">
+<span class="material-symbols-outlined">mail</span> Contacto
+        </a>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow pt-20"> <!-- Offset for fixed header -->
+<!-- Hero Section -->
+<section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+<!-- Background Image with Chiaroscuro Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity" data-alt="A high-contrast, professional, gritty black and white photo of a dark, elite gym session. A muscular athlete is mid-lift with dramatic, low-key lighting highlighting sweat and muscle definition. The aesthetic is industrial, modern, dark mode, high octane, and intense." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3jPjcIqWDsoRMFbxUxMRHAgPwDKJKuWCEZaYtuQxxJNY7vvQK0GJQumpIM8n5DfpGQPa97ZFLjSe2BlWauWShsoM1XQ2TFE93awTbbKXl0oK-kGjsV4U76DgHfDhktIrDA0802Jv9QGdEaf5ZNcl8Y2gaMax0s9UD6Rgx4bHFufDGtZwI8XdWFv7iv92XL0EUdfWHNE0eI0uqL3-Z-q4sQlNxn5p466sn8MrcTtYtTuRdz7WK-IsVeA')"></div>
+<div class="absolute inset-0 chiaroscuro-overlay"></div>
+</div>
+<!-- Content Container -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center px-gutter w-full max-w-5xl mx-auto gap-8">
+<!-- Logo -->
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_40px_rgba(255,138,0,0.2)] border-2 border-brushed-metal bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 ease-out">
+<img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
+</div>
+<!-- Headline -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight max-w-3xl leading-tight">
+                        Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">m├íximo</span>
+</h1>
+</div>
+<!-- CTA Button -->
+<button class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
+                    ├ÜNETE AL EQUIPO
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Diagonal Accent Line -->
+<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
+</section>
+<!-- Location Section -->
+<section class="w-full py-[120px] px-gutter relative overflow-hidden bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/2 flex flex-col gap-6">
+<h2 class="font-display-xl text-headline-md md:text-headline-lg uppercase text-on-surface tracking-tight">
+<span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">Ubicaci├│n</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                Vis├¡tanos en nuestras instalaciones de primer nivel.
+            </p>
+<div class="flex items-start gap-4 mt-4 bg-surface-elevated p-6 rounded-xl border border-brushed-metal hover:border-outline-variant transition-colors group">
+<span class="material-symbols-outlined text-electric-orange text-3xl group-hover:scale-110 transition-transform">location_on</span>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">Direcci├│n</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        El├¡as abdo 162 bis<br/>
+                        Entre rivera y Dr ivo<br/>
+                        Tacuaremb├│, Uruguay
+                    </p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[400px] rounded-2xl overflow-hidden border-2 border-brushed-metal relative group shadow-2xl shadow-primary/5">
+<!-- Stylized Map Placeholder -->
+<div class="absolute inset-0 map-placeholder flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
+<div class="bg-background/80 backdrop-blur-md px-6 py-3 rounded-full border border-electric-orange/30 flex items-center gap-3 shadow-lg shadow-electric-orange/10">
+<span class="material-symbols-outlined text-electric-orange animate-bounce">pin_drop</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-widest">JPS TRAINING</span>
+</div>
+</div>
+<!-- Interactive overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+</div>
+</section>
+
+
+<!-- Ambient Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-electric-orange/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop">
+<!-- Section Header -->
+<div class="mb-24 relative">
+<div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-electric-orange to-vibrant-pink"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-2xl">
+                    Elige tu camino. Entrenamiento de alta intensidad y precisi├│n dise├▒ado para superar tus l├¡mites y forjar un rendimiento de ├⌐lite.
+                </p>
+</div>
+<!-- Activities Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Hybrid Training -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Athlete performing a dynamic movement in a dark gym" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAL2qqgFK2xDhqlwcRuId5tqhXPjmdAQv7eBBIaSIhY4qpmddkPNmD_k_4pPNJQ9BkJcfMjbD6LYZMOzC1kJ2GxLWfnpYRMz27JifcrOTfl1WBRTLLqW-jWqry1h_RYGM9vf6kl8FAw3jf8LEH5CCVRp2IfQek-n74E42hstjnCBKBp8tHdCEMzGo_pSsBmLEFc3S001OuoH-BAovJCQO3tX2N5IeeoPXo_--C51vCnk8yEqzfIU8_LWQ");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-vibrant-pink text-white font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px]">H├¡brido</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-vibrant-pink group-hover:text-electric-orange transition-colors duration-300">Hybrid Training</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            La combinaci├│n definitiva de potencia, resistencia y agilidad.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">local_fire_department</span>
+<span class="">Oxidaci├│n de grasa</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">favorite</span>
+<span class="">Capacidad cardiovascular</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">bolt</span>
+<span class="">Potencia explosiva</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">60 MIN</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Functional Strength -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Heavy lifting and functional strength equipment" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOp4yOQ9BAZr9PM_MBgoAPoYQ1AEFKi2W2kvc61PSJ_t3JXtwADZSexK42NoH8a2ZX-COBnA-jo89ZYREyp0uDUgSc_yG9o8K8ZM4G0zShfL6afeW3PPluxqrvrYaspu9zzER_WuU3mjke5gOy5taX9B9mttRzmStIbByQTRkH40pHk2b6c-Rgvl6hPsVGNEgWlgzrHgbmDbGi_2tyW0vikVZzCIIxIgarrYN6r9d_36miELo0d0yB1Q");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-electric-orange text-white font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px]">Fuerza</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-electric-orange group-hover:text-vibrant-pink transition-colors duration-300">Functional Strength</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            Construye un cuerpo m├ís fuerte, inteligente y preparado.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">fitness_center</span>
+<span class="">Aumento de fuerza</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility_new</span>
+<span class="">Movilidad articular</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">health_and_safety</span>
+<span class="">Prevenci├│n de lesiones</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">45 MIN</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 3: GAP -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Lower body focused training in a modern gym" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW7Z_zc82KmCs4fAkYXe_bG3JvGEdKgnPvMmoXXHPavdU58DjROEP10gudvmQ7GsKJqont5m12zjJzMLn2Ol7QFRHiZwSFTmdHy_J9jIUZarADTEHqM0UazR757Yy3UXdT1M8i9F2nl3qgJFNbXmSDI32WPSziT2k0T8FeDbsb0_VRy3EBTf2RuLxwN6fI5WWiDP9ct3_ouXhMqkkB5UzU3mLxuZGEeER6l9zDCIXHjsrNcRc9Mz7WTg");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-surface-bright text-on-surface font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px] border border-brushed-metal">Tonificaci├│n</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-primary group-hover:text-electric-orange transition-colors duration-300">GAP</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            Esculpe, tonifica y fortalece el centro de tu poder.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">sports_gymnastics</span>
+<span class="">Gl├║teos y piernas</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility</span>
+<span class="">Fortalecimiento del core</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">model_training</span>
+<span class="">Tonificaci├│n muscular</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">45 MIN</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Pilates Funcional -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Person doing pilates in a studio setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGqfTIWKpOGcMZeJSZSmhRZQ8vEn3XkIefDflC59APnVv5SQVgH1mnISJtjqaKTPJl8__CiP5Pl-gDZsbdlfLLOCLoUXQCqfFtRFEuGpYlhnwKgtNfKaPuMen0bEJu94yJruFpT9DHM3syBivn9MBFdI4HTHnGR6y_DYp1y_lOzz-a0ujZO4CIJhha-5QHorsVcQvrP0QpWUnoaoeKZb2OtE-KnPUZ0sIygiHMoOOQaZnyWWSuWRNgJA");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-vibrant-pink text-white font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px]">Mente &amp; Cuerpo</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-vibrant-pink group-hover:text-electric-orange transition-colors duration-300">Pilates Funcional</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            Control, precisi├│n y movimiento consciente.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">self_improvement</span>
+<span class="">Conexi├│n mente-cuerpo</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">balance</span>
+<span class="">Equilibrio y postura</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">airline_seat_recline_normal</span>
+<span class="">Flexibilidad profunda</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">50 MIN</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 5: +60 (Active Aging) -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Active older adults training" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChBeNr57xe-LyAWT59PPujv1nJoQ4GYy42IdpZ9BgLSA1e6GLWOwqvZfY9rGjepIREjYS_E1PCT0ntlKu3O69V2QUwEvZuWX85Pxh9lYIJ0erb8R1VEuYQkR70spqHf3nt8XisbKaJlG7DPVj71lVVd5s9ZRq1jtzqXy2ZAbUugWzVBrKdvp_3sy1fdH7z2Qxz-tUYWB8l-A20cK-hPXCvCg-xMPI5JLtya1PoYWvWyH0xc8MmTaTmdg");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-electric-orange text-white font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px]">Longevidad</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-electric-orange group-hover:text-vibrant-pink transition-colors duration-300">+60 (Active Aging)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            Vitalidad sin l├¡mites. Entrenamiento inteligente.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">favorite_border</span>
+<span class="">Mejora cardiovascular</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">bone</span>
+<span class="">Salud ├│sea</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">accessibility_new</span>
+<span class="">Fuerza funcional</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">45 MIN</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Open Box -->
+<div class="card-acrylic rounded-xl overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 card-hover flex flex-col">
+<div class="h-56 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="Empty gym space ready for training" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZ6JGqivvKAVsASjqNWxZ2HVLqDPbE8loHjG4QSLQBMEtC-k5jM1uasdMROTM1h5v9RZoyNtyfj5gRAjMdoKn05U4XQR3hHq25Jj61M0PVUQpHhNms4rnGpArzQlj9y0RiDFkYgm8HujpUDOAXyDTTeCKdku-rb7VwlL2qI8IKRnfmHYCfLHwXOUOtmOk8Am0LLHzAgZ5cV6mr5cwmasR06VNOl_GlzT1HzSAxmKaxVpERv-cgbnbvrQ");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute top-4 left-4 z-20">
+<span class="bg-surface-bright text-on-surface font-label-caps text-label-caps px-3 py-1 rounded-sm uppercase tracking-wider text-[10px] border border-brushed-metal">Entrenamiento Libre</span>
+</div>
+</div>
+<div class="p-6 relative z-20 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2 text-on-surface group-hover:text-electric-orange transition-colors duration-300">Open Box</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                            Tu espacio, tu ritmo, tus reglas.
+                        </p>
+<ul class="space-y-2 mb-6">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">schedule</span>
+<span class="">Flexibilidad horaria</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">sports_martial_arts</span>
+<span class="">Entrenamiento libre</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-electric-orange text-[16px]">verified</span>
+<span class="">Equipamiento premium</span>
+</li>
+</ul>
+<div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-[11px]">TODO EL D├ìA</span>
+</div>
+<span class="material-symbols-outlined text-electric-orange group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Action Area (Bento style highlight) -->
+<div class="mt-gutter grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 card-acrylic rounded-xl p-8 relative overflow-hidden flex flex-col justify-center min-h-[240px]">
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, theme('colors.electric-orange') 10px, theme('colors.electric-orange') 12px);"></div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Programaci├│n Personalizada</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-6">
+                        ┬┐Necesitas un protocolo especializado? Nuestro equipo de ├⌐lite dise├▒a macrociclos personalizados adaptados a tus m├⌐tricas de rendimiento espec├¡ficas.
+                    </p>
+<div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-electric-orange hover:text-vibrant-pink transition-colors uppercase tracking-widest" href="#">
+                            Ver Planes Personalizados <span class="material-symbols-outlined text-[16px]">trending_flat</span>
+</a>
+</div>
+</div>
+<div class="card-acrylic rounded-xl p-8 flex flex-col items-center justify-center text-center group cursor-pointer hover:border-vibrant-pink transition-colors">
+<div class="w-16 h-16 rounded-full bg-surface-bright flex items-center justify-center mb-4 group-hover:bg-vibrant-pink/20 transition-colors">
+<span class="material-symbols-outlined text-[32px] text-on-surface group-hover:text-vibrant-pink transition-colors" style='font-variation-settings: "FILL" 1;'>calendar_month</span>
+</div>
+<h4 class="font-stat-value text-[24px] text-on-surface mb-1">Reservar Sesi├│n</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">Ver Horario</p>
+</div>
+</div>
+</div>
+
+<!-- Header Section -->
+<section class="mb-24 relative">
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background opacity-50 blur-3xl"></div>
+<h1 class="font-display-xl text-display-xl text-transparent bg-clip-text bg-gradient-to-r from-white to-steel-silver mb-4 uppercase tracking-tighter">
+                NUESTRO <span class="text-gradient">STAFF DE ├ëLITE</span></h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4 text-center">Nuestros entrenadores son veteranos de la industria cuidadosamente seleccionados, dedicados a forjar el potencial en bruto en un rendimiento innegable. Sin excusas, solo resultados.</p>
+</section>
+<!-- Bento Grid / Staff Roster -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[minmax(300px,_auto)]">
+<!-- Featured Coach (Spans 8 cols on desktop) -->
+<div class="md:col-span-8 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500" data-alt="A gritty, high-contrast black and white portrait of an intense fitness trainer in a dark gym environment. Dramatic cinematic lighting (chiaroscuro) highlights muscular definition and metallic gym equipment in the background. A subtle orange/pink gel light illuminates one side of the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7vLh33vppJtXjDtUKWLlwrSp9L0bcQ1X4EfD7-fDUOlGaiJo65_xlvShyos-LeHlopyDUZZjT0w5206hOkZgddJ9lyx6_teFoG7RASjSnxDhi2bbJ27kzSZML6HQVAqjGesgiQG11uhcOT2zptNilyOnPRvG1OCz3-DbqyimGqi1M0qecB-hEa-W9MFdKDPN0tASMzJY98EJd7taxGHHWuuuWd-wq5wW_Pf6vMUR5hWniwPLZtpBnQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-end">
+<div class="inline-block bg-vibrant-pink text-black font-label-caps text-[10px] uppercase px-3 py-1 rounded mb-4 self-start tracking-widest font-bold">
+                        Entrenador Jefe
+                    </div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-1 uppercase italic">JUAN PABLO SENA</h2>
+<p class="font-label-caps text-primary uppercase tracking-widest mb-4">Entrenador Personal Senior</p>
+<p class="font-body-md text-on-surface-variant max-w-lg mb-6 line-clamp-2">
+                        Ex especialista en atletas t├ícticos enfocado en acondicionamiento extremo y fuerza funcional. Marcus rompe los l├¡mites.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-surface/50 border border-steel-silver/30 hover:border-primary text-white p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Coach 1 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A dynamic, high-contrast photo of a female boxing coach wrapping hands in a dark, gritty training facility. Strong overhead lighting casts dramatic shadows. Accents of neon pink and orange are visible in the background equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8A1-Z4mmRnLSGkmm6qpOXWF5Z0DGwVI46ASfFEKvYhLFVbLAWRc4pewLkIfWZLK5N-98HDeuEvGvFVQ4jj7jzw9hImllQ1g32wZwY8rLivsIcZejV7pVS-4ajvNLZIriGfd2I6fejVF7VQCLivVuFUlepI_bJbt9lgqF74-jSREaZmYt5ZuT9YRJv1XToYlaty9SdbunslkDyAQHnKB1oyrQbDSW4BIvsGz8JxF5p9ghutt58GP-C1Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Elena Rojas</h3>
+<p class="font-label-caps text-vibrant-pink uppercase tracking-widest mb-4 text-[10px]">Especialista en Boxeo</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">9 A├æOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">sports_mma</span>
+</div>
+</div>
+</div>
+<!-- Standard Coach 2 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A dark, intense portrait of a male powerlifting coach chalking up hands. High contrast, cool metallic tones mixed with warm amber rim lighting. The aesthetic is raw power and mechanical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Santiago Hern├índez</h3>
+<p class="font-label-caps text-electric-orange uppercase tracking-widest mb-4 text-[10px]">LicenciadO en Educaci├│n F├¡sica</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">3 A├æOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">fitness_center</span>
+</div>
+</div>
+</div>
+<!-- Standard Coach 3 (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-end photo of a female mobility and recovery specialist in a dimly lit studio. Sleek lines, minimal aesthetic with a subtle glowing aura effect around her silhouette. Focus on flexibility and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-white uppercase italic">Noelia Lima Latorre</h3>
+<p class="font-label-caps text-primary uppercase tracking-widest mb-4 text-[10px]">Licenciada en Educaci├│n F├¡sica</p>
+<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
+<span class="font-label-caps text-on-surface-variant text-[10px]">5 A├æOS DE EXP.</span>
+<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">accessibility_new</span>
+</div>
+</div>
+</div>
+<!-- Join the Team Callout (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 relative rounded-lg overflow-hidden bg-surface-container-high border border-brushed-metal flex flex-col justify-center items-center text-center p-8">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMCAwTDggOFpNOCAwTDAgOFoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4KPC9zdmc+')]"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">add_circle</span>
+<h3 class="font-headline-md text-headline-md text-white uppercase italic mb-2">┬┐TIENES LO QUE SE NECESITA?</h3>
+<p class="font-body-md text-on-surface-variant mb-6 text-sm">Siempre estamos buscando talento de ├⌐lite para unirse a nuestras filas.</p>
+<button class="border border-primary text-primary px-6 py-2 rounded font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary/10 transition-colors">
+                     POST├ÜLATE AHORA
+                 </button>
+</div>
+</section>
+
+<!-- Background Ambient effect -->
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-orange/5 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
+<header class="text-center mb-24 relative">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-surface mb-4 uppercase">
+                ELIGE TU <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">PODER</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Selecciona el plan que se adapte a tu ambici├│n. Sin compromisos, solo resultados.
+            </p>
+</header>
+<!-- Pricing Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+<!-- Basic Tier -->
+<article class="bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative">
+<div class="mb-8"><h2 class="font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">2 veces por semana</h2><div class="flex items-baseline gap-2"><span class="font-stat-value text-stat-value text-on-surface">$1.650</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<ul class="flex-grow space-y-4 mb-8"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-steel-silver text-[20px] mt-0.5">check_circle</span><span class="font-body-md text-body-md text-on-surface-variant">V├ílido para todas las modalidades</span></li></ul>
+<button class="w-full py-3 border border-steel-silver text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors">EMPEZAR B├üSICO</button>
+</article>
+<!-- Premium Tier (Most Popular) -->
+<article class="bg-surface-elevated rounded-xl p-8 flex flex-col relative top-highlight transform md:-translate-y-4 glow-effect z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #131313 100%);">
+<!-- Gradient Border Hack -->
+<div class="absolute inset-0 rounded-xl p-[1px] -z-10" style="background: linear-gradient(135deg, #FF8A00 0%, #E01E5A 100%);">
+<div class="absolute inset-0 bg-surface-elevated rounded-xl z-0"></div>
+</div>
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-vibrant-pink text-white px-4 py-1 rounded font-label-caps text-[10px] uppercase tracking-wider z-20 whitespace-nowrap">
+                    M├üS POPULAR
+                </div>
+<div class="mb-8 relative z-10"><h2 class="font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">3ΓÇô4 veces por semana</h2><div class="flex items-baseline gap-2"><span class="font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<ul class="flex-grow space-y-4 mb-8 relative z-10"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-electric-orange text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span><span class="font-body-md text-body-md text-on-surface">V├ílido para todas las modalidades</span></li></ul>
+<button class="w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-effect transition-all relative z-10">ELEGIR PREMIUM</button>
+</article>
+<!-- Elite Tier -->
+<article class="bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative">
+<div class="mb-8"><h2 class="font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">Ilimitado</h2><div class="flex items-baseline gap-2"><span class="font-stat-value text-stat-value text-on-surface">$2.100</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<ul class="flex-grow space-y-4 mb-8"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px] mt-0.5">check_circle</span><span class="font-body-md text-body-md text-on-surface-variant">V├ílido para todas las modalidades</span></li></ul>
+<button class="w-full py-3 border border-tertiary-fixed-dim text-tertiary-fixed-dim font-label-caps text-label-caps uppercase rounded hover:bg-tertiary-fixed-dim/10 transition-colors">EMPEZAR ELITE</button>
+</article>
+</div>
+
+<!-- Background Image/Pattern -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none" data-alt="A dark, gritty, high-contrast photograph of a modern gym interior. Dumbbells and barbells are visible in the background, illuminated by harsh overhead lighting. The overall mood is intense, energetic, and professional, perfectly suited for an elite fitness brand background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIujcCb2oV50HgOtv4jN86C9XLw-T1a06gR3Hy7LtO67A_94ijPsi_UhSrPT76KU9aciTa9lKYf0EKi-fWq6RzfrT6ZiRP0b1-YOd74vhZdX9xoXYrzyf6Gogf71NpDIA8z66m-FmS58TAmVtoIxk6rmmXpftKIRmRHnQ3bOuLeGwMxe2QVIl_QhH7dSI8z9zdOV9PxLW3QPTQKmi3NAUO03kojTqEMFUP870rzEqIbzGVVQOgoI9xWg'); background-size: cover; background-position: center;"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/80 via-surface-container-lowest to-surface-container-lowest z-0 pointer-events-none"></div>
+<div class="relative z-10 container mx-auto px-margin-mobile md:px-margin-desktop mt-12">
+<!-- Page Header -->
+<header class="mb-24 text-center md:text-left relative">
+<!-- Kinetic accent -->
+<div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-electric-orange to-vibrant-pink hidden md:block"></div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg uppercase italic bg-gradient-to-r from-white to-on-surface-variant bg-clip-text text-transparent">
+                    HORARIOS DE ENTRENAMIENTO
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-2xl">
+                    Organiza tu semana y alcanza tu m├íximo potencial con nuestras clases dise├▒adas para el rendimiento ├⌐lite.
+                </p>
+</header>
+<!-- Class Category Tabs -->
+<div class="flex gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar">
+<button class="px-6 py-3 rounded-full border border-slate-800 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light bg-gradient-to-r from-electric-orange to-vibrant-pink">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                    HYBRID
+                </button>
+<button class="px-6 py-3 rounded-full bg-surface-elevated border text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light bg-slate-800"><span class="material-symbols-outlined text-sm">fitness_center</span> FUNCTIONAL STRENGTH</button>
+<button class="px-6 py-3 rounded-full bg-surface-elevated border border-vibrant-yellow text-vibrant-yellow font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
+<span class="material-symbols-outlined text-sm">accessibility_new</span>
+                    GAP
+                </button>
+<button class="px-6 py-3 rounded-full bg-surface-elevated border border-electric-orange text-electric-orange font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
+<span class="material-symbols-outlined text-sm">self_improvement</span>
+                    PILATES FUNCIONAL
+                </button>
+<button class="px-6 py-3 rounded-full bg-surface-elevated border border-vibrant-yellow text-vibrant-yellow font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
+<span class="material-symbols-outlined text-sm">elderly</span>
+                    +60
+                </button>
+</div>
+<!-- Schedule Grid / Bento Layout -->
+<div class="overflow-x-auto">
+<div class="min-w-[800px] w-full grid grid-cols-[auto_repeat(5,1fr)] gap-4 text-center pb-8">
+<!-- Header Row -->
+<div class="font-headline-md text-on-surface-variant py-4 px-2"></div>
+<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light">LUNES</div>
+<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light">MARTES</div>
+<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light">MI├ëRCOLES</div>
+<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light">JUEVES</div>
+<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light">VIERNES</div>
+<!-- Row: 06:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">06:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="py-3 px-2"></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="py-3 px-2"></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 07:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">07:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 08:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">08:00</div>
+<div class="bg-electric-orange rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex flex-col items-center justify-center leading-tight"><span>PILATES</span><span>FUNCIONAL</span></div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">GAP</div>
+<div class="bg-electric-orange rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex flex-col items-center justify-center leading-tight"><span>PILATES</span><span>FUNCIONAL</span></div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">GAP</div>
+<div class="bg-electric-orange rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex flex-col items-center justify-center leading-tight"><span>PILATES</span><span>FUNCIONAL</span></div>
+<!-- Row: 09:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">09:00</div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">+ 60</div>
+<div class="py-3 px-2"></div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">+ 60</div>
+<div class="py-3 px-2"></div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">+ 60</div>
+<!-- Row: 13:30 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">13:30</div>
+<div class="py-3 px-2"></div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="py-3 px-2"></div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="py-3 px-2"></div>
+<!-- Row: 16:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">16:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">GAP</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-vibrant-yellow rounded-xl py-3 px-2 font-label-caps text-surface-container-lowest flex items-center justify-center">GAP</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 17:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">17:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 18:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">18:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 19:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">19:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="bg-slate-800 rounded-xl py-3 px-2 font-label-caps text-white flex flex-col items-center justify-center leading-tight"><span>FUNCTIONAL</span><span>STRENGTH</span></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<!-- Row: 20:00 -->
+<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">20:00</div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="py-3 px-2"></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+<div class="py-3 px-2"></div>
+<div class="rounded-xl py-3 px-2 font-label-caps text-white flex items-center justify-center bg-gradient-to-r from-electric-orange to-vibrant-pink">HYBRID</div>
+</div>
+</div>
+<!-- Open Box Banner -->
+<div class="mt-8 bg-surface-elevated rounded-xl border border-brushed-metal p-6 flex flex-col md:flex-row items-center gap-6 top-light">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-white/10 shadow-2xl"><img alt="Gym Equipment" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVv0XO8nuU_T2mfwIyBw0v40S8LpqiAGURVS6-w5yScTQ8_xdB95vJmmL0uFTNNsdIfmQ0qZ9EKOsKF33opl--hmmkU_q-ZwAK1d0t_TZgmFu2EAOByk7sZ00LQ3M1JKbp2EOheCBMc0vAZm0WsIDJMaDDv6PAoUaIzvvFPMRiDZ3K5D9Kvn3tn9MuUei06iuTfdwxalR8zVE3dStqpzwHJsCDj9F3X2uWjqtka0v-ZYzK19fkWYzFOg"/></div>
+<div class="text-center md:text-left">
+<h3 class="font-headline-md text-white uppercase italic"><span class="bg-red-600 text-white px-2 py-1 rounded font-bold">OPEN BOX</span></h3>
+<p class="font-body-md text-on-surface-variant mt-1">Entrenamiento libre disponible durante todo el horario de apertura del gimnasio (06:00 a 21:00), coincidiendo con el horario de clases.</p>
+</div>
+</div>
+<!-- Global CTA -->
+<div class="mt-16 text-center">
+<button class="bg-gradient-to-r from-electric-orange to-vibrant-pink text-white font-label-caps text-label-caps px-12 py-4 rounded-xl uppercase metallic-sheen glow-hover hover:scale-105 transition-transform duration-300 inline-flex items-center gap-3">
+<span class="material-symbols-outlined">add_circle</span>
+                    RESERVAR UNA CLASE AHORA
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full relative bg-surface-dim border-t border-brushed-metal py-12 px-margin-desktop md:px-margin-desktop px-margin-mobile flex flex-col items-center border-t border-white/5">
+<div class="text-headline-md font-display-xl italic font-black mb-6 bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">
+            JPS TRAINING
+        </div>
+<div class="flex flex-wrap justify-center gap-6 mb-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Pol├¡tica de Privacidad</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">T├⌐rminos de Servicio</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Preguntas Frecuentes</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vibrant-pink transition-colors opacity-100 hover:opacity-80" href="#">Ubicaci├│n</a>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant opacity-60">
+            ┬⌐ 2024 JPS TRAINING. TODOS LOS DERECHOS RESERVADOS.
+        </div>
+</footer>
+</body></html>
