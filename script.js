@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const horarios = await horariosRes.json();
                 window.allHorarios = horarios || [];
                 window.currentFilter = 'all';
-                renderScheduleGrid();
+                renderDynamicSchedules();
             }
             if (preciosRes.ok) {
                 const precios = await preciosRes.json();
@@ -24,96 +24,85 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Render Grid like Screenshot 1 ---
-    function renderScheduleGrid() {
-        const gridContainer = document.getElementById('horarios-grid-container');
-        if (!gridContainer) return;
+    // --- Render schedule as table rows (matches c335a21 structure) ---
+    function renderDynamicSchedules() {
+        const container = document.getElementById('horarios-dynamic-container');
+        if (!container) return;
 
         const horarios = window.allHorarios || [];
+        const filter = window.currentFilter || 'all';
 
-        // Unique sorted times
-        const timeSet = new Set(horarios.map(h => h.hora.substring(0, 5)));
-        const times = Array.from(timeSet).sort();
+        const filtered = filter === 'all'
+            ? horarios
+            : horarios.filter(h => h.nombre_actividad &&
+                h.nombre_actividad.toLowerCase().includes(filter.toLowerCase()));
 
-        // Default times if empty
-        if (times.length === 0) {
-            times.push('06:00', '07:00', '08:00', '09:00', '13:30', '16:00', '17:00', '18:00', '19:00', '20:00');
+        if (filtered.length === 0) {
+            container.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-on-surface-variant">No hay horarios disponibles para esta modalidad.</td></tr>';
+            return;
         }
 
-        const days = [
-            { num: 1, name: 'LUNES' },
-            { num: 2, name: 'MARTES' },
-            { num: 3, name: 'MIÉRCOLES' },
-            { num: 4, name: 'JUEVES' },
-            { num: 5, name: 'VIERNES' }
-        ];
+        const diasNombre = ['', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-        let html = '';
-
-        // 1. Header Row
-        html += `<div class="py-4 px-2"></div>`;
-        days.forEach(d => {
-            html += `<div class="bg-surface-elevated rounded-xl border border-brushed-metal py-4 px-2 font-headline-md text-electric-orange top-light shadow-md">${d.name}</div>`;
+        // Sort by day then time
+        const sorted = [...filtered].sort((a, b) => {
+            const dayDiff = Number(a.dia_semana) - Number(b.dia_semana);
+            if (dayDiff !== 0) return dayDiff;
+            return (a.hora || '').localeCompare(b.hora || '');
         });
 
-        // 2. Slots Rows
-        times.forEach(timeStr => {
-            // Time Column
-            html += `<div class="flex items-center justify-end pr-4 font-headline-md text-electric-orange">${timeStr}</div>`;
+        const actColors = {
+            'hybrid': 'from-[#FF8A00] to-[#E01E5A]',
+            'functional': 'from-slate-700 to-slate-900',
+            'pilates': 'from-[#FF8A00] to-[#FF6000]',
+            'gap': 'from-yellow-500 to-yellow-600',
+            '60': 'from-yellow-400 to-amber-500',
+        };
 
-            // Day Columns 1 to 5
-            days.forEach(day => {
-                const match = horarios.find(h => Number(h.dia_semana) === day.num && h.hora.substring(0, 5) === timeStr);
+        function getGradient(name) {
+            const lower = name.toLowerCase();
+            if (lower.includes('hybrid')) return actColors['hybrid'];
+            if (lower.includes('functional')) return actColors['functional'];
+            if (lower.includes('pilates')) return actColors['pilates'];
+            if (lower.includes('gap')) return actColors['gap'];
+            if (lower.includes('60')) return actColors['60'];
+            return 'from-[#FF8A00] to-[#E01E5A]';
+        }
 
-                if (match) {
-                    const actName = match.nombre_actividad;
-                    let styleClass = 'bg-gradient-to-r from-electric-orange to-vibrant-pink text-white font-label-caps';
-                    let actDisplay = actName.toUpperCase();
+        const rows = sorted.map(h => {
+            const dia = diasNombre[Number(h.dia_semana)] || h.nombre_dia || '';
+            const hora = (h.hora || '').substring(0, 5);
+            const dur = h.duracion_minutos ? `${h.duracion_minutos}min` : '';
+            const act = h.nombre_actividad || '';
+            const grad = getGradient(act);
 
-                    if (actName.toLowerCase().includes('functional strength')) {
-                        styleClass = 'bg-slate-800 text-white font-label-caps';
-                        actDisplay = '<span>FUNCTIONAL</span><span>STRENGTH</span>';
-                    } else if (actName.toLowerCase().includes('pilates')) {
-                        styleClass = 'bg-electric-orange text-surface-container-lowest font-label-caps';
-                        actDisplay = '<span>PILATES</span><span>FUNCIONAL</span>';
-                    } else if (actName.toLowerCase().includes('gap')) {
-                        styleClass = 'bg-vibrant-yellow text-surface-container-lowest font-label-caps';
-                        actDisplay = 'GAP';
-                    } else if (actName.toLowerCase().includes('60')) {
-                        styleClass = 'bg-vibrant-yellow text-surface-container-lowest font-label-caps';
-                        actDisplay = '+ 60';
-                    }
+            return `<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <td class="p-4 text-sm text-on-surface">
+                    <span class="font-bold text-electric-orange">${hora}</span>
+                    ${dur ? `<span class="text-on-surface-variant ml-2 text-xs">${dur}</span>` : ''}
+                    <div class="text-xs text-on-surface-variant mt-0.5">${dia}</div>
+                </td>
+                <td class="p-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${grad} uppercase tracking-wide">
+                        ${act}
+                    </span>
+                </td>
+                <td class="p-4 hidden md:table-cell">
+                    <span class="inline-flex items-center gap-1.5 text-xs font-medium text-green-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
+                        Activo
+                    </span>
+                </td>
+                <td class="p-4 text-right">
+                    <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
+                        class="text-xs font-bold text-electric-orange hover:text-vibrant-pink transition-colors uppercase tracking-wider">
+                        Reservar →
+                    </button>
+                </td>
+            </tr>`;
+        }).join('');
 
-                    html += `
-                    <div data-activity="${actName}" class="slot-pill ${styleClass} rounded-xl py-3 px-2 flex flex-col items-center justify-center leading-tight shadow-lg transition-all duration-300">
-                        ${actDisplay}
-                    </div>`;
-                } else {
-                    html += `<div class="py-3 px-2"></div>`;
-                }
-            });
-        });
-
-        gridContainer.innerHTML = html;
-        applyScheduleFilter();
-    }
-
-    function applyScheduleFilter() {
-        const filter = window.currentFilter || 'all';
-        const slots = document.querySelectorAll('.slot-pill');
-
-        slots.forEach(slot => {
-            const act = slot.getAttribute('data-activity') || '';
-            if (filter === 'all' || act.toLowerCase().includes(filter.toLowerCase())) {
-                slot.style.opacity = '1';
-                slot.style.filter = 'none';
-                slot.style.pointerEvents = 'auto';
-            } else {
-                slot.style.opacity = '0.15';
-                slot.style.filter = 'grayscale(100%)';
-                slot.style.pointerEvents = 'none';
-            }
-        });
+        container.innerHTML = rows;
     }
 
     // --- Setup Filters ---
@@ -121,34 +110,57 @@ document.addEventListener('DOMContentLoaded', () => {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             filterBtns.forEach(b => {
-                b.classList.remove('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'text-white', 'border-[#FF8A00]');
-                b.classList.add('border-white/20', 'text-white');
+                b.classList.remove('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'border-[#FF8A00]');
+                b.classList.add('border-white/10');
             });
-            e.currentTarget.classList.remove('border-white/20', 'text-white');
-            e.currentTarget.classList.add('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'text-white', 'border-[#FF8A00]');
+            e.currentTarget.classList.remove('border-white/10');
+            e.currentTarget.classList.add('bg-gradient-to-r', 'from-[#FF8A00]', 'to-[#E01E5A]', 'border-[#FF8A00]');
 
             window.currentFilter = e.currentTarget.getAttribute('data-filter');
-            applyScheduleFilter();
+            renderDynamicSchedules();
         });
     });
 
-    // --- Dynamic Pricing Rotation like Request 3 ---
+    // --- Dynamic Pricing Rotation ---
     function renderDynamicPrices(precios) {
         const cards = document.querySelectorAll('.plan-card');
         if (!cards.length) return;
 
+        // Map plan names to card indices by keywords
+        const planMap = [
+            { keywords: ['2 vec', '2vec', 'basico', 'básico', '1.650'], index: 0 },
+            { keywords: ['3 vec', '3vec', 'popular', '1.900'], index: 1 },
+            { keywords: ['ilimitado', 'elite', 'élite', '2.100'], index: 2 },
+        ];
+
         if (precios && precios.length > 0) {
-            precios.slice(0, 3).forEach((plan, i) => {
-                if (cards[i]) {
-                    const titleEl = cards[i].querySelector('.plan-title');
-                    const priceEl = cards[i].querySelector('.plan-price');
+            precios.forEach(plan => {
+                const modalidad = (plan.modalidad || '').toLowerCase();
+                const precio = Math.round(plan.ultimo_precio || 0);
+
+                let targetIdx = -1;
+                for (const pm of planMap) {
+                    if (pm.keywords.some(k => modalidad.includes(k))) {
+                        targetIdx = pm.index;
+                        break;
+                    }
+                }
+                // Fallback: assign by order
+                if (targetIdx === -1) {
+                    const usedIndexes = planMap.map(p => p.index);
+                    targetIdx = usedIndexes[precios.indexOf(plan)] ?? -1;
+                }
+
+                if (targetIdx >= 0 && cards[targetIdx]) {
+                    const titleEl = cards[targetIdx].querySelector('.plan-title');
+                    const priceEl = cards[targetIdx].querySelector('.plan-price');
                     if (titleEl) titleEl.textContent = plan.modalidad.toUpperCase();
-                    if (priceEl) priceEl.textContent = `$${Math.round(plan.ultimo_precio).toLocaleString('es-UY')}`;
+                    if (priceEl) priceEl.textContent = `$${precio.toLocaleString('es-UY')}`;
                 }
             });
         }
 
-        let activeIdx = 1; // start middle card
+        let activeIdx = 1; // Start highlighting middle card
 
         function updateHighlight(index) {
             cards.forEach((card, idx) => {
@@ -156,31 +168,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = card.querySelector('.plan-btn');
 
                 if (idx === index) {
-                    // Elevate and Glow
-                    card.style.transform = 'translateY(-20px) scale(1.03)';
+                    card.style.transform = 'translateY(-20px) scale(1.04)';
                     card.style.borderColor = '#FF8A00';
-                    card.style.boxShadow = '0 0 45px rgba(255, 138, 0, 0.4)';
+                    card.style.boxShadow = '0 0 50px rgba(255, 138, 0, 0.4)';
                     card.style.zIndex = '20';
                     if (badge) badge.classList.remove('hidden');
                     if (btn) {
-                        btn.className = 'plan-btn w-full py-4 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg transition-all duration-300';
+                        btn.className = 'plan-btn w-full py-4 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white font-bold text-xs uppercase tracking-widest rounded transition-all duration-300 relative z-10';
                     }
                 } else {
-                    // Reset to equal height
-                    card.style.transform = 'translateY(0px) scale(1)';
-                    card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    card.style.boxShadow = 'none';
-                    card.style.zIndex = '1';
+                    card.style.transform = idx === 1 ? 'translateY(-16px) scale(1)' : 'translateY(0px) scale(1)';
+                    card.style.borderColor = '';
+                    card.style.boxShadow = '';
+                    card.style.zIndex = idx === 1 ? '10' : '1';
                     if (badge) badge.classList.add('hidden');
                     if (btn) {
-                        btn.className = 'plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300';
+                        const isMid = idx === 1;
+                        btn.className = isMid
+                            ? 'plan-btn w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-effect transition-all relative z-10'
+                            : 'plan-btn w-full py-3 border border-white/30 text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors';
                     }
                 }
             });
         }
 
         updateHighlight(activeIdx);
-
         setInterval(() => {
             activeIdx = (activeIdx + 1) % cards.length;
             updateHighlight(activeIdx);
@@ -189,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadWebData();
 
-    // --- Setup Modals for Staff ---
+    // --- Setup Staff Modals ---
     function setupModal(triggerId, modalId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);

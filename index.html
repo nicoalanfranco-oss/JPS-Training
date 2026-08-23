@@ -141,40 +141,21 @@
             background-color: #1E1E1E;
             box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
         }
-    
-        .section-title-box {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 3rem;
-            text-align: left;
-        }
-        .section-title-box::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #FF8A00 0%, #E01E5A 100%);
-            border-radius: 4px;
-        }
+        /* 3D Hero Assets */
         @keyframes float3dLeft {
-            0% { transform: translateY(0px) rotate(-10deg) scale(1); }
-            50% { transform: translateY(-20px) rotate(-2deg) scale(1.08); }
-            100% { transform: translateY(0px) rotate(-10deg) scale(1); }
+            0%   { transform: translateY(0px)   rotate(-8deg) scale(1); }
+            50%  { transform: translateY(-18px) rotate(-2deg) scale(1.06); }
+            100% { transform: translateY(0px)   rotate(-8deg) scale(1); }
         }
         @keyframes float3dRight {
-            0% { transform: translateY(0px) rotate(10deg) scale(1); }
-            50% { transform: translateY(-22px) rotate(2deg) scale(1.08); }
-            100% { transform: translateY(0px) rotate(10deg) scale(1); }
+            0%   { transform: translateY(0px)   rotate(8deg)  scale(1); }
+            50%  { transform: translateY(-20px) rotate(2deg)  scale(1.06); }
+            100% { transform: translateY(0px)   rotate(8deg)  scale(1); }
         }
-        .hero-3d-left {
-            animation: float3dLeft 6s ease-in-out infinite;
-        }
-        .hero-3d-right {
-            animation: float3dRight 7s ease-in-out infinite;
-        }
-
+        .hero-3d-left  { animation: float3dLeft  6s ease-in-out infinite; }
+        .hero-3d-right { animation: float3dRight 7s ease-in-out infinite; }
+        /* Pricing rotation */
+        .plan-card { transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
@@ -232,32 +213,31 @@
 <div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity" data-alt="A high-contrast, professional, gritty black and white photo of a dark, elite gym session. A muscular athlete is mid-lift with dramatic, low-key lighting highlighting sweat and muscle definition. The aesthetic is industrial, modern, dark mode, high octane, and intense." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3jPjcIqWDsoRMFbxUxMRHAgPwDKJKuWCEZaYtuQxxJNY7vvQK0GJQumpIM8n5DfpGQPa97ZFLjSe2BlWauWShsoM1XQ2TFE93awTbbKXl0oK-kGjsV4U76DgHfDhktIrDA0802Jv9QGdEaf5ZNcl8Y2gaMax0s9UD6Rgx4bHFufDGtZwI8XdWFv7iv92XL0EUdfWHNE0eI0uqL3-Z-q4sQlNxn5p466sn8MrcTtYtTuRdz7WK-IsVeA')"></div>
 <div class="absolute inset-0 chiaroscuro-overlay"></div>
 </div>
-<!-- Content Container -->
-<div class="relative z-10 flex flex-col items-center justify-center text-center px-gutter w-full max-w-5xl mx-auto gap-8">
 <!-- 3D Floating Asset Left (Kettlebell) -->
-<div class="hidden lg:block absolute left-12 top-1/2 -translate-y-1/2 z-20 hero-3d-left w-64 h-64 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.3)] border border-white/10">
+<div class="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 z-10 hero-3d-left w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.3)] border border-white/10 opacity-90">
     <img src="assets/images/kettlebell.jpg" alt="3D Kettlebell JPS" class="w-full h-full object-cover"/>
 </div>
-
+<!-- 3D Floating Asset Right (Dumbbell) -->
+<div class="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 z-10 hero-3d-right w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.3)] border border-white/10 opacity-90">
+    <img src="assets/images/dumbbell.jpg" alt="3D Dumbbell JPS" class="w-full h-full object-cover"/>
+</div>
+<!-- Content Container -->
+<div class="relative z-20 flex flex-col items-center justify-center text-center px-gutter w-full max-w-3xl mx-auto gap-8">
 <!-- Logo -->
-<div class="w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden shadow-[0_0_50px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-[0_0_50px_rgba(255,138,0,0.3)] border-4 border-[#FF8A00]/40 bg-surface-elevated flex items-center justify-center transform hover:scale-105 transition-transform duration-500 ease-out">
 <img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
 </div>
 <!-- Headline -->
 <div class="flex flex-col gap-2">
 <h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight max-w-3xl leading-tight">
-                        Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">m├íximo</span>
+                        Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
 </h1>
 </div>
 <!-- CTA Button -->
-<button class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
-                    ├ÜNETE AL EQUIPO
-                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<button onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})"  class="mt-4 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1">
+ ÚNETE AL EQUIPO
+ <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
-</div>
-<!-- 3D Floating Asset Right (Dumbbell) -->
-<div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 z-20 hero-3d-right w-64 h-64 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.3)] border border-white/10">
-    <img src="assets/images/dumbbell.jpg" alt="3D Dumbbell JPS" class="w-full h-full object-cover"/>
 </div>
 <!-- Diagonal Accent Line -->
 <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
@@ -303,12 +283,18 @@
 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-electric-orange/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 <div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop">
 <!-- Section Header -->
-<div class="mb-24 relative">
-<div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-electric-orange to-vibrant-pink"></div>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-2xl">
-                    Elige tu camino. Entrenamiento de alta intensidad y precisi├│n dise├▒ado para superar tus l├¡mites y forjar un rendimiento de ├⌐lite.
-                </p>
+
+<div class="mb-16 text-center flex flex-col items-center justify-center">
+    <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black tracking-tight mb-4 flex items-center justify-center">
+        <div class="border-l-8 border-[#FF8A00] pl-6 py-2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] bg-clip-text text-transparent uppercase">
+            ENTRENAMIENTO
+        </div>
+    </h2>
+    <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto text-center">
+        Elige tu camino. Entrenamiento de alta intensidad y precisi├│n dise├▒ado para superar tus l├¡mites y forjar un rendimiento de ├⌐lite.
+    </p>
 </div>
+
 <!-- Activities Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Card 1: Hybrid Training -->
@@ -559,19 +545,24 @@
 </div>
 
 <!-- Header Section -->
-<section class="mb-24 relative">
-<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background opacity-50 blur-3xl"></div>
-<div class="section-title-box">
-<h1 class="font-display-xl text-display-xl uppercase tracking-tighter mb-4">
-                <span class="text-white">NUESTRO </span><span class="text-electric-orange">STAFF DE ÉLITE</span>
-</h1>
+
+<section class="py-[60px] relative">
+<div class="mb-16 text-center flex flex-col items-center justify-center">
+    <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black tracking-tight mb-4 flex items-center justify-center">
+        <div class="border-l-8 border-[#FF8A00] pl-6 py-2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] bg-clip-text text-transparent uppercase">
+            NUESTRO STAFF DE ├ëLITE
+        </div>
+    </h2>
+    <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto text-center">
+        Nuestros entrenadores son veteranos de la industria cuidadosamente seleccionados, dedicados a forjar el potencial en bruto en un rendimiento innegable. Sin excusas, solo resultados.
+    </p>
 </div>
-<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mt-4 text-center">Nuestros entrenadores son veteranos de la industria cuidadosamente seleccionados, dedicados a forjar el potencial en bruto en un rendimiento innegable. Sin excusas, solo resultados.</p>
 </section>
+
 <!-- Bento Grid / Staff Roster -->
 <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[minmax(300px,_auto)]">
 <!-- Featured Coach (Spans 8 cols on desktop) -->
-<div class="md:col-span-8 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2">
+<div class="md:col-span-4 group relative rounded-lg id="card-santiago" id="card-juanpablo" overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2">
 <div class="absolute inset-0 z-0">
 <img class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500" data-alt="A gritty, high-contrast black and white portrait of an intense fitness trainer in a dark gym environment. Dramatic cinematic lighting (chiaroscuro) highlights muscular definition and metallic gym equipment in the background. A subtle orange/pink gel light illuminates one side of the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7vLh33vppJtXjDtUKWLlwrSp9L0bcQ1X4EfD7-fDUOlGaiJo65_xlvShyos-LeHlopyDUZZjT0w5206hOkZgddJ9lyx6_teFoG7RASjSnxDhi2bbJ27kzSZML6HQVAqjGesgiQG11uhcOT2zptNilyOnPRvG1OCz3-DbqyimGqi1M0qecB-hEa-W9MFdKDPN0tASMzJY98EJd7taxGHHWuuuWd-wq5wW_Pf6vMUR5hWniwPLZtpBnQ"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
@@ -592,21 +583,6 @@
 </div>
 </div>
 </div>
-<!-- Standard Coach 1 (Spans 4 cols on desktop) -->
-<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
-<div class="h-48 relative overflow-hidden">
-<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A dynamic, high-contrast photo of a female boxing coach wrapping hands in a dark, gritty training facility. Strong overhead lighting casts dramatic shadows. Accents of neon pink and orange are visible in the background equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8A1-Z4mmRnLSGkmm6qpOXWF5Z0DGwVI46ASfFEKvYhLFVbLAWRc4pewLkIfWZLK5N-98HDeuEvGvFVQ4jj7jzw9hImllQ1g32wZwY8rLivsIcZejV7pVS-4ajvNLZIriGfd2I6fejVF7VQCLivVuFUlepI_bJbt9lgqF74-jSREaZmYt5ZuT9YRJv1XToYlaty9SdbunslkDyAQHnKB1oyrQbDSW4BIvsGz8JxF5p9ghutt58GP-C1Q"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
-</div>
-<div class="p-6 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md text-white uppercase italic">Elena Rojas</h3>
-<p class="font-label-caps text-vibrant-pink uppercase tracking-widest mb-4 text-[10px]">Especialista en Boxeo</p>
-<div class="mt-auto pt-4 border-t border-brushed-metal flex justify-between items-center">
-<span class="font-label-caps text-on-surface-variant text-[10px]">9 A├æOS DE EXP.</span>
-<span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">sports_mma</span>
-</div>
-</div>
-</div>
 <!-- Standard Coach 2 (Spans 4 cols on desktop) -->
 <div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
 <div class="h-48 relative overflow-hidden">
@@ -623,7 +599,7 @@
 </div>
 </div>
 <!-- Standard Coach 3 (Spans 4 cols on desktop) -->
-<div class="md:col-span-4 group relative rounded-lg overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
+<div class="md:col-span-4 group relative rounded-lg id="card-noelia" overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col">
 <div class="h-48 relative overflow-hidden">
 <img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-end photo of a female mobility and recovery specialist in a dimly lit studio. Sleek lines, minimal aesthetic with a subtle glowing aura effect around her silhouette. Focus on flexibility and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
@@ -637,58 +613,48 @@
 </div>
 </div>
 </div>
-<!-- Join the Team Callout (Spans 4 cols on desktop) -->
-<div class="md:col-span-4 relative rounded-lg overflow-hidden bg-surface-container-high border border-brushed-metal flex flex-col justify-center items-center text-center p-8">
-<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMCAwTDggOFpNOCAwTDAgOFoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4KPC9zdmc+')]"></div>
-<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">add_circle</span>
-<h3 class="font-headline-md text-headline-md text-white uppercase italic mb-2">┬┐TIENES LO QUE SE NECESITA?</h3>
-<p class="font-body-md text-on-surface-variant mb-6 text-sm">Siempre estamos buscando talento de ├⌐lite para unirse a nuestras filas.</p>
-<button class="border border-primary text-primary px-6 py-2 rounded font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary/10 transition-colors">
-                     POST├ÜLATE AHORA
-                 </button>
-</div>
 </section>
 
 <!-- Background Ambient effect -->
 <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-orange/5 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
-<header class="text-center mb-24 relative">
-<div class="section-title-box">
-<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl uppercase mb-4">
-                <span class="text-white">ELIGE TU </span><span class="text-electric-orange">PODER</span>
-</h1>
+
+<div class="mt-28 mb-16 text-center flex flex-col items-center justify-center">
+    <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black tracking-tight mb-4 flex items-center justify-center">
+        <div class="border-l-8 border-[#FF8A00] pl-6 py-2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] bg-clip-text text-transparent uppercase">
+            ELIGE TU PODER
+        </div>
+    </h2>
+    <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto text-center">
+        Selecciona el plan que se adapte a tu ambici├│n. Sin compromisos, solo resultados.
+    </p>
 </div>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                Selecciona el plan que se adapte a tu ambici├│n. Sin compromisos, solo resultados.
-            </p>
-</header>
+
 <!-- Pricing Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
 <!-- Basic Tier -->
-<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="0">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    EMPEZAR BÁSICO
-</div>
-<div class="mb-8"><h2 class="plan-title font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">2 veces por semana</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-on-surface">$1.650</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<article class="plan-card bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="0">
+<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">BÁSICO</div><div class="mb-8"><h2 class="plan-title font-label-caps text-label-caps text-steel-silver mb-2 tracking-widest uppercase">2 veces por semana</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-on-surface">$1.650</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
 <ul class="flex-grow space-y-4 mb-8"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-steel-silver text-[20px] mt-0.5">check_circle</span><span class="font-body-md text-body-md text-on-surface-variant">V├ílido para todas las modalidades</span></li></ul>
-<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300">EMPEZAR B├üSICO</button>
+<button class="plan-btn w-full py-3 border border-steel-silver text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-bright transition-colors">EMPEZAR BÁSICO</button>
 </article>
 <!-- Premium Tier (Most Popular) -->
-<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col relative top-highlight transition-all duration-500 z-10" style="background: linear-gradient(180deg, #1E1E1E 0%, #131313 100%);" data-plan-index="1">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    MÁS POPULAR
+<article class="plan-card bg-surface-elevated rounded-xl p-8 flex flex-col relative top-highlight transform md:-translate-y-4 glow-effect z-10 transition-all duration-500" style="background: linear-gradient(180deg, #1E1E1E 0%, #131313 100%);" data-plan-index="1">
+<!-- Gradient Border Hack -->
+<div class="absolute inset-0 rounded-xl p-[1px] -z-10" style="background: linear-gradient(135deg, #FF8A00 0%, #E01E5A 100%);">
+<div class="absolute inset-0 bg-surface-elevated rounded-xl z-0"></div>
 </div>
-<div class="mb-8 relative z-10"><h2 class="plan-title font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">3ΓÇô4 veces por semana</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-vibrant-pink text-white px-4 py-1 rounded font-label-caps text-[10px] uppercase tracking-wider z-20 whitespace-nowrap">
+                    M├üS POPULAR
+                </div>
+<div class="mb-8 relative z-10"><h2 class="plan-title font-label-caps text-label-caps text-electric-orange mb-2 tracking-widest uppercase">3 veces por semana</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-white text-[48px] font-black">$1.900</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
 <ul class="flex-grow space-y-4 mb-8 relative z-10"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-electric-orange text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span><span class="font-body-md text-body-md text-on-surface">V├ílido para todas las modalidades</span></li></ul>
-<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 relative z-10">ELEGIR PREMIUM</button>
+<button class="plan-btn w-full py-4 text-white font-label-caps text-label-caps uppercase rounded btn-gradient hover:glow-effect transition-all relative z-10">ELEGIR PREMIUM</button>
 </article>
 <!-- Elite Tier -->
-<article class="plan-card bg-surface-elevated border border-white/10 rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="2">
-<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">
-    PREMIUM ELITE
-</div>
-<div class="mb-8"><h2 class="plan-title font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">Ilimitado</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-on-surface">$2.100</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
+<article class="plan-card bg-surface-elevated border border-brushed-metal rounded-xl p-8 flex flex-col top-highlight relative transition-all duration-500" data-plan-index="2">
+<div class="plan-badge hidden absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-20 shadow-lg whitespace-nowrap">PREMIUM ELITE</div><div class="mb-8"><h2 class="plan-title font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 tracking-widest uppercase">Ilimitado</h2><div class="flex items-baseline gap-2"><span class="plan-price font-stat-value text-stat-value text-on-surface">$2.100</span><span class="font-body-md text-body-md text-on-surface-variant">/ mes</span></div></div>
 <ul class="flex-grow space-y-4 mb-8"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px] mt-0.5">check_circle</span><span class="font-body-md text-body-md text-on-surface-variant">V├ílido para todas las modalidades</span></li></ul>
-<button class="plan-btn w-full py-4 border border-white/20 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300">EMPEZAR ELITE</button>
+<button class="plan-btn w-full py-3 border border-tertiary-fixed-dim text-tertiary-fixed-dim font-label-caps text-label-caps uppercase rounded hover:bg-tertiary-fixed-dim/10 transition-colors">EMPEZAR ELITE</button>
 </article>
 </div>
 
@@ -697,46 +663,62 @@
 <div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/80 via-surface-container-lowest to-surface-container-lowest z-0 pointer-events-none"></div>
 <div class="relative z-10 container mx-auto px-margin-mobile md:px-margin-desktop mt-12">
 <!-- Page Header -->
-<header class="mb-24 text-center md:text-left relative">
-<!-- Kinetic accent -->
-<div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-electric-orange to-vibrant-pink hidden md:block"></div>
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg uppercase italic bg-gradient-to-r from-white to-on-surface-variant bg-clip-text text-transparent">
-                    HORARIOS DE ENTRENAMIENTO
-                </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-2xl">
-                    Organiza tu semana y alcanza tu m├íximo potencial con nuestras clases dise├▒adas para el rendimiento ├⌐lite.
-                </p>
-</header>
-<!-- Class Category Tabs -->
-<div class="flex gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar" id="schedule-filters">
-<button data-filter="all" class="filter-btn px-6 py-3 rounded-full border border-slate-800 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light bg-gradient-to-r from-electric-orange to-vibrant-pink">
-<span class="material-symbols-outlined text-sm">apps</span>
-                    TODOS
-                </button>
-<button data-filter="Hybrid Training" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
-<span class="material-symbols-outlined text-sm text-electric-orange">bolt</span>
-                    HYBRID
-                </button>
-<button data-filter="Functional Strength" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light"><span class="material-symbols-outlined text-sm text-electric-orange">fitness_center</span> FUNCTIONAL STRENGTH</button>
-<button data-filter="GAP" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
-<span class="material-symbols-outlined text-sm text-vibrant-yellow">accessibility_new</span>
-                    GAP
-                </button>
-<button data-filter="Pilates Funcional" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
-<span class="material-symbols-outlined text-sm text-electric-orange">self_improvement</span>
-                    PILATES FUNCIONAL
-                </button>
-<button data-filter="+60" class="filter-btn px-6 py-3 rounded-full bg-surface-elevated border border-white/20 text-white font-label-caps text-label-caps whitespace-nowrap transition-all flex items-center gap-2 top-light">
-<span class="material-symbols-outlined text-sm text-vibrant-yellow">elderly</span>
-                    +60
-                </button>
+
+<div class="mt-28 mb-12 text-center flex flex-col items-center justify-center">
+    <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black tracking-tight mb-4 flex items-center justify-center">
+        <div class="border-l-8 border-[#FF8A00] pl-6 py-2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] bg-clip-text text-transparent uppercase">
+            HORARIOS DE ENTRENAMIENTO
+        </div>
+    </h2>
+    <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto text-center">
+        Organiza tu semana y alcanza tu m├íximo potencial con nuestras clases dise├▒adas para el rendimiento ├⌐lite.
+    </p>
 </div>
-<!-- Schedule Grid / Bento Layout -->
-<div class="overflow-x-auto">
-<div class="min-w-[800px] w-full grid grid-cols-[auto_repeat(5,1fr)] gap-4 text-center pb-8" id="horarios-grid-container">
+
+
+<!-- Badges / Filters -->
+<div class="flex flex-wrap items-center justify-center gap-3 mb-8 w-full" id="schedule-filters">
+    <button data-filter="all" class="filter-btn active flex items-center gap-2 px-4 py-2 rounded-full border border-[#FF8A00] bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px]">apps</span> TODOS
+    </button>
+    <button data-filter="Hybrid Training" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">bolt</span> HYBRID
+    </button>
+    <button data-filter="Functional Strength" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">fitness_center</span> FUNCTIONAL STRENGTH
+    </button>
+    <button data-filter="GAP" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">accessibility_new</span> GAP
+    </button>
+    <button data-filter="Pilates Funcional" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">self_improvement</span> PILATES FUNCIONAL
+    </button>
+    <button data-filter="+60" class="filter-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-[#FF8A00] text-sm font-bold transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px] text-[#FF8A00]">elderly</span> +60
+    </button>
 </div>
+
+<!-- Dynamic Schedule Table -->
+<div class="bg-surface-elevated rounded-2xl overflow-hidden border border-white/5 shadow-2xl mb-12">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-white/10 bg-surface">
+                    <th class="p-4 text-sm font-bold text-on-surface-variant uppercase tracking-wider">Hora / Duraci├│n</th>
+                    <th class="p-4 text-sm font-bold text-on-surface-variant uppercase tracking-wider">Actividad</th>
+                    <th class="p-4 text-sm font-bold text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Estado</th>
+                    <th class="p-4 text-sm font-bold text-on-surface-variant uppercase tracking-wider text-right">Acci├│n</th>
+                </tr>
+            </thead>
+            <tbody id="horarios-dynamic-container" class="divide-y divide-white/5">
+                <!-- Injected dynamically by script.js -->
+            </tbody>
+        </table>
+    </div>
 </div>
+
 <!-- Open Box Banner -->
+
 <div class="mt-8 bg-surface-elevated rounded-xl border border-brushed-metal p-6 flex flex-col md:flex-row items-center gap-6 top-light">
 <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-white/10 shadow-2xl"><img alt="Gym Equipment" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVv0XO8nuU_T2mfwIyBw0v40S8LpqiAGURVS6-w5yScTQ8_xdB95vJmmL0uFTNNsdIfmQ0qZ9EKOsKF33opl--hmmkU_q-ZwAK1d0t_TZgmFu2EAOByk7sZ00LQ3M1JKbp2EOheCBMc0vAZm0WsIDJMaDDv6PAoUaIzvvFPMRiDZ3K5D9Kvn3tn9MuUei06iuTfdwxalR8zVE3dStqpzwHJsCDj9F3X2uWjqtka0v-ZYzK19fkWYzFOg"/></div>
 <div class="text-center md:text-left">
@@ -752,6 +734,42 @@
                 </button>
 </div>
 </div>
+
+<!-- Contact Section -->
+<section id="contacto" class="w-full py-[120px] px-gutter bg-surface-container relative">
+<div class="max-w-4xl mx-auto text-center flex flex-col gap-6">
+<div class="flex items-center justify-center">
+<h2 class="font-display-xl text-headline-lg font-black tracking-tight flex items-center justify-center">
+<div class="border-l-8 border-[#FF8A00] pl-6 py-2 bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] bg-clip-text text-transparent uppercase">
+Ponte en Contacto
+</div>
+</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+┬┐Listo para transformar tu vida? D├⌐janos tus datos y nos pondremos en contacto contigo a la brevedad.
+</p>
+<form class="mt-8 flex flex-col gap-6 text-left" onsubmit="event.preventDefault(); alert('┬íGracias por comunicarte! Te contactaremos a la brevedad.');">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-xs text-on-surface-variant">Nombre Completo</label>
+<input type="text" required placeholder="Tu nombre" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-xs text-on-surface-variant">Tel├⌐fono / WhatsApp</label>
+<input type="tel" required placeholder="Tu n├║mero" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-xs text-on-surface-variant">Mensaje o Consulta</label>
+<textarea rows="4" placeholder="┬┐En qu├⌐ podemos ayudarte?" class="w-full bg-background border border-brushed-metal rounded-xl py-4 px-4 text-on-surface focus:border-electric-orange focus:outline-none"></textarea>
+</div>
+<button type="submit" class="w-full py-4 rounded-xl font-label-caps font-bold text-white bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] hover:opacity-90 transition-opacity uppercase tracking-widest mt-4">
+Enviar Mensaje
+</button>
+</form>
+</div>
+</section>
+
 </main>
 <!-- Footer -->
 <footer class="w-full relative bg-surface-dim border-t border-brushed-metal py-12 px-margin-desktop md:px-margin-desktop px-margin-mobile flex flex-col items-center border-t border-white/5">
