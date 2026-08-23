@@ -295,7 +295,7 @@ html = '''<!DOCTYPE html>
 <section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-luminosity"
-            style="background-image: url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuB3jPjcIqWDsoRMFbxUxMRHAgPwDKJKuWCEZaYtuQxxJNY7vvQK0GJQumpIM8n5DfpGQPa97ZFLjSe2BlWauWShsoM1XQ2TFE93awTbbKXl0oK-kGjsV4U76DgHfDhktIrDA0802Jv9QGdEaf5ZNcl8Y2gaMax0s9UD6Rgx4bHFufDGtZwI8XdWFv7iv92XL0EUdfWHNE0eI0uqL3-Z-q4sQlNxn5p466sn8MrcTtYtTuRdz7WK-IsVeA\')">
+            style="background-image: url('assets/images/hero_bg.jpg')">
         </div>
         <div class="absolute inset-0 chiaroscuro-overlay"></div>
     </div>
@@ -567,7 +567,7 @@ html = '''<!DOCTYPE html>
         <div id="card-santiago" class="md:col-span-6 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
             <div class="h-64 relative overflow-hidden">
                 <img class="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg"
+                    src="assets/images/santiago_card.jpg"
                     alt="Santiago Hernández"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
             </div>
@@ -586,7 +586,7 @@ html = '''<!DOCTYPE html>
         <div id="card-noelia" class="md:col-span-6 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 flex flex-col cursor-pointer">
             <div class="h-64 relative overflow-hidden">
                 <img class="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ"
+                    src="assets/images/noelia_card.jpg"
                     alt="Noelia Lima Latorre"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-surface-elevated to-transparent"></div>
             </div>
@@ -809,7 +809,7 @@ html = '''<!DOCTYPE html>
 
 <div id="modal-santiago" class="staff-modal">
     <div class="staff-modal-content group">
-        <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg');"></div>
+        <div class="modal-bg" style="background-image: url('assets/images/santiago_card.jpg');"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
@@ -822,7 +822,7 @@ html = '''<!DOCTYPE html>
 
 <div id="modal-noelia" class="staff-modal">
     <div class="staff-modal-content group">
-        <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ');"></div>
+        <div class="modal-bg" style="background-image: url('assets/images/noelia_card.jpg');"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
