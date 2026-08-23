@@ -188,7 +188,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadWebData();
 
-    // --- Setup Staff Modals ---
+    // Staff modal styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .staff-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .staff-modal.show {
+            display: block;
+            opacity: 1;
+        }
+        .staff-modal-content {
+            width: 90%;
+            height: 85%;
+            max-width: 1200px;
+            margin: 5vh auto;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 138, 0, 0.2);
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .staff-modal.show .staff-modal-content {
+            transform: scale(1);
+        }
+        .modal-bg {
+            position: absolute;
+            inset: -5%;
+            background-size: cover;
+            background-position: center top;
+            filter: blur(8px) brightness(0.6) contrast(1.2);
+            transform: scale(1.1);
+            transition: transform 10s ease-out, filter 2s ease;
+            z-index: 0;
+        }
+        .staff-modal.show .modal-bg {
+            transform: scale(1);
+            filter: blur(4px) brightness(0.4) contrast(1.3);
+        }
+        .close-btn {
+            position: absolute; top: 25px; right: 30px;
+            font-size: 40px; cursor: pointer; color: white;
+            opacity: 0.7; transition: all 0.3s ease;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .close-btn:hover {
+            opacity: 1; color: #FF8A00; transform: scale(1.1);
+        }
+        .typewriter-text {
+            visibility: hidden;
+        }
+        .typewriter-text::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #FF8A00;
+        }
+        .typewriter-text.typing {
+            visibility: visible;
+        }
+        .typewriter-text.done::after {
+            display: none;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+
+    function typeWriter(element, text, speed = 30) {
+        element.innerHTML = '';
+        element.classList.remove('done');
+        element.classList.add('typing');
+        let i = 0;
+        return new Promise(resolve => {
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.add('done');
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+
     function setupModal(triggerId, modalId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -197,16 +293,34 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
             modal.style.display = 'block';
+            // Force reflow
+            void modal.offsetWidth;
+            modal.classList.add('show');
+            
+            // Start typewriter effects
+            const texts = modal.querySelectorAll('.typewriter-text');
+            texts.forEach(el => {
+                el.innerHTML = ''; 
+                el.classList.remove('typing', 'done');
+                el.style.visibility = 'hidden';
+            });
+
+            texts.forEach(el => {
+                const text = el.getAttribute('data-text');
+                const delay = parseInt(el.getAttribute('data-delay') || '0');
+                setTimeout(() => {
+                    el.style.visibility = 'visible';
+                    typeWriter(el, text, 25 + Math.random() * 20); // slight random speed
+                }, delay);
+            });
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal || e.target.classList.contains('close-btn')) {
-                modal.style.display = 'none';
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500); // match transition time
             }
         });
     }
-
-    setupModal('card-noelia', 'modal-noelia');
-    setupModal('card-santiago', 'modal-santiago');
-    setupModal('card-juanpablo', 'modal-juanpablo');
-});

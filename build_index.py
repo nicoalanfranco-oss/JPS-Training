@@ -391,7 +391,7 @@ html = '''<!DOCTYPE html>
         <div id="card-juanpablo" class="md:col-span-8 group relative rounded-xl overflow-hidden bg-surface-elevated border border-brushed-metal metallic-edge transition-transform duration-500 hover:-translate-y-2 cursor-pointer">
             <div class="absolute inset-0 z-0">
                 <img class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7vLh33vppJtXjDtUKWLlwrSp9L0bcQ1X4EfD7-fDUOlGaiJo65_xlvShyos-LeHlopyDUZZjT0w5206hOkZgddJ9lyx6_teFoG7RASjSnxDhi2bbJ27kzSZML6HQVAqjGesgiQG11uhcOT2zptNilyOnPRvG1OCz3-DbqyimGqi1M0qecB-hEa-W9MFdKDPN0tASMzJY98EJd7taxGHHWuuuWd-wq5wW_Pf6vMUR5hWniwPLZtpBnQ"
+                    src="assets/images/jp_sena.jpg"
                     alt="Juan Pablo Sena"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
             </div>
@@ -446,6 +446,18 @@ html = '''<!DOCTYPE html>
                     <span class="material-symbols-outlined text-steel-silver group-hover:text-primary transition-colors">accessibility_new</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Team Banner Full Width -->
+    <div class="mt-12 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 relative group h-[300px] md:h-[400px]">
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            src="assets/images/team_banner.jpg"
+            alt="JPS Training Team"/>
+        <div class="absolute bottom-6 left-8 z-20">
+            <h3 class="font-display-xl text-headline-md md:text-headline-lg text-white font-black italic uppercase tracking-tighter">EL EQUIPO</h3>
+            <p class="font-label-caps text-electric-orange tracking-widest text-sm uppercase mt-1">Compromiso. Disciplina. Resultados.</p>
         </div>
     </div>
 </div>
@@ -629,36 +641,42 @@ html = '''<!DOCTYPE html>
 
 <!-- Staff Modals -->
 <div id="modal-juanpablo" class="staff-modal">
-    <div class="staff-modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Juan Pablo Sena</h3>
-        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Entrenador Personal y Preparador Físico</p>
-        <p class="text-sm text-on-surface-variant mb-4 leading-relaxed">
-            Licenciado en Educación Física. Especializado en Entrenamiento Funcional, Pilates Funcional, Entrenamiento de alta intensidad y Metodología Cross Training.
-        </p>
-        <div class="bg-surface p-3 rounded-lg border border-white/10 text-xs text-[#FF8A00]">
-            ⚡ En formación en entrenamiento Híbrido en Academia Hyrox!
+    <div class="staff-modal-content group">
+        <div class="modal-bg" style="background-image: url('assets/images/jp_sena.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <span class="close-btn z-50">&times;</span>
+        <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
+            <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="JUAN PABLO SENA"></h3>
+            <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-6" data-text="ENTRENADOR PERSONAL Y PREPARADOR FÍSICO" data-delay="800"></p>
+            <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-2xl mb-6" data-text="Licenciado en Educación Física. Especializado en Entrenamiento Funcional, Pilates Funcional, Entrenamiento de alta intensidad y Metodología Cross Training." data-delay="1500"></p>
+            <div class="typewriter-text bg-surface/50 p-4 rounded-xl border border-white/10 text-sm text-[#FF8A00] inline-block self-start backdrop-blur-md" data-text="⚡ En formación en entrenamiento Híbrido en Academia Hyrox!" data-delay="3000"></div>
         </div>
     </div>
 </div>
+
 <div id="modal-santiago" class="staff-modal">
-    <div class="staff-modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Santiago Hernández</h3>
-        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Licenciado en Educación Física</p>
-        <p class="text-sm text-on-surface-variant leading-relaxed">
-            Especialista en fuerza funcional, desarrollo de potencia y acondicionamiento físico de alto nivel.
-        </p>
+    <div class="staff-modal-content group">
+        <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC98iBgWnrthwB92_q9gTZkPr7rrWXEFXHzPmtyITf7Qk1bgxwi3IIIZa6RmGeXgli4S0Go-kHkQAgTZxMSzSVJSXUywLikvKCPfWxhiEBzVzYu7YP_G5gFOiiEC64yy0HDzVaG2XO1861KyW1c1t9tvxMUJDw-Ip9pwQYn09nSJylfSaZ78p90x-gOIDKU4VaMwWYCLE474MDZKvv3SlW1ykSdvJMXgkxUDtFjX8ELQ-AeRLWojBpqdg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <span class="close-btn z-50">&times;</span>
+        <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
+            <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="SANTIAGO HERNÁNDEZ"></h3>
+            <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-6" data-text="LICENCIADO EN EDUCACIÓN FÍSICA" data-delay="800"></p>
+            <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-2xl" data-text="Especialista en fuerza funcional, desarrollo de potencia y acondicionamiento físico de alto nivel." data-delay="1500"></p>
+        </div>
     </div>
 </div>
+
 <div id="modal-noelia" class="staff-modal">
-    <div class="staff-modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 class="text-2xl font-bold text-[#FF8A00] mb-1">Noelia Lima Latorre</h3>
-        <p class="text-xs text-white font-bold uppercase tracking-widest mb-4">Licenciada en Educación Física</p>
-        <p class="text-sm text-on-surface-variant leading-relaxed">
-            Especialista en entrenamiento GAP (Glúteos, Abdomen y Piernas) y tonificación muscular.
-        </p>
+    <div class="staff-modal-content group">
+        <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5JJPgTpZRWIhPbcB2gJPu8l6x13EcWgolMrWBEltbr82i6KqYN7HzlzmRuST0tQBgizvpjXT9FoCIn80A0jTzsHdhHvDtXV0kpI_4u2fcpas5bUk6HUbOfmhDs2Ts9umV_xtS-h7mU3tmdDDKfiIug-J39uMJIGQNHSSroD4G3N10QTpSbBmnfe9Dl1VCWyFL7qEqoGydl7MeT-1vxvdU2O84ixLjs05Kt86k8QV__rgwHdUoHLdyBQ');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <span class="close-btn z-50">&times;</span>
+        <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
+            <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="NOELIA LIMA LATORRE"></h3>
+            <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-6" data-text="LICENCIADA EN EDUCACIÓN FÍSICA" data-delay="800"></p>
+            <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-2xl" data-text="Especialista en entrenamiento GAP (Glúteos, Abdomen y Piernas) y tonificación muscular." data-delay="1500"></p>
+        </div>
     </div>
 </div>
 
