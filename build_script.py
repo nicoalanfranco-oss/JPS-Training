@@ -227,17 +227,17 @@ js_code = '''document.addEventListener('DOMContentLoaded', () => {
         }
         .modal-bg {
             position: absolute;
-            inset: -5%;
+            inset: 0;
             background-size: cover;
             background-position: center top;
-            filter: blur(8px) brightness(0.6) contrast(1.2);
-            transform: scale(1.1);
+            filter: blur(2px) brightness(0.7) contrast(1.1);
+            transform: scale(1.05);
             transition: transform 10s ease-out, filter 2s ease;
             z-index: 0;
         }
         .staff-modal.show .modal-bg {
             transform: scale(1);
-            filter: blur(4px) brightness(0.4) contrast(1.3);
+            filter: blur(1px) brightness(0.5) contrast(1.1);
         }
         .close-btn {
             position: absolute; top: 25px; right: 30px;
