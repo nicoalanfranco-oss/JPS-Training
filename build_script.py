@@ -332,6 +332,14 @@ js_code = '''document.addEventListener('DOMContentLoaded', () => {
     setupModal('card-noelia', 'modal-noelia');
     setupModal('card-santiago', 'modal-santiago');
     setupModal('card-juanpablo', 'modal-juanpablo');
+    
+    // Actividades Modals
+    setupModal('card-act-hybrid', 'modal-act-hybrid');
+    setupModal('card-act-functional', 'modal-act-functional');
+    setupModal('card-act-gap', 'modal-act-gap');
+    setupModal('card-act-pilates', 'modal-act-pilates');
+    setupModal('card-act-60', 'modal-act-60');
+    setupModal('card-act-openbox', 'modal-act-openbox');
 });
 '''
 
