@@ -360,4 +360,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setupModal('card-act-pilates', 'modal-act-pilates');
     setupModal('card-act-60', 'modal-act-60');
     setupModal('card-act-openbox', 'modal-act-openbox');
+
+    // --- Envío Seguro del Formulario de Contacto ---
+    const contactoForm = document.querySelector('#contacto form');
+    if (contactoForm) {
+        contactoForm.removeAttribute('onsubmit'); // Removemos el alert estático antiguo
+        contactoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btnSubmit = contactoForm.querySelector('button[type="submit"]');
+            const originalText = btnSubmit.textContent;
+            
+            const nombreInput = contactoForm.querySelector('input[type="text"]');
+            const telefonoInput = contactoForm.querySelector('input[type="tel"]');
+            const mensajeInput = contactoForm.querySelector('textarea');
+            
+            const payload = {
+                nombre: nombreInput.value.trim(),
+                telefono: telefonoInput.value.trim(),
+                mensaje: mensajeInput.value.trim(),
+                gimnasioId: GIMNASIO_ID
+            };
+            
+            try {
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = 'Enviando...';
+                
+                const response = await fetch(`${API_BASE}/api/web/contacto`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (response.ok) {
+                    alert('¡Gracias por comunicarte! Los datos se enviaron y te contactaremos a la brevedad.');
+                    contactoForm.reset();
+                } else {
+                    const errData = await response.json();
+                    alert(`Hubo un problema al enviar: ${errData.error || 'Error desconocido'}`);
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('No se pudo establecer conexión con el servidor. Reintenta en unos instantes.');
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = originalText;
+            }
+        });
+    }
 });
