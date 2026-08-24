@@ -213,10 +213,6 @@ html = '''<!DOCTYPE html>
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
         </a>
-        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
-            class="hidden md:inline-flex items-center justify-center font-label-caps text-label-caps btn-gradient text-white px-6 py-2 rounded-full font-bold glow-hover hover:scale-105 transition-all duration-300">
-            ÚNETE AHORA
-        </button>
         <button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
             <span class="material-symbols-outlined">menu</span>
         </button>
@@ -228,7 +224,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-hybrid" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAL2qqgFK2xDhqlwcRuId5tqhXPjmdAQv7eBBIaSIhY4qpmddkPNmD_k_4pPNJQ9BkJcfMjbD6LYZMOzC1kJ2GxLWfnpYRMz27JifcrOTfl1WBRTLLqW-jWqry1h_RYGM9vf6kl8FAw3jf8LEH5CCVRp2IfQek-n74E42hstjnCBKBp8tHdCEMzGo_pSsBmLEFc3S001OuoH-BAovJCQO3tX2N5IeeoPXo_--C51vCnk8yEqzfIU8_LWQ');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="HYBRID TRAINING"></h3>
@@ -251,7 +247,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-functional" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOp4yOQ9BAZr9PM_MBgoAPoYQ1AEFKi2W2kvc61PSJ_t3JXtwADZSexK42NoH8a2ZX-COBnA-jo89ZYREyp0uDUgSc_yG9o8K8ZM4G0zShfL6afeW3PPluxqrvrYaspu9zzER_WuU3mjke5gOy5taX9B9mttRzmStIbByQTRkH40pHk2b6c-Rgvl6hPsVGNEgWlgzrHgbmDbGi_2tyW0vikVZzCIIxIgarrYN6r9d_36miELo0d0yB1Q');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="FUNCTIONAL STRENGTH"></h3>
@@ -274,7 +270,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-gap" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBW7Z_zc82KmCs4fAkYXe_bG3JvGEdKgnPvMmoXXHPavdU58DjROEP10gudvmQ7GsKJqont5m12zjJzMLn2Ol7QFRHiZwSFTmdHy_J9jIUZarADTEHqM0UazR757Yy3UXdT1M8i9F2nl3qgJFNbXmSDI32WPSziT2k0T8FeDbsb0_VRy3EBTf2RuLxwN6fI5WWiDP9ct3_ouXhMqkkB5UzU3mLxuZGEeER6l9zDCIXHjsrNcRc9Mz7WTg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="GAP"></h3>
@@ -297,7 +293,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-pilates" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGqfTIWKpOGcMZeJSZSmhRZQ8vEn3XkIefDflC59APnVv5SQVgH1mnISJtjqaKTPJl8__CiP5Pl-gDZsbdlfLLOCLoUXQCqfFtRFEuGpYlhnwKgtNfKaPuMen0bEJu94yJruFpT9DHM3syBivn9MBFdI4HTHnGR6y_DYp1y_lOzz-a0ujZO4CIJhha-5QHorsVcQvrP0QpWUnoaoeKZb2OtE-KnPUZ0sIygiHMoOOQaZnyWWSuWRNgJA');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="PILATES FUNCIONAL"></h3>
@@ -320,7 +316,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-60" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChBeNr57xe-LyAWT59PPujv1nJoQ4GYy42IdpZ9BgLSA1e6GLWOwqvZfY9rGjepIREjYS_E1PCT0ntlKu3O69V2QUwEvZuWX85Pxh9lYIJ0erb8R1VEuYQkR70spqHf3nt8XisbKaJlG7DPVj71lVVd5s9ZRq1jtzqXy2ZAbUugWzVBrKdvp_3sy1fdH7z2Qxz-tUYWB8l-A20cK-hPXCvCg-xMPI5JLtya1PoYWvWyH0xc8MmTaTmdg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="+60 (ACTIVE AGING)"></h3>
@@ -343,7 +339,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-act-openbox" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZ6JGqivvKAVsASjqNWxZ2HVLqDPbE8loHjG4QSLQBMEtC-k5jM1uasdMROTM1h5v9RZoyNtyfj5gRAjMdoKn05U4XQR3hHq25Jj61M0PVUQpHhNms4rnGpArzQlj9y0RiDFkYgm8HujpUDOAXyDTTeCKdku-rb7VwlL2qI8IKRnfmHYCfLHwXOUOtmOk8Am0LLHzAgZ5cV6mr5cwmasR06VNOl_GlzT1HzSAxmKaxVpERv-cgbnbvrQ');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="OPEN BOX"></h3>
@@ -373,16 +369,8 @@ html = '''<!DOCTYPE html>
         </div>
         <div class="absolute inset-0 chiaroscuro-overlay"></div>
     </div>
-    <!-- Kettlebell 3D -->
-    <div class="asset-entry-left hidden lg:block absolute left-10 top-1/2 -translate-y-1/2 z-10 w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.35)] border border-white/10">
-        <img src="assets/images/kettlebell.jpg" alt="Kettlebell JPS" class="life-left w-full h-full object-cover"/>
-    </div>
-    <!-- Dumbbell 3D -->
-    <div class="asset-entry-right hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-10 w-52 h-52 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.35)] border border-white/10">
-        <img src="assets/images/dumbbell.jpg" alt="Mancuerna JPS" class="life-right w-full h-full object-cover"/>
-    </div>
     <!-- Content -->
-    <div class="relative z-20 flex flex-col items-center justify-center text-center px-6 w-full max-w-5xl mx-auto gap-8">
+    <div class="relative z-20 flex flex-col items-center justify-center text-center px-6 w-full max-w-5xl mx-auto mt-16 md:mt-32">
         
         <div class="flex items-center justify-center gap-6 md:gap-12 w-full">
             <!-- Left Logo -->
@@ -391,15 +379,10 @@ html = '''<!DOCTYPE html>
             </div>
             
             <!-- Central Text -->
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center justify-center">
                 <h1 class="text-epic-entry font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
                     Eleva tu rendimiento al <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">máximo</span>
                 </h1>
-                <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
-                    class="text-epic-entry mt-8 group relative inline-flex items-center justify-center px-8 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1" style="animation-delay: 2.2s;">
-                    ÚNETE AL EQUIPO
-                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </button>
             </div>
 
             <!-- Right Logo -->
@@ -407,14 +390,31 @@ html = '''<!DOCTYPE html>
                 <img alt="JPS Training Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs"/>
             </div>
         </div>
-
+    </div>
+    
+    <!-- Hero Button at bottom -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-30">
+        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
+            class="text-epic-entry group relative inline-flex items-center justify-center px-10 py-4 font-label-caps text-label-caps text-white tracking-widest rounded-full btn-gradient glow-hover transition-all duration-300 hover:-translate-y-1" style="animation-delay: 2.2s;">
+            CONTACTO
+            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </button>
     </div>
     <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brushed-metal to-transparent"></div>
 </section>
 
 <!-- ═══════════ UBICACIÓN ═══════════ -->
 <section class="w-full py-24 px-6 relative overflow-hidden bg-surface">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+    <!-- Kettlebell 3D -->
+    <div class="hidden lg:block absolute left-4 xl:left-12 top-1/2 -translate-y-1/2 z-10 hero-3d-left w-48 h-48 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(224,30,90,0.35)] border border-white/10 opacity-70">
+        <img src="assets/images/kettlebell.jpg" alt="Kettlebell JPS" class="life-left w-full h-full object-cover"/>
+    </div>
+    <!-- Dumbbell 3D -->
+    <div class="hidden lg:block absolute right-4 xl:right-12 top-1/2 -translate-y-1/2 z-10 hero-3d-right w-48 h-48 rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,138,0,0.35)] border border-white/10 opacity-70">
+        <img src="assets/images/dumbbell.jpg" alt="Mancuerna JPS" class="life-right w-full h-full object-cover"/>
+    </div>
+    
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center relative z-20">
     <div class="w-full md:w-1/2 flex flex-col gap-6">
         <div class="section-title mb-6">
             <h2 class="font-display-xl text-headline-md md:text-headline-lg font-black uppercase tracking-tight">
@@ -834,10 +834,24 @@ html = '''<!DOCTYPE html>
 <!-- ═══════════ CONTACTO ═══════════ -->
 <section id="contacto" class="w-full py-24 px-6 bg-surface-container-lowest">
 <div class="max-w-4xl mx-auto">
-    <div class="section-title mb-10">
+    <div class="section-title mb-10 flex flex-col items-center md:items-start text-center md:text-left">
         <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
             <span class="text-white">PONTE EN </span><span class="text-electric-orange">CONTACTO</span>
         </h2>
+        
+        <!-- Big Phone Number Block -->
+        <div class="w-full mt-10 mb-8 p-8 rounded-2xl bg-surface-elevated border border-brushed-metal hover:border-electric-orange transition-colors flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left shadow-2xl">
+            <div class="bg-gradient-to-br from-electric-orange to-vibrant-pink p-4 rounded-full flex-shrink-0">
+                <span class="material-symbols-outlined text-white text-4xl">phone_in_talk</span>
+            </div>
+            <div>
+                <p class="font-label-caps text-electric-orange uppercase tracking-widest text-sm mb-1">Llamadas y WhatsApp</p>
+                <h3 class="font-display-xl text-3xl md:text-5xl text-white font-black tracking-tighter">
+                    JPS Training <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent ml-2">098 859 708</span>
+                </h3>
+            </div>
+        </div>
+
         <p class="font-body-lg text-on-surface-variant max-w-xl mt-4">
             ¿Listo para transformar tu vida? Déjanos tus datos y nos pondremos en contacto contigo a la brevedad.
         </p>
@@ -883,7 +897,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-juanpablo" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('assets/images/jp_sena.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="JUAN PABLO SENA"></h3>
@@ -897,7 +911,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-santiago" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('assets/images/santiago_card.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="SANTIAGO HERNÁNDEZ"></h3>
@@ -910,7 +924,7 @@ html = '''<!DOCTYPE html>
 <div id="modal-noelia" class="staff-modal">
     <div class="staff-modal-content group">
         <div class="modal-bg" style="background-image: url('assets/images/noelia_card.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40 z-10 rounded-2xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
         <span class="close-btn z-50">&times;</span>
         <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12">
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="NOELIA LIMA LATORRE"></h3>

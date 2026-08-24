@@ -230,14 +230,14 @@ js_code = '''document.addEventListener('DOMContentLoaded', () => {
             inset: 0;
             background-size: cover;
             background-position: center top;
-            filter: brightness(0.75);
+            filter: brightness(1);
             transform: scale(1.02);
-            transition: transform 8s ease-out, filter 1.5s ease;
+            transition: transform 8s ease-out;
             z-index: 0;
         }
         .staff-modal.show .modal-bg {
             transform: scale(1);
-            filter: brightness(0.6);
+            filter: brightness(1);
         }
         .close-btn {
             position: absolute; top: 25px; right: 30px;
