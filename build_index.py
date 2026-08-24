@@ -9,6 +9,7 @@ html = '''<!DOCTYPE html>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>JPS TRAINING - Gimnasio y Entrenamiento de Élite</title>
+<link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -197,6 +198,7 @@ html = '''<!DOCTYPE html>
     <div class="hidden md:flex items-center gap-8">
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#entrenamiento">Actividades</a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#staff">Staff</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#horarios">Horarios</a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#planes">Planes</a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#contacto">Contacto</a>
     </div>

@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://jpstraining.nicoalanfranco-oss.github.io/sitemap.xml
