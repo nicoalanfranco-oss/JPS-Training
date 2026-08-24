@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://jpstraining.nico-family.com/sitemap.xml
