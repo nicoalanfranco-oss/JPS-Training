@@ -54,10 +54,10 @@ js_code = '''document.addEventListener('DOMContentLoaded', () => {
 
         const actColors = {
             'hybrid': 'bg-[#E01E5A] text-white',
-            'functional': 'border-2 border-[#FF8A00] text-white bg-transparent',
+            'functional': 'bg-slate-800 border-2 border-[#FF8A00] text-white',
             'pilates': 'bg-[#FFAA44] text-black',
             'gap': 'bg-[#0098FC] text-white',
-            '60': 'bg-gradient-to-r from-yellow-400 to-amber-500 text-black',
+            '60': 'bg-[#FFD700] text-black',
         };
 
         function getGradient(name) {
