@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const times = [...new Set(filtered.map(h => (h.hora || '').substring(0, 5)))].filter(Boolean).sort();
 
         const actColors = {
-            'hybrid': 'from-[#FF8A00] to-[#E01E5A] text-white',
-            'functional': 'from-slate-700 to-slate-900 text-white',
-            'pilates': 'from-[#FF8A00] to-[#FF6000] text-black',
-            'gap': 'from-yellow-500 to-yellow-600 text-black',
-            '60': 'from-yellow-400 to-amber-500 text-black',
+            'hybrid': 'bg-[#E01E5A] text-white',
+            'functional': 'border-2 border-[#FF8A00] text-white bg-transparent',
+            'pilates': 'bg-[#FFAA44] text-black',
+            'gap': 'bg-[#0098FC] text-white',
+            '60': 'bg-gradient-to-r from-yellow-400 to-amber-500 text-black',
         };
 
         function getGradient(name) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lower.includes('pilates')) return actColors['pilates'];
             if (lower.includes('gap')) return actColors['gap'];
             if (lower.includes('60')) return actColors['60'];
-            return 'from-[#FF8A00] to-[#E01E5A] text-white';
+            return 'bg-gradient-to-r from-[#FF8A00] to-[#E01E5A] text-white';
         }
 
         // Build header
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (clase) {
                     const act = clase.nombre_actividad || '';
                     const colorClass = getGradient(act);
-                    html += `<div class="bg-gradient-to-r ${colorClass} rounded-xl shadow-lg py-4 px-2 font-label-caps text-xs font-bold uppercase tracking-widest flex items-center justify-center min-h-[60px] cursor-pointer hover:scale-105 transition-transform" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">${act}</div>`;
+                    html += `<div class="${colorClass} rounded-xl shadow-lg py-4 px-2 font-label-caps text-xs font-bold uppercase tracking-widest flex items-center justify-center min-h-[60px] cursor-pointer hover:scale-105 transition-transform" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">${act}</div>`;
                 } else {
                     // Empty cell
                     html += `<div></div>`;
@@ -226,14 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
             inset: 0;
             background-size: cover;
             background-position: center top;
-            filter: brightness(0.75);
-            transform: scale(1.02);
-            transition: transform 8s ease-out, filter 1.5s ease;
+            filter: none;
+            transform: scale(1.01);
+            transition: transform 8s ease-out;
             z-index: 0;
         }
         .staff-modal.show .modal-bg {
             transform: scale(1);
-            filter: brightness(0.6);
+            filter: none;
         }
         .close-btn {
             position: absolute; top: 25px; right: 30px;
