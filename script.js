@@ -306,6 +306,20 @@ document.addEventListener('DOMContentLoaded', () => {
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
         }
+        /* Sleek custom scrollbar for modal */
+        .custom-modal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-modal-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .custom-modal-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 138, 0, 0.4);
+            border-radius: 4px;
+        }
+        .custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 138, 0, 0.8);
+        }
     `;
     document.head.appendChild(style);
 
