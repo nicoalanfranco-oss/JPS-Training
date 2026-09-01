@@ -426,12 +426,54 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('evt-input-email').value.trim();
             const personas = document.getElementById('evt-input-personas').value;
 
+            const mensajeCliente = `--------------------------------------------------------
+🎉 CONFIRMACIÓN DE INSCRIPCIÓN AL EVENTO
+--------------------------------------------------------
+
+¡Hola ${nombre}!
+
+Tu lugar para el Trekking JPS Training 2026 está CONFIRMADO.
+Estamos muy entusiasmados de que te sumes a esta experiencia al aire libre.
+
+📍 DETALLES DE TU INSCRIPCIÓN:
+• Participante: ${nombre}
+• Correo registrado: ${email}
+• Teléfono: ${telefono}
+• Acompañantes: ${personas}
+• Evento: Trekking JPS Training 2026 (Valle Edén)
+• Fecha y Hora: Sábado 12 de Septiembre — 13:00 hs
+• Punto de Encuentro: Puente Colgante (Valle Edén, Tacuarembó)
+• Recorrido: 9 km (Dificultad baja/moderado, apto para familias)
+• Cierre: Merienda saludable y charla con San Gonzalez y Rominek en Chacra Los Nogales
+
+🎒 RECOMENDACIONES DE EQUIPAMIENTO:
+1. Calzado cómodo con buen agarre (campeonas de running o botas de trekking).
+2. Ropa deportiva liviana + abrigo cómodo para el atardecer.
+3. Botella de agua personal (mínimo 1.5L) y protector solar.
+
+🖼️ AFICHE Y DETALLES DEL EVENTO:
+Puedes visualizar el afiche oficial del evento en:
+https://jpstraining.nico-family.com/public/evento.jpeg
+
+--------------------------------------------------------
+* Copia automática enviada a la administración de JPS Training (Juan Pablo Sena).
+Si tienes dudas o necesitas modificar tu reserva, puedes responder a este correo o escribirnos por WhatsApp al 098 859 708.
+
+¡Nos vemos el 12 de Septiembre!
+Equipo JPS Training`;
+
             const payload = {
                 nombre: nombre,
                 telefono: telefono,
                 email: email,
+                destinatario: email,
+                to: email,
+                cc: 'jpstrainingtacuarembo@gmail.com',
+                asunto: `¡Inscripción Confirmada! Trekking JPS Training 2026 - ${nombre}`,
                 gimnasioId: GIMNASIO_ID,
-                mensaje: `[INSCRIPCIÓN A EVENTO: Trekking JPS 2026]\nNombre: ${nombre}\nEmail del cliente: ${email}\nTeléfono: ${telefono}\nAcompañantes: ${personas}\n\n*Notificación enviada a JP Sena. Solicitar envío del render de confirmación de entrada al email: ${email}`
+                tipo: 'evento_confirmacion_cliente',
+                imagenUrl: 'https://jpstraining.nico-family.com/public/evento.jpeg',
+                mensaje: mensajeCliente
             };
 
             try {
@@ -511,6 +553,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.addEventListener('hashchange', checkEventDeepLink);
     checkEventDeepLink();
+
+    // --- Sistema de Baja Automática de Eventos Expirados ---
+    const EVENT_EXPIRATION_DATE = new Date('2026-09-12T23:59:59'); // Evento Trekking: 12 de septiembre
+
+    function checkEventExpiration() {
+        const currentDate = new Date();
+        if (currentDate > EVENT_EXPIRATION_DATE) {
+            const topBanner = document.getElementById('top-event-banner');
+            const eventNavLinks = document.querySelectorAll('a[href="#evento"]');
+            const eventSection = document.getElementById('evento');
+            const eventModal = document.getElementById('modal-evento');
+            const inscripcionModal = document.getElementById('modal-inscripcion-evento');
+
+            if (topBanner) topBanner.style.display = 'none';
+            if (eventSection) eventSection.style.display = 'none';
+            if (eventModal) eventModal.style.display = 'none';
+            if (inscripcionModal) inscripcionModal.style.display = 'none';
+            
+            eventNavLinks.forEach(link => {
+                link.style.display = 'none';
+            });
+        }
+    }
+    checkEventExpiration();
 
     // --- Envío Seguro del Formulario de Contacto ---
     const contactoForm = document.querySelector('#contacto form');
