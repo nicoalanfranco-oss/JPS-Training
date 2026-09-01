@@ -454,7 +454,7 @@
 </section>
 
 <!-- ═══════════ EVENTOS ESPECIALES ═══════════ -->
-<section id="evento" class="w-full py-20 px-6 relative overflow-hidden bg-surface-dim border-y border-white/5 transition-all duration-700">
+<section id="evento" class="w-full py-20 px-6 scroll-mt-28 relative overflow-hidden bg-surface-dim border-y border-white/5 transition-all duration-700">
     <!-- Glowing background accents -->
     <div class="absolute -top-32 right-0 w-96 h-96 bg-electric-orange/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 left-0 w-96 h-96 bg-vibrant-pink/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -470,8 +470,8 @@
             </h2>
         </div>
 
-        <!-- Event Card Container -->
-        <div id="event-card-container" class="card-acrylic rounded-2xl overflow-hidden border border-white/10 p-8 md:p-12 relative shadow-2xl transition-all duration-500 hover:border-electric-orange/40">
+        <!-- Event Card Container con Aura Parpadeante de Importancia Vivo -->
+        <div id="event-card-container" class="card-acrylic rounded-2xl overflow-hidden border border-electric-orange/40 p-8 md:p-12 relative shadow-2xl transition-all duration-500 hover:border-electric-orange cursor-pointer group live-event-aura">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 
                 <!-- Left Details Column (7 cols) -->
@@ -525,31 +525,16 @@
 
                         <!-- Extra Info Modal Trigger -->
                         <button id="card-evento-trigger" 
-                                class="inline-flex items-center gap-1 text-on-surface-variant hover:text-white font-label-caps text-xs underline transition-colors ml-auto md:ml-0">
-                            <span class="material-symbols-outlined text-[18px]">info</span> Detalles completos
+                                class="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-surface-bright border border-electric-orange/60 hover:border-electric-orange text-electric-orange hover:text-white font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-electric-orange/20 shadow-[0_0_20px_rgba(255,138,0,0.25)] hover:shadow-[0_0_35px_rgba(255,138,0,0.55)] hover:-translate-y-0.5 group">
+                            <span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">info</span> VER DETALLES E ITINERARIO &rarr;
                         </button>
                     </div>
                 </div>
 
-                <!-- Right Visual Column (5 cols) -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" 
-                             style="background-image: url('public/evento.jpeg');">
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-                        
-                        <!-- Overlay Details Badge -->
-                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-background/80 backdrop-blur-md border border-white/10">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span class="bg-electric-orange text-white font-label-caps text-[10px] px-2.5 py-1 rounded font-bold uppercase">12 SEP · 13:00 HS</span>
-                                    <h4 class="text-white font-bold text-base mt-2">Salida Grupal Valle Edén</h4>
-                                    <p class="text-on-surface-variant text-xs">Cupos limitados · Apto para familias</p>
-                                </div>
-                                <span class="material-symbols-outlined text-electric-orange text-3xl">nature_people</span>
-                            </div>
-                        </div>
+                <!-- Right Visual Column: Afiche Completo Protagonista (5 cols) -->
+                <div class="lg:col-span-5 relative flex items-center justify-center">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl w-full h-[480px] bg-black/90 flex items-center justify-center p-2">
+                        <img src="public/evento.jpeg" alt="Afiche Oficial Trekking JPS 2026" class="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105">
                     </div>
                 </div>
 
@@ -1052,15 +1037,15 @@
     </div>
 </div>
 
-<!-- Modal Evento Especial (Diseño Dividido en 2 Columnas) -->
+<!-- Modal Evento Especial (Diseño Dividido en 2 Columnas - Afiche Protagonista) -->
 <div id="modal-evento" class="staff-modal">
-    <div class="staff-modal-content max-w-6xl w-[94vw] h-[85vh] my-auto bg-surface-elevated border border-electric-orange/40 shadow-[0_0_90px_rgba(255,138,0,0.35)] relative overflow-hidden p-0 rounded-2xl">
+    <div class="staff-modal-content max-w-6xl w-[94vw] h-[88vh] my-auto bg-surface-elevated border border-electric-orange/40 shadow-[0_0_90px_rgba(255,138,0,0.35)] relative overflow-hidden p-0 rounded-2xl">
         <span class="close-btn z-50">&times;</span>
         
         <div class="grid grid-cols-1 lg:grid-cols-12 h-full w-full">
             
-            <!-- Columna Izquierda: Presentación & Detalles (7 columnas) -->
-            <div class="lg:col-span-7 p-6 md:p-10 flex flex-col justify-between overflow-y-auto bg-gradient-to-b from-surface-elevated via-background to-surface-dim">
+            <!-- Columna Izquierda: Presentación & Detalles (6 columnas) -->
+            <div class="lg:col-span-6 p-6 md:p-10 flex flex-col justify-between overflow-y-auto bg-gradient-to-b from-surface-elevated via-background to-surface-dim">
                 <div>
                     <!-- Badge Header -->
                     <div class="inline-flex items-center gap-2 bg-electric-orange/10 border border-electric-orange/40 px-3 py-1 rounded-full text-electric-orange font-label-caps text-xs font-bold uppercase mb-4">
@@ -1112,19 +1097,10 @@
                 </div>
             </div>
 
-            <!-- Columna Derecha: Imagen Fija Completa con Efecto Especial (5 columnas) -->
-            <div class="lg:col-span-5 relative hidden lg:block h-full bg-black overflow-hidden group">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" 
-                     style="background-image: url('public/evento.jpeg');">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/40"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-surface-elevated/80 via-transparent to-transparent"></div>
-                
-                <!-- Badge Flotante sobre la imagen fija -->
-                <div class="absolute bottom-8 left-8 right-8 p-6 rounded-2xl bg-background/85 backdrop-blur-md border border-white/15 shadow-2xl">
-                    <span class="bg-vibrant-pink text-white font-label-caps text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">EVENTO OFICIAL</span>
-                    <h4 class="text-white font-display-xl font-bold text-lg mt-2">Trekking Valle Edén 2026</h4>
-                    <p class="text-xs text-on-surface-variant mt-1">Viví la experiencia JPS al aire libre con todo el equipo.</p>
+            <!-- Columna Derecha: Afiche Protagonista Limpio sin nada encima + Efecto Latente Suave (6 columnas) -->
+            <div class="lg:col-span-6 relative hidden lg:flex items-center justify-center h-full bg-black/90 p-4 overflow-hidden">
+                <div class="w-full h-full rounded-xl overflow-hidden relative flex items-center justify-center border border-white/10 shadow-2xl poster-pulse">
+                    <img src="public/evento.jpeg" alt="Afiche Oficial Trekking JPS 2026" class="w-full h-full object-contain object-center">
                 </div>
             </div>
 

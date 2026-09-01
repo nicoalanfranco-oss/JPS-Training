@@ -271,6 +271,26 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 1;
             transform: translateY(0);
         }
+        @keyframes posterBreathing {
+            0%, 100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 15px rgba(255,138,0,0.3)); }
+            50% { transform: scale(1.025); filter: brightness(1.08) drop-shadow(0 0 35px rgba(255,138,0,0.65)); }
+        }
+        .poster-pulse {
+            animation: posterBreathing 5s ease-in-out infinite;
+        }
+        @keyframes liveAuraPulse {
+            0%, 100% {
+                box-shadow: 0 0 25px rgba(255, 138, 0, 0.4), 0 0 50px rgba(224, 30, 90, 0.35), inset 0 0 20px rgba(255, 138, 0, 0.15);
+                border-color: rgba(255, 138, 0, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 65px rgba(255, 138, 0, 0.85), 0 0 100px rgba(224, 30, 90, 0.7), inset 0 0 35px rgba(255, 138, 0, 0.4);
+                border-color: rgba(224, 30, 90, 1);
+            }
+        }
+        .live-event-aura {
+            animation: liveAuraPulse 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
     `;
     document.head.appendChild(style);
 
@@ -363,6 +383,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Evento Modal
     setupModal('card-evento-trigger', 'modal-evento');
+
+    // Permitir abrir el modal al hacer clic en cualquier parte de la tarjeta del evento
+    const eventCardContainer = document.getElementById('event-card-container');
+    if (eventCardContainer) {
+        eventCardContainer.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            const trigger = document.getElementById('card-evento-trigger');
+            if (trigger) trigger.click();
+        });
+    }
 
     // --- Modal de Inscripción al Evento con Formulario e Email ---
     const btnAnotarse = document.getElementById('btn-anotarse-evento');
@@ -539,15 +569,17 @@ Equipo JPS Training`;
 
     function checkEventDeepLink() {
         if (window.location.hash === '#evento') {
+            const eventSection = document.getElementById('evento');
             const eventCard = document.getElementById('event-card-container');
-            if (eventCard) {
+            if (eventSection) {
                 setTimeout(() => {
-                    eventCard.scrollIntoView({ behavior: 'smooth' });
-                    eventCard.classList.add('ring-4', 'ring-electric-orange', 'shadow-[0_0_50px_rgba(255,138,0,0.6)]');
-                    setTimeout(() => {
-                        eventCard.classList.remove('ring-4', 'ring-electric-orange', 'shadow-[0_0_50px_rgba(255,138,0,0.6)]');
-                    }, 3000);
-                }, 300);
+                    const yOffset = -110;
+                    const y = eventSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    if (eventCard) {
+                        eventCard.classList.add('live-event-aura');
+                    }
+                }, 250);
             }
         }
     }
