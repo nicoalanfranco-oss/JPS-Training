@@ -2,7 +2,7 @@
 <html class="dark" lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>JPS TRAINING - Gimnasio y Entrenamiento de Élite</title>
 <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida-public/AB6AXuCYp_jqKD1QU0NOJdbPFTWGg4dmxmGhsfU5zLEf_Jnv1cX5uIFI9v7qXpbtzu6i84ub2uOgn3rkR2uWM9tzj3so3de0NBp-Hab2mXbehmbTPxPJ4dgSJPOrSwiO12WCOIYwxeDBBWY-L7Jw4SW5tPJ0bcSdYpI2hWouDpv1jKcIB9mOltaQB0pb0r2NnyO7o52WTqrTzH87-Ey_Oi_0VcqD2eKFlGxSYTa6HgVl9qSI_f679lsNaH3efW1-R3kVPU1DcPs" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -1037,19 +1037,29 @@
     </div>
 </div>
 
-<!-- Modal Evento Especial (Diseño Dividido en 2 Columnas - Afiche Protagonista) -->
+<!-- Modal Evento Especial (Diseño Dividido en 2 Columnas - Afiche Protagonista + Modo Fondo Móvil) -->
 <div id="modal-evento" class="staff-modal">
-    <div class="staff-modal-content max-w-6xl w-[94vw] h-[88vh] my-auto bg-surface-elevated border border-electric-orange/40 shadow-[0_0_90px_rgba(255,138,0,0.35)] relative overflow-hidden p-0 rounded-2xl">
-        <span class="close-btn z-50">&times;</span>
+    <div class="staff-modal-content max-w-6xl w-[95vw] md:w-[90vw] h-[90vh] md:h-[88vh] my-auto bg-surface-elevated border border-electric-orange/40 shadow-[0_0_90px_rgba(255,138,0,0.35)] relative overflow-hidden p-0 rounded-2xl">
+        <span class="close-btn z-50 top-3 right-3 sm:top-5 sm:right-6 text-3xl sm:text-4xl">&times;</span>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 h-full w-full">
+        <!-- Capa de Fondo Oscurecida Ambiental (Especial Celulares / Móviles) -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 filter blur-sm pointer-events-none" style="background-image: url('public/evento.jpeg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95 pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 h-full w-full relative z-10">
             
-            <!-- Columna Izquierda: Presentación & Detalles (6 columnas) -->
-            <div class="lg:col-span-6 p-6 md:p-10 flex flex-col justify-between overflow-y-auto bg-gradient-to-b from-surface-elevated via-background to-surface-dim">
+            <!-- Columna Izquierda: Presentación, Detalles & Afiche Superpuesto Móvil (6 columnas) -->
+            <div class="lg:col-span-6 p-5 sm:p-8 md:p-10 flex flex-col justify-between overflow-y-auto bg-transparent">
                 <div>
-                    <!-- Badge Header -->
-                    <div class="inline-flex items-center gap-2 bg-electric-orange/10 border border-electric-orange/40 px-3 py-1 rounded-full text-electric-orange font-label-caps text-xs font-bold uppercase mb-4">
-                        <span class="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></span> Presentación del Evento
+                    <!-- Header Badges -->
+                    <div class="flex items-center justify-between gap-2 mb-4 flex-wrap">
+                        <div class="inline-flex items-center gap-2 bg-electric-orange/10 border border-electric-orange/40 px-3 py-1 rounded-full text-electric-orange font-label-caps text-xs font-bold uppercase">
+                            <span class="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></span> Presentación del Evento
+                        </div>
+                        <button onclick="document.getElementById('afiche-completo-modal').scrollIntoView({ behavior: 'smooth' })" 
+                                class="px-3 py-1 rounded-full border border-electric-orange/50 text-electric-orange text-[11px] font-bold font-label-caps hover:bg-electric-orange/20 transition-colors inline-flex items-center gap-1 lg:hidden">
+                            <span class="material-symbols-outlined text-[14px]">image</span> IR AL AFICHE 👇
+                        </button>
                     </div>
 
                     <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2 leading-tight" data-text="TREKKING JPS 2026"></h3>
@@ -1060,16 +1070,16 @@
                     <!-- Ficha del evento -->
                     <div class="fade-in-block border-y border-white/10 py-5 my-4 space-y-3">
                         <div class="flex items-center gap-3 text-sm text-on-surface">
-                            <span class="material-symbols-outlined text-electric-orange">event</span>
+                            <span class="material-symbols-outlined text-electric-orange shrink-0">event</span>
                             <span><strong class="text-white">Fecha & Hora:</strong> Sábado 12 de Septiembre · 13:00 hs</span>
                         </div>
                         <div class="flex items-center gap-3 text-sm text-on-surface">
-                            <span class="material-symbols-outlined text-electric-orange">location_on</span>
+                            <span class="material-symbols-outlined text-electric-orange shrink-0">location_on</span>
                             <span><strong class="text-white">Punto de Encuentro:</strong> Puente Colgante (Valle Edén)</span>
                         </div>
                         <div class="flex items-center gap-3 text-sm text-on-surface">
-                            <span class="material-symbols-outlined text-electric-orange">hiking</span>
-                            <span><strong class="text-white">Distancia:</strong> 9 km (Grado bajo/moderado, apto para toda la familia)</span>
+                            <span class="material-symbols-outlined text-electric-orange shrink-0">hiking</span>
+                            <span><strong class="text-white">Distancia:</strong> 9 km (Apto para toda la familia)</span>
                         </div>
                     </div>
 
@@ -1083,21 +1093,35 @@
                             <li>Ganamos energía durante la caminata y cerramos con charla nutricional + merienda saludable en Chacra Los Nogales.</li>
                         </ul>
                     </div>
+
+                    <!-- Afiche Oficial Superpuesto al Finalizar la Lectura (Especial Celulares / Móviles) -->
+                    <div id="afiche-completo-modal" class="fade-in-block mt-8 pt-6 border-t border-white/10 scroll-mt-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="inline-flex items-center gap-2 bg-vibrant-pink/20 border border-vibrant-pink/40 px-3 py-1 rounded-full text-vibrant-pink font-label-caps text-xs font-bold uppercase">
+                                <span class="w-2 h-2 rounded-full bg-vibrant-pink animate-pulse"></span> Afiche Oficial Completo
+                            </span>
+                            <span class="text-[11px] text-on-surface-variant italic">Vista directa sin superposiciones</span>
+                        </div>
+                        
+                        <div class="w-full h-[440px] sm:h-[540px] rounded-xl overflow-hidden relative flex items-center justify-center border border-electric-orange/50 shadow-2xl poster-pulse bg-black/90 p-2 group">
+                            <img src="public/evento.jpeg" alt="Afiche Oficial Trekking JPS 2026" class="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- CTAs -->
-                <div class="fade-in-block pt-4 border-t border-white/10 flex flex-wrap gap-4 items-center">
+                <div class="fade-in-block pt-6 mt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
                     <button id="btn-modal-anotarse-evento" 
-                            class="btn-gradient inline-flex items-center gap-2 px-8 py-4 rounded-full font-label-caps text-xs text-white font-bold tracking-wider glow-hover">
+                            class="btn-gradient inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-label-caps text-xs text-white font-bold tracking-wider glow-hover w-full sm:w-auto">
                        <span class="material-symbols-outlined">how_to_reg</span> INSCRIBIRME AHORA &rarr;
                     </button>
-                    <button onclick="shareEvent()" class="px-6 py-4 rounded-full border border-white/20 hover:border-electric-orange text-white text-xs font-bold font-label-caps transition-colors">
+                    <button onclick="shareEvent()" class="px-6 py-4 rounded-full border border-white/20 hover:border-electric-orange text-white text-xs font-bold font-label-caps transition-colors w-full sm:w-auto text-center">
                         COMPARTIR EVENTO
                     </button>
                 </div>
             </div>
 
-            <!-- Columna Derecha: Afiche Protagonista Limpio sin nada encima + Efecto Latente Suave (6 columnas) -->
+            <!-- Columna Derecha: Afiche Protagonista Limpio (Escritorio / Pantallas Grandes - 6 columnas) -->
             <div class="lg:col-span-6 relative hidden lg:flex items-center justify-center h-full bg-black/90 p-4 overflow-hidden">
                 <div class="w-full h-full rounded-xl overflow-hidden relative flex items-center justify-center border border-white/10 shadow-2xl poster-pulse">
                     <img src="public/evento.jpeg" alt="Afiche Oficial Trekking JPS 2026" class="w-full h-full object-contain object-center">

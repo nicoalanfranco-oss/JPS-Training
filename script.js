@@ -291,6 +291,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .live-event-aura {
             animation: liveAuraPulse 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
+        /* iPhone & iOS Safari Specific Optimizations */
+        .staff-modal-content {
+            -webkit-overflow-scrolling: touch;
+            max-height: 85dvh;
+        }
+        button, a, input, select {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .poster-pulse, .live-event-aura {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
     `;
     document.head.appendChild(style);
 
