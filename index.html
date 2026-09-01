@@ -186,10 +186,10 @@
 
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
-<div id="top-event-banner" class="w-full bg-gradient-to-r from-electric-orange via-[#E01E5A] to-electric-orange text-white font-label-caps text-xs py-1.5 px-4 text-center font-bold tracking-wider flex items-center justify-center gap-3 transition-all duration-300 border-b border-white/10">
-    <span class="inline-flex items-center gap-2">
+<div id="top-event-banner" class="w-full bg-gradient-to-r from-electric-orange via-[#E01E5A] to-electric-orange text-white font-label-caps text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 text-center font-bold tracking-wider flex items-center justify-center gap-1.5 sm:gap-3 transition-all duration-300 border-b border-white/10 flex-wrap">
+    <span class="inline-flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-        🥾 PRÓXIMO EVENTO: Trekking JPS Training 2026 — Sábado 12 de Septiembre
+        🥾 PRÓXIMO EVENTO: Trekking JPS Training 2026 — Sábado 12/9
     </span>
     <a href="#evento" class="underline hover:text-white/80 transition-colors font-black ml-1">Ver Detalles &rarr;</a>
 </div>
@@ -454,14 +454,14 @@
 </section>
 
 <!-- ═══════════ EVENTOS ESPECIALES ═══════════ -->
-<section id="evento" class="w-full py-20 px-6 scroll-mt-28 relative overflow-hidden bg-surface-dim border-y border-white/5 transition-all duration-700">
+<section id="evento" class="w-full py-12 md:py-20 px-4 md:px-6 scroll-mt-28 relative overflow-hidden bg-surface-dim border-y border-white/5 transition-all duration-700">
     <!-- Glowing background accents -->
     <div class="absolute -top-32 right-0 w-96 h-96 bg-electric-orange/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 left-0 w-96 h-96 bg-vibrant-pink/10 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto relative z-10">
         <!-- Section Header -->
-        <div class="section-title mb-10">
+        <div class="section-title mb-8 md:mb-10">
             <div class="inline-flex items-center gap-2 bg-electric-orange/10 border border-electric-orange/40 px-3 py-1 rounded-full text-electric-orange font-label-caps text-xs font-bold uppercase mb-3">
                 <span class="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></span> Evento Especial Puntual
             </div>
@@ -471,8 +471,8 @@
         </div>
 
         <!-- Event Card Container con Aura Parpadeante de Importancia Vivo -->
-        <div id="event-card-container" class="card-acrylic rounded-2xl overflow-hidden border border-electric-orange/40 p-8 md:p-12 relative shadow-2xl transition-all duration-500 hover:border-electric-orange cursor-pointer group live-event-aura">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div id="event-card-container" class="card-acrylic rounded-2xl overflow-hidden border border-electric-orange/40 p-5 sm:p-8 md:p-12 relative shadow-2xl transition-all duration-500 hover:border-electric-orange cursor-pointer group live-event-aura">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
                 <!-- Left Details Column (7 cols) -->
                 <div class="lg:col-span-7 flex flex-col justify-between">
@@ -484,56 +484,56 @@
                         <h3 class="font-display-xl text-headline-md md:text-headline-lg font-black italic text-white uppercase mb-4 leading-tight">
                             Trekking JPS Training <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">2026</span>
                         </h3>
-                        <p class="font-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                        <p class="font-body-lg text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">
                             Valle Edén y sus rincones escondidos. Una jornada única al aire libre diseñada para toda la familia y socios JPS, que combina senderismo, contacto con la naturaleza y una charla especial sobre nutrición y entrenamiento al finalizar.
                         </p>
 
                         <!-- Key Event Facts -->
-                        <ul class="space-y-3 mb-8 border-y border-white/10 py-6">
-                            <li class="flex items-start gap-3 text-body-md text-on-surface">
-                                <span class="material-symbols-outlined text-electric-orange mt-1">event</span>
+                        <ul class="space-y-3 mb-8 border-y border-white/10 py-6 text-sm sm:text-base">
+                            <li class="flex items-start gap-3 text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-0.5 sm:mt-1 shrink-0">event</span>
                                 <div><strong class="text-white font-bold">Cuándo:</strong> Sábado 12 de septiembre de 2026</div>
                             </li>
-                            <li class="flex items-start gap-3 text-body-md text-on-surface">
-                                <span class="material-symbols-outlined text-electric-orange mt-1">location_on</span>
+                            <li class="flex items-start gap-3 text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-0.5 sm:mt-1 shrink-0">location_on</span>
                                 <div><strong class="text-white font-bold">Concentración:</strong> Puente Colgante — 13:00 hs</div>
                             </li>
-                            <li class="flex items-start gap-3 text-body-md text-on-surface">
-                                <span class="material-symbols-outlined text-electric-orange mt-1">hiking</span>
-                                <div><strong class="text-white font-bold">Recorrido:</strong> 9 km en total (Grado de dificultad bajo/moderado, apto para niños y familias)</div>
+                            <li class="flex items-start gap-3 text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-0.5 sm:mt-1 shrink-0">hiking</span>
+                                <div><strong class="text-white font-bold">Recorrido:</strong> 9 km en total (Apto para niños y familias)</div>
                             </li>
-                            <li class="flex items-start gap-3 text-body-md text-on-surface">
-                                <span class="material-symbols-outlined text-electric-orange mt-1">restaurant</span>
+                            <li class="flex items-start gap-3 text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-0.5 sm:mt-1 shrink-0">restaurant</span>
                                 <div><strong class="text-white font-bold">Cierre Especial:</strong> Merienda saludable y charla con San Gonzalez y Rominek en Chacra Los Nogales</div>
                             </li>
                         </ul>
                     </div>
 
                     <!-- CTAs & Share -->
-                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full">
                         <!-- Primary CTA -->
                         <button id="btn-anotarse-evento" 
-                                class="btn-gradient inline-flex items-center gap-2 px-8 py-4 rounded-full font-label-caps text-label-caps text-white font-bold tracking-widest glow-hover transition-all duration-300 hover:-translate-y-1">
+                                class="btn-gradient inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-label-caps text-xs sm:text-label-caps text-white font-bold tracking-widest glow-hover transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto">
                            <span class="material-symbols-outlined">how_to_reg</span> QUIERO ANOTARME &rarr;
                         </button>
 
                         <!-- Share Button -->
                         <button onclick="shareEvent()" 
-                                class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/20 hover:border-electric-orange text-on-surface font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-white/5">
+                                class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-white/20 hover:border-electric-orange text-on-surface font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-white/5 w-full sm:w-auto">
                             <span class="material-symbols-outlined text-electric-orange">share</span> COMPARTIR LINK
                         </button>
 
                         <!-- Extra Info Modal Trigger -->
                         <button id="card-evento-trigger" 
-                                class="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-surface-bright border border-electric-orange/60 hover:border-electric-orange text-electric-orange hover:text-white font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-electric-orange/20 shadow-[0_0_20px_rgba(255,138,0,0.25)] hover:shadow-[0_0_35px_rgba(255,138,0,0.55)] hover:-translate-y-0.5 group">
+                                class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full bg-surface-bright border border-electric-orange/60 hover:border-electric-orange text-electric-orange hover:text-white font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-electric-orange/20 shadow-[0_0_20px_rgba(255,138,0,0.25)] hover:shadow-[0_0_35px_rgba(255,138,0,0.55)] hover:-translate-y-0.5 group w-full sm:w-auto">
                             <span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">info</span> VER DETALLES E ITINERARIO &rarr;
                         </button>
                     </div>
                 </div>
 
                 <!-- Right Visual Column: Afiche Completo Protagonista (5 cols) -->
-                <div class="lg:col-span-5 relative flex items-center justify-center">
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl w-full h-[480px] bg-black/90 flex items-center justify-center p-2">
+                <div class="lg:col-span-5 relative flex items-center justify-center w-full">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl w-full h-[340px] sm:h-[420px] md:h-[480px] bg-black/90 flex items-center justify-center p-2">
                         <img src="public/evento.jpeg" alt="Afiche Oficial Trekking JPS 2026" class="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105">
                     </div>
                 </div>
@@ -1128,24 +1128,24 @@
                 <div>
                     <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Nombre Completo *</label>
                     <input type="text" id="evt-input-nombre" required placeholder="Ej: María Silva" 
-                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-base sm:text-sm">
                 </div>
 
                 <div>
                     <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Teléfono / WhatsApp *</label>
                     <input type="tel" id="evt-input-telefono" required placeholder="Ej: 099 123 456" 
-                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-base sm:text-sm">
                 </div>
 
                 <div>
                     <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Correo Electrónico (Para recibir confirmación) *</label>
                     <input type="email" id="evt-input-email" required placeholder="Ej: tuemail@gmail.com" 
-                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-base sm:text-sm">
                 </div>
 
                 <div>
                     <label class="block font-label-caps text-xs text-on-surface-variant uppercase font-bold mb-1">Cantidad de Acompañantes</label>
-                    <select id="evt-input-personas" class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                    <select id="evt-input-personas" class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-base sm:text-sm">
                         <option value="Solo yo (1 persona)">Solo yo (1 persona)</option>
                         <option value="Voy con 1 acompañante (2 personas)">Voy con 1 acompañante (2 personas)</option>
                         <option value="Voy con 2 acompañantes (3 personas)">Voy con 2 acompañantes (3 personas)</option>
