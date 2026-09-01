@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPS Training — Mockup Evento</title>
+<style>
+  :root{
+    --navy-deep:#0a1830;
+    --navy:#0d2247;
+    --orange:#f47920;
+    --orange-dark:#d9650f;
+    --white:#ffffff;
+    --mist:#aebbce;
+    --font-display: Arial, "Helvetica Neue", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#0a1220;
+    font-family: var(--font-display);
+    color:var(--white);
+  }
+  .note{
+    max-width:760px;
+    margin:28px auto 0;
+    padding:0 20px;
+    color:#7d8aa0;
+    font-size:14px;
+    line-height:1.5;
+  }
+  .note b{color:#cfd8e6;}
+
+  /* ---------- BARRA SUPERIOR (patrón 1, referencia) ---------- */
+  .topbar{
+    background:var(--orange);
+    color:var(--navy-deep);
+    text-align:center;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:.2px;
+    padding:9px 14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .topbar a{
+    color:var(--navy-deep);
+    text-decoration:underline;
+    font-weight:800;
+  }
+
+  /* ---------- SITIO SIMULADO ---------- */
+  .site-shell{max-width:900px;margin:0 auto;}
+  .site-header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 24px;background:var(--navy-deep);
+    border-bottom:1px solid #16294b;
+  }
+  .site-header .logo{font-weight:900;letter-spacing:.5px;}
+  .site-header .logo span{color:var(--orange);}
+  .site-nav{display:flex;gap:18px;font-size:13px;color:var(--mist);}
+
+  /* ---------- SECCIÓN EVENTO (patrón 2, la recomendación principal) ---------- */
+  .event-section{
+    background:linear-gradient(180deg,#0d2247 0%, #0a1830 100%);
+    padding:56px 24px 64px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid #16294b;
+  }
+  .event-section::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 85% 10%, rgba(244,121,32,.16), transparent 45%);
+    pointer-events:none;
+  }
+  .event-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(244,121,32,.12);
+    border:1px solid rgba(244,121,32,.4);
+    color:var(--orange);
+    font-size:12.5px;font-weight:700;
+    padding:6px 12px;border-radius:20px;
+    margin-bottom:18px;
+  }
+  .event-eyebrow::before{content:"●";font-size:9px;color:var(--orange);}
+  .event-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:36px;
+    align-items:center;
+    position:relative;
+  }
+  @media(max-width:720px){ .event-grid{grid-template-columns:1fr;} }
+
+  .event-title{
+    font-size:clamp(28px,4.4vw,42px);
+    font-weight:900;
+    line-height:1.05;
+    margin:0 0 6px;
+  }
+  .event-title em{color:var(--orange);font-style:normal;}
+  .event-sub{
+    color:var(--mist);
+    font-size:16px;
+    margin:0 0 26px;
+    max-width:38ch;
+  }
+  .event-facts{list-style:none;margin:0 0 30px;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .event-facts li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#dbe3ee;}
+  .event-facts b{color:var(--white);}
+  .fact-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--orange);
+    margin-top:7px;flex-shrink:0;
+  }
+  .event-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--orange);color:var(--navy-deep);
+    border:none;padding:14px 24px;border-radius:6px;
+    font-weight:800;font-size:14.5px;cursor:pointer;
+    text-decoration:none;display:inline-block;
+  }
+  .btn-ghost{
+    background:transparent;color:var(--white);
+    border:1px solid rgba(255,255,255,.35);
+    padding:14px 22px;border-radius:6px;
+    font-weight:700;font-size:14.5px;cursor:pointer;
+    text-decoration:none;display:inline-block;
+  }
+
+  .event-visual{
+    position:relative;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(180deg, rgba(10,24,48,0) 40%, rgba(10,24,48,.95) 100%),
+      linear-gradient(160deg,#12305e,#0a1830 70%);
+  }
+  .event-visual .bridge{
+    position:absolute; inset:0;
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.18);
+    font-size:13px;letter-spacing:1px;
+  }
+  .event-visual .visual-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:20px;
+  }
+  .visual-caption .date-badge{
+    display:inline-block;background:var(--orange);color:var(--navy-deep);
+    font-weight:900;font-size:13px;padding:6px 12px;border-radius:5px;
+    margin-bottom:8px;
+  }
+  .visual-caption p{margin:0;font-size:13px;color:var(--mist);}
+
+  /* rellenar el resto de la página simulada */
+  .filler{padding:60px 24px;text-align:center;color:#4c5a72;font-size:13px;}
+
+  /* ---------- MODAL DE ENTRADA (patrón 3) ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(4,9,20,.72);
+    backdrop-filter:blur(3px);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    z-index:999;
+    opacity:0;pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .modal-overlay.show{opacity:1;pointer-events:auto;}
+  .modal-card{
+    width:100%;max-width:380px;
+    background:var(--navy-deep);
+    border:1px solid rgba(244,121,32,.35);
+    border-radius:14px;
+    overflow:hidden;
+    transform:translateY(14px) scale(.97);
+    transition:transform .35s ease;
+    box-shadow:0 30px 70px rgba(0,0,0,.5);
+  }
+  .modal-overlay.show .modal-card{transform:translateY(0) scale(1);}
+  .modal-top{
+    background:linear-gradient(160deg,#123363,#0a1830);
+    padding:26px 22px 20px;
+    position:relative;
+    text-align:center;
+  }
+  .modal-close{
+    position:absolute;top:12px;right:12px;
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(255,255,255,.08);
+    border:none;color:var(--white);
+    font-size:15px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-logo{font-weight:900;font-size:13px;letter-spacing:1px;color:var(--mist);margin-bottom:14px;}
+  .modal-logo span{color:var(--orange);}
+  .modal-top h3{
+    margin:0 0 4px;
+    font-size:23px;font-weight:900;line-height:1.1;
+  }
+  .modal-top h3 em{color:var(--orange);font-style:normal;}
+  .modal-top p{margin:6px 0 0;color:var(--mist);font-size:13.5px;}
+  .modal-body{padding:20px 22px 24px;}
+  .modal-facts{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .modal-facts li{font-size:13.5px;color:#dbe3ee;display:flex;gap:8px;}
+  .modal-facts b{color:var(--white);min-width:88px;display:inline-block;}
+  .modal-actions{display:flex;flex-direction:column;gap:9px;}
+  .modal-actions .btn-primary{width:100%;text-align:center;}
+  .modal-later{
+    background:none;border:none;color:#7d8aa0;
+    font-size:12.5px;text-align:center;padding:6px;cursor:pointer;
+  }
+  .replay-btn{
+    display:block;margin:32px auto 0;
+    background:none;border:1px dashed #33456b;color:#7d8aa0;
+    padding:9px 16px;border-radius:6px;font-size:12.5px;cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    🥾 Trekking JPS Training — Sábado 12 de septiembre · Cupos limitados ·
+    <a href="#evento">Ver detalles</a>
+  </div>
+
+  <div class="site-shell">
+    <div class="site-header">
+      <div class="logo">JPS <span>TRAINING</span></div>
+      <div class="site-nav">Actividades · Staff · Horarios · Planes · Contacto</div>
+    </div>
+
+    <section class="event-section" id="evento">
+      <div class="event-grid">
+        <div>
+          <span class="event-eyebrow">Evento puntual · Sábado 12/9</span>
+          <h2 class="event-title">Trekking JPS Training <em>2026</em></h2>
+          <p class="event-sub">Valle Edén y sus rincones escondidos. Una jornada al aire libre para toda la familia, con charla de nutrición y entrenamiento al final.</p>
+          <ul class="event-facts">
+            <li><span class="fact-dot"></span><span><b>Cuándo:</b> sábado 12 de septiembre</span></li>
+            <li><span class="fact-dot"></span><span><b>Concentración:</b> Puente Colgante — 13:00 hs</span></li>
+            <li><span class="fact-dot"></span><span><b>Recorrido:</b> 9 km, apto para niños</span></li>
+            <li><span class="fact-dot"></span><span><b>Después:</b> charla en Chacra Los Nogales con San Gonzalez y Rominek</span></li>
+          </ul>
+          <div class="event-ctas">
+            <a class="btn-primary" href="#">Quiero anotarme →</a>
+            <a class="btn-ghost" href="#">Más info por WhatsApp</a>
+          </div>
+        </div>
+        <div class="event-visual">
+          <div class="bridge">[ foto del puente colgante ]</div>
+          <div class="visual-caption">
+            <span class="date-badge">12 SEP · 13:00 HS</span>
+            <p>Salida grupal — apto para niños</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="filler">↓ el resto de tu landing sigue igual acá abajo (Modalidades, Staff, Planes, etc.) ↓</div>
+  </div>
+
+  <button class="replay-btn" onclick="showModal()">↻ Volver a ver el modal de entrada</button>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="entryModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <button class="modal-close" onclick="hideModal()">✕</button>
+        <div class="modal-logo">JPS <span>TRAINING</span></div>
+        <h3>Trekking <em>2026</em></h3>
+        <p>Valle Edén y sus rincones escondidos</p>
+      </div>
+      <div class="modal-body">
+        <ul class="modal-facts">
+          <li><b>Fecha</b> Sábado 12 de septiembre</li>
+          <li><b>Encuentro</b> Puente Colgante, 13:00 hs</li>
+          <li><b>Recorrido</b> 9 km · apto para niños</li>
+        </ul>
+        <div class="modal-actions">
+          <a class="btn-primary" href="#">Quiero anotarme</a>
+          <button class="modal-later" onclick="hideModal()">Ver más tarde</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const overlay = document.getElementById('entryModal');
+  function showModal(){ overlay.classList.add('show'); }
+  function hideModal(){ overlay.classList.remove('show'); }
+  // Simula "aparece una vez al entrar, con un pequeño delay"
+  window.addEventListener('load', () => { setTimeout(showModal, 900); });
+</script>
+</body>
+</html>

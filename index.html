@@ -185,12 +185,22 @@
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
 
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<div id="top-event-banner" class="w-full bg-gradient-to-r from-electric-orange via-[#E01E5A] to-electric-orange text-white font-label-caps text-xs py-1.5 px-4 text-center font-bold tracking-wider flex items-center justify-center gap-3 transition-all duration-300 border-b border-white/10">
+    <span class="inline-flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+        🥾 PRÓXIMO EVENTO: Trekking JPS Training 2026 — Sábado 12 de Septiembre
+    </span>
+    <a href="#evento" class="underline hover:text-white/80 transition-colors font-black ml-1">Ver Detalles &rarr;</a>
+</div>
 <div class="flex justify-between items-center px-16 h-20 w-full max-w-7xl mx-auto">
     <a class="font-display-xl text-headline-md italic font-black bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent tracking-tighter hover:scale-105 transition-transform duration-300" href="#">
         JPS TRAINING
     </a>
     <div class="hidden md:flex items-center gap-8">
+        <a class="font-label-caps text-label-caps text-electric-orange font-bold hover:text-white transition-colors flex items-center gap-1" href="#evento">
+            <span class="material-symbols-outlined text-[16px]">event</span> Eventos
+        </a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#entrenamiento">Actividades</a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#staff">Staff</a>
         <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#horarios">Horarios</a>
@@ -441,6 +451,111 @@
         </iframe>
     </div>
 </div>
+</section>
+
+<!-- ═══════════ EVENTOS ESPECIALES ═══════════ -->
+<section id="evento" class="w-full py-20 px-6 relative overflow-hidden bg-surface-dim border-y border-white/5 transition-all duration-700">
+    <!-- Glowing background accents -->
+    <div class="absolute -top-32 right-0 w-96 h-96 bg-electric-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 left-0 w-96 h-96 bg-vibrant-pink/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="section-title mb-10">
+            <div class="inline-flex items-center gap-2 bg-electric-orange/10 border border-electric-orange/40 px-3 py-1 rounded-full text-electric-orange font-label-caps text-xs font-bold uppercase mb-3">
+                <span class="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></span> Evento Especial Puntual
+            </div>
+            <h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg font-black uppercase tracking-tight">
+                <span class="text-white">EVENTOS Y </span><span class="text-electric-orange">ACTIVIDADES AL AIRE LIBRE</span>
+            </h2>
+        </div>
+
+        <!-- Event Card Container -->
+        <div id="event-card-container" class="card-acrylic rounded-2xl overflow-hidden border border-white/10 p-8 md:p-12 relative shadow-2xl transition-all duration-500 hover:border-electric-orange/40">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Details Column (7 cols) -->
+                <div class="lg:col-span-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4 flex-wrap">
+                            <span class="bg-vibrant-pink text-white font-label-caps text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">Trekking & Outdoor</span>
+                            <span class="text-on-surface-variant font-label-caps text-xs flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-electric-orange">calendar_today</span> SÁBADO 12 DE SEPTIEMBRE</span>
+                        </div>
+                        <h3 class="font-display-xl text-headline-md md:text-headline-lg font-black italic text-white uppercase mb-4 leading-tight">
+                            Trekking JPS Training <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">2026</span>
+                        </h3>
+                        <p class="font-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                            Valle Edén y sus rincones escondidos. Una jornada única al aire libre diseñada para toda la familia y socios JPS, que combina senderismo, contacto con la naturaleza y una charla especial sobre nutrición y entrenamiento al finalizar.
+                        </p>
+
+                        <!-- Key Event Facts -->
+                        <ul class="space-y-3 mb-8 border-y border-white/10 py-6">
+                            <li class="flex items-start gap-3 text-body-md text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-1">event</span>
+                                <div><strong class="text-white font-bold">Cuándo:</strong> Sábado 12 de septiembre de 2026</div>
+                            </li>
+                            <li class="flex items-start gap-3 text-body-md text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-1">location_on</span>
+                                <div><strong class="text-white font-bold">Concentración:</strong> Puente Colgante — 13:00 hs</div>
+                            </li>
+                            <li class="flex items-start gap-3 text-body-md text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-1">hiking</span>
+                                <div><strong class="text-white font-bold">Recorrido:</strong> 9 km en total (Grado de dificultad bajo/moderado, apto para niños y familias)</div>
+                            </li>
+                            <li class="flex items-start gap-3 text-body-md text-on-surface">
+                                <span class="material-symbols-outlined text-electric-orange mt-1">restaurant</span>
+                                <div><strong class="text-white font-bold">Cierre Especial:</strong> Merienda saludable y charla con San Gonzalez y Rominek en Chacra Los Nogales</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTAs & Share -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <!-- Primary CTA -->
+                        <button id="btn-anotarse-evento" 
+                                class="btn-gradient inline-flex items-center gap-2 px-8 py-4 rounded-full font-label-caps text-label-caps text-white font-bold tracking-widest glow-hover transition-all duration-300 hover:-translate-y-1">
+                           <span class="material-symbols-outlined">how_to_reg</span> QUIERO ANOTARME &rarr;
+                        </button>
+
+                        <!-- Share Button -->
+                        <button onclick="shareEvent()" 
+                                class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/20 hover:border-electric-orange text-on-surface font-label-caps text-xs font-bold uppercase transition-all duration-300 hover:bg-white/5">
+                            <span class="material-symbols-outlined text-electric-orange">share</span> COMPARTIR LINK
+                        </button>
+
+                        <!-- Extra Info Modal Trigger -->
+                        <button id="card-evento-trigger" 
+                                class="inline-flex items-center gap-1 text-on-surface-variant hover:text-white font-label-caps text-xs underline transition-colors ml-auto md:ml-0">
+                            <span class="material-symbols-outlined text-[18px]">info</span> Detalles completos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Visual Column (5 cols) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" 
+                             style="background-image: url('assets/images/team_banner.jpg');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                        
+                        <!-- Overlay Details Badge -->
+                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-background/80 backdrop-blur-md border border-white/10">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="bg-electric-orange text-white font-label-caps text-[10px] px-2.5 py-1 rounded font-bold uppercase">12 SEP · 13:00 HS</span>
+                                    <h4 class="text-white font-bold text-base mt-2">Salida Grupal Valle Edén</h4>
+                                    <p class="text-on-surface-variant text-xs">Cupos limitados · Apto para familias</p>
+                                </div>
+                                <span class="material-symbols-outlined text-electric-orange text-3xl">nature_people</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- ═══════════ ACTIVIDADES ═══════════ -->
@@ -933,6 +1048,139 @@
             <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="NOELIA LIMA LATORRE"></h3>
             <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-6" data-text="LICENCIADA EN EDUCACIÓN FÍSICA" data-delay="800"></p>
             <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-2xl" data-text="Especialista en entrenamiento GAP (Glúteos, Abdomen y Piernas) y tonificación muscular." data-delay="1500"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Evento Especial -->
+<div id="modal-evento" class="staff-modal">
+    <div class="staff-modal-content group">
+        <div class="modal-bg" style="background-image: url('assets/images/team_banner.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent z-10 rounded-2xl"></div>
+        <span class="close-btn z-50">&times;</span>
+        <div class="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 overflow-y-auto">
+            <h3 class="typewriter-text text-headline-lg-mobile md:text-headline-lg font-display-xl font-black italic text-white uppercase mb-2" data-text="TREKKING JPS 2026"></h3>
+            <p class="typewriter-text font-label-caps text-electric-orange font-bold uppercase tracking-widest mb-4" data-text="VALLE EDÉN Y RINCONES ESCONDIDOS" data-delay="600"></p>
+            <p class="typewriter-text text-body-lg text-on-surface-variant leading-relaxed max-w-3xl mb-4" data-text="Acompañanos a explorar los mejores senderos de Tacuarembó en un día de comunidad, entrenamiento y salud al aire libre." data-delay="1200"></p>
+            
+            <div class="fade-in-block mt-4 border-t border-white/10 pt-4">
+                <h4 class="text-white font-bold mb-2">Recomendaciones & Equipamiento:</h4>
+                <ul class="text-sm text-on-surface-variant space-y-1.5 ml-4 list-disc mb-6">
+                    <li>Calzado cómodo con buen agarre (campeonas de running o botas de trekking).</li>
+                    <li>Ropa deportiva cómoda y liviana + abrigo ligero para la tarde.</li>
+                    <li>Botella de agua personal (mínimo 1.5L) y protección solar.</li>
+                    <li>Ganamos energía en el trayecto y finalizamos con charla nutricional + merienda brindada en Chacra Los Nogales.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-4 items-center">
+                    <button id="btn-modal-anotarse-evento" 
+                            class="btn-gradient inline-flex items-center gap-2 px-6 py-3 rounded-full font-label-caps text-xs text-white font-bold tracking-wider">
+                       <span class="material-symbols-outlined">how_to_reg</span> INSCRIBIRME AHORA &rarr;
+                    </button>
+                    <button onclick="shareEvent()" class="px-5 py-3 rounded-full border border-white/20 hover:border-electric-orange text-white text-xs font-bold font-label-caps">
+                        COMPARTIR EVENTO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Inscripción a Evento con envío de mail -->
+<div id="modal-inscripcion-evento" class="staff-modal">
+    <div class="staff-modal-content max-w-lg h-auto max-h-[90vh] my-auto bg-surface-elevated border border-electric-orange/40 shadow-[0_0_80px_rgba(255,138,0,0.35)] relative overflow-hidden">
+        <span class="close-btn z-50">&times;</span>
+        <div class="relative z-20 p-6 md:p-10 overflow-y-auto">
+            
+            <!-- Header -->
+            <div id="evt-form-header" class="mb-6 border-b border-white/10 pb-4">
+                <span class="bg-electric-orange text-white font-label-caps text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Inscripción Oficial</span>
+                <h3 class="font-display-xl text-headline-md font-black italic text-white uppercase mt-2">
+                    Trekking JPS <span class="bg-gradient-to-r from-electric-orange to-vibrant-pink bg-clip-text text-transparent">2026</span>
+                </h3>
+                <p class="text-xs md:text-sm text-on-surface-variant mt-1">Completa tus datos. Enviaremos la confirmación del evento a tu casilla de correo electrónico y a la administración de JP.</p>
+            </div>
+
+            <!-- Form Body -->
+            <form id="form-inscripcion-evento" class="space-y-4">
+                <div>
+                    <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Nombre Completo *</label>
+                    <input type="text" id="evt-input-nombre" required placeholder="Ej: María Silva" 
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                </div>
+
+                <div>
+                    <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="evt-input-telefono" required placeholder="Ej: 099 123 456" 
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                </div>
+
+                <div>
+                    <label class="block font-label-caps text-xs text-electric-orange uppercase font-bold mb-1">Correo Electrónico (Para recibir confirmación) *</label>
+                    <input type="email" id="evt-input-email" required placeholder="Ej: tuemail@gmail.com" 
+                           class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                </div>
+
+                <div>
+                    <label class="block font-label-caps text-xs text-on-surface-variant uppercase font-bold mb-1">Cantidad de Acompañantes</label>
+                    <select id="evt-input-personas" class="w-full bg-background border border-white/15 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-orange transition-colors text-sm">
+                        <option value="Solo yo (1 persona)">Solo yo (1 persona)</option>
+                        <option value="Voy con 1 acompañante (2 personas)">Voy con 1 acompañante (2 personas)</option>
+                        <option value="Voy con 2 acompañantes (3 personas)">Voy con 2 acompañantes (3 personas)</option>
+                        <option value="Grupo familiar / más de 3 personas">Grupo familiar / más de 3 personas</option>
+                    </select>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="evt-btn-submit" 
+                            class="w-full btn-gradient py-4 rounded-xl font-label-caps text-xs md:text-sm text-white font-bold tracking-wider uppercase glow-hover transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">mark_email_read</span> CONFIRMAR E INSCRIBIRME &rarr;
+                    </button>
+                </div>
+            </form>
+
+            <!-- Render de Confirmación Enviada al Cliente -->
+            <div id="evt-confirmation-render" class="hidden text-center py-4">
+                <div class="w-16 h-16 bg-electric-orange/20 border-2 border-electric-orange rounded-full flex items-center justify-center mx-auto mb-4 text-electric-orange">
+                    <span class="material-symbols-outlined text-3xl">task_alt</span>
+                </div>
+                <h4 class="font-display-xl text-headline-md font-black italic text-white uppercase mb-2">¡Inscripción Registrada!</h4>
+                <p class="text-on-surface-variant text-xs md:text-sm mb-4 leading-relaxed">
+                    Hemos enviado el render de confirmación de tu pase a <strong id="evt-confirmed-email" class="text-electric-orange"></strong> y notificado a la administración de JP Sena.
+                </p>
+                
+                <!-- Ticket confirmation preview box -->
+                <div class="bg-background/90 p-5 rounded-2xl border border-electric-orange/40 text-left text-xs text-on-surface-variant space-y-2.5 mb-6 shadow-inner relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 opacity-10 text-electric-orange font-black text-7xl font-display-xl">JPS</div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span>Participante:</span>
+                        <strong id="evt-confirmed-name" class="text-white font-bold"></strong>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span>Evento:</span>
+                        <strong class="text-white font-bold">Trekking JPS 2026 (Valle Edén)</strong>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span>Fecha & Hora:</span>
+                        <strong class="text-white font-bold">Sábado 12/9 — 13:00 hs</strong>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Estado:</span>
+                        <strong class="text-electric-orange font-bold uppercase">CONFIRMADO ✓ (Mail enviado)</strong>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <a id="evt-whatsapp-direct" href="#" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-3 rounded-xl font-label-caps text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        AVISAR A TAMBIÉN A JP POR WHATSAPP
+                    </a>
+                    <button id="evt-btn-close-final" class="text-xs text-on-surface-variant hover:text-white underline py-1">
+                        Cerrar Ventana
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
