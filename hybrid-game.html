@@ -109,7 +109,7 @@
             50% { box-shadow: 0 0 0 8px rgba(255, 138, 0, 0); }
         }
 
-        /* Leaflet Live Map styles (Burguerama inspired for Modena arrival) */
+        /* Leaflet Live Map styles */
         @keyframes carRadarRing {
             0% { transform: scale(0.6); opacity: 0.95; }
             100% { transform: scale(2.4); opacity: 0; }
@@ -124,35 +124,15 @@
             pointer-events: none;
         }
         @keyframes pinArrivalDrop {
-            0% {
-                transform: translateY(-40px) scale(0.3);
-                opacity: 0;
-            }
-            60% {
-                transform: translateY(0) scale(1.15);
-                opacity: 1;
-            }
-            80% {
-                transform: translateY(-6px) scale(0.95);
-            }
-            100% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translateY(-40px) scale(0.3); opacity: 0; }
+            60% { transform: translateY(0) scale(1.15); opacity: 1; }
+            80% { transform: translateY(-6px) scale(0.95); }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
         }
         @keyframes storeCardPop {
-            0% {
-                transform: translate(-50%, 15px) scale(0.6);
-                opacity: 0;
-            }
-            65% {
-                transform: translate(-50%, -4px) scale(1.05);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, 0) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translate(-50%, 15px) scale(0.6); opacity: 0; }
+            65% { transform: translate(-50%, -4px) scale(1.05); opacity: 1; }
+            100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
         }
         .pin-drop-anim {
             animation: pinArrivalDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -191,10 +171,18 @@
 
         /* Filter chip active style */
         .filter-chip.active {
-            background: linear-gradient(135deg, #FF8A00, #E01E5A);
-            color: #ffffff;
-            border-color: #FF8A00;
+            background: linear-gradient(135deg, #FF8A00, #E01E5A) !important;
+            color: #ffffff !important;
+            border-color: #FF8A00 !important;
             box-shadow: 0 4px 14px rgba(255, 138, 0, 0.35);
+        }
+
+        /* Gym chip active */
+        .gym-chip.active {
+            background: #ffffff !important;
+            color: #0c0c10 !important;
+            border-color: #ffffff !important;
+            font-weight: 800 !important;
         }
     </style>
 </head>
@@ -207,7 +195,7 @@
         <a href="#como-llegar" class="underline hover:opacity-80 transition-opacity ml-1 hidden sm:inline">Cómo llegar &rarr;</a>
     </div>
 
-    <!-- Main Navigation Bar -->
+    <!-- Main Navigation Bar (Refined per user instructions) -->
     <header class="w-full bg-surface-dim/90 backdrop-blur-xl border-b border-white/10 sticky top-[33px] z-40 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
@@ -230,31 +218,32 @@
                 </a>
             </div>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-6 text-xs font-mono font-bold text-on-surface-variant">
-                <a href="#espectadores" class="hover:text-electric-orange transition-colors">Vení a Alentar</a>
-                <a href="#experiencia" class="hover:text-electric-orange transition-colors">Barra Bruma & Comida</a>
-                <a href="#fixture" class="hover:text-electric-orange transition-colors flex items-center gap-1">
-                    <span>Horarios & Parejas</span>
-                    <span class="text-[9px] bg-electric-orange text-white px-1.5 py-0.2 rounded-full">50</span>
+            <!-- Desktop Nav Links (Cleaned: removed 'Vení a Alentar' and 'Barra Bruma', added spotlight to '15 Gimnasios') -->
+            <nav class="hidden md:flex items-center gap-7 text-xs font-mono font-bold text-on-surface-variant">
+                <a href="#gimnasios" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white bg-white/5 px-3 py-1.5 rounded-xl border border-white/10 hover:border-vibrant-yellow">
+                    <span class="material-symbols-outlined text-[16px] text-vibrant-yellow">fitness_center</span>
+                    <span>15 Gimnasios</span>
                 </a>
-                <a href="#atletas" class="hover:text-electric-orange transition-colors">Check-In Atletas</a>
-                <a href="#como-llegar" class="hover:text-electric-orange transition-colors flex items-center gap-1 text-white">
-                    <span class="material-symbols-outlined text-[14px] text-vibrant-pink">near_me</span>
+                <a href="#fixture" class="hover:text-electric-orange transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-electric-orange">format_list_bulleted</span>
+                    <span>Horarios & Parejas</span>
+                    <span class="text-[10px] bg-electric-orange text-white font-mono px-1.5 py-0.2 rounded-full font-black">50</span>
+                </a>
+                <a href="#atletas" class="hover:text-electric-orange transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-emerald-400">badge</span>
+                    <span>Check-In Atletas</span>
+                </a>
+                <a href="#como-llegar" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white">
+                    <span class="material-symbols-outlined text-[16px] text-vibrant-pink">near_me</span>
                     <span>Módena Eventos</span>
                 </a>
             </nav>
 
-            <!-- Actions Right -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <a href="https://maps.app.goo.gl/hSMyVs9ka88JRSyS6" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-bold px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/15 transition-all" title="Abrir ubicación exacta en Google Maps">
-                    <span class="material-symbols-outlined text-[16px] text-red-500">location_on</span>
-                    <span>Abrir Maps</span>
-                </a>
-
+            <!-- Actions Right (Cleaned: removed 'Abrir en Maps' button as requested) -->
+            <div class="flex items-center gap-3">
                 <a href="https://api.whatsapp.com/send?text=%C2%A1Hola!%20Te%20comparto%20la%20p%C3%A1gina%20del%20HYBRID%20GAME%20JPS%20este%20s%C3%A1bado%2021%20de%20Noviembre%20en%20M%C3%B3dena%20Eventos.%20%C2%A1Entrada%20gratis%20para%20alentar,%20Barra%20Bruma%20Beer%20y%2050%20duplas!%20Mir%C3%A1%20horarios%20y%20c%C3%B3mo%20llegar%20ac%C3%A1:%20https://jpstraining.uy/evento.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white shadow-lg shadow-[#25d366]/20 transition-all hover:scale-105" title="Compartir este evento por WhatsApp con amigos">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span class="hidden sm:inline">Invitar Amigos</span>
+                    <span>Invitar Amigos</span>
                 </a>
             </div>
 
@@ -281,11 +270,11 @@
                             <span class="w-2 h-2 rounded-full bg-electric-orange"></span>
                             <span>SÁBADO 21 DE NOVIEMBRE • 11:00 HS</span>
                         </div>
-                        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-mono text-xs font-bold">
+                        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-mono text-xs font-bold">
                             <span class="material-symbols-outlined text-[14px] text-vibrant-pink">location_on</span>
                             <span>MÓDENA EVENTOS, TACUAREMBÓ</span>
                         </div>
-                        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-black tracking-wider">
+                        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-black tracking-wider">
                             <span>🎟️ ESPECTADORES GRATIS</span>
                         </div>
                     </div>
@@ -297,6 +286,24 @@
                             JPS TRAINING
                         </span>
                     </h1>
+
+                    <!-- Participating Gyms Quick Bar in Hero -->
+                    <div class="max-w-2xl mx-auto mb-6 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur">
+                        <span class="font-mono text-[11px] text-vibrant-yellow font-black uppercase tracking-wider block mb-1.5">
+                            🥊 15 GIMNASIOS DEL NORTE URUGUAYO EN COMPETENCIA:
+                        </span>
+                        <div class="flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-mono font-bold text-white/90">
+                            <span class="text-electric-orange font-black">JPS Training</span> • 
+                            <span class="text-blue-400 font-black">Nordic</span> • 
+                            <span class="text-amber-400 font-black">Modo Power</span> • 
+                            <span class="text-emerald-400 font-black">Evolution</span> • 
+                            <span class="text-purple-400 font-black">Enfoque</span> • 
+                            <span class="text-rose-400 font-black">Charlies</span> • 
+                            <span class="text-lime-400 font-black">Strongbike</span> • 
+                            <span class="text-cyan-400 font-black">Polideportivo</span> • 
+                            <span class="text-teal-400 font-black">Híbrido GC</span>
+                        </div>
+                    </div>
 
                     <!-- Lead Paragraph focused on spectators and excitement -->
                     <p class="font-body text-lg sm:text-2xl text-on-surface-variant mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -340,9 +347,9 @@
                             <span class="material-symbols-outlined text-[18px] text-electric-orange">format_list_bulleted</span>
                             <span>Ver Horarios & Duplas</span>
                         </a>
-                        <a href="public/hybrid-game-fixture.pdf" download="Fixture_Hybrid_Game_JPS.pdf" class="card-acrylic hover:bg-white/10 text-on-surface-variant hover:text-white border border-white/10 w-full sm:w-auto px-5 py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all" title="Descargar documento oficial en PDF">
-                            <span class="material-symbols-outlined text-[18px] text-vibrant-yellow">download</span>
-                            <span>Descargar PDF</span>
+                        <a href="#gimnasios" class="card-acrylic hover:bg-white/10 text-white border border-vibrant-yellow/40 w-full sm:w-auto px-6 py-4 rounded-xl font-mono text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                            <span class="material-symbols-outlined text-[18px] text-vibrant-yellow">fitness_center</span>
+                            <span>Gimnasios</span>
                         </a>
                     </div>
 
@@ -365,7 +372,7 @@
                     </div>
 
                     <div class="p-3">
-                        <div class="font-display font-black text-3xl sm:text-4xl text-white">15</div>
+                        <div class="font-display font-black text-3xl sm:text-4xl text-vibrant-yellow">15</div>
                         <div class="font-mono text-xs font-bold text-white uppercase mt-1">Gimnasios Unidos</div>
                         <div class="text-[11px] text-on-surface-variant font-mono">Norte de Uruguay 🇺🇾</div>
                     </div>
@@ -383,12 +390,181 @@
                     </div>
 
                     <div class="col-span-2 md:col-span-1 p-3">
-                        <div class="font-display font-black text-3xl sm:text-4xl text-vibrant-yellow">8+ HS</div>
+                        <div class="font-display font-black text-3xl sm:text-4xl text-white">8+ HS</div>
                         <div class="font-mono text-xs font-bold text-white uppercase mt-1">De Fiesta y Fitness</div>
                         <div class="text-[11px] text-on-surface-variant font-mono">Desde las 11:00 hs</div>
                     </div>
 
                 </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════
+             SECCIÓN DESTACADA: LOS 15 GIMNASIOS PARTICIPANTES
+             (Con máximo destaque visual e interacción directa)
+        ══════════════════════════════════════════════ -->
+        <section id="gimnasios" class="py-16 md:py-24 bg-surface-dim/80 border-b border-white/10 relative overflow-hidden">
+            <!-- Glow background -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-electric-orange/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-vibrant-yellow/15 border border-vibrant-yellow/40 text-vibrant-yellow font-mono text-xs font-black uppercase mb-3">
+                        🏆 UNIÓN DEPORTIVA DEL NORTE URUGUAYO
+                    </div>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-4">
+                        GIMNASIOS <span class="text-electric-orange">PARTICIPANTES</span>
+                    </h2>
+                    <p class="font-body text-base sm:text-lg text-on-surface-variant">
+                        Los boxes y centros de entrenamiento más reconocidos de nuestra región se encuentran en la arena de Módena Eventos. Tocá cualquiera para ver todas sus duplas en competencia:
+                    </p>
+                </div>
+
+                <!-- Featured Gyms Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                    
+                    <!-- 1. JPS TRAINING -->
+                    <div onclick="filterByGym('JPS Training')" class="card-acrylic rounded-2xl p-6 border-2 border-orange-500/50 hover:border-electric-orange shadow-[0_0_25px_rgba(255,138,0,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-orange-950/40 via-surface-elevated to-transparent">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-electric-orange/20 text-electric-orange border border-electric-orange/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                                🏋️‍♂️
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-electric-orange text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
+                                ANFITRIÓN
+                            </span>
+                        </div>
+                        <h3 class="font-display font-black text-2xl text-white uppercase group-hover:text-electric-orange transition-colors">
+                            JPS Training
+                        </h3>
+                        <p class="font-mono text-xs text-orange-300 font-bold mt-1">Sede Organizadora • Tacuarembó</p>
+                        <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="font-mono text-xs text-white/80"><strong class="text-electric-orange font-black text-base">44</strong> Atletas en pista</span>
+                            <span class="text-xs font-mono font-bold text-electric-orange group-hover:underline flex items-center gap-1">
+                                <span>Ver duplas</span> &rarr;
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 2. NORDIC -->
+                    <div onclick="filterByGym('Nordic')" class="card-acrylic rounded-2xl p-6 border-2 border-blue-500/50 hover:border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-blue-950/40 via-surface-elevated to-transparent">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-500/20 text-blue-400 border border-blue-400/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                                ⚡
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
+                                24 ATLETAS
+                            </span>
+                        </div>
+                        <h3 class="font-display font-black text-2xl text-white uppercase group-hover:text-blue-400 transition-colors">
+                            Nordic
+                        </h3>
+                        <p class="font-mono text-xs text-blue-300 font-bold mt-1">Fuerza & Rendimiento • Tacuarembó</p>
+                        <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="font-mono text-xs text-white/80"><strong class="text-blue-400 font-black text-base">12</strong> Heats en competencia</span>
+                            <span class="text-xs font-mono font-bold text-blue-400 group-hover:underline flex items-center gap-1">
+                                <span>Ver duplas</span> &rarr;
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 3. MODO POWER -->
+                    <div onclick="filterByGym('Modo Power')" class="card-acrylic rounded-2xl p-6 border-2 border-amber-500/50 hover:border-vibrant-yellow shadow-[0_0_25px_rgba(245,197,24,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-amber-950/40 via-surface-elevated to-transparent">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-vibrant-yellow/20 text-vibrant-yellow border border-vibrant-yellow/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                                💥
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-vibrant-yellow text-black font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
+                                12 ATLETAS
+                            </span>
+                        </div>
+                        <h3 class="font-display font-black text-2xl text-white uppercase group-hover:text-vibrant-yellow transition-colors">
+                            Modo Power
+                        </h3>
+                        <p class="font-mono text-xs text-amber-300 font-bold mt-1">Potencia Pura • Tacuarembó</p>
+                        <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="font-mono text-xs text-white/80"><strong class="text-vibrant-yellow font-black text-base">6</strong> Duplas confirmadas</span>
+                            <span class="text-xs font-mono font-bold text-vibrant-yellow group-hover:underline flex items-center gap-1">
+                                <span>Ver duplas</span> &rarr;
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 4. EVOLUTION -->
+                    <div onclick="filterByGym('Evolution')" class="card-acrylic rounded-2xl p-5 border border-emerald-500/40 hover:border-emerald-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-emerald-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">🌿</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-emerald-400 transition-colors">Evolution</h4>
+                                <span class="font-mono text-[11px] text-emerald-400 font-bold">4 Atletas • Open & Pro</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Doble representación en categorías clave con altísimo nivel competitivo.</p>
+                    </div>
+
+                    <!-- 5. ENFOQUE -->
+                    <div onclick="filterByGym('Enfoque')" class="card-acrylic rounded-2xl p-5 border border-purple-500/40 hover:border-purple-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-purple-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">🎯</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-purple-400 transition-colors">Enfoque</h4>
+                                <span class="font-mono text-[11px] text-purple-400 font-bold">Dupla Femenina de Élite</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Representadas con gran preparación en Open Women (Hit 11:45).</p>
+                    </div>
+
+                    <!-- 6. STRONGBIKE -->
+                    <div onclick="filterByGym('Strongbike')" class="card-acrylic rounded-2xl p-5 border border-lime-500/40 hover:border-lime-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-lime-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-lime-500/20 text-lime-400 flex items-center justify-center text-xl">🚴</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-lime-400 transition-colors">Strongbike</h4>
+                                <span class="font-mono text-[11px] text-lime-400 font-bold">Dupla Pro Mixto</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Resistencia y capacidad aeróbica al límite en la categoría estelar Pro.</p>
+                    </div>
+
+                    <!-- 7. HÍBRIDO GC -->
+                    <div onclick="filterByGym('Híbrido GC')" class="card-acrylic rounded-2xl p-5 border border-teal-500/40 hover:border-teal-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-teal-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl">🔥</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-teal-400 transition-colors">Híbrido GC</h4>
+                                <span class="font-mono text-[11px] text-teal-400 font-bold">Especialistas en Entrenamiento Funcional</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Presentes en la largada matutina con dupla competitiva en Open Women.</p>
+                    </div>
+
+                    <!-- 8. CHARLIES & POLIDEPORTIVO -->
+                    <div onclick="filterByGym('Charlies')" class="card-acrylic rounded-2xl p-5 border border-rose-500/40 hover:border-rose-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-rose-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl">🥊</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-rose-400 transition-colors">Charlies & Polideportivo</h4>
+                                <span class="font-mono text-[11px] text-rose-400 font-bold">Atletas en Pro Women & Pro Mixto</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Integrando duplas combinadas de alto impacto en las definiciones de la tarde.</p>
+                    </div>
+
+                    <!-- 9. ATLETAS INDEPENDIENTES & INVITADOS -->
+                    <div onclick="resetFilters()" class="card-acrylic rounded-2xl p-5 border border-white/20 hover:border-white/40 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-white/5 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center text-xl">🇺🇾</span>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-electric-orange transition-colors">Duplas Invitadas</h4>
+                                <span class="font-mono text-[11px] text-on-surface-variant font-bold">Comunidad Regional Norte</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Atletas independientes y combinados que completan las 50 duplas oficiales.</p>
+                    </div>
+
+                </div>
+
             </div>
         </section>
 
@@ -530,6 +706,7 @@
 
         <!-- ══════════════════════════════════════════════
              FIXTURE & BUSCADOR INTERACTIVO DE HORARIOS Y DUPLAS
+             (Con Destaque Máximo a Gimnasios)
         ══════════════════════════════════════════════ -->
         <section id="fixture" class="py-16 md:py-24 bg-surface-dim/70 border-y border-white/10 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -565,7 +742,7 @@
                         <input 
                             id="schedule-search" 
                             type="text" 
-                            placeholder="Buscar por nombre de atleta, hit o gimnasio... (Ej: Mónica, Nordic, Modo Power, 14:00)" 
+                            placeholder="Buscar por nombre de atleta, hit o gimnasio... (Ej: Nordic, JPS, Modo Power, Mónica, 14:00)" 
                             class="w-full pl-11 pr-10 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white placeholder-on-surface-variant/60 font-body text-sm focus:outline-none focus:border-electric-orange focus:ring-1 focus:ring-electric-orange transition-all"
                         />
                         <button id="schedule-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface-variant hover:text-white hidden">
@@ -574,28 +751,62 @@
                     </div>
 
                     <!-- Category Pills Filter -->
-                    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-filters">
-                        <button class="filter-chip active px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all" data-category="ALL">
-                            Todos (55 Heats)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN WOMEN">
-                            Open Women (11:00)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MEN">
-                            Open Men (14:00)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MIXTO">
-                            Open Mixto (14:45)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
-                            Pro Women (16:30)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MEN">
-                            Pro Men (16:45)
-                        </button>
-                        <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MIXTO">
-                            Pro Mixto (17:45)
-                        </button>
+                    <div>
+                        <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block mb-1.5">Filtrar por Categoría:</span>
+                        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-filters">
+                            <button class="filter-chip active px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all" data-category="ALL">
+                                Todos (55 Heats)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN WOMEN">
+                                Open Women (11:00)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MEN">
+                                Open Men (14:00)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MIXTO">
+                                Open Mixto (14:45)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
+                                Pro Women (16:30)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MEN">
+                                Pro Men (16:45)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MIXTO">
+                                Pro Mixto (17:45)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Gym Spotlight Filter Pills -->
+                    <div>
+                        <span class="text-[10px] font-mono font-bold text-vibrant-yellow uppercase tracking-wider block mb-1.5">⚡ Filtrar por Gimnasio:</span>
+                        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none" id="gym-filters">
+                            <button onclick="resetFilters()" class="gym-chip active px-3 py-1 rounded-lg border border-white/20 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-white/10 text-white">
+                                Todos los Gimnasios
+                            </button>
+                            <button onclick="filterByGym('JPS Training')" class="gym-chip px-3 py-1 rounded-lg border border-orange-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-orange-950/40 text-orange-400 hover:bg-orange-950/70">
+                                🏋️ JPS Training (44)
+                            </button>
+                            <button onclick="filterByGym('Nordic')" class="gym-chip px-3 py-1 rounded-lg border border-blue-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-blue-950/40 text-blue-400 hover:bg-blue-950/70">
+                                ⚡ Nordic (24)
+                            </button>
+                            <button onclick="filterByGym('Modo Power')" class="gym-chip px-3 py-1 rounded-lg border border-amber-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-amber-950/40 text-amber-400 hover:bg-amber-950/70">
+                                💥 Modo Power (12)
+                            </button>
+                            <button onclick="filterByGym('Evolution')" class="gym-chip px-3 py-1 rounded-lg border border-emerald-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-emerald-950/40 text-emerald-400 hover:bg-emerald-950/70">
+                                🌿 Evolution (4)
+                            </button>
+                            <button onclick="filterByGym('Enfoque')" class="gym-chip px-3 py-1 rounded-lg border border-purple-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-purple-950/40 text-purple-400 hover:bg-purple-950/70">
+                                🎯 Enfoque (2)
+                            </button>
+                            <button onclick="filterByGym('Strongbike')" class="gym-chip px-3 py-1 rounded-lg border border-lime-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-lime-950/40 text-lime-400 hover:bg-lime-950/70">
+                                🚴 Strongbike (2)
+                            </button>
+                            <button onclick="filterByGym('Híbrido GC')" class="gym-chip px-3 py-1 rounded-lg border border-teal-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-teal-950/40 text-teal-400 hover:bg-teal-950/70">
+                                🔥 Híbrido GC (2)
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Quick Counters -->
@@ -832,52 +1043,6 @@
 
 
         <!-- ══════════════════════════════════════════════
-             LOS 15 GIMNASIOS REPRESENTADOS
-        ══════════════════════════════════════════════ -->
-        <section class="py-14 border-t border-white/10 bg-surface-dim/40">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span class="font-mono text-xs font-bold text-electric-orange uppercase tracking-wider block mb-2">UNIÓN DEPORTIVA DEL NORTE</span>
-                <h3 class="font-display font-black text-2xl sm:text-3xl uppercase text-white mb-8">
-                    15 Gimnasios & Equipos Representados
-                </h3>
-
-                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
-                    <span class="px-4 py-2 rounded-xl bg-orange-950/60 border border-orange-500/40 text-orange-400 font-mono text-xs font-bold shadow-sm">
-                        🏋️ JPS Training
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-blue-950/60 border border-blue-500/40 text-blue-400 font-mono text-xs font-bold shadow-sm">
-                        ⚡ Nordic
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-400 font-mono text-xs font-bold shadow-sm">
-                        💥 Modo Power
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-bold shadow-sm">
-                        🌿 Evolution
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-purple-950/60 border border-purple-500/40 text-purple-400 font-mono text-xs font-bold shadow-sm">
-                        🎯 Enfoque
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-400 font-mono text-xs font-bold shadow-sm">
-                        🥊 Charlies
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-lime-950/60 border border-lime-500/40 text-lime-400 font-mono text-xs font-bold shadow-sm">
-                        🚴 Strongbike
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-sky-950/60 border border-sky-500/40 text-sky-400 font-mono text-xs font-bold shadow-sm">
-                        🏟️ Polideportivo
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-teal-950/60 border border-teal-500/40 text-teal-400 font-mono text-xs font-bold shadow-sm">
-                        🔥 Híbrido GC
-                    </span>
-                    <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-on-surface-variant font-mono text-xs font-bold">
-                        🇺🇾 Duplas Invitadas & Afiliadas
-                    </span>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ══════════════════════════════════════════════
              PREGUNTAS FRECUENTES PARA ESPECTADORES
         ══════════════════════════════════════════════ -->
         <section class="py-16 border-t border-white/10 relative">
@@ -954,6 +1119,8 @@
             <div class="flex items-center gap-4">
                 <a href="index.html" class="hover:text-white transition-colors">Inicio JPS</a>
                 <span>•</span>
+                <a href="#gimnasios" class="hover:text-white transition-colors">15 Gimnasios</a>
+                <span>•</span>
                 <a href="#fixture" class="hover:text-white transition-colors">Cronograma</a>
                 <span>•</span>
                 <a href="#como-llegar" class="hover:text-white transition-colors">Cómo Llegar</a>
@@ -970,6 +1137,29 @@
 
         </div>
     </footer>
+
+
+    <!-- Mobile Floating Action Bar (Sticky at bottom on small screens) -->
+    <div class="fixed bottom-3 left-3 right-3 z-40 md:hidden">
+        <div class="bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-2xl flex items-center justify-around gap-2">
+            <a href="#gimnasios" class="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-white/10 text-vibrant-yellow text-[10px] font-mono font-bold">
+                <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                <span>Gimnasios</span>
+            </a>
+            <a href="#como-llegar" class="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-electric-orange text-white text-[10px] font-mono font-bold shadow-lg">
+                <span class="material-symbols-outlined text-[18px]">directions_car</span>
+                <span>Cómo Llegar</span>
+            </a>
+            <a href="#fixture" class="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-white/10 text-white text-[10px] font-mono font-bold">
+                <span class="material-symbols-outlined text-[18px] text-vibrant-yellow">schedule</span>
+                <span>Horarios</span>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=%C2%A1Hola!%20Te%20comparto%20la%20p%C3%A1gina%20del%20HYBRID%20GAME%20JPS%20este%20s%C3%A1bado%2021%20de%20Noviembre%20en%20M%C3%B3dena%20Eventos.%20%C2%A1Entrada%20gratis%20para%20alentar,%20Barra%20Bruma%20Beer%20y%2050%20duplas!%20Mir%C3%A1%20horarios%20y%20c%C3%B3mo%20llegar%20ac%C3%A1:%20https://jpstraining.uy/evento.html" target="_blank" rel="noopener noreferrer" class="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-[#25D366] text-white text-[10px] font-mono font-bold shadow-lg">
+                <span class="material-symbols-outlined text-[18px]">share</span>
+                <span>Invitar</span>
+            </a>
+        </div>
+    </div>
 
 
     <!-- ══════════════════════════════════════════════
@@ -1040,18 +1230,33 @@
         let currentCategory = 'ALL';
         let currentSearchQuery = '';
 
+        // Highlight Gym styling with high visual impact
         function getGymBadgeClass(gymName) {
             const g = (gymName || '').toLowerCase();
-            if (g.includes('jps')) return 'bg-orange-950/60 text-orange-400 border-orange-500/40';
-            if (g.includes('nordic')) return 'bg-blue-950/60 text-blue-400 border-blue-500/40';
-            if (g.includes('modo power')) return 'bg-amber-950/60 text-amber-400 border-amber-500/40';
-            if (g.includes('evolution')) return 'bg-emerald-950/60 text-emerald-400 border-emerald-500/40';
-            if (g.includes('enfoque')) return 'bg-purple-950/60 text-purple-400 border-purple-500/40';
-            if (g.includes('charlies')) return 'bg-rose-950/60 text-rose-400 border-rose-500/40';
-            if (g.includes('strongbike')) return 'bg-lime-950/60 text-lime-400 border-lime-500/40';
-            if (g.includes('polideportivo')) return 'bg-sky-950/60 text-sky-400 border-sky-500/40';
-            if (g.includes('híbrido')) return 'bg-teal-950/60 text-teal-400 border-teal-500/40';
-            return 'bg-white/5 text-on-surface-variant border-white/10';
+            if (g.includes('jps')) return 'bg-orange-500/20 text-electric-orange border-electric-orange/60 shadow-[0_0_12px_rgba(255,138,0,0.25)]';
+            if (g.includes('nordic')) return 'bg-blue-500/20 text-blue-400 border-blue-400/60 shadow-[0_0_12px_rgba(96,165,250,0.25)]';
+            if (g.includes('modo power')) return 'bg-amber-500/20 text-vibrant-yellow border-vibrant-yellow/60 shadow-[0_0_12px_rgba(245,197,24,0.25)]';
+            if (g.includes('evolution')) return 'bg-emerald-500/20 text-emerald-400 border-emerald-400/60 shadow-[0_0_12px_rgba(52,211,153,0.25)]';
+            if (g.includes('enfoque')) return 'bg-purple-500/20 text-purple-400 border-purple-400/60 shadow-[0_0_12px_rgba(192,132,252,0.25)]';
+            if (g.includes('charlies')) return 'bg-rose-500/20 text-rose-400 border-rose-400/60 shadow-[0_0_12px_rgba(251,113,133,0.25)]';
+            if (g.includes('strongbike')) return 'bg-lime-500/20 text-lime-400 border-lime-400/60 shadow-[0_0_12px_rgba(163,230,53,0.25)]';
+            if (g.includes('polideportivo')) return 'bg-cyan-500/20 text-cyan-400 border-cyan-400/60 shadow-[0_0_12px_rgba(34,211,238,0.25)]';
+            if (g.includes('híbrido')) return 'bg-teal-500/20 text-teal-400 border-teal-400/60 shadow-[0_0_12px_rgba(45,212,191,0.25)]';
+            return 'bg-white/10 text-white/80 border-white/20';
+        }
+
+        function getGymIcon(gymName) {
+            const g = (gymName || '').toLowerCase();
+            if (g.includes('jps')) return '🏋️‍♂️ ';
+            if (g.includes('nordic')) return '⚡ ';
+            if (g.includes('modo power')) return '💥 ';
+            if (g.includes('evolution')) return '🌿 ';
+            if (g.includes('enfoque')) return '🎯 ';
+            if (g.includes('charlies')) return '🥊 ';
+            if (g.includes('strongbike')) return '🚴 ';
+            if (g.includes('polideportivo')) return '🏟️ ';
+            if (g.includes('híbrido')) return '🔥 ';
+            return '🇺🇾 ';
         }
 
         function renderSchedule() {
@@ -1119,9 +1324,11 @@
 
                 const g1Class = getGymBadgeClass(item.g1);
                 const g2Class = getGymBadgeClass(item.g2);
+                const g1Icon = getGymIcon(item.g1);
+                const g2Icon = getGymIcon(item.g2);
 
                 return `
-                    <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-electric-orange/50 transition-all flex flex-col justify-between group">
+                    <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-electric-orange/50 transition-all flex flex-col justify-between group shadow-lg">
                         <div>
                             <!-- Header with Time & Category -->
                             <div class="flex items-center justify-between gap-2 mb-3">
@@ -1133,48 +1340,48 @@
                                         Hit #${item.hit}
                                     </span>
                                 </div>
-                                <span class="font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-white/5 text-on-surface-variant border border-white/10">
+                                <span class="font-mono text-[10px] font-black uppercase px-2.5 py-1 rounded-md bg-white/5 text-white/90 border border-white/15">
                                     ${item.category}
                                 </span>
                             </div>
 
-                            <!-- Dupla Athletes -->
+                            <!-- Dupla Athletes with High-Prominence Gym Badges -->
                             <div class="space-y-2.5 my-3">
                                 <!-- Athlete 1 -->
-                                <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex items-center justify-between gap-2">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="w-5 h-5 rounded-full bg-electric-orange/20 text-electric-orange flex items-center justify-center text-[10px] font-mono font-bold shrink-0">1</span>
-                                        <span class="font-display font-bold text-xs sm:text-sm text-white truncate" title="${item.p1}">
+                                <div class="bg-black/55 p-3 rounded-xl border border-white/10 flex items-center justify-between gap-2.5">
+                                    <div class="flex items-center gap-2.5 min-w-0">
+                                        <span class="w-6 h-6 rounded-full bg-electric-orange/20 text-electric-orange flex items-center justify-center text-xs font-mono font-bold shrink-0">1</span>
+                                        <span class="font-display font-bold text-sm text-white truncate" title="${item.p1}">
                                             ${item.p1}
                                         </span>
                                     </div>
-                                    <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${g1Class}">
-                                        ${item.g1 || 'Independiente'}
+                                    <span class="font-mono text-xs font-black px-2.5 py-1 rounded-lg border shrink-0 tracking-wider uppercase ${g1Class}" title="Gimnasio del participante">
+                                        ${g1Icon}${item.g1 || 'Independiente'}
                                     </span>
                                 </div>
 
                                 <!-- Athlete 2 -->
-                                <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex items-center justify-between gap-2">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="w-5 h-5 rounded-full bg-vibrant-pink/20 text-vibrant-pink flex items-center justify-center text-[10px] font-mono font-bold shrink-0">2</span>
-                                        <span class="font-display font-bold text-xs sm:text-sm text-white truncate" title="${item.p2}">
+                                <div class="bg-black/55 p-3 rounded-xl border border-white/10 flex items-center justify-between gap-2.5">
+                                    <div class="flex items-center gap-2.5 min-w-0">
+                                        <span class="w-6 h-6 rounded-full bg-vibrant-pink/20 text-vibrant-pink flex items-center justify-center text-xs font-mono font-bold shrink-0">2</span>
+                                        <span class="font-display font-bold text-sm text-white truncate" title="${item.p2}">
                                             ${item.p2}
                                         </span>
                                     </div>
-                                    <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${g2Class}">
-                                        ${item.g2 || 'Independiente'}
+                                    <span class="font-mono text-xs font-black px-2.5 py-1 rounded-lg border shrink-0 tracking-wider uppercase ${g2Class}" title="Gimnasio del participante">
+                                        ${g2Icon}${item.g2 || 'Independiente'}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card Footer with Check-in Alert -->
-                        <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-on-surface-variant">
-                            <span class="flex items-center gap-1 text-electric-orange/90">
-                                <span class="material-symbols-outlined text-[13px]">alarm</span>
+                        <div class="pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-on-surface-variant">
+                            <span class="flex items-center gap-1 text-electric-orange font-bold">
+                                <span class="material-symbols-outlined text-[14px]">alarm</span>
                                 <span>Check-in 30m antes</span>
                             </span>
-                            <span class="text-white/60">Largada asignada</span>
+                            <span class="text-white/60">Largada en Módena</span>
                         </div>
                     </div>
                 `;
@@ -1213,14 +1420,46 @@
             });
         }
 
+        function filterByGym(gymName) {
+            const searchInput = document.getElementById('schedule-search');
+            const clearBtn = document.getElementById('schedule-clear');
+            searchInput.value = gymName;
+            currentSearchQuery = gymName;
+            clearBtn.classList.remove('hidden');
+
+            // Highlight gym chip
+            const gymChips = document.querySelectorAll('#gym-filters button');
+            gymChips.forEach(btn => {
+                if (btn.textContent.includes(gymName)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            renderSchedule();
+
+            // Smooth scroll to fixture
+            const fixtureSec = document.getElementById('fixture');
+            if (fixtureSec) {
+                fixtureSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         function resetFilters() {
             currentCategory = 'ALL';
             currentSearchQuery = '';
             document.getElementById('schedule-search').value = '';
             document.getElementById('schedule-clear').classList.add('hidden');
+            
             const chips = document.querySelectorAll('#category-filters button');
             chips.forEach(c => c.classList.remove('active'));
             if (chips[0]) chips[0].classList.add('active');
+
+            const gymChips = document.querySelectorAll('#gym-filters button');
+            gymChips.forEach(c => c.classList.remove('active'));
+            if (gymChips[0]) gymChips[0].classList.add('active');
+
             renderSchedule();
         }
 
@@ -1323,7 +1562,7 @@
             });
         }
 
-        // Street Entrance waypoint marker (la entrada sobre la calle)
+        // Street Entrance waypoint marker
         function createEntranceIcon() {
             return L.divIcon({
                 className: 'custom-leaflet-marker',
@@ -1463,7 +1702,7 @@
                 zIndexOffset: 800,
             }).addTo(map);
 
-            // Street entrance helper marker (sobre la calle donde gira hacia el predio)
+            // Street entrance helper marker
             L.marker([-31.735504, -56.018274], {
                 icon: createEntranceIcon(),
                 zIndexOffset: 700,
@@ -1615,24 +1854,6 @@
             initLiveMap();
         });
     </script>
-
-    <!-- Mobile Floating Action Bar (Sticky at bottom on small screens) -->
-    <div class="fixed bottom-3 left-3 right-3 z-40 md:hidden">
-        <div class="bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-2xl flex items-center justify-around gap-2">
-            <a href="#como-llegar" class="flex-1 flex flex-col items-center justify-center py-2 px-2 rounded-xl bg-electric-orange text-white text-[11px] font-mono font-bold shadow-lg">
-                <span class="material-symbols-outlined text-[18px]">directions_car</span>
-                <span>Cómo Llegar</span>
-            </a>
-            <a href="#fixture" class="flex-1 flex flex-col items-center justify-center py-2 px-2 rounded-xl bg-white/10 text-white text-[11px] font-mono font-bold">
-                <span class="material-symbols-outlined text-[18px] text-vibrant-yellow">schedule</span>
-                <span>Horarios</span>
-            </a>
-            <a href="https://api.whatsapp.com/send?text=%C2%A1Hola!%20Te%20comparto%20la%20p%C3%A1gina%20del%20HYBRID%20GAME%20JPS%20este%20s%C3%A1bado%2021%20de%20Noviembre%20en%20M%C3%B3dena%20Eventos.%20%C2%A1Entrada%20gratis%20para%20alentar,%20Barra%20Bruma%20Beer%20y%2050%20duplas!%20Mir%C3%A1%20horarios%20y%20c%C3%B3mo%20llegar%20ac%C3%A1:%20https://jpstraining.uy/evento.html" target="_blank" rel="noopener noreferrer" class="flex-1 flex flex-col items-center justify-center py-2 px-2 rounded-xl bg-[#25D366] text-white text-[11px] font-mono font-bold shadow-lg">
-                <span class="material-symbols-outlined text-[18px]">share</span>
-                <span>Invitar</span>
-            </a>
-        </div>
-    </div>
 
 </body>
 </html>
