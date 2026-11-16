@@ -576,7 +576,7 @@ Equipo JPS Training`;
 
     // --- Sistema de Eventos Especiales Compartibles & Deep Linking ---
     window.shareEvent = function() {
-        const shareUrl = window.location.origin + window.location.pathname + '#evento';
+        const shareUrl = window.location.origin + '/evento.html';
         const shareData = {
             title: 'Trekking JPS Training 2026',
             text: '¡Acompáñanos al Trekking JPS Training en Valle Edén el próximo 12 de septiembre! Entrá al enlace para ver los detalles e inscribirte:',
@@ -616,7 +616,7 @@ Equipo JPS Training`;
     checkEventDeepLink();
 
     // --- Sistema de Baja Automática de Eventos Expirados ---
-    const EVENT_EXPIRATION_DATE = new Date('2026-09-12T23:59:59'); // Evento Trekking: 12 de septiembre
+    const EVENT_EXPIRATION_DATE = new Date('2026-11-21T23:59:59'); // Evento Hybrid Game: 21 de noviembre
 
     function checkEventExpiration() {
         const currentDate = new Date();
