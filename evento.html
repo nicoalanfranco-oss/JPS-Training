@@ -184,6 +184,69 @@
             border-color: #ffffff !important;
             font-weight: 800 !important;
         }
+    
+        /* Power Logo Energy Animations */
+        @keyframes logoEnergyPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 138, 0, 0.7)) 
+                        drop-shadow(0 0 45px rgba(255, 138, 0, 0.4)) 
+                        drop-shadow(0 0 70px rgba(224, 30, 90, 0.35));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 35px rgba(255, 138, 0, 0.95)) 
+                        drop-shadow(0 0 65px rgba(245, 197, 24, 0.75)) 
+                        drop-shadow(0 0 100px rgba(224, 30, 90, 0.6));
+            }
+        }
+
+        @keyframes neonWedgePulse {
+            0%, 100% {
+                opacity: 0.75;
+                stroke: #FF8A00;
+                filter: drop-shadow(0 0 8px #FF8A00) drop-shadow(0 0 20px #FF8A00);
+                stroke-dashoffset: 0;
+            }
+            50% {
+                opacity: 1;
+                stroke: #F5C518;
+                filter: drop-shadow(0 0 18px #F5C518) drop-shadow(0 0 35px #FF8A00);
+                stroke-dashoffset: -30;
+            }
+        }
+
+        @keyframes energyRingExpand {
+            0% {
+                transform: scale(0.65);
+                opacity: 0.85;
+            }
+            60% {
+                opacity: 0.35;
+            }
+            100% {
+                transform: scale(1.45);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shineBeam {
+            0% { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            50% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+            100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+        }
+
+        @keyframes floatLogoGently {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .neon-wedge-anim {
+            stroke-dasharray: 600;
+            animation: neonWedgePulse 3s ease-in-out infinite;
+        }
+
     </style>
 </head>
 <body class="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-electric-orange selection:text-white">
@@ -279,13 +342,76 @@
                         </div>
                     </div>
 
-                    <!-- Main Event Title -->
-                    <h1 class="font-display font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-white uppercase italic leading-none mb-6">
-                        HYBRID <span class="bg-gradient-to-r from-electric-orange via-vibrant-yellow to-vibrant-pink bg-clip-text text-transparent">GAME</span>
-                        <span class="block text-3xl sm:text-4xl lg:text-5xl tracking-widest text-on-surface-variant font-mono not-italic mt-2">
-                            JPS TRAINING
-                        </span>
-                    </h1>
+                    <!-- Main Event Title with Power Animated Logo -->
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <h1 class="font-display font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-white uppercase italic leading-none mb-1 text-center">
+                            HYBRID <span class="bg-gradient-to-r from-electric-orange via-vibrant-yellow to-vibrant-pink bg-clip-text text-transparent">GAME</span>
+                        </h1>
+
+                        <!-- POWER ANIMATED JPS LOGO (Animación con energía, gráfico ascendente de neón y pulso eléctrico) -->
+                        <div class="relative inline-flex flex-col items-center justify-center my-5 group select-none">
+                            
+                            <!-- Outer Shockwave Energy Rings (Ondas expansivas de poder) -->
+                            <div class="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border-2 border-electric-orange/40 animate-[energyRingExpand_3s_ease-out_infinite] pointer-events-none"></div>
+                            <div class="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border border-vibrant-pink/40 animate-[energyRingExpand_3s_ease-out_1.5s_infinite] pointer-events-none"></div>
+
+                            <!-- Radiant Ambient Core Glow (Aura de energía eléctrica) -->
+                            <div class="absolute w-44 h-44 sm:w-60 sm:h-60 rounded-full bg-gradient-to-r from-electric-orange/40 via-vibrant-yellow/30 to-vibrant-pink/40 blur-3xl animate-pulse pointer-events-none"></div>
+
+                            <!-- Power Logo Container with Floating Surge & SVG Neon Wedge -->
+                            <div class="relative z-10 flex items-center justify-center animate-[floatLogoGently_4s_ease-in-out_infinite]">
+                                
+                                <!-- Background Neon Geometric Wedge (Electric Heartbeat Graph inspirado en la referencia) -->
+                                <svg class="absolute -inset-8 sm:-inset-12 w-[145%] h-[145%] pointer-events-none z-0" viewBox="0 0 320 200" fill="none">
+                                    <defs>
+                                        <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+                                            <feGaussianBlur stdDeviation="5" result="blur1" />
+                                            <feGaussianBlur stdDeviation="12" result="blur2" />
+                                            <feMerge>
+                                                <feMergeNode in="blur2" />
+                                                <feMergeNode in="blur1" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                        <linearGradient id="wedgeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#FF8A00" stop-opacity="0.12" />
+                                            <stop offset="60%" stop-color="#FF8A00" stop-opacity="0.38" />
+                                            <stop offset="100%" stop-color="#F5C518" stop-opacity="0.85" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Neon Energy Wedge Path (Trazado ascendente con brillo de neón) -->
+                                    <polygon points="30,160 110,160 155,142 195,160 290,25 245,160" fill="url(#wedgeGrad)" />
+                                    <polyline points="30,160 110,160 155,142 195,160 290,25 245,160 30,160" 
+                                              stroke="#FF8A00" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
+                                              filter="url(#neon-glow)" class="neon-wedge-anim" />
+                                </svg>
+
+                                <!-- Official Logo Medallion with Power Surge & Light Reflections -->
+                                <div class="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full p-1.5 overflow-hidden flex items-center justify-center bg-gradient-to-tr from-electric-orange via-vibrant-yellow to-vibrant-pink shadow-[0_0_40px_rgba(255,138,0,0.65)] animate-[logoEnergyPulse_2.8s_ease-in-out_infinite]">
+                                    
+                                    <!-- Inner dark base -->
+                                    <div class="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-[#0d0d14] border-2 border-white/20">
+                                        <img src="public/jps-official-logo.png" alt="JPS Training Logo Oficial" class="w-full h-full object-cover select-none transform group-hover:scale-110 transition-transform duration-700" />
+                                        
+                                        <!-- Laser Sweep Beam across Logo -->
+                                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full animate-[shineBeam_3.5s_cubic-bezier(0.4,0,0.2,1)_infinite] pointer-events-none"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Energetic Neon Training Badge Underneath -->
+                            <div class="relative z-10 mt-3 flex items-center gap-3">
+                                <span class="h-0.5 w-8 sm:w-14 bg-gradient-to-r from-transparent to-electric-orange"></span>
+                                <span class="font-display font-black text-sm sm:text-base tracking-[0.3em] text-white uppercase drop-shadow-[0_0_12px_rgba(255,138,0,0.9)]">
+                                    JPS TRAINING
+                                </span>
+                                <span class="h-0.5 w-8 sm:w-14 bg-gradient-to-l from-transparent to-electric-orange"></span>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <!-- Participating Gyms Quick Bar in Hero -->
                     <div class="max-w-2xl mx-auto mb-6 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur">
