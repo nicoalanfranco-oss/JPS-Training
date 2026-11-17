@@ -321,23 +321,31 @@
             </div>
 
             <!-- Desktop Nav Links (Cleaned: removed 'Vení a Alentar' and 'Barra Bruma', added spotlight to '15 Gimnasios') -->
-            <nav class="hidden md:flex items-center gap-7 text-xs font-mono font-bold text-on-surface-variant">
-                <a href="#gimnasios" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white bg-white/5 px-3 py-1.5 rounded-xl border border-white/10 hover:border-vibrant-yellow">
-                    <span class="material-symbols-outlined text-[16px] text-vibrant-yellow">fitness_center</span>
-                    <span>15 Gimnasios</span>
+            <nav class="hidden md:flex items-center gap-6 text-xs font-mono font-bold text-on-surface-variant">
+                <a href="#gimnasios" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/10 hover:border-vibrant-yellow">
+                    <span class="material-symbols-outlined text-[15px] text-vibrant-yellow">fitness_center</span>
+                    <span>Gimnasios</span>
+                </a>
+                <a href="#pesos" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white">
+                    <span class="material-symbols-outlined text-[15px] text-electric-orange">weight</span>
+                    <span>Pesos Oficiales</span>
                 </a>
                 <a href="#fixture" class="hover:text-electric-orange transition-colors flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-[16px] text-electric-orange">format_list_bulleted</span>
+                    <span class="material-symbols-outlined text-[15px] text-vibrant-yellow">format_list_bulleted</span>
                     <span>Horarios & Parejas</span>
-                    <span class="text-[10px] bg-electric-orange text-white font-mono px-1.5 py-0.2 rounded-full font-black">50</span>
+                    <span class="text-[10px] bg-electric-orange text-white font-mono px-1.5 py-0.2 rounded-full font-black">55</span>
+                </a>
+                <a href="#fotos" class="hover:text-electric-orange transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] text-vibrant-pink">photo_camera</span>
+                    <span>Nanito Fotos</span>
                 </a>
                 <a href="#atletas" class="hover:text-electric-orange transition-colors flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-[16px] text-emerald-400">badge</span>
-                    <span>Check-In Atletas</span>
+                    <span class="material-symbols-outlined text-[15px] text-emerald-400">badge</span>
+                    <span>Check-In</span>
                 </a>
                 <a href="#como-llegar" class="hover:text-electric-orange transition-colors flex items-center gap-1.5 text-white">
-                    <span class="material-symbols-outlined text-[16px] text-vibrant-pink">near_me</span>
-                    <span>Módena Eventos</span>
+                    <span class="material-symbols-outlined text-[15px] text-vibrant-pink">near_me</span>
+                    <span>Módena</span>
                 </a>
             </nav>
 
@@ -531,6 +539,10 @@
              SECCIÓN DESTACADA: LOS 15 GIMNASIOS PARTICIPANTES
              (Con máximo destaque visual e interacción directa)
         ══════════════════════════════════════════════ -->
+                <!-- ══════════════════════════════════════════════
+             SECCIÓN DESTACADA: LOS GIMNASIOS PARTICIPANTES
+             (Con logos oficiales auténticos e interacción directa)
+        ══════════════════════════════════════════════ -->
         <section id="gimnasios" class="py-16 md:py-24 bg-surface-dim/80 border-b border-white/10 relative overflow-hidden">
             <!-- Glow background -->
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-electric-orange/10 rounded-full blur-[140px] pointer-events-none"></div>
@@ -545,7 +557,7 @@
                         GIMNASIOS <span class="text-electric-orange">PARTICIPANTES</span>
                     </h2>
                     <p class="font-body text-base sm:text-lg text-on-surface-variant">
-                        Los boxes y centros de entrenamiento más reconocidos de nuestra región se encuentran en la arena de Módena Eventos. Tocá cualquiera para ver todas sus duplas en competencia:
+                        Los boxes y centros de entrenamiento más reconocidos de nuestra región se encuentran en la arena de Módena Eventos. Tocá cualquiera para filtrar y ver todas sus duplas en competencia:
                     </p>
                 </div>
 
@@ -555,8 +567,8 @@
                     <!-- 1. JPS TRAINING -->
                     <div onclick="filterByGym('JPS Training')" class="card-acrylic rounded-2xl p-6 border-2 border-orange-500/50 hover:border-electric-orange shadow-[0_0_25px_rgba(255,138,0,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-orange-950/40 via-surface-elevated to-transparent">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="w-14 h-14 rounded-2xl bg-electric-orange/20 text-electric-orange border border-electric-orange/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
-                                🏋️‍♂️
+                            <div class="w-16 h-16 rounded-2xl bg-black/60 border border-electric-orange/50 p-1.5 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-110 transition-transform shadow-md">
+                                <img src="public/logos/jps-training.png" alt="JPS Training Logo Oficial" class="w-full h-full object-contain rounded-xl"/>
                             </div>
                             <span class="px-3 py-1 rounded-full bg-electric-orange text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
                                 ANFITRIÓN
@@ -567,7 +579,7 @@
                         </h3>
                         <p class="font-mono text-xs text-orange-300 font-bold mt-1">Sede Organizadora • Tacuarembó</p>
                         <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                            <span class="font-mono text-xs text-white/80"><strong class="text-electric-orange font-black text-base">44</strong> Atletas en pista</span>
+                            <span class="font-mono text-xs text-white/80"><strong class="text-electric-orange font-black text-base">43</strong> Atletas en pista</span>
                             <span class="text-xs font-mono font-bold text-electric-orange group-hover:underline flex items-center gap-1">
                                 <span>Ver duplas</span> &rarr;
                             </span>
@@ -577,11 +589,11 @@
                     <!-- 2. NORDIC -->
                     <div onclick="filterByGym('Nordic')" class="card-acrylic rounded-2xl p-6 border-2 border-blue-500/50 hover:border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-blue-950/40 via-surface-elevated to-transparent">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-500/20 text-blue-400 border border-blue-400/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
-                                ⚡
+                            <div class="w-16 h-16 rounded-2xl bg-black/60 border border-blue-400/50 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-110 transition-transform shadow-md">
+                                <img src="public/logos/nordic.jpg" alt="Nordic Logo Oficial" class="w-full h-full object-cover rounded-xl"/>
                             </div>
                             <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
-                                24 ATLETAS
+                                28 ATLETAS
                             </span>
                         </div>
                         <h3 class="font-display font-black text-2xl text-white uppercase group-hover:text-blue-400 transition-colors">
@@ -589,7 +601,7 @@
                         </h3>
                         <p class="font-mono text-xs text-blue-300 font-bold mt-1">Fuerza & Rendimiento • Tacuarembó</p>
                         <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                            <span class="font-mono text-xs text-white/80"><strong class="text-blue-400 font-black text-base">12</strong> Heats en competencia</span>
+                            <span class="font-mono text-xs text-white/80"><strong class="text-blue-400 font-black text-base">15</strong> Heats en competencia</span>
                             <span class="text-xs font-mono font-bold text-blue-400 group-hover:underline flex items-center gap-1">
                                 <span>Ver duplas</span> &rarr;
                             </span>
@@ -599,8 +611,8 @@
                     <!-- 3. MODO POWER -->
                     <div onclick="filterByGym('Modo Power')" class="card-acrylic rounded-2xl p-6 border-2 border-amber-500/50 hover:border-vibrant-yellow shadow-[0_0_25px_rgba(245,197,24,0.2)] hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-amber-950/40 via-surface-elevated to-transparent">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="w-14 h-14 rounded-2xl bg-vibrant-yellow/20 text-vibrant-yellow border border-vibrant-yellow/40 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
-                                💥
+                            <div class="w-16 h-16 rounded-2xl bg-black/60 border border-vibrant-yellow/50 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-110 transition-transform shadow-md">
+                                <img src="public/logos/modo-power.jpg" alt="Modo Power Logo Oficial" class="w-full h-full object-cover rounded-xl"/>
                             </div>
                             <span class="px-3 py-1 rounded-full bg-vibrant-yellow text-black font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
                                 12 ATLETAS
@@ -620,8 +632,10 @@
 
                     <!-- 4. EVOLUTION -->
                     <div onclick="filterByGym('Evolution')" class="card-acrylic rounded-2xl p-5 border border-emerald-500/40 hover:border-emerald-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-emerald-950/30 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">🌿</span>
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-emerald-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/evolution.png" alt="Evolution Logo Oficial" class="w-10 h-10 object-contain rounded-lg"/>
+                            </div>
                             <div>
                                 <h4 class="font-display font-black text-lg text-white group-hover:text-emerald-400 transition-colors">Evolution</h4>
                                 <span class="font-mono text-[11px] text-emerald-400 font-bold">4 Atletas • Open & Pro</span>
@@ -632,68 +646,251 @@
 
                     <!-- 5. ENFOQUE -->
                     <div onclick="filterByGym('Enfoque')" class="card-acrylic rounded-2xl p-5 border border-purple-500/40 hover:border-purple-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-purple-950/30 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">🎯</span>
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-purple-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/enfoque.jpg" alt="Enfoque Logo Oficial" class="w-10 h-10 object-cover rounded-lg"/>
+                            </div>
                             <div>
                                 <h4 class="font-display font-black text-lg text-white group-hover:text-purple-400 transition-colors">Enfoque</h4>
                                 <span class="font-mono text-[11px] text-purple-400 font-bold">Dupla Femenina de Élite</span>
                             </div>
                         </div>
-                        <p class="font-body text-xs text-on-surface-variant mt-2">Representadas con gran preparación en Open Women (Hit 11:45).</p>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Representadas con gran preparación en Open Women (Hit 11:30).</p>
                     </div>
 
                     <!-- 6. STRONGBIKE -->
                     <div onclick="filterByGym('Strongbike')" class="card-acrylic rounded-2xl p-5 border border-lime-500/40 hover:border-lime-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-lime-950/30 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-lime-500/20 text-lime-400 flex items-center justify-center text-xl">🚴</span>
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-lime-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/strongbike.jpg" alt="Strongbike Logo Oficial" class="w-10 h-10 object-cover rounded-lg"/>
+                            </div>
                             <div>
                                 <h4 class="font-display font-black text-lg text-white group-hover:text-lime-400 transition-colors">Strongbike</h4>
                                 <span class="font-mono text-[11px] text-lime-400 font-bold">Dupla Pro Mixto</span>
                             </div>
                         </div>
-                        <p class="font-body text-xs text-on-surface-variant mt-2">Resistencia y capacidad aeróbica al límite en la categoría estelar Pro.</p>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Resistencia y capacidad aeróbica al límite en la categoría estelar Pro Mixto.</p>
                     </div>
 
                     <!-- 7. HÍBRIDO GC -->
                     <div onclick="filterByGym('Híbrido GC')" class="card-acrylic rounded-2xl p-5 border border-teal-500/40 hover:border-teal-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-teal-950/30 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl">🔥</span>
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-teal-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/hibrido-gc.jpg" alt="Híbrido GC Logo Oficial" class="w-10 h-10 object-cover rounded-lg"/>
+                            </div>
                             <div>
                                 <h4 class="font-display font-black text-lg text-white group-hover:text-teal-400 transition-colors">Híbrido GC</h4>
-                                <span class="font-mono text-[11px] text-teal-400 font-bold">Especialistas en Entrenamiento Funcional</span>
+                                <span class="font-mono text-[11px] text-teal-400 font-bold">Entrenamiento Funcional</span>
                             </div>
                         </div>
-                        <p class="font-body text-xs text-on-surface-variant mt-2">Presentes en la largada matutina con dupla competitiva en Open Women.</p>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Presentes en la largada matutina con dupla competitiva en Open Women (Hit 11:00).</p>
                     </div>
 
-                    <!-- 8. CHARLIES & POLIDEPORTIVO -->
+                    <!-- 8. DD TRAINING BOX (NUEVO!) -->
+                    <div onclick="filterByGym('DD training')" class="card-acrylic rounded-2xl p-5 border border-red-500/40 hover:border-red-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-red-950/30 via-surface-elevated to-transparent">
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-red-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/dd-training.jpg" alt="DD Training Box Logo Oficial" class="w-10 h-10 object-cover rounded-lg"/>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-red-400 transition-colors">DD Training Box</h4>
+                                <span class="font-mono text-[11px] text-red-400 font-bold">2 Atletas • Pro Men</span>
+                            </div>
+                        </div>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Fuerza y conditioning en el heat de cierre de Pro Men (Hit 17:30).</p>
+                    </div>
+
+                    <!-- 9. CHARLIES & ALIANZAS -->
                     <div onclick="filterByGym('Charlies')" class="card-acrylic rounded-2xl p-5 border border-rose-500/40 hover:border-rose-400 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-rose-950/30 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl">🥊</span>
+                        <div class="flex items-center gap-3.5 mb-2">
+                            <div class="w-13 h-13 rounded-xl bg-black/60 border border-rose-400/40 p-1 flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                                <img src="public/logos/charlies.png" alt="Charlies Logo Oficial" class="w-10 h-10 object-contain rounded-lg"/>
+                            </div>
                             <div>
-                                <h4 class="font-display font-black text-lg text-white group-hover:text-rose-400 transition-colors">Charlies & Polideportivo</h4>
-                                <span class="font-mono text-[11px] text-rose-400 font-bold">Atletas en Pro Women & Pro Mixto</span>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-rose-400 transition-colors">Charlies</h4>
+                                <span class="font-mono text-[11px] text-rose-400 font-bold">Pro Women (Hit 18:15)</span>
                             </div>
                         </div>
-                        <p class="font-body text-xs text-on-surface-variant mt-2">Integrando duplas combinadas de alto impacto en las definiciones de la tarde.</p>
+                        <p class="font-body text-xs text-on-surface-variant mt-2">Alianza estelar en Pro Women junto a atletas de JPS Training.</p>
                     </div>
 
-                    <!-- 9. ATLETAS INDEPENDIENTES & INVITADOS -->
-                    <div onclick="resetFilters()" class="card-acrylic rounded-2xl p-5 border border-white/20 hover:border-white/40 hover:scale-[1.02] transition-all cursor-pointer group bg-gradient-to-br from-white/5 via-surface-elevated to-transparent">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center text-xl">🇺🇾</span>
+                    <!-- 10. DUPLAS INVITADAS & COMUNIDAD REGIONAL -->
+                    <div onclick="resetFilters()" class="col-span-1 sm:col-span-2 lg:col-span-3 card-acrylic rounded-2xl p-5 border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all cursor-pointer group bg-gradient-to-br from-white/5 via-surface-elevated to-transparent flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3.5">
+                            <span class="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center text-2xl shrink-0">🇺🇾</span>
                             <div>
-                                <h4 class="font-display font-black text-lg text-white group-hover:text-electric-orange transition-colors">Duplas Invitadas</h4>
-                                <span class="font-mono text-[11px] text-on-surface-variant font-bold">Comunidad Regional Norte</span>
+                                <h4 class="font-display font-black text-lg text-white group-hover:text-electric-orange transition-colors">Polideportivo, Zonafit & Atletas Invitados</h4>
+                                <span class="font-mono text-xs text-on-surface-variant font-bold">Comunidad Regional del Norte Uruguayo</span>
                             </div>
                         </div>
-                        <p class="font-body text-xs text-on-surface-variant mt-2">Atletas independientes y combinados que completan las 50 duplas oficiales.</p>
+                        <span class="px-4 py-2 rounded-xl bg-white/10 text-white font-mono text-xs font-bold shrink-0 group-hover:bg-electric-orange transition-colors">
+                            Ver todas las duplas &rarr;
+                        </span>
                     </div>
 
                 </div>
 
             </div>
         </section>
+
+        <!-- ══════════════════════════════════════════════
+             PESOS OFICIALES DE LA COMPETENCIA (WORKOUT)
+        ══════════════════════════════════════════════ -->
+        <section id="pesos" class="py-16 md:py-24 bg-surface-dim/90 border-b border-white/10 relative overflow-hidden">
+            <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-electric-orange/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric-orange/15 border border-electric-orange/40 text-electric-orange font-mono text-xs font-black uppercase mb-3">
+                        <span class="material-symbols-outlined text-[16px]">fitness_center</span> REGLAMENTO DE CARGAS
+                    </div>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-4">
+                        PESOS OFICIALES <span class="text-electric-orange">DEL WORKOUT</span>
+                    </h2>
+                    <p class="font-body text-base sm:text-lg text-on-surface-variant">
+                        Cargas reglamentarias estandarizadas para el Hybrid Game JPS 2026. Los pesos son exactamente iguales para todas las duplas: <strong>Men, Women y Mixto</strong>, según su categoría <strong>Open</strong> o <strong>Pro</strong>.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Interactive Exercise Breakdown Table -->
+                    <div class="lg:col-span-7 space-y-4">
+                        
+                        <!-- Exercise 1: Sled Drag -->
+                        <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-electric-orange/50 transition-all bg-gradient-to-r from-white/5 to-transparent">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-xl bg-electric-orange/20 text-electric-orange border border-electric-orange/40 flex items-center justify-center text-2xl shrink-0">
+                                        🛷
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block">EJERCICIO 01</span>
+                                        <h3 class="font-display font-black text-xl text-white uppercase">SLED DRAG</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-black/60 border border-white/10">
+                                        <span class="text-[9px] font-mono text-on-surface-variant block uppercase">OPEN</span>
+                                        <span class="font-display font-black text-lg text-white">60 <span class="text-xs text-electric-orange">kg</span></span>
+                                    </div>
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-orange-950/60 border border-electric-orange/40 shadow-[0_0_15px_rgba(255,138,0,0.2)]">
+                                        <span class="text-[9px] font-mono text-electric-orange block uppercase font-bold">PRO</span>
+                                        <span class="font-display font-black text-lg text-electric-orange">80 <span class="text-xs text-white">kg</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercise 2: Walking Lunge -->
+                        <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-vibrant-yellow/50 transition-all bg-gradient-to-r from-white/5 to-transparent">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-xl bg-vibrant-yellow/20 text-vibrant-yellow border border-vibrant-yellow/40 flex items-center justify-center text-2xl shrink-0">
+                                        🚶
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block">EJERCICIO 02</span>
+                                        <h3 class="font-display font-black text-xl text-white uppercase">WALKING LUNGE</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-black/60 border border-white/10">
+                                        <span class="text-[9px] font-mono text-on-surface-variant block uppercase">OPEN</span>
+                                        <span class="font-display font-black text-lg text-white">10 <span class="text-xs text-vibrant-yellow">kg</span></span>
+                                    </div>
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-amber-950/60 border border-vibrant-yellow/40 shadow-[0_0_15px_rgba(245,197,24,0.2)]">
+                                        <span class="text-[9px] font-mono text-vibrant-yellow block uppercase font-bold">PRO</span>
+                                        <span class="font-display font-black text-lg text-vibrant-yellow">15 <span class="text-xs text-white">kg</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercise 3: Farmer Carry -->
+                        <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-emerald-400/50 transition-all bg-gradient-to-r from-white/5 to-transparent">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-2xl shrink-0">
+                                        💼
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block">EJERCICIO 03</span>
+                                        <h3 class="font-display font-black text-xl text-white uppercase">FARMER CARRY</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-black/60 border border-white/10">
+                                        <span class="text-[9px] font-mono text-on-surface-variant block uppercase">OPEN</span>
+                                        <span class="font-display font-black text-lg text-white">16 <span class="text-xs text-emerald-400">kg</span></span>
+                                    </div>
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-400/40 shadow-[0_0_15px_rgba(52,211,153,0.2)]">
+                                        <span class="text-[9px] font-mono text-emerald-400 block uppercase font-bold">PRO</span>
+                                        <span class="font-display font-black text-lg text-emerald-400">20 <span class="text-xs text-white">kg</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercise 4: Wall Ball -->
+                        <div class="card-acrylic rounded-2xl p-5 border border-white/10 hover:border-vibrant-pink/50 transition-all bg-gradient-to-r from-white/5 to-transparent">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-xl bg-vibrant-pink/20 text-vibrant-pink border border-vibrant-pink/40 flex items-center justify-center text-2xl shrink-0">
+                                        🏀
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block">EJERCICIO 04</span>
+                                        <h3 class="font-display font-black text-xl text-white uppercase">WALL BALL</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-black/60 border border-white/10">
+                                        <span class="text-[9px] font-mono text-on-surface-variant block uppercase">OPEN</span>
+                                        <span class="font-display font-black text-lg text-white">3 <span class="text-xs text-vibrant-pink">kg</span></span>
+                                    </div>
+                                    <div class="text-center px-3 py-1.5 rounded-xl bg-pink-950/60 border border-vibrant-pink/40 shadow-[0_0_15px_rgba(255,0,128,0.2)]">
+                                        <span class="text-[9px] font-mono text-vibrant-pink block uppercase font-bold">PRO</span>
+                                        <span class="font-display font-black text-lg text-vibrant-pink">6 <span class="text-xs text-white">kg</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Important Rule Clarification Box -->
+                        <div class="p-4 rounded-xl bg-electric-orange/10 border border-electric-orange/30 text-xs font-mono text-orange-200 flex items-start gap-3">
+                            <span class="material-symbols-outlined text-electric-orange text-lg shrink-0 mt-0.5">info</span>
+                            <span><strong>Regla Oficial de Cargas:</strong> Los pesos son iguales para todas las duplas dentro de cada categoría: Men, Women y Mixto tienen las mismas exigencias para asegurar equidad deportiva en la pista de Módena Eventos.</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Official Render Flyer with Lightbox Zoom -->
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div onclick="openLightbox('public/hybrid-pesos-oficiales.jpeg', 'Pesos Oficiales del Workout - Hybrid Game JPS 2026')" class="card-acrylic rounded-2xl overflow-hidden border-2 border-electric-orange/40 group cursor-pointer relative shadow-[0_0_30px_rgba(255,138,0,0.25)] hover:scale-[1.02] transition-all max-w-sm w-full bg-black/80">
+                            <img src="public/hybrid-pesos-oficiales.jpeg" alt="Pesos Oficiales del Workout Hybrid Game JPS" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <span class="text-xs font-mono font-bold text-white flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[16px] text-electric-orange">zoom_in</span>
+                                    <span>Tocar para ver en tamaño completo</span>
+                                </span>
+                            </div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-electric-orange/50 text-[10px] font-mono font-bold text-electric-orange">
+                                AVISO OFICIAL
+                            </span>
+                        </div>
+                        <a href="public/hybrid-pesos-oficiales.jpeg" download="Pesos_Oficiales_Hybrid_Game_JPS.jpeg" class="mt-4 inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">download</span>
+                            <span>Descargar afiche de pesos (JPEG)</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
 
 
         <!-- ══════════════════════════════════════════════
@@ -835,6 +1032,91 @@
              FIXTURE & BUSCADOR INTERACTIVO DE HORARIOS Y DUPLAS
              (Con Destaque Máximo a Gimnasios)
         ══════════════════════════════════════════════ -->
+        
+        <!-- ══════════════════════════════════════════════
+             NANITO FOTOS & COBERTURA OFICIAL
+        ══════════════════════════════════════════════ -->
+        <section id="fotos" class="py-16 md:py-24 bg-surface-dim/80 border-b border-white/10 relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-vibrant-yellow/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-vibrant-yellow/15 border border-vibrant-yellow/40 text-vibrant-yellow font-mono text-xs font-black uppercase mb-3">
+                        <span class="material-symbols-outlined text-[16px]">photo_camera</span> COBERTURA PROFESIONAL
+                    </div>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-4">
+                        NANITO FOTOS <span class="text-vibrant-yellow">& SU EQUIPO</span>
+                    </h2>
+                    <p class="font-body text-base sm:text-lg text-on-surface-variant">
+                        Registran tu esfuerzo en el <strong>Hybrid Game</strong>. Cobertura fotográfica oficial y en vivo de cada heat, repetición y celebración en el podio.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
+                    
+                    <!-- Left: Official Flyer Render -->
+                    <div class="lg:col-span-6 flex flex-col items-center">
+                        <div onclick="openLightbox('public/hybrid-fotos-nanito.jpeg', 'Nanito Fotos y su Equipo - Cobertura Oficial Hybrid Game JPS')" class="card-acrylic rounded-2xl overflow-hidden border-2 border-vibrant-yellow/40 group cursor-pointer relative shadow-[0_0_30px_rgba(245,197,24,0.2)] hover:scale-[1.02] transition-all max-w-sm w-full bg-black/80">
+                            <img src="public/hybrid-fotos-nanito.jpeg" alt="Nanito Fotos Cobertura Oficial Hybrid Game JPS" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <span class="text-xs font-mono font-bold text-white flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[16px] text-vibrant-yellow">zoom_in</span>
+                                    <span>Tocar para ver en tamaño completo</span>
+                                </span>
+                            </div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-vibrant-yellow/50 text-[10px] font-mono font-bold text-vibrant-yellow">
+                                📸 FOTOGRAFÍA OFICIAL
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Info & Status -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="card-acrylic rounded-2xl p-6 border border-white/10 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="w-12 h-12 rounded-xl bg-vibrant-yellow/20 text-vibrant-yellow flex items-center justify-center text-2xl">📸</span>
+                                <div>
+                                    <h3 class="font-display font-black text-xl text-white uppercase">Cámaras en Pista</h3>
+                                    <p class="font-mono text-xs text-vibrant-yellow font-bold">Todas las duplas y categorías cubiertas</p>
+                                </div>
+                            </div>
+                            <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                                El equipo de fotógrafos estará capturando cada instante: desde los primeros warms-ups en la mañana de Open Women hasta la entrega de trofeos y el brindis con Barra Bruma Beer.
+                            </p>
+                        </div>
+
+                        <!-- Status Notice Box -->
+                        <div class="card-acrylic rounded-2xl p-5 border border-vibrant-yellow/30 bg-gradient-to-r from-amber-950/40 via-surface-elevated to-transparent space-y-3">
+                            <div class="flex items-center gap-2 text-vibrant-yellow font-mono text-xs font-black uppercase">
+                                <span class="w-2.5 h-2.5 rounded-full bg-vibrant-yellow animate-ping"></span>
+                                <span>Galería de Fotos en Preparación</span>
+                            </div>
+                            <p class="font-body text-xs sm:text-sm text-white/90">
+                                Una vez terminada la competencia, publicaremos en esta misma sección el <strong>enlace oficial de descarga</strong> para que puedas acceder a la galería en alta definición de tu dupla.
+                            </p>
+                            <div class="pt-2 flex flex-wrap items-center gap-3">
+                                <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 text-white/60 border border-white/15 font-mono text-xs font-bold cursor-not-allowed">
+                                    <span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+                                    <span>Enlace disponible post-evento</span>
+                                </span>
+                                <a href="https://api.whatsapp.com/send?text=%C2%A1Hola!%20Te%20comparto%20la%20p%C3%A1gina%20del%20HYBRID%20GAME%20JPS%20este%20s%C3%A1bado%2021%20de%20Noviembre%20en%20M%C3%B3dena%20Eventos.%20%C2%A1Va%20a%20haber%20fotograf%C3%ADa%20profesional%20con%20Nanito%20Fotos!%20Mir%C3%A1%20los%20horarios%20y%20pesos%20ac%C3%A1:%20https://jpstraining.nico-family.com/evento.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366] hover:text-white border border-[#25D366]/40 font-mono text-xs font-bold transition-all">
+                                    <span class="material-symbols-outlined text-[16px]">share</span>
+                                    <span>Avisarle a mi dupla</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════
+             FIXTURE & BUSCADOR INTERACTIVO DE HORARIOS Y DUPLAS
+        ══════════════════════════════════════════════ -->
         <section id="fixture" class="py-16 md:py-24 bg-surface-dim/70 border-y border-white/10 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
@@ -852,9 +1134,9 @@
                         </p>
                     </div>
 
-                    <a href="public/hybrid-game-fixture.pdf" download="Fixture_Hybrid_Game_JPS.pdf" class="btn-gradient inline-flex items-center gap-2 px-5 py-3 rounded-xl font-mono text-xs font-bold text-white shrink-0 self-start md:self-auto shadow-md">
+                    <a href="public/hybrid-game-fixture.pdf" download="Fixture_Final_Hybrid_Game_JPS.pdf" class="btn-gradient inline-flex items-center gap-2 px-5 py-3 rounded-xl font-mono text-xs font-bold text-white shrink-0 self-start md:self-auto shadow-md">
                         <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
-                        <span>Descargar Fixture Completo (PDF)</span>
+                        <span>Descargar Fixture Oficial (PDF)</span>
                     </a>
                 </div>
 
@@ -869,7 +1151,7 @@
                         <input 
                             id="schedule-search" 
                             type="text" 
-                            placeholder="Buscar por nombre de atleta, hit o gimnasio... (Ej: Nordic, JPS, Modo Power, Mónica, 14:00)" 
+                            placeholder="Buscar por nombre de atleta, hit o gimnasio... (Ej: Nordic, JPS, Modo Power, DD training, Mónica, 14:00)" 
                             class="w-full pl-11 pr-10 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white placeholder-on-surface-variant/60 font-body text-sm focus:outline-none focus:border-electric-orange focus:ring-1 focus:ring-electric-orange transition-all"
                         />
                         <button id="schedule-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface-variant hover:text-white hidden">
@@ -881,8 +1163,8 @@
                     <div>
                         <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block mb-1.5">Filtrar por Categoría:</span>
                         <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-filters">
-                            <button class="filter-chip active px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all" data-category="ALL">
-                                Todos (55 Heats)
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="ALL">
+                                Todos los Heats (55)
                             </button>
                             <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN WOMEN">
                                 Open Women (11:00)
@@ -893,14 +1175,14 @@
                             <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MIXTO">
                                 Open Mixto (14:45)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
-                                Pro Women (16:30)
-                            </button>
                             <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MEN">
                                 Pro Men (16:45)
                             </button>
                             <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MIXTO">
                                 Pro Mixto (17:45)
+                            </button>
+                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
+                                Pro Women (18:15)
                             </button>
                         </div>
                     </div>
@@ -909,14 +1191,14 @@
                     <div>
                         <span class="text-[10px] font-mono font-bold text-vibrant-yellow uppercase tracking-wider block mb-1.5">⚡ Filtrar por Gimnasio:</span>
                         <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none" id="gym-filters">
-                            <button onclick="resetFilters()" class="gym-chip active px-3 py-1 rounded-lg border border-white/20 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-white/10 text-white">
+                            <button onclick="resetFilters()" class="gym-chip px-3 py-1 rounded-lg border border-white/20 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-white/10 text-white">
                                 Todos los Gimnasios
                             </button>
                             <button onclick="filterByGym('JPS Training')" class="gym-chip px-3 py-1 rounded-lg border border-orange-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-orange-950/40 text-orange-400 hover:bg-orange-950/70">
-                                🏋️ JPS Training (44)
+                                🏋️ JPS Training (43)
                             </button>
                             <button onclick="filterByGym('Nordic')" class="gym-chip px-3 py-1 rounded-lg border border-blue-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-blue-950/40 text-blue-400 hover:bg-blue-950/70">
-                                ⚡ Nordic (24)
+                                ⚡ Nordic (28)
                             </button>
                             <button onclick="filterByGym('Modo Power')" class="gym-chip px-3 py-1 rounded-lg border border-amber-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-amber-950/40 text-amber-400 hover:bg-amber-950/70">
                                 💥 Modo Power (12)
@@ -933,24 +1215,100 @@
                             <button onclick="filterByGym('Híbrido GC')" class="gym-chip px-3 py-1 rounded-lg border border-teal-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-teal-950/40 text-teal-400 hover:bg-teal-950/70">
                                 🔥 Híbrido GC (2)
                             </button>
+                            <button onclick="filterByGym('DD training')" class="gym-chip px-3 py-1 rounded-lg border border-red-500/40 font-mono text-[11px] font-bold whitespace-nowrap transition-all bg-red-950/40 text-red-400 hover:bg-red-950/70">
+                                🥊 DD Training Box (2)
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Quick Counters -->
+                    <!-- Quick Counters & Rule -->
                     <div class="flex items-center justify-between text-xs font-mono text-on-surface-variant pt-2 border-t border-white/5">
-                        <span id="filtered-count">Mostrando 57 eventos</span>
+                        <span id="filtered-count">55 Heats organizados por categoría</span>
                         <span class="text-electric-orange">⚠️ Cada atleta debe hacer check-in 30 min antes</span>
                     </div>
 
                 </div>
 
-                <!-- Schedule Grid Container -->
+                <!-- Collapsed State: Overview Banner (Shown initially) -->
+                <div id="schedule-collapsed-state" class="card-acrylic rounded-2xl p-6 sm:p-8 border border-white/15 text-center mb-6 bg-gradient-to-br from-surface-dim via-black/80 to-surface-dim shadow-xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-orange/15 border border-electric-orange/40 text-electric-orange font-mono text-xs font-bold uppercase mb-3">
+                        📋 CRONOGRAMA COMPLETO DISPONIBLE
+                    </div>
+                    <h3 class="font-display font-black text-2xl sm:text-3xl text-white uppercase mb-2">
+                        EXPLORAR HORARIOS POR CATEGORÍA O GIMNASIO
+                    </h3>
+                    <p class="font-body text-sm sm:text-base text-on-surface-variant max-w-2xl mx-auto mb-6">
+                        Para mayor comodidad y evitar desplazamientos largos, elegí una categoría a continuación para ver sus heats de largada, o abrí el fixture completo:
+                    </p>
+
+                    <!-- Quick Category Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6 text-left">
+                        <button onclick="selectCategory('OPEN WOMEN')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-electric-orange transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-electric-orange font-bold block mb-1">11:00 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-electric-orange block">Open Women</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">15 Duplas</span>
+                        </button>
+                        <button onclick="selectCategory('OPEN MEN')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-vibrant-yellow transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-vibrant-yellow font-bold block mb-1">14:00 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-vibrant-yellow block">Open Men</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">7 Duplas</span>
+                        </button>
+                        <button onclick="selectCategory('OPEN MIXTO')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-vibrant-pink transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-vibrant-pink font-bold block mb-1">14:45 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-vibrant-pink block">Open Mixto</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">13 Duplas</span>
+                        </button>
+                        <button onclick="selectCategory('PRO MEN')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-blue-400 transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-blue-400 font-bold block mb-1">16:45 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-blue-400 block">Pro Men</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">11 Duplas</span>
+                        </button>
+                        <button onclick="selectCategory('PRO MIXTO')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-purple-400 transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-purple-400 font-bold block mb-1">17:45 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-purple-400 block">Pro Mixto</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">7 Duplas</span>
+                        </button>
+                        <button onclick="selectCategory('PRO WOMEN')" class="card-acrylic p-3.5 rounded-xl border border-white/10 hover:border-rose-400 transition-all hover:scale-105 group bg-black/40">
+                            <span class="text-[10px] font-mono text-rose-400 font-bold block mb-1">18:15 HS</span>
+                            <span class="font-display font-black text-xs sm:text-sm text-white group-hover:text-rose-400 block">Pro Women</span>
+                            <span class="text-[10px] font-mono text-on-surface-variant">2 Duplas</span>
+                        </button>
+                    </div>
+
+                    <!-- Button to open all -->
+                    <button onclick="expandSchedule(true)" class="btn-gradient inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-mono text-sm font-black text-white shadow-xl hover:scale-105 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                        <span>Desplegar todos los 55 Heats en pantalla</span>
+                    </button>
+                </div>
+
+                <!-- Active Filter & Collapse Top Control Bar (Visible when expanded) -->
+                <div id="schedule-expanded-bar" class="hidden flex items-center justify-between gap-4 mb-4 p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="expanded-indicator" class="font-mono text-xs font-bold text-white">Cronograma desplegado</span>
+                    </div>
+                    <button onclick="collapseSchedule()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold transition-all border border-white/15">
+                        <span class="material-symbols-outlined text-[16px]">expand_less</span>
+                        <span>Plegar Horarios</span>
+                    </button>
+                </div>
+
+                <!-- Schedule Grid Container (Empty when collapsed, populated when expanded) -->
                 <div id="schedule-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Populated by JavaScript -->
                 </div>
 
+                <!-- Bottom Collapse Button (Visible when expanded) -->
+                <div id="schedule-bottom-collapse" class="hidden text-center mt-8">
+                    <button onclick="collapseSchedule()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs font-bold transition-all shadow-md">
+                        <span class="material-symbols-outlined text-[18px]">expand_less</span>
+                        <span>Plegar Horarios y Volver Arriba</span>
+                    </button>
+                </div>
+
                 <!-- Empty State -->
-                <div id="schedule-empty" class="hidden text-center py-12 card-acrylic rounded-2xl border border-white/10">
+                <div id="schedule-empty" class="hidden text-center py-12 card-acrylic rounded-2xl border border-white/10 mt-4">
                     <span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">search_off</span>
                     <p class="font-display font-bold text-lg text-white">No se encontraron duplas</p>
                     <p class="font-body text-sm text-on-surface-variant mt-1">Probá buscando con otro nombre o limpiá los filtros.</p>
@@ -1309,7 +1667,7 @@
     ══════════════════════════════════════════════ -->
     <script>
         // Injected Schedule Data
-        const SCHEDULE_DATA = [{"type": "heat", "time": "11:00", "hit": "11001", "category": "OPEN WOMEN", "p1": "Mónica Rodriguez", "g1": "JPS Training", "p2": "Nadia Mezquita", "g2": "JPS Training"}, {"type": "heat", "time": "11:00", "hit": "11002", "category": "OPEN WOMEN", "p1": "Eugenia Cardozo", "g1": "Atleta Invitado", "p2": "Mariana Alayón", "g2": "Atleta Invitado"}, {"type": "heat", "time": "11:00", "hit": "11003", "category": "OPEN WOMEN", "p1": "Yeila da", "g1": "Atleta Invitado", "p2": "Silva Karen Baez", "g2": "Atleta Invitado"}, {"type": "heat", "time": "11:15", "hit": "11151", "category": "OPEN WOMEN", "p1": "Ana González", "g1": "Híbrido GC", "p2": "Cristhy Machado", "g2": "Híbrido GC"}, {"type": "heat", "time": "11:15", "hit": "11152", "category": "OPEN WOMEN", "p1": "Anna González", "g1": "Atleta Invitado", "p2": "Florencia Barbosa", "g2": "Atleta Invitado"}, {"type": "heat", "time": "11:15", "hit": "11153", "category": "OPEN WOMEN", "p1": "Joanna Forapagliero", "g1": "JPS Training", "p2": "Mercedes Alonso", "g2": "JPS Training"}, {"type": "heat", "time": "11:30", "hit": "11301", "category": "OPEN WOMEN", "p1": "Sofía Gago", "g1": "JPS Training", "p2": "Verónica Gago", "g2": "JPS Training"}, {"type": "heat", "time": "11:30", "hit": "11302", "category": "OPEN WOMEN", "p1": "Ana Carolina Cougo", "g1": "JPS Training", "p2": "Carolain Antúnez", "g2": "JPS Training"}, {"type": "heat", "time": "11:30", "hit": "11303", "category": "OPEN WOMEN", "p1": "Antonella González", "g1": "Nordic", "p2": "Natalia Feijó", "g2": "Nordic"}, {"type": "heat", "time": "11:45", "hit": "11451", "category": "OPEN WOMEN", "p1": "Emilia Piriz", "g1": "Enfoque", "p2": "María Noel Ramos", "g2": "Enfoque"}, {"type": "heat", "time": "11:45", "hit": "11452", "category": "OPEN WOMEN", "p1": "Emilia Estevez", "g1": "JPS Training", "p2": "Angela Olivera", "g2": "JPS Training"}, {"type": "heat", "time": "11:45", "hit": "11453", "category": "OPEN WOMEN", "p1": "Natalie Beguerie", "g1": "Evolution", "p2": "Carolina Urse", "g2": "Evolution"}, {"type": "heat", "time": "12:00", "hit": "12001", "category": "OPEN WOMEN", "p1": "Valeria González", "g1": "JPS Training", "p2": "Paula Peralta", "g2": "JPS Training"}, {"type": "heat", "time": "12:00", "hit": "12002", "category": "OPEN WOMEN", "p1": "Pilar Correa", "g1": "Nordic", "p2": "Mónica Gularte", "g2": "Nordic"}, {"type": "heat", "time": "12:00", "hit": "12003", "category": "OPEN WOMEN", "p1": "Silvia Ataides", "g1": "Modo Power", "p2": "Caterin Ferreira", "g2": "Modo Power"}, {"type": "heat", "time": "14:00", "hit": "14001", "category": "OPEN MEN", "p1": "Rodrigo Amaya", "g1": "JPS Training", "p2": "Santiago Alvez", "g2": "JPS Training"}, {"type": "heat", "time": "14:00", "hit": "14002", "category": "OPEN MEN", "p1": "Martin Cabalgante", "g1": "Modo Power", "p2": "Wilton Dos Santos", "g2": "Modo Power"}, {"type": "heat", "time": "14:00", "hit": "14003", "category": "OPEN MEN", "p1": "Elias Vargas", "g1": "Nordic", "p2": "Fabián Vaz", "g2": "Nordic"}, {"type": "heat", "time": "14:15", "hit": "14151", "category": "OPEN MEN", "p1": "Roberto Cuiligotti", "g1": "Modo Power", "p2": "Gastón Sastre", "g2": "Modo Power"}, {"type": "heat", "time": "14:15", "hit": "14152", "category": "OPEN MEN", "p1": "Renzo Zilli", "g1": "JPS Training", "p2": "Gonzalo Olivera", "g2": "JPS Training"}, {"type": "heat", "time": "14:30", "hit": "14301", "category": "OPEN MEN", "p1": "Anthony Navarrin", "g1": "JPS Training", "p2": "Jonatan Leberrie", "g2": "JPS Training"}, {"type": "heat", "time": "14:30", "hit": "14302", "category": "OPEN MEN", "p1": "Edgardo Silveira", "g1": "Modo Power", "p2": "Gonzalo González", "g2": "Modo Power"}, {"type": "heat", "time": "14:45", "hit": "14451", "category": "OPEN MIXTO", "p1": "Luis Lagos", "g1": "JPS Training", "p2": "Claudia Martínez", "g2": "JPS Training"}, {"type": "heat", "time": "14:45", "hit": "14452", "category": "OPEN MIXTO", "p1": "Claudio Martínez", "g1": "JPS Training", "p2": "Denise Galarraga", "g2": "JPS Training"}, {"type": "heat", "time": "14:45", "hit": "14453", "category": "OPEN MIXTO", "p1": "Karen Costa", "g1": "JPS Training", "p2": "Fernando Costa", "g2": "JPS Training"}, {"type": "heat", "time": "15:00", "hit": "15001", "category": "OPEN MIXTO", "p1": "Rodrigo Garcia", "g1": "Atleta Invitado", "p2": "Romina Martínez", "g2": "Atleta Invitado"}, {"type": "heat", "time": "15:00", "hit": "15002", "category": "OPEN MIXTO", "p1": "Paola Laborde", "g1": "Nordic", "p2": "Franco Icardi", "g2": "Nordic"}, {"type": "heat", "time": "15:00", "hit": "15003", "category": "OPEN MIXTO", "p1": "Santiago Ferrando", "g1": "JPS Training", "p2": "Helena Ferrando", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15151", "category": "OPEN MIXTO", "p1": "Rafael Sanchez", "g1": "JPS Training", "p2": "Yamila Piriz", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15152", "category": "OPEN MIXTO", "p1": "Luis Gadola", "g1": "JPS Training", "p2": "Giuliana Freducci", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15153", "category": "OPEN MIXTO", "p1": "Melisa Bermudez", "g1": "JPS Training", "p2": "Bruno Olid", "g2": "JPS Training"}, {"type": "heat", "time": "15:30", "hit": "15301", "category": "OPEN MIXTO", "p1": "Eugenia Nuñez", "g1": "Modo Power", "p2": "Pablo Delbono", "g2": "Modo Power"}, {"type": "heat", "time": "15:30", "hit": "15302", "category": "OPEN MIXTO", "p1": "Gustavo Piriz", "g1": "JPS Training", "p2": "Ana Carreño", "g2": "Atleta Invitado"}, {"type": "heat", "time": "15:30", "hit": "15303", "category": "OPEN MIXTO", "p1": "Ana Alvez", "g1": "JPS Training", "p2": "Martin Araujo", "g2": "JPS Training"}, {"type": "heat", "time": "15:45", "hit": "15451", "category": "OPEN MIXTO", "p1": "Patricia Vassallucci", "g1": "JPS Training", "p2": "Raúl García", "g2": "JPS Training"}, {"type": "heat", "time": "15:45", "hit": "15452", "category": "OPEN MIXTO", "p1": "Hugo Ferron", "g1": "Atleta Invitado", "p2": "Leticia Hormigodim", "g2": "Atleta Invitado"}, {"type": "awards", "time": "16:00", "title": "PREMIACIÓN CATEGORÍAS OPEN", "description": "Ceremonia de podio y entrega de premios para Open Women, Open Men y Open Mixto."}, {"type": "heat", "time": "16:30", "hit": "16301", "category": "PRO WOMEN", "p1": "Victoria Gago", "g1": "JPS Training", "p2": "Milagros Otegui", "g2": "Charlies"}, {"type": "heat", "time": "16:30", "hit": "16302", "category": "PRO WOMEN", "p1": "Estefany Charamoni", "g1": "Modo Power", "p2": "Noelia Alvez", "g2": "Modo Power"}, {"type": "heat", "time": "16:45", "hit": "16451", "category": "PRO MEN", "p1": "Jorge Baraibar", "g1": "JPS Training", "p2": "Hector Vázquez", "g2": "JPS Training"}, {"type": "heat", "time": "16:45", "hit": "16452", "category": "PRO MEN", "p1": "Marcos Bardier", "g1": "Atleta Invitado", "p2": "Ivo Martinez", "g2": "Atleta Invitado"}, {"type": "heat", "time": "16:45", "hit": "16453", "category": "PRO MEN", "p1": "Federico Dutra da Silveira", "g1": "Nordic", "p2": "Christofer Rodríguez", "g2": "Nordic"}, {"type": "heat", "time": "17:00", "hit": "17001", "category": "PRO MEN", "p1": "Facundo Soares de Lima", "g1": "JPS Training", "p2": "Fausto Formoso", "g2": "Nordic"}, {"type": "heat", "time": "17:00", "hit": "17002", "category": "PRO MEN", "p1": "Federico Núñez", "g1": "JPS Training", "p2": "Pedro Otegui", "g2": "JPS Training"}, {"type": "heat", "time": "17:00", "hit": "17003", "category": "PRO MEN", "p1": "José Aloy", "g1": "Nordic", "p2": "Franco Zilli", "g2": "Nordic"}, {"type": "heat", "time": "17:15", "hit": "17151", "category": "PRO MEN", "p1": "Maicol Correa", "g1": "Nordic", "p2": "Denis Méndez", "g2": "Nordic"}, {"type": "heat", "time": "17:15", "hit": "17152", "category": "PRO MEN", "p1": "Juan Manuel Navarro", "g1": "Nordic", "p2": "Gonzalo Soca", "g2": "Nordic"}, {"type": "heat", "time": "17:30", "hit": "17301", "category": "PRO MEN", "p1": "Gastón Róbinson", "g1": "Evolution", "p2": "Ramiro Recoba", "g2": "Evolution"}, {"type": "heat", "time": "17:30", "hit": "17302", "category": "PRO MEN", "p1": "Jerson Duarte", "g1": "JPS Training", "p2": "Martin Scremini", "g2": "Atleta Invitado"}, {"type": "heat", "time": "17:45", "hit": "17451", "category": "PRO MIXTO", "p1": "Fernanda Gregorio", "g1": "Nordic", "p2": "Diego Cartagena", "g2": "Nordic"}, {"type": "heat", "time": "17:45", "hit": "17452", "category": "PRO MIXTO", "p1": "Sebastian Ríos", "g1": "Nordic", "p2": "Jennifer Rodríguez", "g2": "Nordic"}, {"type": "heat", "time": "17:45", "hit": "17453", "category": "PRO MIXTO", "p1": "Leonardo Rubido", "g1": "Atleta Invitado", "p2": "Natalia Fernández", "g2": "Atleta Invitado"}, {"type": "heat", "time": "18:00", "hit": "18001", "category": "PRO MIXTO", "p1": "Sandy Suanes", "g1": "Nordic", "p2": "Nicólas Silva", "g2": "Nordic"}, {"type": "heat", "time": "18:00", "hit": "18002", "category": "PRO MIXTO", "p1": "Yessica Maciel", "g1": "Nordic", "p2": "Javier Menendez", "g2": "Polideportivo"}, {"type": "heat", "time": "18:15", "hit": "18151", "category": "PRO MIXTO", "p1": "Joaquin Gamba", "g1": "Strongbike", "p2": "María Noelia Martínez", "g2": "Strongbike"}, {"type": "heat", "time": "18:15", "hit": "18152", "category": "PRO MIXTO", "p1": "Pedro Olivera", "g1": "Atleta Invitado", "p2": "Gabriela Fagundez", "g2": "Atleta Invitado"}, {"type": "awards", "time": "18:30", "title": "PREMIACIÓN CATEGORÍAS PRO Y CIERRE", "description": "Ceremonia de coronación para Pro Women, Pro Men, Pro Mixto y brindis final con Barra Bruma Beer."}];
+        const SCHEDULE_DATA = [{"type": "heat", "time": "11:00", "hit": "11001", "category": "OPEN WOMEN", "p1": "Joanna Forapagliero", "g1": "JPS Training", "p2": "Mercedes Alonso", "g2": "JPS Training"}, {"type": "heat", "time": "11:00", "hit": "11002", "category": "OPEN WOMEN", "p1": "Estefany Charamoni", "g1": "Modo Power", "p2": "Noelia Alvez", "g2": "Modo Power"}, {"type": "heat", "time": "11:00", "hit": "11003", "category": "OPEN WOMEN", "p1": "Ana González", "g1": "Híbrido GC", "p2": "Cristhy Machado", "g2": "Híbrido GC"}, {"type": "heat", "time": "11:15", "hit": "11151", "category": "OPEN WOMEN", "p1": "Anna González", "g1": "Atleta Invitada", "p2": "Florencia Barbosa", "g2": "Atleta Invitada"}, {"type": "heat", "time": "11:15", "hit": "11152", "category": "OPEN WOMEN", "p1": "Sofía Gago", "g1": "JPS Training", "p2": "Verónica Gago", "g2": "JPS Training"}, {"type": "heat", "time": "11:15", "hit": "11153", "category": "OPEN WOMEN", "p1": "Ana Carolina Cougo", "g1": "JPS Training", "p2": "Carolain Antúnez", "g2": "JPS Training"}, {"type": "heat", "time": "11:30", "hit": "11301", "category": "OPEN WOMEN", "p1": "Antonella González", "g1": "Nordic", "p2": "Natalia Feijó", "g2": "Nordic"}, {"type": "heat", "time": "11:30", "hit": "11302", "category": "OPEN WOMEN", "p1": "Emilia Piriz", "g1": "Enfoque", "p2": "María Noel Ramos", "g2": "Enfoque"}, {"type": "heat", "time": "11:30", "hit": "11303", "category": "OPEN WOMEN", "p1": "Emilia Estevez", "g1": "JPS Training", "p2": "Angela Olivera", "g2": "JPS Training"}, {"type": "heat", "time": "11:45", "hit": "11451", "category": "OPEN WOMEN", "p1": "Natalie Beguerie", "g1": "Evolution", "p2": "Carolina Urse", "g2": "Evolution"}, {"type": "heat", "time": "11:45", "hit": "11452", "category": "OPEN WOMEN", "p1": "Valeria González", "g1": "JPS Training", "p2": "Paula Peralta", "g2": "JPS Training"}, {"type": "heat", "time": "12:00", "hit": "12001", "category": "OPEN WOMEN", "p1": "Pilar Correa", "g1": "Nordic", "p2": "Mónica Gularte", "g2": "Nordic"}, {"type": "heat", "time": "12:00", "hit": "12002", "category": "OPEN WOMEN", "p1": "Eugenia Cardozo", "g1": "Atleta Invitada", "p2": "Mariana Alayón", "g2": "Atleta Invitada"}, {"type": "heat", "time": "12:15", "hit": "12151", "category": "OPEN WOMEN", "p1": "Silvia Ataides", "g1": "Modo Power", "p2": "Caterin Ferreira", "g2": "Modo Power"}, {"type": "heat", "time": "12:15", "hit": "12152", "category": "OPEN WOMEN", "p1": "Mónica Rodriguez", "g1": "JPS Training", "p2": "Nadia Mezquita", "g2": "JPS Training"}, {"type": "heat", "time": "14:00", "hit": "14001", "category": "OPEN MEN", "p1": "Rodrigo Amaya", "g1": "JPS Training", "p2": "Santiago Alvez", "g2": "JPS Training"}, {"type": "heat", "time": "14:00", "hit": "14002", "category": "OPEN MEN", "p1": "Martin Cabalgante", "g1": "Modo Power", "p2": "Wilton Dos Santos", "g2": "Modo Power"}, {"type": "heat", "time": "14:00", "hit": "14003", "category": "OPEN MEN", "p1": "Elias Vargas", "g1": "Nordic", "p2": "Fabián Vaz", "g2": "Nordic"}, {"type": "heat", "time": "14:15", "hit": "14151", "category": "OPEN MEN", "p1": "Roberto Cuiligotti", "g1": "Modo Power", "p2": "Gastón Sastre", "g2": "Modo Power"}, {"type": "heat", "time": "14:15", "hit": "14152", "category": "OPEN MEN", "p1": "Renzo Zilli", "g1": "JPS Training", "p2": "Gonzalo Olivera", "g2": "JPS Training"}, {"type": "heat", "time": "14:30", "hit": "14301", "category": "OPEN MEN", "p1": "Edgardo Silveira", "g1": "Modo Power", "p2": "Gonzalo González", "g2": "Modo Power"}, {"type": "heat", "time": "14:30", "hit": "14302", "category": "OPEN MEN", "p1": "Santiago Ferrando", "g1": "JPS Training", "p2": "Santino Ferrando", "g2": "JPS Training"}, {"type": "heat", "time": "14:45", "hit": "14451", "category": "OPEN MIXTO", "p1": "Luis Lagos", "g1": "JPS Training", "p2": "Claudia Martínez", "g2": "JPS Training"}, {"type": "heat", "time": "14:45", "hit": "14452", "category": "OPEN MIXTO", "p1": "Claudio Martínez", "g1": "JPS Training", "p2": "Denise Galarraga", "g2": "JPS Training"}, {"type": "heat", "time": "14:45", "hit": "14453", "category": "OPEN MIXTO", "p1": "Karen Costa", "g1": "JPS Training", "p2": "Fernando Costa", "g2": "JPS Training"}, {"type": "heat", "time": "15:00", "hit": "15001", "category": "OPEN MIXTO", "p1": "Rodrigo Garcia", "g1": "Nordic", "p2": "Romina Martínez", "g2": "Nordic"}, {"type": "heat", "time": "15:00", "hit": "15002", "category": "OPEN MIXTO", "p1": "Paola Laborde", "g1": "Nordic", "p2": "Franco Icardi", "g2": "Nordic"}, {"type": "heat", "time": "15:00", "hit": "15003", "category": "OPEN MIXTO", "p1": "Rafael Sanchez", "g1": "JPS Training", "p2": "Yamila Piriz", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15151", "category": "OPEN MIXTO", "p1": "Luis Gadola", "g1": "JPS Training", "p2": "Giuliana Freducci", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15152", "category": "OPEN MIXTO", "p1": "Melisa Bermudez", "g1": "JPS Training", "p2": "Bruno Olid", "g2": "JPS Training"}, {"type": "heat", "time": "15:15", "hit": "15153", "category": "OPEN MIXTO", "p1": "Eugenia Nuñez", "g1": "Modo Power", "p2": "Pablo Delbono", "g2": "Modo Power"}, {"type": "heat", "time": "15:30", "hit": "15301", "category": "OPEN MIXTO", "p1": "Gustavo Piriz", "g1": "JPS Training", "p2": "Anatole Carreño", "g2": "Zonafit"}, {"type": "heat", "time": "15:30", "hit": "15302", "category": "OPEN MIXTO", "p1": "Ana Alvez", "g1": "JPS Training", "p2": "Martin Araujo", "g2": "JPS Training"}, {"type": "heat", "time": "15:45", "hit": "15451", "category": "OPEN MIXTO", "p1": "Patricia Vassallucci", "g1": "JPS Training", "p2": "Raúl García", "g2": "JPS Training"}, {"type": "heat", "time": "15:45", "hit": "15452", "category": "OPEN MIXTO", "p1": "Hugo Ferron", "g1": "Atleta Invitado", "p2": "Leticia Hormigodim", "g2": "Atleta Invitada"}, {"type": "awards", "time": "16:00", "title": "PREMIACIÓN CATEGORÍAS OPEN", "description": "Ceremonia de podio y entrega de premios oficiales para atletas y gimnasios destacados."}, {"type": "heat", "time": "16:45", "hit": "16451", "category": "PRO MEN", "p1": "Jorge Baraibar", "g1": "JPS Training", "p2": "Hector Vázquez", "g2": "JPS Training"}, {"type": "heat", "time": "16:45", "hit": "16452", "category": "PRO MEN", "p1": "Marcos Bardier", "g1": "Atleta Invitado", "p2": "Ivo Martinez", "g2": "Atleta Invitado"}, {"type": "heat", "time": "16:45", "hit": "16453", "category": "PRO MEN", "p1": "Federico Dutra da Silveira", "g1": "Nordic", "p2": "Christofer Rodríguez", "g2": "Nordic"}, {"type": "heat", "time": "17:00", "hit": "17001", "category": "PRO MEN", "p1": "Facundo Soares de Lima", "g1": "JPS Training", "p2": "Fausto Formoso", "g2": "Nordic"}, {"type": "heat", "time": "17:00", "hit": "17002", "category": "PRO MEN", "p1": "Federico Núñez", "g1": "JPS Training", "p2": "Pedro Otegui", "g2": "JPS Training"}, {"type": "heat", "time": "17:00", "hit": "17003", "category": "PRO MEN", "p1": "José Aloy", "g1": "Nordic", "p2": "Franco Zilli", "g2": "Nordic"}, {"type": "heat", "time": "17:15", "hit": "17151", "category": "PRO MEN", "p1": "Maicol Correa", "g1": "Nordic", "p2": "Denis Méndez", "g2": "Nordic"}, {"type": "heat", "time": "17:15", "hit": "17152", "category": "PRO MEN", "p1": "Juan Manuel Navarro", "g1": "Nordic", "p2": "Gonzalo Soca", "g2": "Nordic"}, {"type": "heat", "time": "17:15", "hit": "17153", "category": "PRO MEN", "p1": "Gastón Róbinson", "g1": "Evolution", "p2": "Ramiro Recoba", "g2": "Evolution"}, {"type": "heat", "time": "17:30", "hit": "17301", "category": "PRO MEN", "p1": "Jerson Duarte", "g1": "JPS Training", "p2": "Martin Scremini", "g2": "JPS Training"}, {"type": "heat", "time": "17:30", "hit": "17302", "category": "PRO MEN", "p1": "Matías Alvarez", "g1": "DD training box", "p2": "Rodrigo Rosano", "g2": "DD training box"}, {"type": "heat", "time": "17:45", "hit": "17451", "category": "PRO MIXTO", "p1": "Fernanda Gregorio", "g1": "Nordic", "p2": "Diego Cartagena", "g2": "Nordic"}, {"type": "heat", "time": "17:45", "hit": "17452", "category": "PRO MIXTO", "p1": "Sebastian Ríos", "g1": "Nordic", "p2": "Jennifer Rodríguez", "g2": "Nordic"}, {"type": "heat", "time": "17:45", "hit": "17453", "category": "PRO MIXTO", "p1": "Leonardo Rubido", "g1": "Atleta Invitado", "p2": "Natalia Fernández", "g2": "Atleta Invitada"}, {"type": "heat", "time": "18:00", "hit": "18001", "category": "PRO MIXTO", "p1": "Sandy Suanes", "g1": "Nordic", "p2": "Nicólas Silva", "g2": "Nordic"}, {"type": "heat", "time": "18:00", "hit": "18002", "category": "PRO MIXTO", "p1": "Yessica Maciel", "g1": "Nordic", "p2": "Javier Menendez", "g2": "Polideportivo"}, {"type": "heat", "time": "18:15", "hit": "18151", "category": "PRO WOMEN", "p1": "Victoria Gago", "g1": "JPS Training", "p2": "Milagros Otegui", "g2": "Charlies"}, {"type": "heat", "time": "18:15", "hit": "18152", "category": "PRO WOMEN", "p1": "Yeila da Silva", "g1": "Nordic", "p2": "Karen Baez", "g2": "Nordic"}, {"type": "heat", "time": "18:30", "hit": "18301", "category": "PRO MIXTO", "p1": "Joaquin Gamba", "g1": "Strongbike", "p2": "María Noelia Martínez", "g2": "Strongbike"}, {"type": "heat", "time": "18:30", "hit": "18302", "category": "PRO MIXTO", "p1": "Pedro Olivera", "g1": "Atleta Invitado", "p2": "Gabriela Fagundez", "g2": "Atleta Invitada"}, {"type": "awards", "time": "18:45", "title": "PREMIACIÓN CATEGORÍAS PRO", "description": "Ceremonia de podio y entrega de premios oficiales para atletas y gimnasios destacados."}];
 
         // Injected Route Coordinates (Car route straight to Modena exact coordinates)
         const ROUTE_COORDS = [[-31.716055, -55.985788], [-31.715826, -55.986071], [-31.715227, -55.986836], [-31.714622, -55.987634], [-31.713971, -55.98842], [-31.71333, -55.989214], [-31.712755, -55.989959], [-31.712636, -55.990122], [-31.713282, -55.990812], [-31.713466, -55.991015], [-31.713944, -55.991546], [-31.714599, -55.992252], [-31.715273, -55.992989], [-31.715929, -55.993701], [-31.716585, -55.994405], [-31.717237, -55.995123], [-31.717821, -55.995754], [-31.717899, -55.995843], [-31.717997, -55.995942], [-31.718388, -55.99629], [-31.718577, -55.996506], [-31.718842, -55.996839], [-31.718961, -55.997013], [-31.71899, -55.997071], [-31.719123, -55.997335], [-31.719252, -55.997682], [-31.719319, -55.997857], [-31.719372, -55.998082], [-31.719414, -55.998375], [-31.719433, -55.998622], [-31.719448, -55.998827], [-31.719459, -55.999022], [-31.719488, -55.999672], [-31.719485, -55.999799], [-31.719474, -55.999868], [-31.71945, -55.999955], [-31.71944, -55.999965], [-31.719425, -55.999997], [-31.719421, -56.000017], [-31.719418, -56.000032], [-31.719422, -56.000072], [-31.719437, -56.000107], [-31.719461, -56.000135], [-31.71949, -56.00019], [-31.719508, -56.000271], [-31.719525, -56.000438], [-31.719562, -56.001133], [-31.719632, -56.002397], [-31.719655, -56.003028], [-31.719685, -56.003466], [-31.719747, -56.003886], [-31.719769, -56.004016], [-31.719943, -56.004753], [-31.720092, -56.005324], [-31.720312, -56.006071], [-31.720477, -56.006479], [-31.720642, -56.006813], [-31.720762, -56.007019], [-31.720861, -56.007226], [-31.720919, -56.007334], [-31.720927, -56.007366], [-31.720939, -56.007402], [-31.720959, -56.00743], [-31.720998, -56.007456], [-31.72108, -56.007504], [-31.72114, -56.007545], [-31.721184, -56.007574], [-31.721316, -56.007669], [-31.721466, -56.007778], [-31.721646, -56.0079], [-31.721958, -56.008072], [-31.722574, -56.008406], [-31.723968, -56.009144], [-31.72459, -56.009473], [-31.724953, -56.009675], [-31.725444, -56.009928], [-31.725605, -56.010034], [-31.725774, -56.010145], [-31.726022, -56.010334], [-31.726376, -56.010642], [-31.726759, -56.010977], [-31.727314, -56.011463], [-31.72746, -56.01159], [-31.727984, -56.012046], [-31.728171, -56.012207], [-31.728764, -56.012726], [-31.72918, -56.01309], [-31.729645, -56.013494], [-31.73015, -56.013931], [-31.730341, -56.014102], [-31.730424, -56.014174], [-31.730483, -56.014211], [-31.730588, -56.014246], [-31.730663, -56.014287], [-31.73078, -56.0144], [-31.730825, -56.014467], [-31.730883, -56.014516], [-31.730951, -56.014544], [-31.73103, -56.014548], [-31.731105, -56.014525], [-31.731171, -56.014475], [-31.731221, -56.014404], [-31.731251, -56.014319], [-31.731258, -56.014243], [-31.731337, -56.01414], [-31.73146, -56.014009], [-31.731541, -56.013976], [-31.731623, -56.013979], [-31.731699, -56.014009], [-31.732246, -56.014559], [-31.733387, -56.015851], [-31.734674, -56.017252], [-31.73505, -56.017672], [-31.735468, -56.018226], [-31.735504, -56.018274], [-31.735677, -56.018094], [-31.73585, -56.017915], [-31.736023, -56.017735], [-31.736196, -56.017556], [-31.736369, -56.017376], [-31.736542, -56.017196], [-31.736715, -56.017017], [-31.736888, -56.016837]];
@@ -1356,6 +1714,7 @@
         // ══════════════════════════════════════════════
         let currentCategory = 'ALL';
         let currentSearchQuery = '';
+        let isScheduleExpanded = false;
 
         // Highlight Gym styling with high visual impact
         function getGymBadgeClass(gymName) {
@@ -1368,7 +1727,9 @@
             if (g.includes('charlies')) return 'bg-rose-500/20 text-rose-400 border-rose-400/60 shadow-[0_0_12px_rgba(251,113,133,0.25)]';
             if (g.includes('strongbike')) return 'bg-lime-500/20 text-lime-400 border-lime-400/60 shadow-[0_0_12px_rgba(163,230,53,0.25)]';
             if (g.includes('polideportivo')) return 'bg-cyan-500/20 text-cyan-400 border-cyan-400/60 shadow-[0_0_12px_rgba(34,211,238,0.25)]';
-            if (g.includes('híbrido')) return 'bg-teal-500/20 text-teal-400 border-teal-400/60 shadow-[0_0_12px_rgba(45,212,191,0.25)]';
+            if (g.includes('híbrido') || g.includes('hibrido')) return 'bg-teal-500/20 text-teal-400 border-teal-400/60 shadow-[0_0_12px_rgba(45,212,191,0.25)]';
+            if (g.includes('dd training') || g.includes('dd')) return 'bg-red-500/20 text-red-400 border-red-400/60 shadow-[0_0_12px_rgba(239,68,68,0.25)]';
+            if (g.includes('zonafit')) return 'bg-indigo-500/20 text-indigo-400 border-indigo-400/60 shadow-[0_0_12px_rgba(129,140,248,0.25)]';
             return 'bg-white/10 text-white/80 border-white/20';
         }
 
@@ -1382,14 +1743,96 @@
             if (g.includes('charlies')) return '🥊 ';
             if (g.includes('strongbike')) return '🚴 ';
             if (g.includes('polideportivo')) return '🏟️ ';
-            if (g.includes('híbrido')) return '🔥 ';
+            if (g.includes('híbrido') || g.includes('hibrido')) return '🔥 ';
+            if (g.includes('dd training') || g.includes('dd')) return '🥊 ';
+            if (g.includes('zonafit')) return '💪 ';
             return '🇺🇾 ';
+        }
+
+        function expandSchedule(showAll) {
+            isScheduleExpanded = true;
+            if (showAll) {
+                currentCategory = 'ALL';
+                currentSearchQuery = '';
+                const searchInput = document.getElementById('schedule-search');
+                if (searchInput) searchInput.value = '';
+                document.getElementById('schedule-clear')?.classList.add('hidden');
+                updateCategoryChipsUI('ALL');
+                updateGymChipsUI('');
+            }
+            document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
+            document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
+            document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
+            renderSchedule();
+        }
+
+        function collapseSchedule() {
+            isScheduleExpanded = false;
+            currentCategory = 'ALL';
+            currentSearchQuery = '';
+            const searchInput = document.getElementById('schedule-search');
+            if (searchInput) searchInput.value = '';
+            document.getElementById('schedule-clear')?.classList.add('hidden');
+            updateCategoryChipsUI('ALL');
+            updateGymChipsUI('');
+            document.getElementById('schedule-collapsed-state')?.classList.remove('hidden');
+            document.getElementById('schedule-expanded-bar')?.classList.add('hidden');
+            document.getElementById('schedule-bottom-collapse')?.classList.add('hidden');
+            const container = document.getElementById('schedule-container');
+            if (container) container.innerHTML = '';
+            document.getElementById('schedule-empty')?.classList.add('hidden');
+            const countEl = document.getElementById('filtered-count');
+            if (countEl) countEl.textContent = '55 Heats organizados por categoría';
+            document.getElementById('fixture')?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectCategory(cat) {
+            currentCategory = cat;
+            isScheduleExpanded = true;
+            document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
+            document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
+            document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
+            updateCategoryChipsUI(cat);
+            renderSchedule();
+            document.getElementById('fixture')?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateCategoryChipsUI(cat) {
+            const chips = document.querySelectorAll('#category-filters button');
+            chips.forEach(chip => {
+                if (chip.getAttribute('data-category') === cat) {
+                    chip.classList.add('active', 'bg-electric-orange', 'text-white', 'border-electric-orange');
+                    chip.classList.remove('bg-white/5');
+                } else {
+                    chip.classList.remove('active', 'bg-electric-orange', 'text-white', 'border-electric-orange');
+                    chip.classList.add('bg-white/5');
+                }
+            });
+        }
+
+        function updateGymChipsUI(activeGym) {
+            const gymChips = document.querySelectorAll('#gym-filters button');
+            gymChips.forEach(btn => {
+                if (!activeGym && btn.textContent.includes('Todos los Gimnasios')) {
+                    btn.classList.add('active', 'bg-white/20', 'text-white');
+                } else if (activeGym && btn.textContent.toLowerCase().includes(activeGym.toLowerCase())) {
+                    btn.classList.add('active', 'ring-2', 'ring-white');
+                } else {
+                    btn.classList.remove('active', 'ring-2', 'ring-white');
+                }
+            });
         }
 
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             const emptyNotice = document.getElementById('schedule-empty');
             const counter = document.getElementById('filtered-count');
+            const indicator = document.getElementById('expanded-indicator');
+
+            if (!isScheduleExpanded) {
+                if (container) container.innerHTML = '';
+                return;
+            }
 
             const filtered = SCHEDULE_DATA.filter(item => {
                 // Category match
@@ -1416,7 +1859,9 @@
                 return true;
             });
 
-            counter.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'evento' : 'eventos'}`;
+            const countText = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'evento' : 'eventos'}`;
+            if (counter) counter.textContent = countText;
+            if (indicator) indicator.textContent = countText;
 
             if (filtered.length === 0) {
                 container.innerHTML = '';
@@ -1519,10 +1964,8 @@
             const chips = document.querySelectorAll('#category-filters button');
             chips.forEach(chip => {
                 chip.addEventListener('click', () => {
-                    chips.forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    currentCategory = chip.getAttribute('data-category');
-                    renderSchedule();
+                    const cat = chip.getAttribute('data-category');
+                    selectCategory(cat);
                 });
             });
 
@@ -1533,6 +1976,10 @@
                 currentSearchQuery = e.target.value.trim();
                 if (currentSearchQuery.length > 0) {
                     clearBtn.classList.remove('hidden');
+                    isScheduleExpanded = true;
+                    document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
+                    document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
+                    document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
                 } else {
                     clearBtn.classList.add('hidden');
                 }
@@ -1548,18 +1995,22 @@
         }
 
         function filterByGym(gymName) {
-            const searchInput = document.getElementById('schedule-search');
-            const clearBtn = document.getElementById('schedule-clear');
-            searchInput.value = gymName;
+            isScheduleExpanded = true;
+            document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
+            document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
+            document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
+            
             currentSearchQuery = gymName;
-            clearBtn.classList.remove('hidden');
-
-            // Highlight gym chip
-            const gymChips = document.querySelectorAll('#gym-filters button');
-            gymChips.forEach(btn => {
-                if (btn.textContent.includes(gymName)) {
-                    btn.classList.add('active');
-                } else {
+            const searchInput = document.getElementById('schedule-search');
+            if (searchInput) {
+                searchInput.value = gymName;
+            }
+            document.getElementById('schedule-clear')?.classList.remove('hidden');
+            updateGymChipsUI(gymName);
+            renderSchedule();
+            
+            document.getElementById('fixture')?.scrollIntoView({ behavior: 'smooth' });
+        } else {
                     btn.classList.remove('active');
                 }
             });
@@ -1574,20 +2025,8 @@
         }
 
         function resetFilters() {
-            currentCategory = 'ALL';
-            currentSearchQuery = '';
-            document.getElementById('schedule-search').value = '';
-            document.getElementById('schedule-clear').classList.add('hidden');
-            
-            const chips = document.querySelectorAll('#category-filters button');
-            chips.forEach(c => c.classList.remove('active'));
-            if (chips[0]) chips[0].classList.add('active');
-
-            const gymChips = document.querySelectorAll('#gym-filters button');
-            gymChips.forEach(c => c.classList.remove('active'));
-            if (gymChips[0]) gymChips[0].classList.add('active');
-
-            renderSchedule();
+            expandSchedule(true);
+            document.getElementById('fixture')?.scrollIntoView({ behavior: 'smooth' });
         }
 
         // ══════════════════════════════════════════════

@@ -4,9 +4,9 @@
     "time": "11:00",
     "hit": "11001",
     "category": "OPEN WOMEN",
-    "p1": "Mónica Rodriguez",
+    "p1": "Joanna Forapagliero",
     "g1": "JPS Training",
-    "p2": "Nadia Mezquita",
+    "p2": "Mercedes Alonso",
     "g2": "JPS Training"
   },
   {
@@ -14,25 +14,15 @@
     "time": "11:00",
     "hit": "11002",
     "category": "OPEN WOMEN",
-    "p1": "Eugenia Cardozo",
-    "g1": "Atleta Invitado",
-    "p2": "Mariana Alayón",
-    "g2": "Atleta Invitado"
+    "p1": "Estefany Charamoni",
+    "g1": "Modo Power",
+    "p2": "Noelia Alvez",
+    "g2": "Modo Power"
   },
   {
     "type": "heat",
     "time": "11:00",
     "hit": "11003",
-    "category": "OPEN WOMEN",
-    "p1": "Yeila da",
-    "g1": "Atleta Invitado",
-    "p2": "Silva Karen Baez",
-    "g2": "Atleta Invitado"
-  },
-  {
-    "type": "heat",
-    "time": "11:15",
-    "hit": "11151",
     "category": "OPEN WOMEN",
     "p1": "Ana González",
     "g1": "Híbrido GC",
@@ -42,27 +32,17 @@
   {
     "type": "heat",
     "time": "11:15",
-    "hit": "11152",
+    "hit": "11151",
     "category": "OPEN WOMEN",
     "p1": "Anna González",
-    "g1": "Atleta Invitado",
+    "g1": "Atleta Invitada",
     "p2": "Florencia Barbosa",
-    "g2": "Atleta Invitado"
+    "g2": "Atleta Invitada"
   },
   {
     "type": "heat",
     "time": "11:15",
-    "hit": "11153",
-    "category": "OPEN WOMEN",
-    "p1": "Joanna Forapagliero",
-    "g1": "JPS Training",
-    "p2": "Mercedes Alonso",
-    "g2": "JPS Training"
-  },
-  {
-    "type": "heat",
-    "time": "11:30",
-    "hit": "11301",
+    "hit": "11152",
     "category": "OPEN WOMEN",
     "p1": "Sofía Gago",
     "g1": "JPS Training",
@@ -71,8 +51,8 @@
   },
   {
     "type": "heat",
-    "time": "11:30",
-    "hit": "11302",
+    "time": "11:15",
+    "hit": "11153",
     "category": "OPEN WOMEN",
     "p1": "Ana Carolina Cougo",
     "g1": "JPS Training",
@@ -82,7 +62,7 @@
   {
     "type": "heat",
     "time": "11:30",
-    "hit": "11303",
+    "hit": "11301",
     "category": "OPEN WOMEN",
     "p1": "Antonella González",
     "g1": "Nordic",
@@ -91,8 +71,8 @@
   },
   {
     "type": "heat",
-    "time": "11:45",
-    "hit": "11451",
+    "time": "11:30",
+    "hit": "11302",
     "category": "OPEN WOMEN",
     "p1": "Emilia Piriz",
     "g1": "Enfoque",
@@ -101,8 +81,8 @@
   },
   {
     "type": "heat",
-    "time": "11:45",
-    "hit": "11452",
+    "time": "11:30",
+    "hit": "11303",
     "category": "OPEN WOMEN",
     "p1": "Emilia Estevez",
     "g1": "JPS Training",
@@ -112,7 +92,7 @@
   {
     "type": "heat",
     "time": "11:45",
-    "hit": "11453",
+    "hit": "11451",
     "category": "OPEN WOMEN",
     "p1": "Natalie Beguerie",
     "g1": "Evolution",
@@ -121,8 +101,8 @@
   },
   {
     "type": "heat",
-    "time": "12:00",
-    "hit": "12001",
+    "time": "11:45",
+    "hit": "11452",
     "category": "OPEN WOMEN",
     "p1": "Valeria González",
     "g1": "JPS Training",
@@ -132,7 +112,7 @@
   {
     "type": "heat",
     "time": "12:00",
-    "hit": "12002",
+    "hit": "12001",
     "category": "OPEN WOMEN",
     "p1": "Pilar Correa",
     "g1": "Nordic",
@@ -142,12 +122,32 @@
   {
     "type": "heat",
     "time": "12:00",
-    "hit": "12003",
+    "hit": "12002",
+    "category": "OPEN WOMEN",
+    "p1": "Eugenia Cardozo",
+    "g1": "Atleta Invitada",
+    "p2": "Mariana Alayón",
+    "g2": "Atleta Invitada"
+  },
+  {
+    "type": "heat",
+    "time": "12:15",
+    "hit": "12151",
     "category": "OPEN WOMEN",
     "p1": "Silvia Ataides",
     "g1": "Modo Power",
     "p2": "Caterin Ferreira",
     "g2": "Modo Power"
+  },
+  {
+    "type": "heat",
+    "time": "12:15",
+    "hit": "12152",
+    "category": "OPEN WOMEN",
+    "p1": "Mónica Rodriguez",
+    "g1": "JPS Training",
+    "p2": "Nadia Mezquita",
+    "g2": "JPS Training"
   },
   {
     "type": "heat",
@@ -204,20 +204,20 @@
     "time": "14:30",
     "hit": "14301",
     "category": "OPEN MEN",
-    "p1": "Anthony Navarrin",
-    "g1": "JPS Training",
-    "p2": "Jonatan Leberrie",
-    "g2": "JPS Training"
+    "p1": "Edgardo Silveira",
+    "g1": "Modo Power",
+    "p2": "Gonzalo González",
+    "g2": "Modo Power"
   },
   {
     "type": "heat",
     "time": "14:30",
     "hit": "14302",
     "category": "OPEN MEN",
-    "p1": "Edgardo Silveira",
-    "g1": "Modo Power",
-    "p2": "Gonzalo González",
-    "g2": "Modo Power"
+    "p1": "Santiago Ferrando",
+    "g1": "JPS Training",
+    "p2": "Santino Ferrando",
+    "g2": "JPS Training"
   },
   {
     "type": "heat",
@@ -255,9 +255,9 @@
     "hit": "15001",
     "category": "OPEN MIXTO",
     "p1": "Rodrigo Garcia",
-    "g1": "Atleta Invitado",
+    "g1": "Nordic",
     "p2": "Romina Martínez",
-    "g2": "Atleta Invitado"
+    "g2": "Nordic"
   },
   {
     "type": "heat",
@@ -274,16 +274,6 @@
     "time": "15:00",
     "hit": "15003",
     "category": "OPEN MIXTO",
-    "p1": "Santiago Ferrando",
-    "g1": "JPS Training",
-    "p2": "Helena Ferrando",
-    "g2": "JPS Training"
-  },
-  {
-    "type": "heat",
-    "time": "15:15",
-    "hit": "15151",
-    "category": "OPEN MIXTO",
     "p1": "Rafael Sanchez",
     "g1": "JPS Training",
     "p2": "Yamila Piriz",
@@ -292,7 +282,7 @@
   {
     "type": "heat",
     "time": "15:15",
-    "hit": "15152",
+    "hit": "15151",
     "category": "OPEN MIXTO",
     "p1": "Luis Gadola",
     "g1": "JPS Training",
@@ -302,7 +292,7 @@
   {
     "type": "heat",
     "time": "15:15",
-    "hit": "15153",
+    "hit": "15152",
     "category": "OPEN MIXTO",
     "p1": "Melisa Bermudez",
     "g1": "JPS Training",
@@ -311,8 +301,8 @@
   },
   {
     "type": "heat",
-    "time": "15:30",
-    "hit": "15301",
+    "time": "15:15",
+    "hit": "15153",
     "category": "OPEN MIXTO",
     "p1": "Eugenia Nuñez",
     "g1": "Modo Power",
@@ -322,17 +312,17 @@
   {
     "type": "heat",
     "time": "15:30",
-    "hit": "15302",
+    "hit": "15301",
     "category": "OPEN MIXTO",
     "p1": "Gustavo Piriz",
     "g1": "JPS Training",
-    "p2": "Ana Carreño",
-    "g2": "Atleta Invitado"
+    "p2": "Anatole Carreño",
+    "g2": "Zonafit"
   },
   {
     "type": "heat",
     "time": "15:30",
-    "hit": "15303",
+    "hit": "15302",
     "category": "OPEN MIXTO",
     "p1": "Ana Alvez",
     "g1": "JPS Training",
@@ -357,33 +347,13 @@
     "p1": "Hugo Ferron",
     "g1": "Atleta Invitado",
     "p2": "Leticia Hormigodim",
-    "g2": "Atleta Invitado"
+    "g2": "Atleta Invitada"
   },
   {
     "type": "awards",
     "time": "16:00",
     "title": "PREMIACIÓN CATEGORÍAS OPEN",
-    "description": "Ceremonia de podio y entrega de premios para Open Women, Open Men y Open Mixto."
-  },
-  {
-    "type": "heat",
-    "time": "16:30",
-    "hit": "16301",
-    "category": "PRO WOMEN",
-    "p1": "Victoria Gago",
-    "g1": "JPS Training",
-    "p2": "Milagros Otegui",
-    "g2": "Charlies"
-  },
-  {
-    "type": "heat",
-    "time": "16:30",
-    "hit": "16302",
-    "category": "PRO WOMEN",
-    "p1": "Estefany Charamoni",
-    "g1": "Modo Power",
-    "p2": "Noelia Alvez",
-    "g2": "Modo Power"
+    "description": "Ceremonia de podio y entrega de premios oficiales para atletas y gimnasios destacados."
   },
   {
     "type": "heat",
@@ -467,8 +437,8 @@
   },
   {
     "type": "heat",
-    "time": "17:30",
-    "hit": "17301",
+    "time": "17:15",
+    "hit": "17153",
     "category": "PRO MEN",
     "p1": "Gastón Róbinson",
     "g1": "Evolution",
@@ -478,12 +448,22 @@
   {
     "type": "heat",
     "time": "17:30",
-    "hit": "17302",
+    "hit": "17301",
     "category": "PRO MEN",
     "p1": "Jerson Duarte",
     "g1": "JPS Training",
     "p2": "Martin Scremini",
-    "g2": "Atleta Invitado"
+    "g2": "JPS Training"
+  },
+  {
+    "type": "heat",
+    "time": "17:30",
+    "hit": "17302",
+    "category": "PRO MEN",
+    "p1": "Matías Alvarez",
+    "g1": "DD training box",
+    "p2": "Rodrigo Rosano",
+    "g2": "DD training box"
   },
   {
     "type": "heat",
@@ -513,7 +493,7 @@
     "p1": "Leonardo Rubido",
     "g1": "Atleta Invitado",
     "p2": "Natalia Fernández",
-    "g2": "Atleta Invitado"
+    "g2": "Atleta Invitada"
   },
   {
     "type": "heat",
@@ -539,6 +519,26 @@
     "type": "heat",
     "time": "18:15",
     "hit": "18151",
+    "category": "PRO WOMEN",
+    "p1": "Victoria Gago",
+    "g1": "JPS Training",
+    "p2": "Milagros Otegui",
+    "g2": "Charlies"
+  },
+  {
+    "type": "heat",
+    "time": "18:15",
+    "hit": "18152",
+    "category": "PRO WOMEN",
+    "p1": "Yeila da Silva",
+    "g1": "Nordic",
+    "p2": "Karen Baez",
+    "g2": "Nordic"
+  },
+  {
+    "type": "heat",
+    "time": "18:30",
+    "hit": "18301",
     "category": "PRO MIXTO",
     "p1": "Joaquin Gamba",
     "g1": "Strongbike",
@@ -547,18 +547,18 @@
   },
   {
     "type": "heat",
-    "time": "18:15",
-    "hit": "18152",
+    "time": "18:30",
+    "hit": "18302",
     "category": "PRO MIXTO",
     "p1": "Pedro Olivera",
     "g1": "Atleta Invitado",
     "p2": "Gabriela Fagundez",
-    "g2": "Atleta Invitado"
+    "g2": "Atleta Invitada"
   },
   {
     "type": "awards",
-    "time": "18:30",
-    "title": "PREMIACIÓN CATEGORÍAS PRO Y CIERRE",
-    "description": "Ceremonia de coronación para Pro Women, Pro Men, Pro Mixto y brindis final con Barra Bruma Beer."
+    "time": "18:45",
+    "title": "PREMIACIÓN CATEGORÍAS PRO",
+    "description": "Ceremonia de podio y entrega de premios oficiales para atletas y gimnasios destacados."
   }
 ]
