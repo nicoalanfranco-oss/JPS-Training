@@ -1151,10 +1151,11 @@
                         <input 
                             id="schedule-search" 
                             type="text" 
+                            oninput="onSearchInput(this.value)"
                             placeholder="Buscar por nombre de atleta, hit o gimnasio... (Ej: Nordic, JPS, Modo Power, DD training, Mónica, 14:00)" 
                             class="w-full pl-11 pr-10 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white placeholder-on-surface-variant/60 font-body text-sm focus:outline-none focus:border-electric-orange focus:ring-1 focus:ring-electric-orange transition-all"
                         />
-                        <button id="schedule-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface-variant hover:text-white hidden">
+                        <button id="schedule-clear" onclick="clearSearch()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface-variant hover:text-white hidden">
                             <span class="material-symbols-outlined text-[18px]">close</span>
                         </button>
                     </div>
@@ -1163,25 +1164,25 @@
                     <div>
                         <span class="text-[10px] font-mono font-bold text-on-surface-variant uppercase tracking-wider block mb-1.5">Filtrar por Categoría:</span>
                         <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-filters">
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="ALL">
+                            <button onclick="selectCategory('ALL')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="ALL">
                                 Todos los Heats (55)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN WOMEN">
+                            <button onclick="selectCategory('OPEN WOMEN')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN WOMEN">
                                 Open Women (11:00)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MEN">
+                            <button onclick="selectCategory('OPEN MEN')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MEN">
                                 Open Men (14:00)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MIXTO">
+                            <button onclick="selectCategory('OPEN MIXTO')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="OPEN MIXTO">
                                 Open Mixto (14:45)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MEN">
+                            <button onclick="selectCategory('PRO MEN')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MEN">
                                 Pro Men (16:45)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MIXTO">
+                            <button onclick="selectCategory('PRO MIXTO')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO MIXTO">
                                 Pro Mixto (17:45)
                             </button>
-                            <button class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
+                            <button onclick="selectCategory('PRO WOMEN')" class="filter-chip px-3.5 py-1.5 rounded-full border border-white/15 font-mono text-xs font-bold whitespace-nowrap transition-all bg-white/5 hover:bg-white/10" data-category="PRO WOMEN">
                                 Pro Women (18:15)
                             </button>
                         </div>
@@ -1960,6 +1961,29 @@
             }).join('');
         }
 
+        function onSearchInput(val) {
+            currentSearchQuery = (val || '').trim();
+            const clearBtn = document.getElementById('schedule-clear');
+            if (currentSearchQuery.length > 0) {
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                isScheduleExpanded = true;
+                document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
+                document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
+                document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
+            } else {
+                if (clearBtn) clearBtn.classList.add('hidden');
+            }
+            renderSchedule();
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('schedule-search');
+            if (searchInput) searchInput.value = '';
+            currentSearchQuery = '';
+            document.getElementById('schedule-clear')?.classList.add('hidden');
+            renderSchedule();
+        }
+
         function setupFilters() {
             const chips = document.querySelectorAll('#category-filters button');
             chips.forEach(chip => {
@@ -1972,27 +1996,26 @@
             const searchInput = document.getElementById('schedule-search');
             const clearBtn = document.getElementById('schedule-clear');
 
-            searchInput.addEventListener('input', (e) => {
-                currentSearchQuery = e.target.value.trim();
-                if (currentSearchQuery.length > 0) {
-                    clearBtn.classList.remove('hidden');
-                    isScheduleExpanded = true;
-                    document.getElementById('schedule-collapsed-state')?.classList.add('hidden');
-                    document.getElementById('schedule-expanded-bar')?.classList.remove('hidden');
-                    document.getElementById('schedule-bottom-collapse')?.classList.remove('hidden');
-                } else {
-                    clearBtn.classList.add('hidden');
-                }
-                renderSchedule();
-            });
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    onSearchInput(e.target.value);
+                });
+            }
 
-            clearBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                currentSearchQuery = '';
-                clearBtn.classList.add('hidden');
-                renderSchedule();
-            });
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    clearSearch();
+                });
+            }
         }
+
+        window.selectCategory = selectCategory;
+        window.filterByGym = filterByGym;
+        window.expandSchedule = expandSchedule;
+        window.collapseSchedule = collapseSchedule;
+        window.resetFilters = resetFilters;
+        window.onSearchInput = onSearchInput;
+        window.clearSearch = clearSearch;
 
         function filterByGym(gymName) {
             isScheduleExpanded = true;
@@ -2010,18 +2033,6 @@
             renderSchedule();
             
             document.getElementById('fixture')?.scrollIntoView({ behavior: 'smooth' });
-        } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            renderSchedule();
-
-            // Smooth scroll to fixture
-            const fixtureSec = document.getElementById('fixture');
-            if (fixtureSec) {
-                fixtureSec.scrollIntoView({ behavior: 'smooth' });
-            }
         }
 
         function resetFilters() {
