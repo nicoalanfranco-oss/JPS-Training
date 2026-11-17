@@ -2107,35 +2107,39 @@
             });
         }
 
-        // Start Point icon (JPS Training)
+        // Start Point icon (JPS Training - logo only, without SALIDA text)
         function createStartIcon() {
             return L.divIcon({
                 className: 'custom-leaflet-marker',
                 html: `
                     <div style="display: flex; flex-direction: column; align-items: center; pointer-events: auto;">
                         <div style="
-                            background: #111118;
-                            border: 1.5px solid #FF8A00;
-                            border-radius: 8px;
-                            padding: 3px 8px;
-                            font-family: Montserrat, sans-serif;
-                            font-size: 10px;
-                            font-weight: 800;
-                            color: #FF8A00;
-                            white-space: nowrap;
-                            box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+                            width: 44px;
+                            height: 44px;
+                            border-radius: 50%;
+                            background: #0b0b10;
+                            border: 2px solid #FF8A00;
+                            box-shadow: 0 0 16px rgba(255,138,0,0.65), 0 4px 12px rgba(0,0,0,0.8);
                             display: flex;
                             align-items: center;
-                            gap: 4px;
+                            justify-content: center;
+                            padding: 3px;
+                            overflow: hidden;
                         ">
-                            <span>🏋️‍♂️</span>
-                            <span>JPS TRAINING (SALIDA)</span>
+                            <img src="public/logos/jps-training.png" alt="JPS Training" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;" />
                         </div>
-                        <div style="width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #FF8A00;"></div>
+                        <div style="
+                            width: 0;
+                            height: 0;
+                            border-left: 6px solid transparent;
+                            border-right: 6px solid transparent;
+                            border-top: 7px solid #FF8A00;
+                            margin-top: -1px;
+                        "></div>
                     </div>
                 `,
-                iconSize: [140, 32],
-                iconAnchor: [70, 32],
+                iconSize: [44, 51],
+                iconAnchor: [22, 51],
             });
         }
 
@@ -2166,7 +2170,7 @@
             });
         }
 
-        // Modena Eventos Arrival Marker (Exact spot inside Modena)
+        // Modena Eventos Arrival Marker (Exact spot inside Modena with Modena Logo)
         function createModenaIcon(isArrived) {
             if (!isArrived) {
                 return L.divIcon({
@@ -2180,7 +2184,7 @@
             return L.divIcon({
                 className: 'custom-leaflet-marker',
                 html: `
-                    <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 220px; height: 180px; pointer-events: auto; overflow: visible;">
+                    <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 240px; height: 250px; pointer-events: auto; overflow: visible;">
                         
                         <!-- Pop-up Modena Eventos Card -->
                         <div class="store-card-pop-anim" style="
@@ -2190,21 +2194,34 @@
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            filter: drop-shadow(0 8px 22px rgba(0,0,0,0.9));
+                            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.95));
                         ">
                             <!-- Card Box -->
                             <div style="
                                 background: #0e0e14;
                                 border: 2.5px solid #FF8A00;
                                 border-radius: 14px;
-                                padding: 8px 14px 9px 14px;
+                                padding: 10px 14px 10px 14px;
                                 text-align: center;
                                 white-space: nowrap;
                                 box-shadow: 0 0 25px rgba(255, 138, 0, 0.45);
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
                             ">
+                                <!-- Logo Módena Eventos arriba del texto -->
+                                <div style="margin-bottom: 7px; display: flex; justify-content: center;">
+                                    <img src="public/modena-logo.jpg" alt="Módena Fiestas & Eventos" style="
+                                        width: 58px;
+                                        height: 58px;
+                                        object-fit: cover;
+                                        border-radius: 10px;
+                                        border: 1.5px solid rgba(255,138,0,0.6);
+                                        box-shadow: 0 0 14px rgba(255,138,0,0.35);
+                                    " />
+                                </div>
                                 <div style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 2px;">
-                                    <span style="font-size: 13px;">📍</span>
-                                    <span style="color: #FF8A00; font-size: 12px; font-weight: 900; letter-spacing: 0.8px; font-family: Montserrat, sans-serif;">MÓDENA EVENTOS</span>
+                                    <span style="color: #FF8A00; font-size: 13px; font-weight: 900; letter-spacing: 0.8px; font-family: Montserrat, sans-serif;">MÓDENA EVENTOS</span>
                                 </div>
                                 <div style="color: #ffffff; font-size: 11px; font-weight: 800; font-family: Montserrat, sans-serif;">SEDE HYBRID GAME JPS</div>
                                 <div style="color: #F5C518; font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">Tacuarembó • 21 de Noviembre</div>
@@ -2244,8 +2261,8 @@
 
                     </div>
                 `,
-                iconSize: [220, 180],
-                iconAnchor: [110, 180],
+                iconSize: [240, 250],
+                iconAnchor: [120, 250],
             });
         }
 
