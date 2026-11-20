@@ -766,19 +766,22 @@
             { type: "awards", time: "18:45", title: "PREMIACIÓN CATEGORÍAS PRO" }
         ];
 
+        // ── Mapeo canónico de gimnasios → logo/color (fuente: evento.html) ──
+        // SIEMPRE usar esta función — nunca confiar en gymLogo/gymColor del API directamente
         function getGymMeta(gymName) {
-            const g = (gymName || '').toLowerCase();
-            if (g.includes('jps')) return { logo: 'public/logos/jps-training.png', color: '#FF8A00', name: 'JPS Training' };
-            if (g.includes('nordic')) return { logo: 'public/logos/nordic.jpg', color: '#60A5FA', name: 'Nordic' };
-            if (g.includes('modo power')) return { logo: 'public/logos/modo-power.jpg', color: '#F5C518', name: 'Modo Power' };
-            if (g.includes('evolution')) return { logo: 'public/logos/evolution.png', color: '#34D399', name: 'Evolution' };
-            if (g.includes('enfoque')) return { logo: 'public/logos/enfoque.jpg', color: '#C084FC', name: 'Enfoque' };
-            if (g.includes('charlies')) return { logo: 'public/logos/charlies.png', color: '#FB7185', name: 'Charlies' };
-            if (g.includes('strongbike')) return { logo: 'public/logos/strongbike.jpg', color: '#A3E635', name: 'Strongbike' };
-            if (g.includes('dd training') || g.includes('dd')) return { logo: 'public/logos/dd-training.jpg', color: '#EF4444', name: 'DD Training' };
-            if (g.includes('híbrido') || g.includes('hibrido')) return { logo: 'public/logos/hibrido-gc.jpg', color: '#2DD4BF', name: 'Híbrido GC' };
-            if (g.includes('polideportivo')) return { logo: 'public/logos/jps-training.png', color: '#22D3EE', name: 'Polideportivo' };
-            if (g.includes('zonafit')) return { logo: 'public/logos/jps-training.png', color: '#818CF8', name: 'Zonafit' };
+            const g = (gymName || '').toLowerCase().trim();
+            if (g.includes('jps'))                              return { logo: 'public/logos/jps-training.png', color: '#FF8A00', name: 'JPS Training' };
+            if (g.includes('nordic'))                           return { logo: 'public/logos/nordic.jpg',       color: '#60A5FA', name: 'Nordic' };
+            if (g.includes('modo power') || g.includes('modo'))return { logo: 'public/logos/modo-power.jpg',   color: '#F5C518', name: 'Modo Power' };
+            if (g.includes('evolution'))                        return { logo: 'public/logos/evolution.png',    color: '#34D399', name: 'Evolution' };
+            if (g.includes('enfoque'))                          return { logo: 'public/logos/enfoque.jpg',      color: '#C084FC', name: 'Enfoque' };
+            if (g.includes('charlies'))                         return { logo: 'public/logos/charlies.png',     color: '#FB7185', name: 'Charlies' };
+            if (g.includes('strongbike'))                       return { logo: 'public/logos/strongbike.jpg',   color: '#A3E635', name: 'Strongbike' };
+            if (g.includes('dd training') || g === 'dd')        return { logo: 'public/logos/dd-training.jpg',  color: '#EF4444', name: 'DD Training Box' };
+            if (g.includes('híbrido') || g.includes('hibrido') || g.includes('hibrido gc')) return { logo: 'public/logos/hibrido-gc.jpg', color: '#2DD4BF', name: 'Híbrido GC' };
+            if (g.includes('polideportivo'))                    return { logo: 'public/logos/jps-training.png', color: '#22D3EE', name: 'Polideportivo' };
+            if (g.includes('zonafit'))                          return { logo: 'public/logos/jps-training.png', color: '#818CF8', name: 'Zonafit' };
+            if (g.includes('invitad'))                          return { logo: 'public/logos/jps-training.png', color: '#94A3B8', name: 'Atleta Invitado' };
             return { logo: 'public/logos/jps-training.png', color: '#94A3B8', name: gymName || 'Invitado' };
         }
 
@@ -1062,13 +1065,13 @@
                 card.innerHTML = `
                     <!-- Top Ribbon: Posta & Gym Identity -->
                     <div class="flex items-start justify-between gap-3 mb-3">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-12 h-12 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow">
-                                <img src="${ath.gymLogo || 'public/logos/jps-training.png'}" alt="${ath.gymName}" class="w-full h-full object-contain rounded-lg"/>
+                        <div class="flex items-center gap-3">
+                            <div class="w-16 h-16 rounded-2xl bg-black/60 border-2 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${getGymMeta(ath.gymName).color}40">
+                                <img src="${getGymMeta(ath.gymName).logo}" alt="${getGymMeta(ath.gymName).name}" class="w-full h-full object-contain rounded-xl" onerror="this.src='public/logos/jps-training.png'"/>
                             </div>
                             <div>
-                                <span class="font-mono text-xs font-black uppercase tracking-wider block" style="color: ${ath.gymColor || '#FF8A00'}">
-                                    ${ath.gymName || 'JPS Training'}
+                                <span class="font-mono text-xs font-black uppercase tracking-wider block" style="color: ${getGymMeta(ath.gymName).color}">
+                                    ${getGymMeta(ath.gymName).name}
                                 </span>
                                 <span class="font-mono text-[11px] text-zinc-400 font-bold">
                                     ${ath.posta || 'POSTA ' + (idx + 1)} &bull; #${ath.numero || '--'}
@@ -1181,12 +1184,12 @@
                         <span class="font-display font-black text-3xl ${sty.text} flex items-center gap-1">
                             <span>${sty.medal}</span> ${sty.rank}
                         </span>
-                        <div class="w-10 h-10 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0">
-                            <img src="${item.gymLogo || 'public/logos/jps-training.png'}" alt="${item.gymName}" class="w-full h-full object-contain rounded-lg"/>
+                        <div class="w-16 h-16 rounded-2xl bg-black/60 border-2 p-1.5 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${getGymMeta(item.gymName).color}50">
+                            <img src="${getGymMeta(item.gymName).logo}" alt="${getGymMeta(item.gymName).name}" class="w-full h-full object-contain rounded-xl" onerror="this.src='public/logos/jps-training.png'"/>
                         </div>
                     </div>
-                    <span class="font-mono text-xs font-bold uppercase block" style="color: ${item.gymColor || '#FF8A00'}">
-                        ${item.gymName}
+                    <span class="font-mono text-xs font-bold uppercase block" style="color: ${getGymMeta(item.gymName).color}">
+                        ${getGymMeta(item.gymName).name}
                     </span>
                     <h4 class="font-display font-black text-base sm:text-lg text-white uppercase leading-snug mt-1 mb-3">
                         ${item.nombre}
@@ -1217,11 +1220,11 @@
                         ${idx + 1}º
                     </td>
                     <td class="py-3 px-4">
-                        <div class="flex items-center gap-2">
-                            <div class="w-7 h-7 rounded-lg bg-black/60 border border-white/10 p-0.5 flex items-center justify-center shrink-0">
-                                <img src="${r.gymLogo || 'public/logos/jps-training.png'}" alt="${r.gymName}" class="w-full h-full object-contain rounded"/>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-black/60 border p-0.5 flex items-center justify-center shrink-0 overflow-hidden" style="border-color: ${getGymMeta(r.gymName).color}50">
+                                <img src="${getGymMeta(r.gymName).logo}" alt="${getGymMeta(r.gymName).name}" class="w-full h-full object-contain rounded-lg" onerror="this.src='public/logos/jps-training.png'"/>
                             </div>
-                            <span class="font-bold text-white uppercase truncate max-w-[140px]">${r.gymName}</span>
+                            <span class="font-bold uppercase truncate max-w-[140px]" style="color: ${getGymMeta(r.gymName).color}">${getGymMeta(r.gymName).name}</span>
                         </div>
                     </td>
                     <td class="py-3 px-4 font-display font-black text-sm text-white uppercase">
@@ -1300,8 +1303,8 @@
                         <span class="px-2.5 py-1 rounded-lg bg-vibrant-yellow text-black font-mono text-xs font-black uppercase">
                             ${ath.posta || 'POSTA ' + (idx + 1)}
                         </span>
-                        <div class="w-10 h-10 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0">
-                            <img src="${gMeta.logo}" alt="${gMeta.name}" class="w-full h-full object-contain rounded-lg"/>
+                        <div class="w-14 h-14 rounded-2xl bg-black/60 border-2 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${gMeta.color}50">
+                            <img src="${gMeta.logo}" alt="${gMeta.name}" class="w-full h-full object-contain rounded-xl" onerror="this.src='public/logos/jps-training.png'"/>
                         </div>
                     </div>
                     <span class="font-mono text-xs font-bold uppercase block" style="color: ${gMeta.color}">
