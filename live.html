@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>HYBRID GAME JPS 2026 | Resultados en Vivo & Leaderboard Oficial</title>
+    <meta name="description" content="Transmisión en directo de tiempos, tandas en pista, clasificaciones y podios de la Hybrid Game JPS 2026 en Módena Eventos." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="HYBRID GAME JPS 2026 | Resultados en Vivo" />
+    <meta property="og:description" content="Sigue en tiempo real las tandas en pista, tiempos oficiales de Encarrera y leaderboard de la Hybrid Game JPS." />
+    <meta property="og:image" content="public/logos/jps-training.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="public/logos/jps-training.png" />
+
+    <!-- Tailwind CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-orange": "#FF8A00",
+                        "vibrant-pink": "#E01E5A",
+                        "vibrant-yellow": "#F5C518",
+                        "encarrera-cyan": "#00f0ff",
+                        "surface-dim": "#0a0a0e",
+                        "surface-card": "#111218",
+                        "surface-elevated": "#171822",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #07070a;
+            color: #f3f4f6;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism TV Cards */
+        .tv-card {
+            background: linear-gradient(135deg, rgba(23, 24, 34, 0.85) 0%, rgba(12, 13, 18, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+        }
+
+        .tv-card-active {
+            border: 2px solid #FF8A00;
+            box-shadow: 0 0 30px rgba(255, 138, 0, 0.25);
+        }
+
+        /* Ambient background grid */
+        .ambient-grid {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 138, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(224, 30, 90, 0.06) 0%, transparent 45%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Encarrera Logo Neon Aura */
+        @keyframes encarreraGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.4)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.2));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.8)) drop-shadow(0 0 35px rgba(0, 240, 255, 0.4));
+            }
+        }
+
+        .encarrera-live-glow {
+            animation: encarreraGlow 3.5s ease-in-out infinite;
+        }
+
+        /* Ticker Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 35s linear infinite;
+        }
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 138, 0, 0.4);
+            border-radius: 3px;
+        }
+
+        /* View transitions */
+        .view-panel {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .view-hidden {
+            display: none !important;
+            opacity: 0;
+            transform: scale(0.98);
+        }
+        .view-visible {
+            display: block !important;
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between ambient-grid select-none">
+
+    <!-- ══════════════════════════════════════════════════════
+         1. TOP BROADCAST HEADER
+    ══════════════════════════════════════════════════════ -->
+    <header class="w-full bg-black/85 border-b border-white/10 px-4 lg:px-8 py-2.5 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- LEFT: JPS Power Animated Canvas Logo -->
+            <div class="flex items-center gap-3">
+                <div class="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shrink-0">
+                    <canvas id="jps-power-canvas" width="128" height="128" class="w-full h-full drop-shadow-[0_0_15px_rgba(255,138,0,0.6)]"></canvas>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-black text-xl sm:text-2xl tracking-wider text-white uppercase leading-none">
+                            HYBRID <span class="text-electric-orange">GAME</span>
+                        </span>
+                        <span class="hidden sm:inline-block px-2 py-0.5 rounded bg-electric-orange/20 border border-electric-orange/40 text-[10px] font-mono font-black text-electric-orange">
+                            JPS 2026
+                        </span>
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest mt-0.5">
+                        MÓDENA EVENTOS &bull; TACUAREMBÓ
+                    </span>
+                </div>
+            </div>
+
+            <!-- CENTER: Live Clock & Broadcast Status Indicator -->
+            <div class="flex flex-col items-center justify-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 font-mono text-xs font-black shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                    <span class="tracking-widest uppercase">EN VIVO</span>
+                    <span class="text-white/40">|</span>
+                    <span id="header-heat-badge" class="text-white">TANDA EN PISTA</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1">
+                    <span id="official-clock" class="font-mono text-base sm:text-lg font-black text-white tracking-wider">--:--:--</span>
+                    <span class="text-[10px] font-mono text-zinc-400 uppercase font-bold">(UTC-3)</span>
+                </div>
+                <!-- Dynamic progress bar of auto-rotation -->
+                <div class="w-32 sm:w-44 h-1 bg-white/10 rounded-full overflow-hidden mt-1" title="Tiempo para cambio de vista">
+                    <div id="rotation-progress-bar" class="h-full bg-gradient-to-r from-electric-orange to-vibrant-pink transition-all duration-300" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Encarrera Official Timing Logo (Live Aura) & Quick Controls -->
+            <div class="flex items-center gap-3 sm:gap-5">
+                
+                <!-- Encarrera Live Badge -->
+                <div class="flex flex-col items-end">
+                    <div class="h-8 sm:h-10 px-2 py-0.5 rounded-lg bg-zinc-900/80 border border-cyan-500/30 flex items-center justify-center encarrera-live-glow">
+                        <img src="public/logos/encarrerauy-logoblanco@2x.png" alt="Encarrera UY" class="h-6 sm:h-7 object-contain"/>
+                    </div>
+                    <span class="text-[9px] sm:text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider mt-0.5 flex items-center gap-1">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                        CRONOMETRAJE CHIP
+                    </span>
+                </div>
+
+                <!-- Fullscreen & Navigation Buttons -->
+                <div class="flex items-center gap-1.5">
+                    <button onclick="toggleFullScreen()" title="Pantalla Completa (F)" class="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-all text-sm flex items-center justify-center">
+                        <span class="material-symbols-outlined text-lg">fullscreen</span>
+                    </button>
+                    <a href="evento.html" title="Volver a la Web Principal" class="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-all text-sm hidden sm:flex items-center justify-center">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Mode Selector Navigation Tabs (Discreet & Touch-friendly) -->
+        <div class="max-w-7xl mx-auto flex items-center justify-between border-t border-white/5 pt-2 mt-2">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold">
+                <button id="btn-view-heat" onclick="switchView('heat', true)" class="px-3 py-1 rounded-lg bg-electric-orange text-black font-black uppercase flex items-center gap-1.5 shadow-md">
+                    <span>1. EN PISTA AHORA</span>
+                    <span id="active-heat-tag" class="text-[10px] bg-black/20 px-1.5 py-0.2 rounded font-mono">TANDA --</span>
+                </button>
+                <button id="btn-view-leaderboard" onclick="switchView('leaderboard', true)" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 uppercase flex items-center gap-1.5 border border-white/10">
+                    <span>2. LEADERBOARD</span>
+                    <span class="text-[10px] bg-white/10 px-1.5 py-0.2 rounded">GENERAL</span>
+                </button>
+                <button id="btn-view-next" onclick="switchView('next', true)" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 uppercase flex items-center gap-1.5 border border-white/10">
+                    <span>3. PRÓXIMO HEAT</span>
+                    <span class="text-[10px] bg-white/10 px-1.5 py-0.2 rounded">ESPERA</span>
+                </button>
+            </div>
+
+            <div class="flex items-center gap-3 text-[11px] font-mono text-zinc-400">
+                <div class="flex items-center gap-1.5">
+                    <button id="btn-toggle-auto" onclick="toggleAutoRotation()" class="px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-300 hover:text-white flex items-center gap-1">
+                        <span id="auto-rotation-icon" class="material-symbols-outlined text-sm text-green-400">sync</span>
+                        <span id="auto-rotation-text">AUTO-ROTACIÓN ON</span>
+                    </button>
+                </div>
+                <div class="hidden md:flex items-center gap-1">
+                    <span id="sync-status-dot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span id="sync-status-text">Actualizado</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════════
+         2. MAIN BROADCAST CONTENT
+    ══════════════════════════════════════════════════════ -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5">
+
+        <!-- ──────────────────────────────────────────
+             VISTA 1: "EN LA PISTA AHORA" (Heat en Curso)
+        ────────────────────────────────────────── -->
+        <section id="view-heat" class="view-panel view-visible space-y-4">
+            
+            <!-- Heat Header Banner -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-gradient-to-r from-orange-950/40 via-surface-card to-zinc-900 border border-electric-orange/30 shadow-[0_0_25px_rgba(255,138,0,0.15)]">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-electric-orange text-black flex items-center justify-center font-display font-black text-2xl shadow-md shrink-0">
+                        ⚡
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono text-xs font-black text-electric-orange uppercase tracking-widest">EN COMPETENCIA OFICIAL</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+                            <span id="heat-category-label" class="font-mono text-xs text-vibrant-yellow font-bold uppercase">OPEN WOMEN</span>
+                        </div>
+                        <h2 id="heat-title" class="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
+                            TANDA 6 EN PISTA
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <span class="text-[11px] font-mono text-zinc-400 uppercase font-bold block">Duplas en Acción</span>
+                        <span id="heat-athlete-count" class="font-mono text-xl sm:text-2xl font-black text-white">--</span>
+                    </div>
+                    <div class="h-9 w-px bg-white/10"></div>
+                    <div class="text-right">
+                        <span class="text-[11px] font-mono text-zinc-400 uppercase font-bold block">Récord Circuito</span>
+                        <span id="heat-best-lap" class="font-mono text-xl sm:text-2xl font-black text-vibrant-yellow">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Athletes Live Grid -->
+            <div id="heat-athletes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Se inyecta dinámicamente con las tarjetas de atletas -->
+            </div>
+
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             VISTA 2: "LEADERBOARD GENERAL" (Ranking Acumulado)
+        ────────────────────────────────────────── -->
+        <section id="view-leaderboard" class="view-panel view-hidden space-y-5">
+            
+            <!-- Leaderboard Header & Category Filter Tabs -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-xs font-mono font-black text-vibrant-yellow uppercase mb-1">
+                        🏆 CLASIFICACIÓN GENERAL OFICIAL
+                    </div>
+                    <h2 class="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight leading-none">
+                        TABLA DE <span class="text-electric-orange">POSICIONES</span>
+                    </h2>
+                </div>
+
+                <!-- Category Tabs -->
+                <div id="leaderboard-category-tabs" class="flex flex-wrap items-center gap-1.5 text-xs font-mono font-bold">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Top 3 Podium Highlights -->
+            <div id="podium-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- Inyectado dinámicamente: 1º Oro, 2º Plata, 3º Bronce -->
+            </div>
+
+            <!-- Full Standings Table -->
+            <div class="tv-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse font-body">
+                        <thead>
+                            <tr class="bg-black/60 border-b border-white/10 text-zinc-400 font-mono text-xs uppercase font-black tracking-wider">
+                                <th class="py-3 px-4 text-center w-16">Pos</th>
+                                <th class="py-3 px-4">Gimnasio</th>
+                                <th class="py-3 px-4">Dupla / Atletas</th>
+                                <th class="py-3 px-4 hidden md:table-cell">Modalidad</th>
+                                <th class="py-3 px-4 text-center">Tanda</th>
+                                <th class="py-3 px-4 text-center">Vueltas</th>
+                                <th class="py-3 px-4 text-center hidden lg:table-cell">Mejor Vta</th>
+                                <th class="py-3 px-4 text-center">Dif</th>
+                                <th class="py-3 px-4 text-right pr-6 font-mono">Tiempo Oficial</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-tbody" class="divide-y divide-white/5 text-sm">
+                            <!-- Inyectado dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             VISTA 3: "EN ESPERA / PRÓXIMO HEAT" (Zona de Llamada)
+        ────────────────────────────────────────── -->
+        <section id="view-next" class="view-panel view-hidden space-y-5">
+            
+            <!-- Logistics Warning Header -->
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-950/40 via-surface-card to-zinc-900 border-2 border-vibrant-yellow/50 shadow-[0_0_35px_rgba(245,197,24,0.15)] flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4 text-center md:text-left">
+                    <div class="w-16 h-16 rounded-2xl bg-vibrant-yellow text-black flex items-center justify-center font-display font-black text-3xl shadow-lg shrink-0">
+                        ⏳
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs font-black text-vibrant-yellow uppercase tracking-widest block">
+                            ZONA DE PRE-CALENTAMIENTO &bull; ATLETAS A PISTA
+                        </span>
+                        <h2 id="next-heat-title" class="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight mt-1">
+                            PRÓXIMA LARGADA: TANDA 7
+                        </h2>
+                        <p class="font-mono text-xs sm:text-sm text-zinc-300 mt-1">
+                            Presentarse en corral de largada con pechera colocada y verificación de chip.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center px-6 py-3 rounded-2xl bg-black/60 border border-white/10 shrink-0">
+                    <span class="text-[11px] font-mono text-zinc-400 uppercase font-black">HORARIO ESTIMADO</span>
+                    <span id="next-heat-time" class="font-mono text-3xl sm:text-4xl font-black text-vibrant-yellow tracking-wider">--:--</span>
+                    <span class="text-[10px] font-mono text-zinc-500 uppercase mt-0.5">Tacuarembó UTC-3</span>
+                </div>
+            </div>
+
+            <!-- Staging Lane Lineup Cards -->
+            <div class="space-y-3">
+                <h3 class="font-mono text-xs font-black text-zinc-400 uppercase tracking-widest px-1">
+                    ASIGNACIÓN DE POSTAS Y DUPLAS EN ESPERA:
+                </h3>
+                <div id="next-heat-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════
+         3. LOWER-THIRD LIVE SPORTS TICKER
+    ══════════════════════════════════════════════════════ -->
+    <footer class="w-full bg-black/90 border-t border-white/10 py-2.5 overflow-hidden backdrop-blur-md relative z-40">
+        <div class="flex items-center">
+            
+            <!-- Ticker Title Pill -->
+            <div class="px-3.5 py-1 bg-electric-orange text-black font-display font-black text-xs uppercase tracking-wider shrink-0 rounded-r-lg shadow-md z-10 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-black animate-pulse"></span>
+                <span>ENCARRERA LIVE</span>
+            </div>
+
+            <!-- Marquee Container -->
+            <div class="overflow-hidden whitespace-nowrap w-full">
+                <div id="ticker-content" class="ticker-track text-xs font-mono font-bold text-zinc-300 flex items-center gap-8 pl-4">
+                    <span>⚡ HYBRID GAME JPS 2026 • 1ª EDICIÓN MÓDENA EVENTOS</span>
+                    <span>🏆 CRONOMETRAJE OFICIAL POR CHIP A CARGO DE ENCARRERA UY</span>
+                    <span>🥇 RECUERDE: RESULTADOS EN VIVO CADA 60 SEGUNDOS</span>
+                    <span>🍺 BARRA BRUMA BEER ARTESANAL & CANTINA EN SECTOR NORTE</span>
+                    <span>⚡ HYBRID GAME JPS 2026 • 1ª EDICIÓN MÓDENA EVENTOS</span>
+                    <span>🏆 CRONOMETRAJE OFICIAL POR CHIP A CARGO DE ENCARRERA UY</span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════════
+         4. JPS CANVAS LOGO SCRIPT (60 FPS NEON POWER)
+    ══════════════════════════════════════════════════════ -->
+    <script>
+    (function initJPSCanvas(){
+        var canvas = document.getElementById('jps-power-canvas');
+        if(!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var S = 128;
+
+        var logoImg = new Image();
+        logoImg.src = 'public/logos/jps-training.png';
+
+        var CX = 64, CY = 64, OR = 52;
+        var circPath = [];
+        for(var a=0; a<360; a+=3){
+            var rad = a * Math.PI / 180;
+            circPath.push([CX + Math.cos(rad) * OR, CY + Math.sin(rad) * OR]);
+        }
+        var CN = circPath.length;
+
+        var time = 0;
+        var ready = false;
+
+        logoImg.onload = function(){
+            ready = true;
+            requestAnimationFrame(render);
+        };
+
+        function render(){
+            time += 0.01;
+            ctx.clearRect(0, 0, S, S);
+
+            if(ready){
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.drawImage(logoImg, 10, 10, S - 20, S - 20);
+            }
+
+            // Light orbit
+            ctx.globalCompositeOperation = 'screen';
+            var prog = (time % 1);
+            var idx = Math.floor(prog * CN) % CN;
+            var lx = circPath[idx][0], ly = circPath[idx][1];
+
+            // Outer ring neon glow
+            var g1 = ctx.createRadialGradient(lx, ly, 0, lx, ly, 22);
+            g1.addColorStop(0, 'rgba(255, 180, 50, 0.9)');
+            g1.addColorStop(0.4, 'rgba(255, 138, 0, 0.4)');
+            g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = g1;
+            ctx.beginPath();
+            ctx.arc(lx, ly, 22, 0, Math.PI * 2);
+            ctx.fill();
+
+            requestAnimationFrame(render);
+        }
+    })();
+    </script>
+
+    <!-- ══════════════════════════════════════════════════════
+         5. REAL-TIME DATA ENGINE & BROADCAST LOGIC
+    ══════════════════════════════════════════════════════ -->
+    <script>
+        // Configuración de endpoints (producción studio-main / local fallback)
+        const API_ENDPOINTS = [
+            'https://jpstraining.nico-family.com/api/evento/live-results',
+            'http://localhost:9005/api/evento/live-results',
+            '/api/evento/live-results',
+            'public/resultados.csv' // Fallback CSV directo
+        ];
+
+        let raceData = null;
+        let currentView = 'heat'; // 'heat' | 'leaderboard' | 'next'
+        let autoRotation = true;
+        let rotationTimer = null;
+        let rotationCountdown = 40; // segundos en vista actual
+        let activeLeaderboardCategory = 'ALL';
+
+        // Duraciones de rotación en segundos
+        const VIEW_DURATIONS = {
+            'heat': 40,
+            'leaderboard': 22,
+            'next': 16
+        };
+
+        // Reloj Oficial
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            const el = document.getElementById('official-clock');
+            if (el) el.textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ── Alternancia de Vistas ──
+        function switchView(viewName, manual = false) {
+            currentView = viewName;
+
+            ['heat', 'leaderboard', 'next'].forEach(v => {
+                const panel = document.getElementById(`view-${v}`);
+                const btn = document.getElementById(`btn-view-${v}`);
+                if (v === viewName) {
+                    panel.classList.remove('view-hidden');
+                    panel.classList.add('view-visible');
+                    if (btn) {
+                        btn.className = "px-3 py-1 rounded-lg bg-electric-orange text-black font-black uppercase flex items-center gap-1.5 shadow-md";
+                    }
+                } else {
+                    panel.classList.remove('view-visible');
+                    panel.classList.add('view-hidden');
+                    if (btn) {
+                        btn.className = "px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 uppercase flex items-center gap-1.5 border border-white/10";
+                    }
+                }
+            });
+
+            // Si fue manual, resetear el countdown de auto-rotación
+            rotationCountdown = VIEW_DURATIONS[viewName] || 30;
+            updateRotationBar();
+        }
+
+        function toggleAutoRotation() {
+            autoRotation = !autoRotation;
+            const icon = document.getElementById('auto-rotation-icon');
+            const text = document.getElementById('auto-rotation-text');
+            if (autoRotation) {
+                icon.className = "material-symbols-outlined text-sm text-green-400";
+                icon.textContent = "sync";
+                text.textContent = "AUTO-ROTACIÓN ON";
+            } else {
+                icon.className = "material-symbols-outlined text-sm text-zinc-500";
+                icon.textContent = "pause";
+                text.textContent = "AUTO-ROTACIÓN PAUSADA";
+            }
+        }
+
+        function updateRotationBar() {
+            const total = VIEW_DURATIONS[currentView] || 30;
+            const pct = Math.max(0, Math.min(100, (rotationCountdown / total) * 100));
+            const bar = document.getElementById('rotation-progress-bar');
+            if (bar) bar.style.width = `${pct}%`;
+        }
+
+        // Timer de auto-rotación cada 1s
+        setInterval(() => {
+            if (!autoRotation) return;
+
+            rotationCountdown--;
+            updateRotationBar();
+
+            if (rotationCountdown <= 0) {
+                if (currentView === 'heat') {
+                    switchView('leaderboard');
+                } else if (currentView === 'leaderboard') {
+                    switchView('next');
+                } else {
+                    switchView('heat');
+                }
+            }
+        }, 1000);
+
+        // ── Fetch de Datos en Vivo ──
+        async function fetchRaceData() {
+            const dot = document.getElementById('sync-status-dot');
+            const statusText = document.getElementById('sync-status-text');
+
+            for (const endpoint of API_ENDPOINTS) {
+                try {
+                    const res = await fetch(endpoint + (endpoint.includes('?') ? '&' : '?') + 't=' + Date.now());
+                    if (!res.ok) continue;
+
+                    if (endpoint.endsWith('.csv')) {
+                        // Parsear CSV local directamente como fallback
+                        const csvText = await res.text();
+                        raceData = parseCSVFallback(csvText);
+                    } else {
+                        const json = await res.json();
+                        if (json.success) {
+                            raceData = json;
+                        }
+                    }
+
+                    if (raceData) {
+                        renderAll();
+                        if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+                        if (statusText) statusText.textContent = `Actualizado ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}`;
+                        return;
+                    }
+                } catch (e) {
+                    // Probar siguiente endpoint
+                }
+            }
+
+            if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-400";
+            if (statusText) statusText.textContent = "Reintentando...";
+        }
+
+        // Renderizado Completo
+        function renderAll() {
+            if (!raceData) return;
+            renderHeatView();
+            renderLeaderboardView();
+            renderNextHeatView();
+            updateTicker();
+        }
+
+        // ── Render 1: "En la Pista Ahora" ──
+        function renderHeatView() {
+            const heat = raceData.currentHeat || {};
+            const athletes = heat.athletes || [];
+
+            document.getElementById('header-heat-badge').textContent = heat.tandaNombre || 'TANDA EN PISTA';
+            document.getElementById('active-heat-tag').textContent = heat.tandaNombre || 'TANDA --';
+            document.getElementById('heat-title').textContent = `${heat.tandaNombre || 'TANDA'} EN PISTA`;
+            document.getElementById('heat-athlete-count').textContent = athletes.length;
+
+            const bestLapObj = raceData.stats?.bestLapRecord;
+            if (bestLapObj) {
+                document.getElementById('heat-best-lap').textContent = bestLapObj.time;
+            }
+
+            if (athletes.length > 0 && athletes[0].modalidad) {
+                document.getElementById('heat-category-label').textContent = athletes[0].modalidad;
+            }
+
+            const grid = document.getElementById('heat-athletes-grid');
+            grid.innerHTML = '';
+
+            athletes.forEach((ath, idx) => {
+                const isLeader = ath.posCategoria === 1;
+                const isFinished = ath.estado === 'FINALIZADO';
+                const card = document.createElement('div');
+                card.className = `tv-card rounded-2xl p-5 border relative overflow-hidden transition-all duration-300 ${isLeader ? 'tv-card-active' : 'border-white/10'}`;
+
+                // Vueltas visuales
+                const totalVueltas = ath.vueltasTotal || 3;
+                const currentVuelta = ath.vuelta || 0;
+                let lapStepsHtml = '';
+                for (let v = 1; v <= totalVueltas; v++) {
+                    const splitVal = ath.splits?.[v - 1] || '';
+                    if (v < currentVuelta || isFinished) {
+                        lapStepsHtml += `
+                            <div class="flex-1 py-1 px-1.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-center">
+                                <span class="block text-[9px] font-mono text-emerald-400 font-bold uppercase">V${v} ✓</span>
+                                <span class="block text-xs font-mono font-black text-white">${splitVal || 'OK'}</span>
+                            </div>`;
+                    } else if (v === currentVuelta && !isFinished) {
+                        lapStepsHtml += `
+                            <div class="flex-1 py-1 px-1.5 rounded bg-electric-orange/30 border border-electric-orange text-center animate-pulse">
+                                <span class="block text-[9px] font-mono text-electric-orange font-bold uppercase">V${v} ACT</span>
+                                <span class="block text-xs font-mono font-black text-white">EN PISTA</span>
+                            </div>`;
+                    } else {
+                        lapStepsHtml += `
+                            <div class="flex-1 py-1 px-1.5 rounded bg-white/5 border border-white/10 text-center opacity-40">
+                                <span class="block text-[9px] font-mono text-zinc-400 font-bold uppercase">V${v}</span>
+                                <span class="block text-xs font-mono font-bold text-zinc-400">--:--</span>
+                            </div>`;
+                    }
+                }
+
+                card.innerHTML = `
+                    <!-- Top Ribbon: Posta & Gym Identity -->
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-12 h-12 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow">
+                                <img src="${ath.gymLogo || 'public/logos/jps-training.png'}" alt="${ath.gymName}" class="w-full h-full object-contain rounded-lg"/>
+                            </div>
+                            <div>
+                                <span class="font-mono text-xs font-black uppercase tracking-wider block" style="color: ${ath.gymColor || '#FF8A00'}">
+                                    ${ath.gymName || 'JPS Training'}
+                                </span>
+                                <span class="font-mono text-[11px] text-zinc-400 font-bold">
+                                    ${ath.posta || 'POSTA ' + (idx + 1)} &bull; #${ath.numero || '--'}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Status badge -->
+                        <div>
+                            ${isFinished ? `
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-[10px] font-black uppercase flex items-center gap-1 shadow">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                    FINALIZADO
+                                </span>` : `
+                                <span class="px-2.5 py-1 rounded-full bg-orange-500/20 border border-electric-orange/50 text-electric-orange font-mono text-[10px] font-black uppercase flex items-center gap-1 animate-pulse shadow">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-electric-orange"></span>
+                                    VUELTA ${currentVuelta}/${totalVueltas}
+                                </span>`}
+                        </div>
+                    </div>
+
+                    <!-- Athlete Names (High Impact) -->
+                    <h3 class="font-display font-black text-lg sm:text-xl text-white uppercase tracking-tight leading-snug mb-3">
+                        ${ath.nombre}
+                    </h3>
+
+                    <!-- Lap Progress Pills -->
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between text-[10px] font-mono text-zinc-400 uppercase font-bold mb-1">
+                            <span>PROGRESO DE VUELTAS</span>
+                            <span>${currentVuelta}/${totalVueltas}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            ${lapStepsHtml}
+                        </div>
+                    </div>
+
+                    <!-- Primary Timing Stats Strip -->
+                    <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono text-zinc-400 uppercase font-bold block">TIEMPO OFICIAL</span>
+                            <span class="font-mono text-2xl font-black ${isLeader ? 'text-electric-orange' : 'text-white'}">
+                                ${ath.tiempo}
+                            </span>
+                        </div>
+
+                        <div class="text-right">
+                            <span class="text-[10px] font-mono text-zinc-400 uppercase font-bold block">MEJOR VUELTA</span>
+                            <span class="font-mono text-sm font-black text-vibrant-yellow flex items-center justify-end gap-1">
+                                <span class="text-xs">⚡</span>
+                                ${ath.mejorVuelta || '--:--:--'}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Footer: Difference / Rank -->
+                    <div class="mt-2 pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                        <span class="text-zinc-400">Pos. Tanda: <strong class="text-white">${ath.posCategoria}º</strong></span>
+                        <span class="font-bold ${isLeader ? 'text-vibrant-yellow' : 'text-zinc-300'}">
+                            ${ath.diferencia ? ath.diferencia : 'LÍDER DE TANDA'}
+                        </span>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // ── Render 2: "Leaderboard General" ──
+        function renderLeaderboardView() {
+            const list = raceData.leaderboard || [];
+            const categories = raceData.categories || [];
+
+            // Categorías en Tabs
+            const tabsContainer = document.getElementById('leaderboard-category-tabs');
+            tabsContainer.innerHTML = `
+                <button onclick="setLeaderboardCategory('ALL')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'ALL' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase">
+                    TODAS
+                </button>
+            `;
+            categories.forEach(cat => {
+                const isSel = activeLeaderboardCategory === cat;
+                tabsContainer.innerHTML += `
+                    <button onclick="setLeaderboardCategory('${cat}')" class="px-2.5 py-1 rounded-lg ${isSel ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase">
+                        ${cat}
+                    </button>
+                `;
+            });
+
+            // Filtrar lista
+            const filtered = activeLeaderboardCategory === 'ALL' ? list : list.filter(r => r.modalidad === activeLeaderboardCategory);
+
+            // 1. Podio Top 3
+            const podium = document.getElementById('podium-container');
+            podium.innerHTML = '';
+
+            const top3 = filtered.slice(0, 3);
+            const podiumStyles = [
+                { rank: '1º', border: 'border-amber-400/60', text: 'text-vibrant-yellow', bg: 'from-amber-950/40 via-surface-card to-zinc-900', medal: '🥇' },
+                { rank: '2º', border: 'border-zinc-300/60', text: 'text-zinc-200', bg: 'from-zinc-900/60 via-surface-card to-zinc-900', medal: '🥈' },
+                { rank: '3º', border: 'border-amber-700/60', text: 'text-amber-500', bg: 'from-amber-950/20 via-surface-card to-zinc-900', medal: '🥉' }
+            ];
+
+            top3.forEach((item, idx) => {
+                const sty = podiumStyles[idx] || podiumStyles[2];
+                const card = document.createElement('div');
+                card.className = `tv-card rounded-2xl p-5 border-2 ${sty.border} bg-gradient-to-b ${sty.bg} relative overflow-hidden shadow-xl`;
+                card.innerHTML = `
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display font-black text-3xl ${sty.text} flex items-center gap-1">
+                            <span>${sty.medal}</span> ${sty.rank}
+                        </span>
+                        <div class="w-10 h-10 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0">
+                            <img src="${item.gymLogo || 'public/logos/jps-training.png'}" alt="${item.gymName}" class="w-full h-full object-contain rounded-lg"/>
+                        </div>
+                    </div>
+                    <span class="font-mono text-xs font-bold uppercase block" style="color: ${item.gymColor || '#FF8A00'}">
+                        ${item.gymName}
+                    </span>
+                    <h4 class="font-display font-black text-base sm:text-lg text-white uppercase leading-snug mt-1 mb-3">
+                        ${item.nombre}
+                    </h4>
+                    <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono">
+                        <div>
+                            <span class="text-[10px] text-zinc-400 uppercase font-bold block">Tiempo Final</span>
+                            <span class="text-xl font-black ${sty.text}">${item.tiempo}</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[10px] text-zinc-400 uppercase font-bold block">Diferencia</span>
+                            <span class="text-xs font-bold text-zinc-300">${item.diferencia || 'GANADOR'}</span>
+                        </div>
+                    </div>
+                `;
+                podium.appendChild(card);
+            });
+
+            // 2. Tabla completa
+            const tbody = document.getElementById('leaderboard-tbody');
+            tbody.innerHTML = '';
+
+            filtered.forEach((r, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 font-mono text-xs";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-center font-black ${idx === 0 ? 'text-vibrant-yellow text-base' : idx === 1 ? 'text-zinc-200 text-sm' : idx === 2 ? 'text-amber-500 text-sm' : 'text-zinc-400'}">
+                        ${idx + 1}º
+                    </td>
+                    <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-lg bg-black/60 border border-white/10 p-0.5 flex items-center justify-center shrink-0">
+                                <img src="${r.gymLogo || 'public/logos/jps-training.png'}" alt="${r.gymName}" class="w-full h-full object-contain rounded"/>
+                            </div>
+                            <span class="font-bold text-white uppercase truncate max-w-[140px]">${r.gymName}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-4 font-display font-black text-sm text-white uppercase">
+                        ${r.nombre}
+                    </td>
+                    <td class="py-3 px-4 text-zinc-300 hidden md:table-cell uppercase">
+                        ${r.modalidad}
+                    </td>
+                    <td class="py-3 px-4 text-center text-zinc-400 font-bold">
+                        ${r.tanda}
+                    </td>
+                    <td class="py-3 px-4 text-center text-white">
+                        ${r.vuelta}/${r.vueltasTotal}
+                    </td>
+                    <td class="py-3 px-4 text-center text-vibrant-yellow hidden lg:table-cell font-bold">
+                        ${r.mejorVuelta || '--:--'}
+                    </td>
+                    <td class="py-3 px-4 text-center text-zinc-400">
+                        ${r.diferencia || '--'}
+                    </td>
+                    <td class="py-3 px-4 text-right pr-6 font-black text-sm text-electric-orange">
+                        ${r.tiempo}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function setLeaderboardCategory(cat) {
+            activeLeaderboardCategory = cat;
+            renderLeaderboardView();
+        }
+
+        // ── Render 3: "En Espera / Próximo Heat" ──
+        function renderNextHeatView() {
+            const next = raceData.nextHeat || {};
+            const athletes = next.athletes || [];
+
+            document.getElementById('next-heat-title').textContent = `PRÓXIMA LARGADA: ${next.tandaNombre || 'TANDA SIGUIENTE'}`;
+
+            if (athletes.length > 0 && athletes[0].hora) {
+                document.getElementById('next-heat-time').textContent = athletes[0].hora + ' HS';
+            }
+
+            const list = document.getElementById('next-heat-list');
+            list.innerHTML = '';
+
+            athletes.forEach((ath, idx) => {
+                const card = document.createElement('div');
+                card.className = "tv-card rounded-2xl p-5 border border-white/10";
+                card.innerHTML = `
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="px-2.5 py-1 rounded-lg bg-vibrant-yellow text-black font-mono text-xs font-black uppercase">
+                            ${ath.posta || 'POSTA ' + (idx + 1)}
+                        </span>
+                        <div class="w-10 h-10 rounded-xl bg-black/60 border border-white/15 p-1 flex items-center justify-center shrink-0">
+                            <img src="${ath.gymLogo || 'public/logos/jps-training.png'}" alt="${ath.gymName}" class="w-full h-full object-contain rounded-lg"/>
+                        </div>
+                    </div>
+                    <span class="font-mono text-xs font-bold uppercase block" style="color: ${ath.gymColor || '#FF8A00'}">
+                        ${ath.gymName || 'JPS Training'}
+                    </span>
+                    <h4 class="font-display font-black text-lg text-white uppercase leading-snug mt-1 mb-3">
+                        ${ath.dupla}
+                    </h4>
+                    <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+                        <span>Categoría: <strong class="text-white">${ath.categoria || 'OPEN'}</strong></span>
+                        <span class="text-vibrant-yellow font-bold">Llamada activa</span>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        // ── Ticker Update ──
+        function updateTicker() {
+            const best = raceData.stats?.bestLapRecord;
+            const marquee = document.getElementById('ticker-content');
+            if (!marquee) return;
+
+            let tickerItems = [
+                '⚡ HYBRID GAME JPS 2026 • 1ª EDICIÓN MÓDENA EVENTOS',
+                '🏆 CRONOMETRAJE OFICIAL POR CHIP: ENCARRERA UY',
+                '🥊 15 GIMNASIOS DEL NORTE URUGUAYO EN COMPETENCIA'
+            ];
+
+            if (best) {
+                tickerItems.push(`⚡ RECORD DE VUELTA: ${best.time} (${best.dupla} - ${best.gym})`);
+            }
+
+            if (raceData.leaderboard?.length > 0) {
+                const leader = raceData.leaderboard[0];
+                tickerItems.push(`🥇 LÍDER GENERAL: ${leader.nombre} (${leader.gymName}) - ${leader.tiempo}`);
+            }
+
+            tickerItems.push('🍺 BARRA BRUMA BEER ARTESANAL & CANTINA EN VIVO');
+
+            const text = tickerItems.join(' &nbsp;&bull;&nbsp; ');
+            marquee.innerHTML = `<span>${text}</span><span> &nbsp;&bull;&nbsp; ${text}</span>`;
+        }
+
+        // ── Fallback Parser (en caso de leer resultados.csv directamente) ──
+        function parseCSVFallback(csvText) {
+            csvText = (csvText || '').replace(/^\uFEFF/, '').trim();
+            const lines = csvText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+            if (lines.length < 2) return null;
+
+            const records = [];
+            for (let i = 1; i < lines.length; i++) {
+                const cols = lines[i].split(',').map(c => c.trim());
+                if (cols.length < 5) continue;
+                records.push({
+                    numero: cols[0],
+                    nombre: cols[1],
+                    posGeneral: parseInt(cols[2], 10) || 99,
+                    posCategoria: parseInt(cols[3], 10) || 99,
+                    modalidad: cols[4] || 'OPEN',
+                    tanda: cols[5] || 'TANDA 1',
+                    tiempo: cols[6] || '--:--:--',
+                    posta: cols[12] || 'POSTA 1',
+                    vuelta: parseInt(cols[13], 10) || 3,
+                    vueltasTotal: parseInt(cols[14], 10) || 3,
+                    estado: cols[15] || 'FINALIZADO',
+                    diferencia: cols[17] || '',
+                    mejorVuelta: cols[19] || '',
+                    splits: [cols[20], cols[21], cols[22]].filter(Boolean),
+                    gymName: cols[1].includes('EUGENIA') || cols[1].includes('VALERIA') ? 'JPS Training' : cols[1].includes('PIRIZ') ? 'Enfoque' : 'Nordic',
+                    gymLogo: 'public/logos/jps-training.png',
+                    gymColor: '#FF8A00'
+                });
+            }
+
+            return {
+                success: true,
+                currentHeat: { tandaNombre: 'TANDA 6', athletes: records.slice(0, 4) },
+                nextHeat: { tandaNombre: 'TANDA 7', athletes: [] },
+                categories: ['OPEN WOMEN', 'PRO WOMEN'],
+                leaderboard: records,
+                stats: { bestLapRecord: { time: '00:00:54', dupla: 'EMILIA ESTEVEZ / ANGELA OLIVERA', gym: 'JPS Training' } }
+            };
+        }
+
+        // ── Atajos de Teclado (Para el operador en Módena Eventos) ──
+        window.addEventListener('keydown', (e) => {
+            if (e.key === '1') switchView('heat', true);
+            if (e.key === '2') switchView('leaderboard', true);
+            if (e.key === '3') switchView('next', true);
+            if (e.code === 'Space') {
+                e.preventDefault();
+                toggleAutoRotation();
+            }
+            if (e.key === 'f' || e.key === 'F') toggleFullScreen();
+            if (e.key === 'r' || e.key === 'R') fetchRaceData();
+        });
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // Polling cada 15s
+        fetchRaceData();
+        setInterval(fetchRaceData, 15000);
+    </script>
+</body>
+</html>
