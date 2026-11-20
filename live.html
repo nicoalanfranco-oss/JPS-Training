@@ -146,8 +146,8 @@
             
             <!-- LEFT: JPS Power Animated Canvas Logo (Large & Dominant) -->
             <div class="flex items-center gap-3 sm:gap-4 shrink-0">
-                <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center shrink-0">
-                    <canvas id="jps-power-canvas" width="256" height="256" class="w-full h-full drop-shadow-[0_0_25px_rgba(255,138,0,0.85)]"></canvas>
+                <div class="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 flex items-center justify-center shrink-0">
+                    <canvas id="jps-power-canvas" width="512" height="512" class="w-full h-full drop-shadow-[0_0_30px_rgba(255,138,0,0.9)]"></canvas>
                 </div>
                 <div class="flex flex-col justify-center">
                     <div class="flex items-center gap-2">
@@ -461,60 +461,190 @@
     </footer>
 
     <!-- ══════════════════════════════════════════════════════
-         4. JPS CANVAS LOGO SCRIPT (60 FPS NEON POWER - 256px HI-RES)
+         4. JPS POWER LOGO — Canvas Animation 60fps
+         Neon wedge recorre las pirámides del logo oficial,
+         JPS plateado cobra brillo y volumen, chispas vivas
     ══════════════════════════════════════════════════════ -->
     <script>
-    (function initJPSCanvas(){
+    (function(){
         var canvas = document.getElementById('jps-power-canvas');
         if(!canvas) return;
         var ctx = canvas.getContext('2d');
-        var S = 256;
+        var S = 512;
 
         var logoImg = new Image();
-        logoImg.src = 'public/logos/jps-training.png';
+        logoImg.src = 'public/jps-official-logo.png';
 
-        var CX = 128, CY = 128, OR = 104;
-        var circPath = [];
-        for(var a=0; a<360; a+=2){
-            var rad = a * Math.PI / 180;
-            circPath.push([CX + Math.cos(rad) * OR, CY + Math.sin(rad) * OR]);
+        // ── Outer circle (the rim of the logo badge) ──
+        var CX = 256, CY = 256, OR = 210;
+
+        // ── Inner geometric wedge / pyramid contour path ──
+        var wedgeKeys = [
+            [90,350],[100,320],[115,295],[135,275],[158,258],[185,245],
+            [210,238],[240,232],[256,228],[275,222],[300,210],[325,195],
+            [348,178],[368,158],[382,140],                           // peak
+            [395,155],[405,185],[415,225],[422,270],[425,315],[422,350],
+            [400,362],[370,368],[330,372],[290,375],[256,376],
+            [220,374],[180,370],[145,365],[115,358],[90,350]
+        ];
+
+        // Densify path for smooth travel
+        function lerp(a,b,t){return a+(b-a)*t;}
+        var path = [];
+        for(var i=0;i<wedgeKeys.length-1;i++){
+            var p0=wedgeKeys[i], p1=wedgeKeys[i+1];
+            var d=Math.hypot(p1[0]-p0[0],p1[1]-p0[1]);
+            var steps=Math.max(2,Math.round(d/2.5));
+            for(var s=0;s<steps;s++){
+                var t=s/steps;
+                path.push([lerp(p0[0],p1[0],t), lerp(p0[1],p1[1],t)]);
+            }
         }
-        var CN = circPath.length;
+        var N=path.length;
 
-        var time = 0;
-        var ready = false;
+        // Outer circle path (secondary light)
+        var circPath=[];
+        for(var a=0;a<360;a+=1.5){
+            var rad=a*Math.PI/180;
+            circPath.push([CX+Math.cos(rad)*OR, CY+Math.sin(rad)*OR]);
+        }
+        var CN=circPath.length;
 
-        logoImg.onload = function(){
-            ready = true;
-            requestAnimationFrame(render);
+        // Particles
+        var sparks=[];
+
+        var time=0;
+        var ready=false;
+
+        logoImg.onload=function(){
+            ready=true;
+            requestAnimationFrame(frame);
         };
 
-        function render(){
-            time += 0.012;
-            ctx.clearRect(0, 0, S, S);
+        function frame(){
+            if(!ready)return;
+            time+=0.004;
+            ctx.clearRect(0,0,S,S);
 
-            if(ready){
-                ctx.globalCompositeOperation = 'source-over';
-                ctx.drawImage(logoImg, 16, 16, S - 32, S - 32);
+            // ── 1. Draw base logo ──
+            ctx.globalCompositeOperation='source-over';
+            ctx.drawImage(logoImg,0,0,S,S);
+
+            // ── 2. Calculate light positions ──
+            var prog=(time%1);
+            var idx=Math.floor(prog*N)%N;
+            var lx=path[idx][0], ly=path[idx][1];
+
+            // Secondary circle light (slower, subtler)
+            var prog2=((time*0.6)%1);
+            var cidx=Math.floor(prog2*CN)%CN;
+            var clx=circPath[cidx][0], cly=circPath[cidx][1];
+
+            ctx.globalCompositeOperation='screen';
+
+            // ── 3. Volumetric ambient light from main head ──
+            var g1=ctx.createRadialGradient(lx,ly,0,lx,ly,170);
+            g1.addColorStop(0,'rgba(255,180,80,0.28)');
+            g1.addColorStop(0.3,'rgba(255,138,0,0.13)');
+            g1.addColorStop(0.7,'rgba(255,100,0,0.04)');
+            g1.addColorStop(1,'rgba(0,0,0,0)');
+            ctx.fillStyle=g1;
+            ctx.fillRect(0,0,S,S);
+
+            // ── 4. Specular highlight sweep (silver JPS letters gain brightness) ──
+            var specGrad=ctx.createRadialGradient(lx,ly,0,lx,ly,130);
+            specGrad.addColorStop(0,'rgba(220,220,255,0.18)');
+            specGrad.addColorStop(0.25,'rgba(200,200,240,0.08)');
+            specGrad.addColorStop(1,'rgba(0,0,0,0)');
+            ctx.fillStyle=specGrad;
+            ctx.fillRect(0,0,S,S);
+
+            // ── 5. Circle rim glow (secondary) ──
+            var g2=ctx.createRadialGradient(clx,cly,0,clx,cly,50);
+            g2.addColorStop(0,'rgba(255,160,40,0.35)');
+            g2.addColorStop(0.5,'rgba(255,120,0,0.12)');
+            g2.addColorStop(1,'rgba(0,0,0,0)');
+            ctx.fillStyle=g2;
+            ctx.fillRect(clx-50,cly-50,100,100);
+
+            // ── 6. Neon trail on wedge path ──
+            var trail=55;
+            for(var k=0;k<trail;k++){
+                var ti=(idx-k*2+N)%N;
+                var tp=path[ti];
+                var fade=1-k/trail;
+                var fade2=fade*fade;
+                var sz=2+9*fade;
+                var alpha=fade2*0.65;
+                var gt=ctx.createRadialGradient(tp[0],tp[1],0,tp[0],tp[1],sz);
+                var r=255, g_=Math.round(140+100*fade), b=Math.round(20+30*fade);
+                gt.addColorStop(0,'rgba('+r+','+g_+','+b+','+alpha+')');
+                gt.addColorStop(1,'rgba('+r+','+g_+',0,0)');
+                ctx.fillStyle=gt;
+                ctx.fillRect(tp[0]-sz,tp[1]-sz,sz*2,sz*2);
             }
 
-            // Light orbit
-            ctx.globalCompositeOperation = 'screen';
-            var prog = (time % 1);
-            var idx = Math.floor(prog * CN) % CN;
-            var lx = circPath[idx][0], ly = circPath[idx][1];
+            // ── 7. Blazing head with bloom ──
+            var hg1=ctx.createRadialGradient(lx,ly,0,lx,ly,42);
+            hg1.addColorStop(0,'rgba(255,220,140,0.85)');
+            hg1.addColorStop(0.3,'rgba(255,160,40,0.45)');
+            hg1.addColorStop(0.7,'rgba(255,100,0,0.12)');
+            hg1.addColorStop(1,'rgba(0,0,0,0)');
+            ctx.fillStyle=hg1;
+            ctx.fillRect(lx-42,ly-42,84,84);
 
-            // Outer ring neon glow
-            var g1 = ctx.createRadialGradient(lx, ly, 0, lx, ly, 45);
-            g1.addColorStop(0, 'rgba(255, 180, 50, 0.95)');
-            g1.addColorStop(0.35, 'rgba(255, 138, 0, 0.5)');
-            g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            ctx.fillStyle = g1;
-            ctx.beginPath();
-            ctx.arc(lx, ly, 45, 0, Math.PI * 2);
-            ctx.fill();
+            // Inner white-hot core
+            var hg2=ctx.createRadialGradient(lx,ly,0,lx,ly,10);
+            hg2.addColorStop(0,'rgba(255,255,255,0.97)');
+            hg2.addColorStop(0.4,'rgba(255,245,210,0.7)');
+            hg2.addColorStop(1,'rgba(255,200,100,0)');
+            ctx.fillStyle=hg2;
+            ctx.fillRect(lx-10,ly-10,20,20);
 
-            requestAnimationFrame(render);
+            // ── 8. Circle rim trail (secondary, subtler) ──
+            for(var k=0;k<25;k++){
+                var ci2=(cidx-k*3+CN)%CN;
+                var cp=circPath[ci2];
+                var f2=1-k/25;
+                var sz2=1.5+5*f2;
+                var a2=f2*f2*0.4;
+                var gc=ctx.createRadialGradient(cp[0],cp[1],0,cp[0],cp[1],sz2);
+                gc.addColorStop(0,'rgba(255,160,60,'+a2+')');
+                gc.addColorStop(1,'rgba(255,100,0,0)');
+                ctx.fillStyle=gc;
+                ctx.fillRect(cp[0]-sz2,cp[1]-sz2,sz2*2,sz2*2);
+            }
+
+            // ── 9. Spark particles ──
+            if(Math.random()<0.5 && sparks.length<30){
+                var ang=Math.random()*Math.PI*2;
+                var spd=0.5+Math.random()*2.5;
+                sparks.push({x:lx,y:ly,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
+                             life:1,decay:0.015+Math.random()*0.025,sz:1+Math.random()*3});
+            }
+            for(var j=sparks.length-1;j>=0;j--){
+                var p=sparks[j];
+                p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; p.life-=p.decay;
+                if(p.life<=0){sparks.splice(j,1);continue;}
+                var pa=p.life*p.life*0.8;
+                var rsz=p.sz*p.life;
+                var pg=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,rsz+1);
+                pg.addColorStop(0,'rgba(255,240,180,'+pa+')');
+                pg.addColorStop(1,'rgba(255,180,50,0)');
+                ctx.fillStyle=pg;
+                ctx.fillRect(p.x-rsz-1,p.y-rsz-1,(rsz+1)*2,(rsz+1)*2);
+            }
+
+            // ── 10. Subtle breathing pulse ──
+            var breathe=0.025+0.018*Math.sin(time*8);
+            var bg=ctx.createRadialGradient(CX,CY,40,CX,CY,240);
+            bg.addColorStop(0,'rgba(255,138,0,'+breathe+')');
+            bg.addColorStop(1,'rgba(0,0,0,0)');
+            ctx.fillStyle=bg;
+            ctx.fillRect(0,0,S,S);
+
+            ctx.globalCompositeOperation='source-over';
+            requestAnimationFrame(frame);
         }
     })();
     </script>
