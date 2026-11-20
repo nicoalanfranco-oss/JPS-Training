@@ -132,15 +132,13 @@
     <!-- ══════════════════════════════════════════════════════
          1. TOP BROADCAST HEADER (Full-Width Edge-to-Edge)
     ══════════════════════════════════════════════════════ -->
-    <header class="w-full bg-black/90 border-b border-white/10 px-3 sm:px-6 py-2 backdrop-blur-xl sticky top-0 z-50">
+    <header class="w-full bg-black/90 border-b border-white/10 px-3 sm:px-6 py-1.5 sm:py-2 backdrop-blur-xl sticky top-0 z-50">
+        <div class="w-full flex items-center justify-between gap-2 sm:gap-4">
 
-        <!-- ROW 1: Logo | EN VIVO + Clock | Encarrera -->
-        <div class="w-full flex items-center justify-between gap-2">
-
-            <!-- LEFT: JPS Canvas Logo + Title (hidden on xs, compact) -->
+            <!-- LEFT: JPS Canvas Logo + Title -->
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                <div class="relative w-12 h-12 sm:w-20 sm:h-20 md:w-28 md:h-28 flex items-center justify-center shrink-0">
-                    <canvas id="jps-power-canvas" width="512" height="512" class="w-full h-full drop-shadow-[0_0_30px_rgba(255,138,0,0.9)]"></canvas>
+                <div class="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center shrink-0">
+                    <canvas id="jps-power-canvas" width="512" height="512" class="w-full h-full drop-shadow-[0_0_25px_rgba(255,138,0,0.9)]"></canvas>
                 </div>
                 <div class="hidden sm:flex flex-col justify-center">
                     <div class="flex items-center gap-1.5">
@@ -153,72 +151,73 @@
                 </div>
             </div>
 
-            <!-- CENTER: EN VIVO (con tanda en pista) + Clock + progress bar -->
+            <!-- CENTER: EN VIVO + CLOCK en UNA MISMA LÍNEA + 3 BADGES DEBAJO -->
             <div class="flex flex-col items-center justify-center flex-1 min-w-0">
-                <div class="inline-flex items-center gap-1.5 px-3 py-0.5 sm:py-1 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 font-mono text-[11px] sm:text-xs font-black shadow-[0_0_15px_rgba(239,68,68,0.35)]">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping shrink-0"></span>
-                    <span class="tracking-widest uppercase">EN VIVO</span>
-                    <span class="text-white/40">|</span>
-                    <span id="header-heat-badge" class="text-white font-bold">TANDA EN PISTA</span>
+                <!-- Línea 1: EN VIVO y Hora en la MISMA línea -->
+                <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 font-mono text-[11px] sm:text-xs font-black shadow-[0_0_15px_rgba(239,68,68,0.35)]">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping shrink-0"></span>
+                        <span class="tracking-widest uppercase">EN VIVO</span>
+                        <span class="text-white/40">|</span>
+                        <span id="header-heat-badge" class="text-white font-bold">TANDA EN PISTA</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-mono text-base sm:text-xl font-black text-white tracking-wider">
+                        <span id="official-clock">--:--:--</span>
+                        <span class="text-[9px] font-mono text-zinc-500 uppercase font-bold">(UTC-3)</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5 mt-0.5">
-                    <span id="official-clock" class="font-mono text-base sm:text-2xl font-black text-white tracking-wider">--:--:--</span>
-                    <span class="text-[9px] font-mono text-zinc-500 uppercase font-bold">(UTC-3)</span>
+
+                <!-- Línea 2: Los tres badges 1 | 2 | 3 subidos inmediatamente aquí -->
+                <div class="flex items-center justify-center gap-1.5 sm:gap-2.5 mt-1 sm:mt-1.5">
+                    <button id="btn-view-heat" onclick="switchView('heat', true)"
+                        class="flex items-center justify-center gap-1 px-3 sm:px-4 py-1 rounded-lg bg-electric-orange text-black font-black text-[11px] sm:text-xs font-mono uppercase shadow-md transition-all">
+                        <span class="sm:hidden text-xs">1</span>
+                        <span class="hidden sm:inline">1. EN PISTA AHORA</span>
+                    </button>
+
+                    <button id="btn-view-leaderboard" onclick="switchView('leaderboard', true)"
+                        class="flex items-center justify-center gap-1 px-3 sm:px-4 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 font-black text-[11px] sm:text-xs font-mono uppercase border border-white/10 transition-all">
+                        <span class="sm:hidden text-xs">2</span>
+                        <span class="hidden sm:inline">2. LEADERBOARD</span>
+                    </button>
+
+                    <button id="btn-view-next" onclick="switchView('next', true)"
+                        class="flex items-center justify-center gap-1 px-3 sm:px-4 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 font-black text-[11px] sm:text-xs font-mono uppercase border border-white/10 transition-all">
+                        <span class="sm:hidden text-xs">3</span>
+                        <span class="hidden sm:inline">3. PRÓXIMO HEAT</span>
+                        <span id="next-heat-badge-nav" class="text-[9px] bg-vibrant-yellow/20 text-vibrant-yellow px-1 py-0.2 rounded font-mono hidden sm:inline"></span>
+                    </button>
+
+                    <div class="hidden lg:flex items-center gap-1 ml-2 text-[9px] font-mono text-zinc-500">
+                        <span id="sync-status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="sync-status-text">Actualizado</span>
+                    </div>
                 </div>
-                <!-- Rotation progress bar -->
-                <div class="w-24 sm:w-40 h-1 bg-white/10 rounded-full overflow-hidden mt-0.5" title="Rotación automática de vistas">
+
+                <!-- Mini progress bar de auto-rotación justo debajo -->
+                <div class="w-24 sm:w-36 h-0.5 bg-white/10 rounded-full overflow-hidden mt-1" title="Rotación automática de vistas">
                     <div id="rotation-progress-bar" class="h-full bg-gradient-to-r from-electric-orange to-vibrant-pink transition-all duration-300" style="width: 100%;"></div>
                 </div>
             </div>
 
-            <!-- RIGHT: Encarrera logo centrado con chip + fullscreen -->
+            <!-- RIGHT: Encarrera logo + fullscreen -->
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div class="flex flex-col items-center">
-                    <div class="h-8 sm:h-10 px-2.5 py-0.5 rounded-lg bg-zinc-900/90 border border-cyan-500/40 flex items-center justify-center encarrera-live-glow">
-                        <img src="public/logos/encarrerauy-logoblanco@2x.png" alt="Encarrera UY" class="h-6 sm:h-8 object-contain"/>
+                    <div class="h-7 sm:h-9 px-2 sm:px-2.5 py-0.5 rounded-lg bg-zinc-900/90 border border-cyan-500/40 flex items-center justify-center encarrera-live-glow">
+                        <img src="public/logos/encarrerauy-logoblanco@2x.png" alt="Encarrera UY" class="h-5 sm:h-7 object-contain"/>
                     </div>
-                    <span class="text-[8px] sm:text-[9px] font-mono text-cyan-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1 mt-1 text-center">
+                    <span class="text-[8px] sm:text-[9px] font-mono text-cyan-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1 mt-0.5 text-center">
                         <span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
                         CRONOMETRAJE CHIP
                     </span>
                 </div>
                 <!-- Fullscreen button -->
-                <button onclick="toggleFullScreen()" title="Pantalla Completa (F)" class="p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-all flex items-center justify-center">
+                <button onclick="toggleFullScreen()" title="Pantalla Completa (F)" class="p-1.5 sm:p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-all flex items-center justify-center">
                     <span class="material-symbols-outlined text-base sm:text-lg">fullscreen</span>
                 </button>
             </div>
 
         </div>
-
-        <!-- ROW 2: View nav tabs — CENTRADO Y ALINEADO CON EN VIVO -->
-        <div class="w-full flex items-center justify-center gap-2 sm:gap-3 border-t border-white/5 pt-2 mt-2">
-            <!-- Mobile: solo numerales [1] [2] [3]; Desktop: etiquetas completas -->
-            <button id="btn-view-heat" onclick="switchView('heat', true)"
-                class="flex items-center justify-center gap-1.5 px-4 sm:px-5 py-1.5 rounded-lg bg-electric-orange text-black font-black text-xs font-mono uppercase shadow-md transition-all">
-                <span class="sm:hidden text-sm">1</span>
-                <span class="hidden sm:inline">1. EN PISTA AHORA</span>
-            </button>
-
-            <button id="btn-view-leaderboard" onclick="switchView('leaderboard', true)"
-                class="flex items-center justify-center gap-1.5 px-4 sm:px-5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 font-black text-xs font-mono uppercase border border-white/10 transition-all">
-                <span class="sm:hidden text-sm">2</span>
-                <span class="hidden sm:inline">2. LEADERBOARD</span>
-            </button>
-
-            <button id="btn-view-next" onclick="switchView('next', true)"
-                class="flex items-center justify-center gap-1.5 px-4 sm:px-5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 font-black text-xs font-mono uppercase border border-white/10 transition-all">
-                <span class="sm:hidden text-sm">3</span>
-                <span class="hidden sm:inline">3. PRÓXIMO HEAT</span>
-                <span id="next-heat-badge-nav" class="text-[10px] bg-vibrant-yellow/20 text-vibrant-yellow px-1.5 py-0.5 rounded font-mono hidden sm:inline"></span>
-            </button>
-
-            <!-- Sync dot (desktop only) -->
-            <div class="hidden lg:flex items-center gap-1 ml-3 text-[10px] font-mono text-zinc-500">
-                <span id="sync-status-dot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span id="sync-status-text">Actualizado</span>
-            </div>
-        </div>
-
     </header>
 
     <!-- ══════════════════════════════════════════════════════
@@ -619,9 +618,7 @@
         // Configuración de endpoints (producción studio-main / local fallback)
         const API_ENDPOINTS = [
             'https://jpstraining.nico-family.com/api/evento/live-results',
-            'http://localhost:9005/api/evento/live-results',
-            '/api/evento/live-results',
-            'public/resultados.csv' // Fallback CSV directo
+            'http://localhost:9005/api/evento/live-results'
         ];
 
         // ── Cronograma Maestro de Tandas & Duplas (Hybrid Game JPS) ──
@@ -740,12 +737,38 @@
             if (g.includes('enfoque'))                          return { logo: 'public/logos/enfoque.jpg',      color: '#C084FC', name: 'Enfoque' };
             if (g.includes('charlies'))                         return { logo: 'public/logos/charlies.png',     color: '#FB7185', name: 'Charlies' };
             if (g.includes('strongbike'))                       return { logo: 'public/logos/strongbike.jpg',   color: '#A3E635', name: 'Strongbike' };
-            if (g.includes('dd training') || g === 'dd')        return { logo: 'public/logos/dd-training.jpg',  color: '#EF4444', name: 'DD Training Box' };
+            if (g.includes('dd training') || g.includes('dd t')|| g === 'dd') return { logo: 'public/logos/dd-training.jpg', color: '#EF4444', name: 'DD Training Box' };
             if (g.includes('híbrido') || g.includes('hibrido') || g.includes('hibrido gc')) return { logo: 'public/logos/hibrido-gc.jpg', color: '#2DD4BF', name: 'Híbrido GC' };
-            if (g.includes('polideportivo'))                    return { logo: 'public/logos/jps-training.png', color: '#22D3EE', name: 'Polideportivo' };
-            if (g.includes('zonafit'))                          return { logo: 'public/logos/jps-training.png', color: '#818CF8', name: 'Zonafit' };
-            if (g.includes('invitad'))                          return { logo: 'public/logos/jps-training.png', color: '#94A3B8', name: 'Atleta Invitado' };
+            if (g.includes('polideportivo'))                    return { logo: 'public/logos/polideportivo.png', color: '#22D3EE', name: 'Polideportivo' };
+            if (g.includes('zonafit'))                          return { logo: 'public/logos/zonafit.png',       color: '#818CF8', name: 'Zonafit' };
+            if (g.includes('invitad'))                          return { logo: 'public/logos/logo-uy.png',       color: '#94A3B8', name: 'Atleta Invitado' };
             return { logo: 'public/logos/jps-training.png', color: '#94A3B8', name: gymName || 'Invitado' };
+        }
+
+        // ── Resuelve gym desde el schedule canónico usando nombre de dupla ──
+        // Recibe string "NOMBRE1 / NOMBRE2" y busca en SCHEDULE_HEATS.
+        // Devuelve { gymName, gymLogo, gymColor } o null si no encuentra.
+        function resolveGymFromSchedule(nombreDupla) {
+            if (!nombreDupla) return null;
+            const normalize = s => (s || '').toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+            const nn = normalize(nombreDupla);
+            for (const heat of SCHEDULE_HEATS) {
+                if (!heat.duplas) continue;
+                for (const d of heat.duplas) {
+                    const p1n = normalize(d.p1);
+                    const p2n = normalize(d.p2);
+                    // Match by last name (more robust)
+                    const p1Last = p1n.split(' ').pop();
+                    const p2Last = p2n.split(' ').pop();
+                    if ((p1Last && nn.includes(p1Last) && p1Last.length > 3) ||
+                        (p2Last && nn.includes(p2Last) && p2Last.length > 3)) {
+                        const gm = getGymMeta(d.g1);
+                        return { gymName: gm.name, gymLogo: gm.logo, gymColor: gm.color };
+                    }
+                }
+            }
+            return null;
         }
 
         let raceData = null;
@@ -782,6 +805,52 @@
             };
         }
 
+        // ── Determinación dinámica de la Tanda Activa en Pista según Cronograma Oficial ──
+        function getActiveScheduledHeat() {
+            const { currentMinutes, isSimulated } = getEffectiveTime();
+            const toMin = (t) => {
+                const [th, tm] = t.split(':').map(Number);
+                return th * 60 + tm;
+            };
+
+            const heatsOnly = SCHEDULE_HEATS.filter(item => item.duplas && item.duplas.length > 0);
+            const now = new Date();
+            const eventStart = new Date('2026-11-21T11:00:00-03:00');
+            const diffMsToEvent = eventStart.getTime() - now.getTime();
+            const isPreEvent = (!isSimulated && diffMsToEvent > 0);
+
+            if (isPreEvent || currentMinutes < toMin(heatsOnly[0].time)) {
+                // Pre-evento: Tanda 1 (11:00 HS) como previa
+                return { heat: heatsOnly[0], isPreEvent: true, isBreak: false, isFinished: false };
+            }
+
+            // Receso del mediodía (12:30 a 14:00)
+            if (currentMinutes >= toMin("12:30") && currentMinutes < toMin("14:00")) {
+                const t7 = heatsOnly.find(h => h.tandaNumero === 7) || heatsOnly[6];
+                return { heat: t7, isPreEvent: false, isBreak: true, isFinished: false };
+            }
+
+            // Si es después de la última tanda (18:30 + 15 min = 18:45)
+            const lastHeat = heatsOnly[heatsOnly.length - 1];
+            if (currentMinutes >= toMin(lastHeat.time) + 15) {
+                return { heat: lastHeat, isPreEvent: false, isBreak: false, isFinished: true };
+            }
+
+            // Buscar la tanda activa según el intervalo de tiempo estricto
+            for (let i = 0; i < heatsOnly.length; i++) {
+                const h = heatsOnly[i];
+                const hStart = toMin(h.time);
+                const nextItem = SCHEDULE_HEATS.find(item => toMin(item.time) > hStart);
+                const hEnd = nextItem ? toMin(nextItem.time) : hStart + 15;
+
+                if (currentMinutes >= hStart && currentMinutes < hEnd) {
+                    return { heat: h, isPreEvent: false, isBreak: false, isFinished: false };
+                }
+            }
+
+            return { heat: heatsOnly[0], isPreEvent: false, isBreak: false, isFinished: false };
+        }
+
         function getUpcomingSchedule() {
             const { currentMinutes, isSimulated } = getEffectiveTime();
             const toMin = (t) => {
@@ -790,47 +859,39 @@
             };
 
             const heatsOnly = SCHEDULE_HEATS.filter(item => item.duplas && item.duplas.length > 0);
-
-            // ── Fecha del evento oficial: Sábado 21 de Noviembre 2026, 11:00 HS (Uruguay UTC-3)
             const now = new Date();
             const eventStart = new Date('2026-11-21T11:00:00-03:00');
             const diffMsToEvent = eventStart.getTime() - now.getTime();
             const isPreEvent = (!isSimulated && diffMsToEvent > 0);
 
+            const activeSched = getActiveScheduledHeat();
             let nextHeat;
             let diffSeconds;
 
-            if (isPreEvent) {
-                // Pre-evento: Próximo heat = Tanda 1 (11:00 HS del sábado)
+            if (isPreEvent || currentMinutes < toMin(heatsOnly[0].time)) {
+                // Antes del inicio de la carrera: la próxima largada es Tanda 1 (11:00 HS)
                 nextHeat = heatsOnly[0];
-                diffSeconds = Math.max(0, Math.round(diffMsToEvent / 1000));
+                diffSeconds = isSimulated
+                    ? Math.max(0, Math.round((toMin(heatsOnly[0].time) - currentMinutes) * 60))
+                    : Math.max(0, Math.round(diffMsToEvent / 1000));
+            } else if (activeSched.isFinished) {
+                nextHeat = heatsOnly[heatsOnly.length - 1];
+                diffSeconds = 0;
             } else {
-                // Durante el evento (o en simulación):
-                // Si la pista ya tiene una tanda (ej. Tanda 6), el siguiente heat debe ser al menos Tanda 7
-                let minTanda = 1;
-                if (raceData && raceData.currentHeat && raceData.currentHeat.tandaNombre) {
-                    const m = raceData.currentHeat.tandaNombre.match(/\d+/);
-                    if (m) minTanda = parseInt(m[0], 10) + 1;
-                }
-
-                // Buscar próximo heat por hora respetando la tanda mínima
-                nextHeat = heatsOnly.find(item => item.tandaNumero >= minTanda && toMin(item.time) > currentMinutes);
+                // Durante el evento: el próximo heat es el siguiente al activo en pista
+                const curTandaNum = activeSched.heat.tandaNumero;
+                nextHeat = heatsOnly.find(h => h.tandaNumero === curTandaNum + 1) || heatsOnly.find(h => toMin(h.time) > currentMinutes);
 
                 if (!nextHeat) {
-                    // Si la hora ya pasó pero la tanda mínima aún no corrió
-                    nextHeat = heatsOnly.find(item => item.tandaNumero === minTanda);
-                }
-
-                if (!nextHeat) {
-                    // Si ya se corrieron todas las tandas del cronograma
                     nextHeat = heatsOnly[heatsOnly.length - 1];
+                    diffSeconds = 0;
+                } else {
+                    const targetMin = toMin(nextHeat.time);
+                    diffSeconds = Math.max(0, Math.round((targetMin - currentMinutes) * 60));
                 }
-
-                const targetMin = toMin(nextHeat.time);
-                diffSeconds = Math.max(0, Math.round((targetMin - currentMinutes) * 60));
             }
 
-            return { nextHeat, diffSeconds, isPreEvent };
+            return { nextHeat, diffSeconds, isPreEvent, activeSched };
         }
 
         // Duraciones de rotación en segundos
@@ -970,21 +1031,12 @@
 
             for (const endpoint of API_ENDPOINTS) {
                 try {
-                    const res = await fetch(endpoint + (endpoint.includes('?') ? '&' : '?') + 't=' + Date.now());
+                    const res = await fetch(endpoint + '?t=' + Date.now());
                     if (!res.ok) continue;
 
-                    if (endpoint.endsWith('.csv')) {
-                        // Parsear CSV local directamente como fallback
-                        const csvText = await res.text();
-                        raceData = parseCSVFallback(csvText);
-                    } else {
-                        const json = await res.json();
-                        if (json.success) {
-                            raceData = json;
-                        }
-                    }
-
-                    if (raceData) {
+                    const json = await res.json();
+                    if (json.success) {
+                        raceData = json;
                         renderAll();
                         if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
                         if (statusText) statusText.textContent = `Actualizado ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}`;
@@ -995,8 +1047,20 @@
                 }
             }
 
+            // Sin respuesta de la API → renderizar desde cronograma (vacío)
+            if (!raceData) {
+                raceData = {
+                    success: true,
+                    currentHeat: { tandaNombre: '', athletes: [] },
+                    nextHeat: { tandaNombre: '', athletes: [] },
+                    categories: [],
+                    leaderboard: [],
+                    stats: { bestLapRecord: null }
+                };
+                renderAll();
+            }
             if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-400";
-            if (statusText) statusText.textContent = "Reintentando...";
+            if (statusText) statusText.textContent = "Sin conexión — Usando cronograma";
         }
 
         // Renderizado Completo
@@ -1010,17 +1074,56 @@
 
         // ── Render 1: "En la Pista Ahora" ──
         function renderHeatView() {
+            // 1. Detectar tanda activa según cronograma
+            const activeSched = getActiveScheduledHeat();
+            const schedHeat = activeSched.heat;
+
+            // 2. Usar datos del API/CSV si existen; si no, generar atletas desde el cronograma
             const heat = raceData.currentHeat || {};
-            const athletes = heat.athletes || [];
+            let athletes = heat.athletes || [];
+
+            // 2a. Si la API no tiene atletas en la tanda activa, construirlos desde el schedule
+            if (athletes.length === 0 && schedHeat && schedHeat.duplas) {
+                athletes = schedHeat.duplas.map((d, idx) => {
+                    const gm = getGymMeta(d.g1);
+                    return {
+                        nombre: `${d.p1} / ${d.p2}`,
+                        posta: d.posta,
+                        gymName: gm.name,
+                        gymLogo: gm.logo,
+                        gymColor: gm.color,
+                        estado: activeSched.isPreEvent ? 'EN ESPERA' : 'EN PISTA',
+                        modalidad: schedHeat.category,
+                        tiempo: '--:--:--',
+                        vuelta: 0,
+                        vueltasTotal: 3,
+                        mejorVuelta: null,
+                        diferencia: null,
+                        posCategoria: idx + 1,
+                        numero: '--',
+                        splits: []
+                    };
+                });
+            }
+
+            // 3. Nombre de la tanda: preferir el del API, luego el del schedule
+            const tandaNombre = heat.tandaNombre || `TANDA ${schedHeat?.tandaNumero || ''}`;
 
             const heatBadge = document.getElementById('header-heat-badge');
-            if (heatBadge) heatBadge.textContent = heat.tandaNombre || 'TANDA EN PISTA';
+            if (heatBadge) {
+                if (activeSched.isPreEvent) heatBadge.textContent = 'PRE-EVENTO';
+                else if (activeSched.isBreak) heatBadge.textContent = 'RECESO';
+                else heatBadge.textContent = tandaNombre;
+            }
             const activeTag = document.getElementById('active-heat-tag');
-            if (activeTag) activeTag.textContent = heat.tandaNombre || 'TANDA --';
-            
+            if (activeTag) activeTag.textContent = tandaNombre;
+
             const heatTitle = document.getElementById('heat-title');
-            if (heatTitle) heatTitle.textContent = `${heat.tandaNombre || 'TANDA'} EN PISTA`;
-            
+            if (heatTitle) {
+                if (activeSched.isBreak) heatTitle.textContent = 'RECESO — REANUDA A LAS 14:00 HS';
+                else heatTitle.textContent = `${tandaNombre} EN PISTA`;
+            }
+
             const athCount = document.getElementById('heat-athlete-count');
             if (athCount) athCount.textContent = athletes.length;
 
@@ -1030,10 +1133,9 @@
                 if (bestLapEl) bestLapEl.textContent = bestLapObj.time;
             }
 
-            if (athletes.length > 0 && athletes[0].modalidad) {
-                const catLabel = document.getElementById('heat-category-label');
-                if (catLabel) catLabel.textContent = athletes[0].modalidad;
-            }
+            const categoryLabel = schedHeat?.category || athletes[0]?.modalidad || 'OPEN';
+            const catLabel = document.getElementById('heat-category-label');
+            if (catLabel) catLabel.textContent = categoryLabel;
 
             const grid = document.getElementById('heat-athletes-grid');
             if (!grid) return;
@@ -1042,10 +1144,17 @@
             grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3';
 
             athletes.forEach((ath, idx) => {
-                const isLeader = ath.posCategoria === 1;
+                const isLeader = ath.posCategoria === 1 && ath.estado === 'FINALIZADO';
                 const isFinished = ath.estado === 'FINALIZADO';
+                const isScheduleOnly = ath.estado === 'EN PISTA' || ath.estado === 'EN ESPERA';
                 const card = document.createElement('div');
-                card.className = `tv-card rounded-xl sm:rounded-2xl p-3 sm:p-5 border relative overflow-hidden transition-all duration-300 ${isLeader ? 'tv-card-active' : 'border-white/10'}`;
+                card.className = `tv-card rounded-xl sm:rounded-2xl p-3 sm:p-5 border relative overflow-hidden transition-all duration-300 ${isLeader ? 'tv-card-active' : isScheduleOnly ? 'border-vibrant-yellow/30' : 'border-white/10'}`;
+
+                // ── Gym Meta (from ath.gymName OR from name lookup) ──
+                const resolvedGym = ath.gymName
+                    ? getGymMeta(ath.gymName)
+                    : (resolveGymFromSchedule(ath.nombre) ? getGymMeta(resolveGymFromSchedule(ath.nombre).gymName) : getGymMeta(''));
+                const gymMeta = resolvedGym;
 
                 // Vueltas visuales
                 const totalVueltas = ath.vueltasTotal || 3;
@@ -1053,7 +1162,13 @@
                 let lapStepsHtml = '';
                 for (let v = 1; v <= totalVueltas; v++) {
                     const splitVal = ath.splits?.[v - 1] || '';
-                    if (v < currentVuelta || isFinished) {
+                    if (isScheduleOnly) {
+                        lapStepsHtml += `
+                            <div class="flex-1 py-1 px-1.5 rounded bg-vibrant-yellow/10 border border-vibrant-yellow/30 text-center">
+                                <span class="block text-[9px] font-mono text-vibrant-yellow font-bold uppercase">V${v}</span>
+                                <span class="block text-xs font-mono font-black text-zinc-400">--:--</span>
+                            </div>`;
+                    } else if (v < currentVuelta || isFinished) {
                         lapStepsHtml += `
                             <div class="flex-1 py-1 px-1.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-center">
                                 <span class="block text-[9px] font-mono text-emerald-400 font-bold uppercase">V${v} ✓</span>
@@ -1074,29 +1189,39 @@
                     }
                 }
 
+                // Status badge
+                let statusBadge = '';
+                if (isFinished) {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-[9px] sm:text-[10px] font-black uppercase flex items-center gap-1 shrink-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 hidden sm:block"></span>FINALIZADO
+                    </span>`;
+                } else if (isScheduleOnly) {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-full bg-vibrant-yellow/20 border border-vibrant-yellow/50 text-vibrant-yellow font-mono text-[9px] sm:text-[10px] font-black uppercase flex items-center gap-1 shrink-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-vibrant-yellow animate-pulse hidden sm:block"></span>${ath.estado}
+                    </span>`;
+                } else {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-full bg-orange-500/20 border border-electric-orange/50 text-electric-orange font-mono text-[9px] sm:text-[10px] font-black uppercase flex items-center gap-1 animate-pulse shrink-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-electric-orange hidden sm:block"></span>V${currentVuelta}/${totalVueltas}
+                    </span>`;
+                }
+
                 card.innerHTML = `
                     <!-- Top: Logo + Gym + Status -->
                     <div class="flex items-center justify-between gap-2 mb-2">
                         <div class="flex items-center gap-2">
-                            <div class="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/60 border-2 p-0.5 sm:p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${getGymMeta(ath.gymName).color}40">
-                                <img src="${getGymMeta(ath.gymName).logo}" alt="${getGymMeta(ath.gymName).name}" class="w-full h-full object-contain rounded-lg" onerror="this.src='public/logos/jps-training.png'"/>
+                            <div class="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/60 border-2 p-0.5 sm:p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${gymMeta.color}40">
+                                <img src="${gymMeta.logo}" alt="${gymMeta.name}" class="w-full h-full object-contain rounded-lg" onerror="this.src='public/logos/jps-training.png'"/>
                             </div>
                             <div>
-                                <span class="font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider block leading-none" style="color: ${getGymMeta(ath.gymName).color}">
-                                    ${getGymMeta(ath.gymName).name}
+                                <span class="font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider block leading-none" style="color: ${gymMeta.color}">
+                                    ${gymMeta.name}
                                 </span>
                                 <span class="font-mono text-[9px] sm:text-[11px] text-zinc-400 font-bold">
                                     ${ath.posta || 'POSTA ' + (idx + 1)} &bull; #${ath.numero || '--'}
                                 </span>
                             </div>
                         </div>
-                        ${isFinished ? `
-                            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-[9px] sm:text-[10px] font-black uppercase flex items-center gap-1 shrink-0">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 hidden sm:block"></span>FINALIZADO
-                            </span>` : `
-                            <span class="px-2 py-0.5 rounded-full bg-orange-500/20 border border-electric-orange/50 text-electric-orange font-mono text-[9px] sm:text-[10px] font-black uppercase flex items-center gap-1 animate-pulse shrink-0">
-                                <span class="w-1.5 h-1.5 rounded-full bg-electric-orange hidden sm:block"></span>V${currentVuelta}/${totalVueltas}
-                            </span>`}
+                        ${statusBadge}
                     </div>
 
                     <!-- Athlete Names -->
@@ -1112,8 +1237,8 @@
                     <!-- Stats row -->
                     <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
                         <div>
-                            <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">TIEMPO</span>
-                            <span class="font-mono text-lg sm:text-2xl font-black ${isLeader ? 'text-electric-orange' : 'text-white'}">${ath.tiempo}</span>
+                            <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">${isScheduleOnly ? 'HORARIO' : 'TIEMPO'}</span>
+                            <span class="font-mono text-lg sm:text-2xl font-black ${isLeader ? 'text-electric-orange' : isScheduleOnly ? 'text-vibrant-yellow' : 'text-white'}">${isScheduleOnly ? (schedHeat?.time + ' HS') : ath.tiempo}</span>
                         </div>
                         <div class="text-right">
                             <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">MEJOR VTA</span>
@@ -1121,7 +1246,7 @@
                         </div>
                         <div class="text-right">
                             <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">POS</span>
-                            <span class="font-mono text-xs sm:text-sm font-black ${isLeader ? 'text-vibrant-yellow' : 'text-zinc-300'}">${ath.diferencia ? ath.diferencia : '🥇 LÍDER'}</span>
+                            <span class="font-mono text-xs sm:text-sm font-black ${isLeader ? 'text-vibrant-yellow' : 'text-zinc-300'}">${isScheduleOnly ? '⏳ EN ESPERA' : ath.diferencia ? ath.diferencia : '🥇 LÍDER'}</span>
                         </div>
                     </div>
                 `;
@@ -1130,6 +1255,7 @@
             });
         }
 
+        // ── Render 2: "Leaderboard General" ──
         // ── Render 2: "Leaderboard General" ──
         function renderLeaderboardView() {
             const list = raceData.leaderboard || [];
@@ -1158,6 +1284,20 @@
             const podium = document.getElementById('podium-container');
             podium.innerHTML = '';
 
+            // Si no hay resultados, mostrar placeholder
+            if (filtered.length === 0) {
+                podium.innerHTML = `
+                    <div class="col-span-3 flex flex-col items-center justify-center py-12 gap-4 text-center">
+                        <div class="text-5xl mb-2">⏳</div>
+                        <p class="font-mono text-xs font-black text-vibrant-yellow uppercase tracking-widest">Esperando resultados oficiales</p>
+                        <p class="font-body text-sm text-zinc-400 max-w-md">Los resultados y clasificaciones se publicarán automáticamente en cuanto finalicen las primeras tandas oficiales del día.</p>
+                        <p class="font-mono text-xs text-zinc-500">Cronometraje oficial a cargo de <strong class="text-cyan-400">ENCARRERA UY</strong></p>
+                    </div>`;
+                const tbody = document.getElementById('leaderboard-tbody');
+                if (tbody) tbody.innerHTML = '';
+                return;
+            }
+
             const top3 = filtered.slice(0, 3);
             const podiumStyles = [
                 { rank: '1º', border: 'border-amber-400/60', text: 'text-vibrant-yellow', bg: 'from-amber-950/40 via-surface-card to-zinc-900', medal: '🥇' },
@@ -1167,6 +1307,7 @@
 
             top3.forEach((item, idx) => {
                 const sty = podiumStyles[idx] || podiumStyles[2];
+                const gm = getGymMeta(item.gymName);
                 const card = document.createElement('div');
                 card.className = `tv-card rounded-xl sm:rounded-2xl p-3 sm:p-5 border-2 ${sty.border} bg-gradient-to-b ${sty.bg} relative overflow-hidden shadow-xl`;
                 card.innerHTML = `
@@ -1174,12 +1315,12 @@
                         <span class="font-display font-black text-2xl sm:text-3xl ${sty.text} flex items-center gap-1">
                             <span>${sty.medal}</span> ${sty.rank}
                         </span>
-                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/60 border-2 p-1 sm:p-1.5 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${getGymMeta(item.gymName).color}50">
-                            <img src="${getGymMeta(item.gymName).logo}" alt="${getGymMeta(item.gymName).name}" class="w-full h-full object-contain rounded-lg" onerror="this.src='public/logos/jps-training.png'"/>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/60 border-2 p-1 sm:p-1.5 flex items-center justify-center shrink-0 overflow-hidden shadow-lg" style="border-color: ${gm.color}50">
+                            <img src="${gm.logo}" alt="${gm.name}" class="w-full h-full object-contain rounded-lg" onerror="this.src='public/logos/jps-training.png'"/>
                         </div>
                     </div>
-                    <span class="font-mono text-[10px] sm:text-xs font-bold uppercase block" style="color: ${getGymMeta(item.gymName).color}">
-                        ${getGymMeta(item.gymName).name}
+                    <span class="font-mono text-[10px] sm:text-xs font-bold uppercase block" style="color: ${gm.color}">
+                        ${gm.name}
                     </span>
                     <h4 class="font-display font-black text-sm sm:text-lg text-white uppercase leading-snug mt-0.5 sm:mt-1 mb-2 sm:mb-3">
                         ${item.nombre}
@@ -1203,6 +1344,7 @@
             tbody.innerHTML = '';
 
             filtered.forEach((r, idx) => {
+                const gm = getGymMeta(r.gymName);
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 font-mono text-xs";
                 tr.innerHTML = `
@@ -1211,10 +1353,10 @@
                     </td>
                     <td class="py-2.5 sm:py-3 px-2 sm:px-4">
                         <div class="flex items-center gap-2">
-                            <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/60 border p-0.5 flex items-center justify-center shrink-0 overflow-hidden" style="border-color: ${getGymMeta(r.gymName).color}50">
-                                <img src="${getGymMeta(r.gymName).logo}" alt="${getGymMeta(r.gymName).name}" class="w-full h-full object-contain rounded" onerror="this.src='public/logos/jps-training.png'"/>
+                            <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/60 border p-0.5 flex items-center justify-center shrink-0 overflow-hidden" style="border-color: ${gm.color}50">
+                                <img src="${gm.logo}" alt="${gm.name}" class="w-full h-full object-contain rounded" onerror="this.src='public/logos/jps-training.png'"/>
                             </div>
-                            <span class="font-bold uppercase truncate max-w-[90px] sm:max-w-[140px]" style="color: ${getGymMeta(r.gymName).color}">${getGymMeta(r.gymName).name}</span>
+                            <span class="font-bold uppercase truncate max-w-[90px] sm:max-w-[140px]" style="color: ${gm.color}">${gm.name}</span>
                         </div>
                     </td>
                     <td class="py-2.5 sm:py-3 px-2 sm:px-4 font-display font-black text-xs sm:text-sm text-white uppercase">
@@ -1370,47 +1512,6 @@
 
             const text = tickerItems.join(' &nbsp;&bull;&nbsp; ');
             marquee.innerHTML = `<span>${text}</span><span> &nbsp;&bull;&nbsp; ${text}</span>`;
-        }
-
-        // ── Fallback Parser (en caso de leer resultados.csv directamente) ──
-        function parseCSVFallback(csvText) {
-            csvText = (csvText || '').replace(/^\uFEFF/, '').trim();
-            const lines = csvText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-            if (lines.length < 2) return null;
-
-            const records = [];
-            for (let i = 1; i < lines.length; i++) {
-                const cols = lines[i].split(',').map(c => c.trim());
-                if (cols.length < 5) continue;
-                records.push({
-                    numero: cols[0],
-                    nombre: cols[1],
-                    posGeneral: parseInt(cols[2], 10) || 99,
-                    posCategoria: parseInt(cols[3], 10) || 99,
-                    modalidad: cols[4] || 'OPEN',
-                    tanda: cols[5] || 'TANDA 1',
-                    tiempo: cols[6] || '--:--:--',
-                    posta: cols[12] || 'POSTA 1',
-                    vuelta: parseInt(cols[13], 10) || 3,
-                    vueltasTotal: parseInt(cols[14], 10) || 3,
-                    estado: cols[15] || 'FINALIZADO',
-                    diferencia: cols[17] || '',
-                    mejorVuelta: cols[19] || '',
-                    splits: [cols[20], cols[21], cols[22]].filter(Boolean),
-                    gymName: cols[1].includes('EUGENIA') || cols[1].includes('VALERIA') ? 'JPS Training' : cols[1].includes('PIRIZ') ? 'Enfoque' : 'Nordic',
-                    gymLogo: 'public/logos/jps-training.png',
-                    gymColor: '#FF8A00'
-                });
-            }
-
-            return {
-                success: true,
-                currentHeat: { tandaNombre: 'TANDA 6', athletes: records.slice(0, 4) },
-                nextHeat: { tandaNombre: 'TANDA 7', athletes: [] },
-                categories: ['OPEN WOMEN', 'PRO WOMEN'],
-                leaderboard: records,
-                stats: { bestLapRecord: { time: '00:00:54', dupla: 'EMILIA ESTEVEZ / ANGELA OLIVERA', gym: 'JPS Training' } }
-            };
         }
 
         // ── Atajos de Teclado (Para el operador en Módena Eventos) ──
