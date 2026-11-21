@@ -1194,6 +1194,42 @@
             };
         }
 
+        // ── Combinador de CSVs (Une Resultados en Vivo + Open Women Oficial) ──
+        function combineCsvTexts(mainText, womenText) {
+            if (!womenText) return mainText;
+            if (!mainText) return womenText;
+            const mainLines = mainText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+            const womenLines = womenText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+            if (womenLines.length < 2) return mainText;
+            if (mainLines.length < 2) return womenText;
+
+            const header = mainLines[0];
+            const resultLines = [header];
+            const addedAthletes = new Set();
+
+            // 1. Agregar resultados oficiales de Mujeres (prioritarios)
+            for (let i = 1; i < womenLines.length; i++) {
+                const cols = womenLines[i].split(',');
+                const name = (cols[1] || '').trim().toUpperCase();
+                if (name) {
+                    addedAthletes.add(name);
+                    resultLines.push(womenLines[i]);
+                }
+            }
+
+            // 2. Agregar resultados en vivo (Hombres, Mixtos, etc.) sin duplicar
+            for (let i = 1; i < mainLines.length; i++) {
+                const cols = mainLines[i].split(',');
+                const name = (cols[1] || '').trim().toUpperCase();
+                if (name && !addedAthletes.has(name)) {
+                    addedAthletes.add(name);
+                    resultLines.push(mainLines[i]);
+                }
+            }
+
+            return resultLines.join('\n');
+        }
+
         // ── Fetch de Datos en Vivo ──
         async function fetchRaceData() {
             const dot = document.getElementById('sync-status-dot');
@@ -1201,11 +1237,34 @@
 
             // 1. Conexión Directa en Tiempo Real al SFTP de Encarrera (Nginx HTTPS)
             try {
-                const csvRes = await fetch('https://n8n.nico-family.com/encarrera/resultados.csv?t=' + Date.now(), { cache: 'no-store' });
-                if (csvRes.ok) {
-                    const arrayBuf = await csvRes.arrayBuffer();
-                    const text = decodeBuffer(arrayBuf);
-                    const parsed = parseCsvToRaceData(text);
+                const [liveRes, womenRes] = await Promise.allSettled([
+                    fetch('https://n8n.nico-family.com/encarrera/resultados.csv?t=' + Date.now(), { cache: 'no-store' }),
+                    fetch('https://n8n.nico-family.com/encarrera/open_women_13h.csv?t=' + Date.now(), { cache: 'no-store' })
+                ]);
+
+                let liveText = '';
+                let womenText = '';
+
+                if (liveRes.status === 'fulfilled' && liveRes.value.ok) {
+                    const arrayBuf = await liveRes.value.arrayBuffer();
+                    liveText = decodeBuffer(arrayBuf);
+                }
+                if (womenRes.status === 'fulfilled' && womenRes.value.ok) {
+                    const arrayBuf = await womenRes.value.arrayBuffer();
+                    womenText = decodeBuffer(arrayBuf);
+                } else {
+                    try {
+                        const fallbackWomen = await fetch('https://n8n.nico-family.com/encarrera/resultados_open_women.csv?t=' + Date.now(), { cache: 'no-store' });
+                        if (fallbackWomen.ok) {
+                            const ab = await fallbackWomen.arrayBuffer();
+                            womenText = decodeBuffer(ab);
+                        }
+                    } catch (err) {}
+                }
+
+                const combinedText = combineCsvTexts(liveText, womenText);
+                if (combinedText) {
+                    const parsed = parseCsvToRaceData(combinedText);
                     if (parsed && parsed.allAthletes && parsed.allAthletes.length > 0) {
                         raceData = parsed;
                         renderAll();
