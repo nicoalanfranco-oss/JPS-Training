@@ -290,16 +290,6 @@
                 </div>
             </div>
 
-            <!-- Heat Selector Tabs Bar -->
-            <div class="flex items-center justify-between gap-2 overflow-x-auto py-1.5 px-3 rounded-xl bg-black/50 border border-white/10 shadow-inner">
-                <span class="text-[11px] font-mono text-zinc-400 uppercase font-black px-1 shrink-0 flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-electric-orange"></span> VER TANDA:
-                </span>
-                <div id="heat-selector-tabs" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                    <!-- Inyectado dinámicamente -->
-                </div>
-            </div>
-
             <!-- Athletes Live Grid -->
             <div id="heat-athletes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Se inyecta dinámicamente con las tarjetas de atletas -->
@@ -316,7 +306,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
                 <div>
                     <div class="inline-flex items-center gap-2 text-xs font-mono font-black text-vibrant-yellow uppercase mb-1">
-                        🏆 CLASIFICACIÓN GENERAL OFICIAL
+                        🏆 CLASIFICACIÓN GENERAL OFICIAL • TIEMPO TOTAL
                     </div>
                     <h2 class="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight leading-none">
                         TABLA DE <span class="text-electric-orange">POSICIONES</span>
@@ -343,12 +333,11 @@
                                 <th class="py-2 sm:py-3 px-2 sm:px-4 text-center w-10 sm:w-16">Pos</th>
                                 <th class="py-2 sm:py-3 px-2 sm:px-4">Gimnasio</th>
                                 <th class="py-2 sm:py-3 px-2 sm:px-4">Dupla / Atletas</th>
-                                <th class="py-2 sm:py-3 px-2 sm:px-4 hidden md:table-cell">Modalidad</th>
-                                <th class="py-2 sm:py-3 px-2 sm:px-4 text-center hidden sm:table-cell">Tanda</th>
-                                <th class="py-2 sm:py-3 px-2 sm:px-4 text-center hidden sm:table-cell">Vueltas</th>
+                                <th class="py-2 sm:py-3 px-2 sm:px-4 hidden md:table-cell">Categoría</th>
+                                <th class="py-2 sm:py-3 px-2 sm:px-4 text-center hidden sm:table-cell">Estación</th>
                                 <th class="py-2 sm:py-3 px-2 sm:px-4 text-center hidden lg:table-cell">Mejor Vta</th>
                                 <th class="py-2 sm:py-3 px-2 sm:px-4 text-center hidden md:table-cell">Dif</th>
-                                <th class="py-2 sm:py-3 px-2 sm:px-4 text-right pr-3 sm:pr-6 font-mono">Tiempo Oficial</th>
+                                <th class="py-2 sm:py-3 px-2 sm:px-4 text-right pr-3 sm:pr-6 font-mono">TIEMPO TOTAL</th>
                             </tr>
                         </thead>
                         <tbody id="leaderboard-tbody" class="divide-y divide-white/5 text-sm">
@@ -811,7 +800,7 @@
         let autoRotation = true;
         let rotationTimer = null;
         let rotationCountdown = 40; // segundos en vista actual
-        let activeLeaderboardCategory = 'ALL';
+        let activeLeaderboardCategory = 'AUTO';
         let simulatedTimeStr = null;
 
         function onTimeSimulationChange(val) {
@@ -1507,16 +1496,36 @@
         }
 
         // ── Render 2: "Leaderboard General" ──
-        // ── Render 2: "Leaderboard General" ──
         function renderLeaderboardView() {
             const list = raceData.leaderboard || [];
             const categories = raceData.categories || [];
 
+            // ── Auto-detect categoría activa ──
+            function getActiveCategoryFromData() {
+                const allAths = raceData.allAthletes || [];
+                const running = allAths.filter(r => ['EN CURSO','CORRIENDO','EN PISTA','EN CARRERA','LARGADA'].includes(r.estado));
+                if (running.length > 0) {
+                    const freq = {};
+                    running.forEach(r => { freq[r.modalidad] = (freq[r.modalidad] || 0) + 1; });
+                    return Object.entries(freq).sort((a,b) => b[1]-a[1])[0][0];
+                }
+                const sched = getActiveScheduledHeat();
+                if (sched.heat && sched.heat.category) {
+                    const found = categories.find(c => c === sched.heat.category);
+                    if (found) return found;
+                }
+                return categories[0] || null;
+            }
+
+            const resolvedCategory = activeLeaderboardCategory === 'AUTO'
+                ? getActiveCategoryFromData()
+                : (activeLeaderboardCategory === 'ALL' ? null : activeLeaderboardCategory);
+
             // Categorías en Tabs
             const tabsContainer = document.getElementById('leaderboard-category-tabs');
             tabsContainer.innerHTML = `
-                <button onclick="setLeaderboardCategory('ALL')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'ALL' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase">
-                    TODAS
+                <button onclick="setLeaderboardCategory('AUTO')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'AUTO' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase flex items-center gap-1">
+                    ● AUTO
                 </button>
             `;
             categories.forEach(cat => {
@@ -1528,8 +1537,8 @@
                 `;
             });
 
-            // Filtrar lista
-            const filtered = activeLeaderboardCategory === 'ALL' ? list : list.filter(r => r.modalidad === activeLeaderboardCategory);
+            // Filtrar lista según categoría resuelta
+            const filtered = resolvedCategory ? list.filter(r => r.modalidad === resolvedCategory) : list;
 
             // 1. Podio Top 3
             const podium = document.getElementById('podium-container');
@@ -1616,9 +1625,7 @@
                     <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-zinc-300 hidden md:table-cell uppercase">
                         ${r.modalidad}
                     </td>
-                    <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-zinc-400 font-bold hidden sm:table-cell">
-                        ${r.tanda}
-                    </td>
+
                     <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-white hidden sm:table-cell">
                         ${r.vuelta}/${r.vueltasTotal}
                     </td>
