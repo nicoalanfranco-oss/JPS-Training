@@ -1557,7 +1557,20 @@
         // ── Render 2: "Leaderboard General" ──
         function renderLeaderboardView() {
             const list = raceData.leaderboard || [];
-            const categories = raceData.categories || [];
+            const dataCategories = raceData.categories || [];
+
+            // Lista canónica completa de categorías del torneo (SIEMPRE DISPONIBLES para consulta manual)
+            const ALL_OFFICIAL_CATEGORIES = [
+                'OPEN WOMEN',
+                'OPEN MEN',
+                'OPEN MIXTO',
+                'MASTER WOMEN',
+                'MASTER MEN',
+                'PRO MEN',
+                'PRO WOMEN',
+                'PRO MIXTO'
+            ];
+            const categories = Array.from(new Set([...ALL_OFFICIAL_CATEGORIES, ...dataCategories]));
 
             // ── Auto-detect categoría activa ──
             function getActiveCategoryFromData() {
@@ -1576,47 +1589,127 @@
                 return categories[0] || null;
             }
 
+            const activeCatInField = getActiveCategoryFromData();
             const resolvedCategory = activeLeaderboardCategory === 'AUTO'
-                ? getActiveCategoryFromData()
+                ? activeCatInField
                 : (activeLeaderboardCategory === 'ALL' ? null : activeLeaderboardCategory);
 
-            // Categorías en Tabs
+            // Categorías en Tabs (Botonera permanente)
             const tabsContainer = document.getElementById('leaderboard-category-tabs');
-            const autoLabel = resolvedCategory ? `● AUTO (${resolvedCategory})` : '● AUTO';
-            tabsContainer.innerHTML = `
-                <button onclick="setLeaderboardCategory('AUTO')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'AUTO' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase flex items-center gap-1">
+            const autoLabel = activeCatInField ? `● AUTO (${activeCatInField})` : '● AUTO';
+            
+            let tabsHtml = `
+                <button onclick="setLeaderboardCategory('AUTO')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'AUTO' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 hover:text-white border border-white/10'} uppercase flex items-center gap-1 transition-all">
                     ${autoLabel}
                 </button>
+                <button onclick="setLeaderboardCategory('ALL')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'ALL' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 hover:text-white border border-white/10'} uppercase transition-all">
+                    TODAS
+                </button>
             `;
+
             categories.forEach(cat => {
                 const isSel = activeLeaderboardCategory === cat;
-                tabsContainer.innerHTML += `
-                    <button onclick="setLeaderboardCategory('${cat}')" class="px-2.5 py-1 rounded-lg ${isSel ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase">
-                        ${cat}
+                const hasResults = list.some(r => (r.modalidad || '').toUpperCase() === cat.toUpperCase());
+                tabsHtml += `
+                    <button onclick="setLeaderboardCategory('${cat}')" class="px-2.5 py-1 rounded-lg ${isSel ? 'bg-electric-orange text-black font-black shadow-lg scale-105' : hasResults ? 'bg-white/10 text-zinc-200 hover:bg-white/20 border border-white/15' : 'bg-white/5 text-zinc-400 hover:text-white border border-white/10'} uppercase transition-all flex items-center gap-1">
+                        ${hasResults ? '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>' : ''}
+                        <span>${cat}</span>
                     </button>
                 `;
             });
+            tabsContainer.innerHTML = tabsHtml;
 
             // Actualizar etiqueta de título de categoría activa
             const catTitleEl = document.getElementById('leaderboard-active-cat-name');
             if (catTitleEl) {
-                catTitleEl.textContent = resolvedCategory ? `${resolvedCategory} • TIEMPO TOTAL` : 'TIEMPO TOTAL';
+                catTitleEl.textContent = resolvedCategory ? `${resolvedCategory} • TIEMPO TOTAL` : 'CLASIFICACIÓN GENERAL • TIEMPO TOTAL';
             }
 
             // Filtrar lista según categoría resuelta
-            const filtered = resolvedCategory ? list.filter(r => r.modalidad === resolvedCategory) : list;
+            let filtered = [];
+            if (!resolvedCategory || resolvedCategory === 'ALL') {
+                filtered = list;
+            } else {
+                filtered = list.filter(r => {
+                    const mod = (r.modalidad || '').toUpperCase();
+                    const target = resolvedCategory.toUpperCase();
+                    return mod === target || mod.includes(target) || target.includes(mod);
+                });
+            }
 
             // 1. Podio Top 3
             const podium = document.getElementById('podium-container');
             podium.innerHTML = '';
 
-            // Si no hay resultados, mostrar placeholder
+            // Si no hay resultados oficiales para esta categoría, mostrar duplas programadas del cronograma
             if (filtered.length === 0) {
+                // Buscar si la categoría está en el cronograma oficial
+                const schedHeatsForCat = SCHEDULE_HEATS.filter(h => h.category === resolvedCategory);
+                const schedDuplas = [];
+                schedHeatsForCat.forEach(h => {
+                    (h.duplas || []).forEach(d => {
+                        schedDuplas.push({ ...d, tandaNumero: h.tandaNumero, time: h.time });
+                    });
+                });
+
+                if (schedDuplas.length > 0) {
+                    const firstHeat = schedHeatsForCat[0];
+                    podium.innerHTML = `
+                        <div class="col-span-3 tv-card rounded-xl sm:rounded-2xl p-6 border-2 border-vibrant-yellow/30 bg-gradient-to-b from-amber-950/20 via-surface-card to-zinc-900 text-center space-y-2">
+                            <span class="px-3 py-1 rounded-full bg-vibrant-yellow/20 text-vibrant-yellow font-mono text-xs font-black uppercase inline-block">
+                                ⏳ CATEGORÍA PROGRAMADA
+                            </span>
+                            <h3 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+                                ${resolvedCategory} • LARGADA OFICIAL A LAS ${firstHeat.time} HS (TANDA ${firstHeat.tandaNumero})
+                            </h3>
+                            <p class="font-body text-sm text-zinc-400 max-w-lg mx-auto">
+                                ${schedDuplas.length} duplas inscriptas listas para competir. Los tiempos y posiciones se publicarán en vivo durante la tanda.
+                            </p>
+                        </div>`;
+
+                    const tbody = document.getElementById('leaderboard-tbody');
+                    if (tbody) {
+                        tbody.innerHTML = '';
+                        schedDuplas.forEach((d, idx) => {
+                            const gm = getGymMeta(d.g1);
+                            const tr = document.createElement('tr');
+                            tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 font-mono text-xs";
+                            tr.innerHTML = `
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-zinc-500 font-bold">${idx + 1}º</td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/60 border p-0.5 flex items-center justify-center shrink-0 overflow-hidden" style="border-color: ${gm.color}50">
+                                            <img src="${gm.logo}" alt="${gm.name}" class="w-full h-full object-contain rounded" onerror="this.src='public/logos/jps-training.png'"/>
+                                        </div>
+                                        <span class="font-bold uppercase truncate max-w-[90px] sm:max-w-[140px]" style="color: ${gm.color}">${gm.name}</span>
+                                    </div>
+                                </td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 font-display font-black text-xs sm:text-sm text-white uppercase">
+                                    ${d.p1} &bull; ${d.p2}
+                                </td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-zinc-300 hidden md:table-cell uppercase">
+                                    ${resolvedCategory}
+                                </td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-vibrant-yellow font-bold hidden sm:table-cell">
+                                    TANDA ${d.tandaNumero} (${d.time} HS)
+                                </td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-zinc-500 hidden lg:table-cell">--:--</td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-center text-zinc-500 hidden md:table-cell">--</td>
+                                <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-right pr-3 sm:pr-6 font-black text-xs sm:text-sm text-vibrant-yellow">
+                                    EN ESPERA
+                                </td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                    }
+                    return;
+                }
+
                 podium.innerHTML = `
                     <div class="col-span-3 flex flex-col items-center justify-center py-12 gap-4 text-center">
                         <div class="text-5xl mb-2">⏳</div>
                         <p class="font-mono text-xs font-black text-vibrant-yellow uppercase tracking-widest">Esperando resultados oficiales</p>
-                        <p class="font-body text-sm text-zinc-400 max-w-md">Los resultados y clasificaciones se publicarán automáticamente en cuanto finalicen las primeras tandas oficiales del día.</p>
+                        <p class="font-body text-sm text-zinc-400 max-w-md">Los resultados y clasificaciones se publicarán automáticamente en cuanto finalicen las tandas de esta categoría.</p>
                         <p class="font-mono text-xs text-zinc-500">Cronometraje oficial a cargo de <strong class="text-cyan-400">ENCARRERA UY</strong></p>
                     </div>`;
                 const tbody = document.getElementById('leaderboard-tbody');
