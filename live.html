@@ -290,6 +290,16 @@
                 </div>
             </div>
 
+            <!-- Heat Selector Tabs Bar -->
+            <div class="flex items-center justify-between gap-2 overflow-x-auto py-1.5 px-3 rounded-xl bg-black/50 border border-white/10 shadow-inner">
+                <span class="text-[11px] font-mono text-zinc-400 uppercase font-black px-1 shrink-0 flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-electric-orange"></span> VER TANDA:
+                </span>
+                <div id="heat-selector-tabs" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+
             <!-- Athletes Live Grid -->
             <div id="heat-athletes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Se inyecta dinámicamente con las tarjetas de atletas -->
@@ -745,33 +755,58 @@
             return { logo: 'public/logos/jps-training.png', color: '#94A3B8', name: gymName || 'Invitado' };
         }
 
-        // ── Resuelve gym desde el schedule canónico usando nombre de dupla ──
-        // Recibe string "NOMBRE1 / NOMBRE2" y busca en SCHEDULE_HEATS.
-        // Devuelve { gymName, gymLogo, gymColor } o null si no encuentra.
-        function resolveGymFromSchedule(nombreDupla) {
+        // ── Resuelve gym y tanda desde el schedule canónico usando nombre de dupla ──
+        function resolveDuplaFromScheduleFull(nombreDupla) {
             if (!nombreDupla) return null;
             const normalize = s => (s || '').toLowerCase()
                 .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
             const nn = normalize(nombreDupla);
+            let bestMatch = null;
+            let bestScore = 0;
+
             for (const heat of SCHEDULE_HEATS) {
                 if (!heat.duplas) continue;
                 for (const d of heat.duplas) {
+                    let score = 0;
                     const p1n = normalize(d.p1);
                     const p2n = normalize(d.p2);
-                    // Match by last name (more robust)
-                    const p1Last = p1n.split(' ').pop();
-                    const p2Last = p2n.split(' ').pop();
-                    if ((p1Last && nn.includes(p1Last) && p1Last.length > 3) ||
-                        (p2Last && nn.includes(p2Last) && p2Last.length > 3)) {
+                    if (p1n && nn.includes(p1n)) score += 10;
+                    if (p2n && nn.includes(p2n)) score += 10;
+
+                    const p1Last = p1n.split(' ').pop() || '';
+                    const p2Last = p2n.split(' ').pop() || '';
+                    if (p1Last.length > 3 && nn.includes(p1Last)) score += 3;
+                    if (p2Last.length > 3 && nn.includes(p2Last)) score += 3;
+
+                    if (score > bestScore) {
+                        bestScore = score;
                         const gm = getGymMeta(d.g1);
-                        return { gymName: gm.name, gymLogo: gm.logo, gymColor: gm.color };
+                        bestMatch = {
+                            tandaNumero: heat.tandaNumero,
+                            d,
+                            gymName: gm.name,
+                            gymLogo: gm.logo,
+                            gymColor: gm.color,
+                        };
                     }
                 }
             }
+            if (bestMatch && bestScore >= 6) return bestMatch;
             return null;
         }
 
+        function resolveGymFromSchedule(nombreDupla) {
+            const res = resolveDuplaFromScheduleFull(nombreDupla);
+            return res ? { gymName: res.gymName, gymLogo: res.gymLogo, gymColor: res.gymColor } : null;
+        }
+
         let raceData = null;
+        let userSelectedTanda = null; // null = AUTO (tanda en pista)
+        function setTandaFilter(tNum) {
+            userSelectedTanda = tNum;
+            renderHeatView();
+        }
+
         let currentView = 'heat'; // 'heat' | 'leaderboard' | 'next'
         let autoRotation = true;
         let rotationTimer = null;
@@ -1024,14 +1059,180 @@
             }
         }, 1000);
 
+        // ── Decodificador de Buffer (UTF-16LE / UTF-8 con BOM) ──
+        function decodeBuffer(buf) {
+            const bytes = new Uint8Array(buf);
+            let decoder;
+            if (bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) {
+                decoder = new TextDecoder('utf-16le');
+            } else {
+                decoder = new TextDecoder('utf-8');
+            }
+            let text = decoder.decode(buf);
+            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+            return text;
+        }
+
+        // ── Parser Universal de CSV de Encarrera en el Cliente ──
+        function parseCsvToRaceData(rawText) {
+            const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+            if (lines.length < 2) return null;
+
+            const headers = lines[0].split(',').map(h => h.trim().toUpperCase());
+            const col = name => headers.indexOf(name);
+            const iNum = col('NUMERO');
+            const iNom = col('NOMBRE');
+            const iPosG = col('POS GENERAL');
+            const iPosC = col('POS CATEGORIA');
+            const iMod = col('MODALIDAD');
+            const iCat = col('CATEGORIA');
+            const iTie = col('TIEMPO');
+            const iEq = col('EQUIPO');
+            const iVue = col('VUELTA');
+            const iTot = col('VUELTAS TOTAL');
+            const iEst = col('ESTADO');
+            const iGen = col('GENERAL');
+            const iDif = col('DIFERENCIA');
+            const iUlt = col('ULTIMA VUELTA');
+            const iMej = col('MEJOR VUELTA');
+            const iV1 = col('V1');
+
+            const records = [];
+            let bestLapRecord = { time: '99:99:99', dupla: '', gym: '' };
+
+            for (let r = 1; r < lines.length; r++) {
+                const row = lines[r].split(',').map(c => c.trim());
+                if (row.length < 5) continue;
+
+                const nombre = row[iNom] || '';
+                const numero = row[iNum] || '';
+                const posGeneral = parseInt(row[iPosG], 10) || 999;
+                const posCategoria = parseInt(row[iPosC], 10) || 999;
+                const modalidad = row[iMod] || 'OPEN';
+                const tandaRaw = row[iCat] || 'TANDA 1';
+                const tiempo = row[iTie] || '--:--:--';
+                const posta = row[iEq] || '';
+                const vuelta = parseInt(row[iVue], 10) || 0;
+                const vueltasTotal = parseInt(row[iTot], 10) || 15;
+                let estado = (row[iEst] || 'EN CARRERA').toUpperCase();
+                if (vuelta >= vueltasTotal && vueltasTotal > 0) estado = 'FINALIZADO';
+                const division = row[iGen] || 'OPEN';
+                const diferencia = row[iDif] || '';
+                const ultimaVuelta = row[iUlt] || '';
+                const mejorVuelta = row[iMej] || '';
+
+                const splits = [];
+                if (iV1 !== -1) {
+                    for (let vi = iV1; vi < row.length; vi++) {
+                        if (row[vi] && row[vi].trim() !== '') splits.push(row[vi].trim());
+                    }
+                }
+
+                const resolved = resolveDuplaFromScheduleFull(nombre);
+                const gymMeta = resolved ? { name: resolved.gymName, logo: resolved.gymLogo, color: resolved.gymColor } : getGymMeta('');
+                const tandaNum = resolved ? resolved.tandaNumero : 1;
+                const tandaStr = `TANDA ${tandaNum}`;
+
+                if (mejorVuelta && mejorVuelta < bestLapRecord.time) {
+                    bestLapRecord = { time: mejorVuelta, dupla: nombre, gym: gymMeta.name };
+                }
+
+                records.push({
+                    numero,
+                    nombre,
+                    posGeneral,
+                    posCategoria,
+                    modalidad,
+                    tanda: tandaStr,
+                    tandaNumero: tandaNum,
+                    tiempo,
+                    posta: posta || resolved?.d?.posta || 'POSTA --',
+                    vuelta,
+                    vueltasTotal,
+                    estado,
+                    division,
+                    diferencia,
+                    ultimaVuelta,
+                    mejorVuelta,
+                    splits,
+                    gymName: gymMeta.name,
+                    gymLogo: gymMeta.logo,
+                    gymColor: gymMeta.color
+                });
+            }
+
+            // Tanda activa: la más alta con atletas corriendo, o según el schedule
+            const runningTandas = records
+                .filter(r => ['EN CURSO', 'CORRIENDO', 'EN PISTA', 'EN CARRERA', 'LARGADA'].includes(r.estado))
+                .map(r => r.tandaNumero);
+            const activeHeatNumber = runningTandas.length > 0
+                ? Math.max(...runningTandas)
+                : records.reduce((m, r) => Math.max(m, r.tandaNumero), 1);
+
+            const currentHeatAthletes = records
+                .filter(r => r.tandaNumero === activeHeatNumber)
+                .sort((a, b) => a.posCategoria - b.posCategoria || a.tiempo.localeCompare(b.tiempo));
+
+            const categoriesSet = Array.from(new Set(records.map(r => r.modalidad)));
+            const leaderboardsByCategory = {};
+            categoriesSet.forEach(cat => {
+                leaderboardsByCategory[cat] = records
+                    .filter(r => r.modalidad === cat)
+                    .sort((a, b) => a.posCategoria - b.posCategoria || a.tiempo.localeCompare(b.tiempo));
+            });
+            const generalLeaderboard = [...records].sort((a, b) => a.posGeneral - b.posGeneral || a.tiempo.localeCompare(b.tiempo));
+            const availableTandas = Array.from(new Set(records.map(r => r.tandaNumero))).sort((a, b) => a - b);
+
+            return {
+                success: true,
+                stats: {
+                    totalRegistered: records.length,
+                    totalFinished: records.filter(r => r.estado === 'FINALIZADO').length,
+                    totalRunning: records.filter(r => ['EN CURSO', 'CORRIENDO', 'EN PISTA', 'EN CARRERA', 'LARGADA'].includes(r.estado)).length,
+                    activeHeatNumber,
+                    availableTandas,
+                    bestLapRecord: bestLapRecord.time !== '99:99:99' ? bestLapRecord : null
+                },
+                currentHeat: {
+                    tandaNumero: activeHeatNumber,
+                    tandaNombre: `TANDA ${activeHeatNumber}`,
+                    athletes: currentHeatAthletes
+                },
+                allAthletes: records,
+                categories: categoriesSet,
+                leaderboard: generalLeaderboard,
+                leaderboardsByCategory
+            };
+        }
+
         // ── Fetch de Datos en Vivo ──
         async function fetchRaceData() {
             const dot = document.getElementById('sync-status-dot');
             const statusText = document.getElementById('sync-status-text');
 
+            // 1. Conexión Directa en Tiempo Real al SFTP de Encarrera (Nginx HTTPS)
+            try {
+                const csvRes = await fetch('https://n8n.nico-family.com/encarrera/resultados.csv?t=' + Date.now(), { cache: 'no-store' });
+                if (csvRes.ok) {
+                    const arrayBuf = await csvRes.arrayBuffer();
+                    const text = decodeBuffer(arrayBuf);
+                    const parsed = parseCsvToRaceData(text);
+                    if (parsed && parsed.allAthletes && parsed.allAthletes.length > 0) {
+                        raceData = parsed;
+                        renderAll();
+                        if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+                        if (statusText) statusText.textContent = `En vivo • ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}`;
+                        return;
+                    }
+                }
+            } catch (e) {
+                // Continuar a fallback
+            }
+
+            // 2. Endpoints API secundarios
             for (const endpoint of API_ENDPOINTS) {
                 try {
-                    const res = await fetch(endpoint + '?t=' + Date.now());
+                    const res = await fetch(endpoint + '?t=' + Date.now(), { cache: 'no-store' });
                     if (!res.ok) continue;
 
                     const json = await res.json();
@@ -1074,17 +1275,53 @@
 
         // ── Render 1: "En la Pista Ahora" ──
         function renderHeatView() {
-            // 1. Detectar tanda activa según cronograma
+            // 1. Detectar tanda activa según cronograma y datos en vivo
             const activeSched = getActiveScheduledHeat();
             const schedHeat = activeSched.heat;
 
-            // 2. Usar datos del API/CSV si existen; si no, generar atletas desde el cronograma
-            const heat = raceData.currentHeat || {};
-            let athletes = heat.athletes || [];
+            // 2. Tanda efectiva a mostrar (AUTO o seleccionada por el usuario)
+            const liveActiveTandaNum = raceData.stats?.activeHeatNumber || raceData.currentHeat?.tandaNumero || schedHeat?.tandaNumero || 1;
+            const effectiveTandaNum = userSelectedTanda !== null ? userSelectedTanda : liveActiveTandaNum;
 
-            // 2a. Si la API no tiene atletas en la tanda activa, construirlos desde el schedule
-            if (athletes.length === 0 && schedHeat && schedHeat.duplas) {
-                athletes = schedHeat.duplas.map((d, idx) => {
+            // 2b. Renderizar barra de selección de tandas
+            const tabsContainer = document.getElementById('heat-selector-tabs');
+            if (tabsContainer) {
+                const availableTandas = raceData.stats?.availableTandas && raceData.stats.availableTandas.length > 0
+                    ? raceData.stats.availableTandas
+                    : [1, 2, 3, 4, 5, 6];
+                
+                let tabsHtml = `
+                    <button onclick="setTandaFilter(null)" class="px-2.5 py-1 rounded-lg text-xs font-mono font-black uppercase transition-all shrink-0 flex items-center gap-1 ${userSelectedTanda === null ? 'bg-electric-orange text-black shadow-md' : 'bg-white/5 text-zinc-400 hover:text-white border border-white/10'}">
+                        <span>⚡ AUTO EN PISTA (T${liveActiveTandaNum})</span>
+                    </button>
+                `;
+
+                availableTandas.forEach(tNum => {
+                    const isSel = userSelectedTanda === tNum;
+                    const isLive = liveActiveTandaNum === tNum;
+                    tabsHtml += `
+                        <button onclick="setTandaFilter(${tNum})" class="px-3 py-1 rounded-lg text-xs font-mono font-black uppercase transition-all shrink-0 flex items-center gap-1 ${isSel ? 'bg-electric-orange text-black shadow-md' : 'bg-white/5 text-zinc-300 hover:bg-white/10 border border-white/10'}">
+                            <span>TANDA ${tNum}</span>
+                            ${isLive ? '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>' : ''}
+                        </button>
+                    `;
+                });
+                tabsContainer.innerHTML = tabsHtml;
+            }
+
+            // 3. Obtener atletas para la tanda efectiva
+            let athletes = [];
+            if (raceData.allAthletes && raceData.allAthletes.length > 0) {
+                athletes = raceData.allAthletes.filter(a => a.tandaNumero === effectiveTandaNum);
+            }
+            if (athletes.length === 0 && raceData.currentHeat?.tandaNumero === effectiveTandaNum) {
+                athletes = raceData.currentHeat?.athletes || [];
+            }
+
+            // Si aún no hay atletas en CSV para esta tanda, construir desde el cronograma maestro
+            const matchedSchedHeat = SCHEDULE_HEATS.find(h => h.tandaNumero === effectiveTandaNum) || schedHeat;
+            if (athletes.length === 0 && matchedSchedHeat && matchedSchedHeat.duplas) {
+                athletes = matchedSchedHeat.duplas.map((d, idx) => {
                     const gm = getGymMeta(d.g1);
                     return {
                         nombre: `${d.p1} / ${d.p2}`,
@@ -1092,11 +1329,11 @@
                         gymName: gm.name,
                         gymLogo: gm.logo,
                         gymColor: gm.color,
-                        estado: activeSched.isPreEvent ? 'EN ESPERA' : 'EN PISTA',
-                        modalidad: schedHeat.category,
+                        estado: 'EN ESPERA',
+                        modalidad: matchedSchedHeat.category || 'OPEN',
                         tiempo: '--:--:--',
                         vuelta: 0,
-                        vueltasTotal: 3,
+                        vueltasTotal: 15,
                         mejorVuelta: null,
                         diferencia: null,
                         posCategoria: idx + 1,
@@ -1106,21 +1343,24 @@
                 });
             }
 
-            // 3. Nombre de la tanda: preferir el del API, luego el del schedule
-            const tandaNombre = heat.tandaNombre || `TANDA ${schedHeat?.tandaNumero || ''}`;
+            // 4. Encabezados de Tanda
+            const tandaNombre = `TANDA ${effectiveTandaNum}`;
 
             const heatBadge = document.getElementById('header-heat-badge');
             if (heatBadge) {
-                if (activeSched.isPreEvent) heatBadge.textContent = 'PRE-EVENTO';
+                if (userSelectedTanda !== null) heatBadge.textContent = `${tandaNombre} (HISTÓRICO)`;
+                else if (activeSched.isPreEvent) heatBadge.textContent = 'PRE-EVENTO';
                 else if (activeSched.isBreak) heatBadge.textContent = 'RECESO';
-                else heatBadge.textContent = tandaNombre;
+                else heatBadge.textContent = `${tandaNombre} EN PISTA`;
             }
+
             const activeTag = document.getElementById('active-heat-tag');
             if (activeTag) activeTag.textContent = tandaNombre;
 
             const heatTitle = document.getElementById('heat-title');
             if (heatTitle) {
-                if (activeSched.isBreak) heatTitle.textContent = 'RECESO — REANUDA A LAS 14:00 HS';
+                if (userSelectedTanda !== null) heatTitle.textContent = `${tandaNombre} • RESULTADOS OFICIALES`;
+                else if (activeSched.isBreak) heatTitle.textContent = 'RECESO — REANUDA A LAS 14:00 HS';
                 else heatTitle.textContent = `${tandaNombre} EN PISTA`;
             }
 
@@ -1133,14 +1373,13 @@
                 if (bestLapEl) bestLapEl.textContent = bestLapObj.time;
             }
 
-            const categoryLabel = schedHeat?.category || athletes[0]?.modalidad || 'OPEN';
+            const categoryLabel = matchedSchedHeat?.category || athletes[0]?.modalidad || 'OPEN';
             const catLabel = document.getElementById('heat-category-label');
             if (catLabel) catLabel.textContent = categoryLabel;
 
             const grid = document.getElementById('heat-athletes-grid');
             if (!grid) return;
             grid.innerHTML = '';
-            // Mobile: 1 col; tablet: 2 col; desktop: 3 col
             grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3';
 
             athletes.forEach((ath, idx) => {
@@ -1150,44 +1389,58 @@
                 const card = document.createElement('div');
                 card.className = `tv-card rounded-xl sm:rounded-2xl p-3 sm:p-5 border relative overflow-hidden transition-all duration-300 ${isLeader ? 'tv-card-active' : isScheduleOnly ? 'border-vibrant-yellow/30' : 'border-white/10'}`;
 
-                // ── Gym Meta (from ath.gymName OR from name lookup) ──
+                // Resolver gimnasio canónico
                 const resolvedGym = ath.gymName
                     ? getGymMeta(ath.gymName)
                     : (resolveGymFromSchedule(ath.nombre) ? getGymMeta(resolveGymFromSchedule(ath.nombre).gymName) : getGymMeta(''));
                 const gymMeta = resolvedGym;
 
-                // Vueltas visuales
-                const totalVueltas = ath.vueltasTotal || 3;
+                // Vueltas visuales: barra de progreso + strip deslizable de estaciones
+                const totalVueltas = ath.vueltasTotal || 15;
                 const currentVuelta = ath.vuelta || 0;
-                let lapStepsHtml = '';
+                const progressPct = Math.min(100, Math.round((currentVuelta / totalVueltas) * 100));
+
+                let lapStepsHtml = `
+                    <div class="w-full space-y-1.5 mb-2">
+                        <div class="flex items-center justify-between text-[10px] font-mono font-bold text-zinc-400">
+                            <span>ESTACIÓN ${currentVuelta} / ${totalVueltas}</span>
+                            <span class="${isFinished ? 'text-emerald-400 font-black' : 'text-electric-orange font-black'}">${isFinished ? '100% COMPLETADO ✓' : progressPct + '%'}</span>
+                        </div>
+                        <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                            <div class="h-full rounded-full transition-all duration-500 ${isFinished ? 'bg-emerald-500' : 'bg-gradient-to-r from-electric-orange to-yellow-400'}" style="width: ${progressPct}%"></div>
+                        </div>
+                        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5">
+                `;
+
                 for (let v = 1; v <= totalVueltas; v++) {
                     const splitVal = ath.splits?.[v - 1] || '';
                     if (isScheduleOnly) {
                         lapStepsHtml += `
-                            <div class="flex-1 py-1 px-1.5 rounded bg-vibrant-yellow/10 border border-vibrant-yellow/30 text-center">
-                                <span class="block text-[9px] font-mono text-vibrant-yellow font-bold uppercase">V${v}</span>
-                                <span class="block text-xs font-mono font-black text-zinc-400">--:--</span>
+                            <div class="shrink-0 px-2 py-0.5 rounded bg-vibrant-yellow/10 border border-vibrant-yellow/30 text-center">
+                                <span class="block text-[8px] font-mono text-vibrant-yellow font-bold uppercase">V${v}</span>
+                                <span class="block text-[10px] font-mono font-black text-zinc-400">--:--</span>
                             </div>`;
                     } else if (v < currentVuelta || isFinished) {
                         lapStepsHtml += `
-                            <div class="flex-1 py-1 px-1.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-center">
-                                <span class="block text-[9px] font-mono text-emerald-400 font-bold uppercase">V${v} ✓</span>
-                                <span class="block text-xs font-mono font-black text-white">${splitVal || 'OK'}</span>
+                            <div class="shrink-0 px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-center">
+                                <span class="block text-[8px] font-mono text-emerald-400 font-bold uppercase">V${v} ✓</span>
+                                <span class="block text-[10px] font-mono font-black text-white">${splitVal || 'OK'}</span>
                             </div>`;
                     } else if (v === currentVuelta && !isFinished) {
                         lapStepsHtml += `
-                            <div class="flex-1 py-1 px-1.5 rounded bg-electric-orange/30 border border-electric-orange text-center animate-pulse">
-                                <span class="block text-[9px] font-mono text-electric-orange font-bold uppercase">V${v} ACT</span>
-                                <span class="block text-xs font-mono font-black text-white">EN PISTA</span>
+                            <div class="shrink-0 px-2 py-0.5 rounded bg-electric-orange/30 border border-electric-orange text-center animate-pulse">
+                                <span class="block text-[8px] font-mono text-electric-orange font-bold uppercase">V${v} ACT</span>
+                                <span class="block text-[10px] font-mono font-black text-white">${splitVal || 'EN PISTA'}</span>
                             </div>`;
                     } else {
                         lapStepsHtml += `
-                            <div class="flex-1 py-1 px-1.5 rounded bg-white/5 border border-white/10 text-center opacity-40">
-                                <span class="block text-[9px] font-mono text-zinc-400 font-bold uppercase">V${v}</span>
-                                <span class="block text-xs font-mono font-bold text-zinc-400">--:--</span>
+                            <div class="shrink-0 px-2 py-0.5 rounded bg-white/5 border border-white/10 text-center opacity-30">
+                                <span class="block text-[8px] font-mono text-zinc-400 font-bold uppercase">V${v}</span>
+                                <span class="block text-[10px] font-mono font-bold text-zinc-400">--:--</span>
                             </div>`;
                     }
                 }
+                lapStepsHtml += `</div></div>`;
 
                 // Status badge
                 let statusBadge = '';
@@ -1229,16 +1482,14 @@
                         ${ath.nombre}
                     </h3>
 
-                    <!-- Lap Progress (compact on mobile) -->
-                    <div class="flex items-center gap-1 mb-2">
-                        ${lapStepsHtml}
-                    </div>
+                    <!-- Lap Progress Bar & Strip -->
+                    ${lapStepsHtml}
 
                     <!-- Stats row -->
                     <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
                         <div>
                             <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">${isScheduleOnly ? 'HORARIO' : 'TIEMPO'}</span>
-                            <span class="font-mono text-lg sm:text-2xl font-black ${isLeader ? 'text-electric-orange' : isScheduleOnly ? 'text-vibrant-yellow' : 'text-white'}">${isScheduleOnly ? (schedHeat?.time + ' HS') : ath.tiempo}</span>
+                            <span class="font-mono text-lg sm:text-2xl font-black ${isLeader ? 'text-electric-orange' : isScheduleOnly ? 'text-vibrant-yellow' : 'text-white'}">${isScheduleOnly ? (matchedSchedHeat?.time + ' HS') : ath.tiempo}</span>
                         </div>
                         <div class="text-right">
                             <span class="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase font-bold block">MEJOR VTA</span>
@@ -1535,9 +1786,9 @@
             }
         }
 
-        // Polling cada 15s
+        // Polling en tiempo real cada 5 segundos
         fetchRaceData();
-        setInterval(fetchRaceData, 15000);
+        setInterval(fetchRaceData, 5000);
     </script>
 </body>
 </html>
