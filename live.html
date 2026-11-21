@@ -306,7 +306,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
                 <div>
                     <div class="inline-flex items-center gap-2 text-xs font-mono font-black text-vibrant-yellow uppercase mb-1">
-                        🏆 CLASIFICACIÓN GENERAL OFICIAL • TIEMPO TOTAL
+                        🏆 CLASIFICACIÓN OFICIAL • <span id="leaderboard-active-cat-name" class="text-electric-orange">TIEMPO TOTAL</span>
                     </div>
                     <h2 class="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight leading-none">
                         TABLA DE <span class="text-electric-orange">POSICIONES</span>
@@ -1523,9 +1523,10 @@
 
             // Categorías en Tabs
             const tabsContainer = document.getElementById('leaderboard-category-tabs');
+            const autoLabel = resolvedCategory ? `● AUTO (${resolvedCategory})` : '● AUTO';
             tabsContainer.innerHTML = `
                 <button onclick="setLeaderboardCategory('AUTO')" class="px-2.5 py-1 rounded-lg ${activeLeaderboardCategory === 'AUTO' ? 'bg-electric-orange text-black font-black' : 'bg-white/5 text-zinc-400 border border-white/10'} uppercase flex items-center gap-1">
-                    ● AUTO
+                    ${autoLabel}
                 </button>
             `;
             categories.forEach(cat => {
@@ -1536,6 +1537,12 @@
                     </button>
                 `;
             });
+
+            // Actualizar etiqueta de título de categoría activa
+            const catTitleEl = document.getElementById('leaderboard-active-cat-name');
+            if (catTitleEl) {
+                catTitleEl.textContent = resolvedCategory ? `${resolvedCategory} • TIEMPO TOTAL` : 'TIEMPO TOTAL';
+            }
 
             // Filtrar lista según categoría resuelta
             const filtered = resolvedCategory ? list.filter(r => r.modalidad === resolvedCategory) : list;
