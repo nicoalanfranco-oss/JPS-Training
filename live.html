@@ -1628,7 +1628,7 @@
             // Filtrar lista según categoría resuelta
             let filtered = [];
             if (!resolvedCategory || resolvedCategory === 'ALL') {
-                filtered = list;
+                filtered = [...list];
             } else {
                 filtered = list.filter(r => {
                     const mod = (r.modalidad || '').toUpperCase();
@@ -1636,6 +1636,22 @@
                     return mod === target || mod.includes(target) || target.includes(mod);
                 });
             }
+
+            // Ordenamiento deportivo oficial para Podio y Clasificación:
+            // 1. FINALIZADOS primero (ya completaron la carrera)
+            // 2. Si ambos finalizaron: menor tiempo oficial
+            // 3. Si están en carrera: mayor número de estaciones completadas, luego menor tiempo
+            filtered.sort((a, b) => {
+                const aFin = a.estado === 'FINALIZADO';
+                const bFin = b.estado === 'FINALIZADO';
+                if (aFin && !bFin) return -1;
+                if (!aFin && bFin) return 1;
+                if (aFin && bFin) return a.tiempo.localeCompare(b.tiempo);
+                const vA = a.vuelta || 0;
+                const vB = b.vuelta || 0;
+                if (vA !== vB) return vB - vA;
+                return a.tiempo.localeCompare(b.tiempo);
+            });
 
             // 1. Podio Top 3
             const podium = document.getElementById('podium-container');
@@ -1746,12 +1762,12 @@
                     </h4>
                     <div class="pt-2 sm:pt-3 border-t border-white/10 flex items-center justify-between font-mono">
                         <div>
-                            <span class="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-bold block">Tiempo Final</span>
+                            <span class="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-bold block">${item.estado === 'FINALIZADO' ? 'Tiempo Final' : 'Tiempo en Pista (Estación ' + (item.vuelta || 0) + '/15)'}</span>
                             <span class="text-base sm:text-xl font-black ${sty.text}">${item.tiempo}</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-bold block">Diferencia</span>
-                            <span class="text-xs font-bold text-zinc-300">${item.diferencia || 'GANADOR'}</span>
+                            <span class="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-bold block">${item.estado === 'FINALIZADO' ? 'Diferencia' : 'Estado'}</span>
+                            <span class="text-xs font-bold ${item.estado === 'FINALIZADO' ? 'text-zinc-300' : 'text-electric-orange animate-pulse'}">${item.estado === 'FINALIZADO' ? (item.diferencia || 'GANADOR') : 'EN CARRERA'}</span>
                         </div>
                     </div>
                 `;
